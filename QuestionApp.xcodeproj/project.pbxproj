@@ -9,11 +9,33 @@
 /* Begin PBXBuildFile section */
 		F9118DB31A8196EB00E878AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9118DB21A8196EB00E878AA /* main.m */; };
 		F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9118DB51A8196EB00E878AA /* AppDelegate.m */; };
-		F9118DB91A8196EB00E878AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9118DB81A8196EB00E878AA /* ViewController.m */; };
-		F9118DBC1A8196EB00E878AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9118DBA1A8196EB00E878AA /* Main.storyboard */; };
 		F9118DBE1A8196EB00E878AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9118DBD1A8196EB00E878AA /* Images.xcassets */; };
 		F9118DC11A8196EB00E878AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9118DBF1A8196EB00E878AA /* LaunchScreen.xib */; };
 		F9118DCD1A8196EB00E878AA /* QuestionAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9118DCC1A8196EB00E878AA /* QuestionAppTests.m */; };
+		F9118DD81A81999500E878AA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9118DD71A81999500E878AA /* MainStoryboard.storyboard */; };
+		F9118DDA1A8199F900E878AA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DD91A8199F900E878AA /* Bolts.framework */; };
+		F9118DDC1A819A0700E878AA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DDB1A819A0700E878AA /* Parse.framework */; };
+		F9118DDE1A819A8000E878AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DDD1A819A8000E878AA /* Accounts.framework */; };
+		F9118DE01A819A8800E878AA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DDF1A819A8800E878AA /* AudioToolbox.framework */; };
+		F9118DE21A819A8F00E878AA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DE11A819A8F00E878AA /* CFNetwork.framework */; };
+		F9118DE41A819A9700E878AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DE31A819A9700E878AA /* CoreGraphics.framework */; };
+		F9118DE61A819A9F00E878AA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DE51A819A9F00E878AA /* CoreLocation.framework */; };
+		F9118DE81A819AB000E878AA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DE71A819AB000E878AA /* MobileCoreServices.framework */; };
+		F9118DEA1A819AC000E878AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DE91A819AC000E878AA /* QuartzCore.framework */; };
+		F9118DEC1A819ACB00E878AA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DEB1A819ACB00E878AA /* Security.framework */; };
+		F9118DEE1A819AD500E878AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DED1A819AD500E878AA /* Social.framework */; };
+		F9118DF01A819AE100E878AA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DEF1A819AE100E878AA /* StoreKit.framework */; };
+		F9118DF21A819AED00E878AA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF11A819AED00E878AA /* SystemConfiguration.framework */; };
+		F9118DF41A819B1500E878AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF31A819B1500E878AA /* libz.dylib */; };
+		F9118DF61A819B3300E878AA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF51A819B3300E878AA /* libsqlite3.dylib */; };
+		F9118DF91A81A7A400E878AA /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF81A81A7A300E878AA /* ParseUI.framework */; };
+		F9CBBE741A82662100680486 /* AnswerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE731A82662000680486 /* AnswerTableViewController.m */; };
+		F9CBBE771A82664000680486 /* AddQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE761A82664000680486 /* AddQuestionViewController.m */; };
+		F9CBBE7A1A82665200680486 /* AddAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE791A82665200680486 /* AddAnswerViewController.m */; };
+		F9CBBE7D1A8283DD00680486 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE7C1A8283DD00680486 /* DataSource.m */; };
+		F9CBBE801A829A9700680486 /* QuestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE7F1A829A9700680486 /* QuestionTableViewController.m */; };
+		F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE821A82AC0A00680486 /* LoginViewController.m */; };
+		F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE851A82AE8700680486 /* SignupViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +54,42 @@
 		F9118DB21A8196EB00E878AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9118DB41A8196EB00E878AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F9118DB51A8196EB00E878AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F9118DB71A8196EB00E878AA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F9118DB81A8196EB00E878AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F9118DBB1A8196EB00E878AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9118DBD1A8196EB00E878AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F9118DC01A8196EB00E878AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F9118DC61A8196EB00E878AA /* QuestionAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuestionAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9118DCB1A8196EB00E878AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9118DCC1A8196EB00E878AA /* QuestionAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuestionAppTests.m; sourceTree = "<group>"; };
+		F9118DD71A81999500E878AA /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = ../MainStoryboard.storyboard; sourceTree = "<group>"; };
+		F9118DD91A8199F900E878AA /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		F9118DDB1A819A0700E878AA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		F9118DDD1A819A8000E878AA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		F9118DDF1A819A8800E878AA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F9118DE11A819A8F00E878AA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F9118DE31A819A9700E878AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F9118DE51A819A9F00E878AA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F9118DE71A819AB000E878AA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F9118DE91A819AC000E878AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F9118DEB1A819ACB00E878AA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F9118DED1A819AD500E878AA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		F9118DEF1A819AE100E878AA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F9118DF11A819AED00E878AA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F9118DF31A819B1500E878AA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F9118DF51A819B3300E878AA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F9118DF81A81A7A300E878AA /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		F9CBBE721A82662000680486 /* AnswerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerTableViewController.h; path = ../AnswerTableViewController.h; sourceTree = "<group>"; };
+		F9CBBE731A82662000680486 /* AnswerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerTableViewController.m; path = ../AnswerTableViewController.m; sourceTree = "<group>"; };
+		F9CBBE751A82664000680486 /* AddQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddQuestionViewController.h; path = ../AddQuestionViewController.h; sourceTree = "<group>"; };
+		F9CBBE761A82664000680486 /* AddQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddQuestionViewController.m; path = ../AddQuestionViewController.m; sourceTree = "<group>"; };
+		F9CBBE781A82665200680486 /* AddAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddAnswerViewController.h; path = ../AddAnswerViewController.h; sourceTree = "<group>"; };
+		F9CBBE791A82665200680486 /* AddAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddAnswerViewController.m; path = ../AddAnswerViewController.m; sourceTree = "<group>"; };
+		F9CBBE7B1A8283DD00680486 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSource.h; path = ../DataSource.h; sourceTree = "<group>"; };
+		F9CBBE7C1A8283DD00680486 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSource.m; path = ../DataSource.m; sourceTree = "<group>"; };
+		F9CBBE7E1A829A9700680486 /* QuestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionTableViewController.h; path = ../QuestionTableViewController.h; sourceTree = "<group>"; };
+		F9CBBE7F1A829A9700680486 /* QuestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionTableViewController.m; path = ../QuestionTableViewController.m; sourceTree = "<group>"; };
+		F9CBBE811A82AC0A00680486 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
+		F9CBBE821A82AC0A00680486 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
+		F9CBBE841A82AE8700680486 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = ../SignupViewController.h; sourceTree = "<group>"; };
+		F9CBBE851A82AE8700680486 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = ../SignupViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +97,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9118DF61A819B3300E878AA /* libsqlite3.dylib in Frameworks */,
+				F9118DF41A819B1500E878AA /* libz.dylib in Frameworks */,
+				F9118DF21A819AED00E878AA /* SystemConfiguration.framework in Frameworks */,
+				F9118DF01A819AE100E878AA /* StoreKit.framework in Frameworks */,
+				F9118DEE1A819AD500E878AA /* Social.framework in Frameworks */,
+				F9118DEC1A819ACB00E878AA /* Security.framework in Frameworks */,
+				F9118DF91A81A7A400E878AA /* ParseUI.framework in Frameworks */,
+				F9118DEA1A819AC000E878AA /* QuartzCore.framework in Frameworks */,
+				F9118DE81A819AB000E878AA /* MobileCoreServices.framework in Frameworks */,
+				F9118DE61A819A9F00E878AA /* CoreLocation.framework in Frameworks */,
+				F9118DE41A819A9700E878AA /* CoreGraphics.framework in Frameworks */,
+				F9118DE21A819A8F00E878AA /* CFNetwork.framework in Frameworks */,
+				F9118DE01A819A8800E878AA /* AudioToolbox.framework in Frameworks */,
+				F9118DDE1A819A8000E878AA /* Accounts.framework in Frameworks */,
+				F9118DDC1A819A0700E878AA /* Parse.framework in Frameworks */,
+				F9118DDA1A8199F900E878AA /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +132,7 @@
 				F9118DAF1A8196EB00E878AA /* QuestionApp */,
 				F9118DC91A8196EB00E878AA /* QuestionAppTests */,
 				F9118DAE1A8196EB00E878AA /* Products */,
+				F9118DF71A819B5300E878AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,11 +148,23 @@
 		F9118DAF1A8196EB00E878AA /* QuestionApp */ = {
 			isa = PBXGroup;
 			children = (
+				F9CBBE781A82665200680486 /* AddAnswerViewController.h */,
+				F9CBBE791A82665200680486 /* AddAnswerViewController.m */,
+				F9CBBE751A82664000680486 /* AddQuestionViewController.h */,
+				F9CBBE761A82664000680486 /* AddQuestionViewController.m */,
+				F9CBBE721A82662000680486 /* AnswerTableViewController.h */,
+				F9CBBE731A82662000680486 /* AnswerTableViewController.m */,
+				F9CBBE7E1A829A9700680486 /* QuestionTableViewController.h */,
+				F9CBBE7F1A829A9700680486 /* QuestionTableViewController.m */,
+				F9CBBE841A82AE8700680486 /* SignupViewController.h */,
+				F9CBBE851A82AE8700680486 /* SignupViewController.m */,
+				F9CBBE811A82AC0A00680486 /* LoginViewController.h */,
+				F9CBBE821A82AC0A00680486 /* LoginViewController.m */,
+				F9CBBE7B1A8283DD00680486 /* DataSource.h */,
+				F9CBBE7C1A8283DD00680486 /* DataSource.m */,
 				F9118DB41A8196EB00E878AA /* AppDelegate.h */,
 				F9118DB51A8196EB00E878AA /* AppDelegate.m */,
-				F9118DB71A8196EB00E878AA /* ViewController.h */,
-				F9118DB81A8196EB00E878AA /* ViewController.m */,
-				F9118DBA1A8196EB00E878AA /* Main.storyboard */,
+				F9118DD71A81999500E878AA /* MainStoryboard.storyboard */,
 				F9118DBD1A8196EB00E878AA /* Images.xcassets */,
 				F9118DBF1A8196EB00E878AA /* LaunchScreen.xib */,
 				F9118DB01A8196EB00E878AA /* Supporting Files */,
@@ -117,6 +196,29 @@
 				F9118DCB1A8196EB00E878AA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F9118DF71A819B5300E878AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9118DF51A819B3300E878AA /* libsqlite3.dylib */,
+				F9118DF31A819B1500E878AA /* libz.dylib */,
+				F9118DF81A81A7A300E878AA /* ParseUI.framework */,
+				F9118DF11A819AED00E878AA /* SystemConfiguration.framework */,
+				F9118DEF1A819AE100E878AA /* StoreKit.framework */,
+				F9118DED1A819AD500E878AA /* Social.framework */,
+				F9118DEB1A819ACB00E878AA /* Security.framework */,
+				F9118DE91A819AC000E878AA /* QuartzCore.framework */,
+				F9118DE71A819AB000E878AA /* MobileCoreServices.framework */,
+				F9118DE51A819A9F00E878AA /* CoreLocation.framework */,
+				F9118DE31A819A9700E878AA /* CoreGraphics.framework */,
+				F9118DE11A819A8F00E878AA /* CFNetwork.framework */,
+				F9118DDF1A819A8800E878AA /* AudioToolbox.framework */,
+				F9118DDD1A819A8000E878AA /* Accounts.framework */,
+				F9118DDB1A819A0700E878AA /* Parse.framework */,
+				F9118DD91A8199F900E878AA /* Bolts.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9118DBC1A8196EB00E878AA /* Main.storyboard in Resources */,
+				F9118DD81A81999500E878AA /* MainStoryboard.storyboard in Resources */,
 				F9118DC11A8196EB00E878AA /* LaunchScreen.xib in Resources */,
 				F9118DBE1A8196EB00E878AA /* Images.xcassets in Resources */,
 			);
@@ -219,8 +321,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9118DB91A8196EB00E878AA /* ViewController.m in Sources */,
+				F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */,
+				F9CBBE7A1A82665200680486 /* AddAnswerViewController.m in Sources */,
 				F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */,
+				F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */,
+				F9CBBE741A82662100680486 /* AnswerTableViewController.m in Sources */,
+				F9CBBE801A829A9700680486 /* QuestionTableViewController.m in Sources */,
+				F9CBBE771A82664000680486 /* AddQuestionViewController.m in Sources */,
+				F9CBBE7D1A8283DD00680486 /* DataSource.m in Sources */,
 				F9118DB31A8196EB00E878AA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,14 +352,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F9118DBA1A8196EB00E878AA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F9118DBB1A8196EB00E878AA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F9118DBF1A8196EB00E878AA /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -345,6 +445,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = QuestionApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -355,6 +459,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = QuestionApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -414,6 +522,7 @@
 				F9118DD21A8196EB00E878AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F9118DD31A8196EB00E878AA /* Build configuration list for PBXNativeTarget "QuestionAppTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +531,7 @@
 				F9118DD51A8196EB00E878AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
