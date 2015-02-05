@@ -7,94 +7,132 @@
 //
 
 #import "AnswerTableViewController.h"
+#import <Parse/Parse.h>
+#import "AddAnswerViewController.h"
 
 @interface AnswerTableViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *questionTextView;
+@property (weak, nonatomic) NSMutableArray *answerArray;
 
 @end
 
 @implementation AnswerTableViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithClassName:@"Question"];
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        // The className to query on
+        self.parseClassName = @"Question";
+        
+        // Whether the built-in pull-to-refresh is enabled
+        self.pullToRefreshEnabled = YES;
+        
+        // Whether the built-in pagination is enabled
+        self.paginationEnabled = YES;
+        
+        // The number of objects to show per page
+        self.objectsPerPage = 15;
+    }
+    return self;
+}
+
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.questionTextView.text = [self.question objectForKey:@"questionText"];
+    //NSLog(@"%@", self.question);
+    /*
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        NSLog(@"Current user: %@", currentUser.username);
+    }
+    else {
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    }
+    */
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // Uncomment
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadObjects];
 }
 
-#pragma mark - Table view data source
+#pragma mark - PFQueryTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+// Override to customize the look of a cell representing an object. The default is to display
+// a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
+// and the imageView being the imageKey in the object.
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+    static NSString *CellIdentifier = @"Cell";
     
-    // Configure the cell...
+    PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
+    NSDate *date = [self.question createdAt];
+    NSLog(@"%@", date);
+    
+    // Configure the cell
+    
+    self.answerArray = [self.question objectForKey:@"answers"];
+    
+    NSLog(@"%@", self.question);
+
+    for (int i; i < self.answerArray.count; i++) {
+        //NSLog(@"%@", self.answerArray[i]);
+    }
+    
+    //cell.textLabel.text = [self.answerArray objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
+    
+    /*
+    UILabel *answerTextField = (UILabel *)[self.view viewWithTag:102];
+    answerTextField.text = [answers objectAtIndex:indexPath.row];
+    //answerTextField.text = [self.question objectForKey:@"answers"];
+    NSLog(@"%@", [object objectForKey:@"answers"]);
+    
+    UILabel *answerUsernameLabel = (UILabel *)[self.view viewWithTag:103];
+    answerUsernameLabel.text = [object objectForKey:@"username"];
+    //NSLog(@"%@", [object objectForKey:@"username"]);
+    
+    UILabel *answerDateLabel = (UILabel *)[self.view viewWithTag:104];
+    answerDateLabel.text = [dateFormatter stringFromDate:date];
+    NSLog(@"%@", [dateFormatter stringFromDate:date]);
+    */
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
+#pragma mark - UITableViewDelegate
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addAnswer"]) {
+        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //PFObject *object = [self.objects objectAtIndex:indexPath.row];
+        
+        AddAnswerViewController *addAnswerViewController = (AddAnswerViewController *)segue.destinationViewController;
+        addAnswerViewController.question = self.question;
+    }
 }
-*/
 
 @end

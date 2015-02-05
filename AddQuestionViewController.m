@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 - (IBAction)savePressed:(UIBarButtonItem *)sender;
+- (IBAction)cancelPressed:(UIBarButtonItem *)sender;
 
 @end
 
@@ -33,7 +34,7 @@
     }*/
 }
 
-- (IBAction)savePressed:(id)sender {
+- (IBAction)savePressed:(UIBarButtonItem *)sender {
     
     NSString *title = [self.titleField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -43,11 +44,15 @@
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     } else {
-        [self saveNote];
+        [self saveQuestion];
     }
 }
 
-- (void)saveNote
+- (IBAction)cancelPressed:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)saveQuestion
 {
     
     PFObject *newQuestion = [PFObject objectWithClassName:@"Question"];

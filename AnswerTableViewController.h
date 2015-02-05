@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <ParseUI/ParseUI.h>
 
-@interface AnswerTableViewController : UITableViewController
+@interface AnswerTableViewController : PFQueryTableViewController
 
-@property (nonatomic, strong) PFObject *answer;
+@property (nonatomic, strong) PFObject *question;
 
 @end

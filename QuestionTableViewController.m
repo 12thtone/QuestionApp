@@ -78,7 +78,6 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [object createdAt];
-    NSLog(@"%@", date);
     
     // Configure the cell
     cell.textLabel.text = [object objectForKey:@"questionTitle"];
@@ -98,12 +97,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
     if ([segue.identifier isEqualToString:@"showQuestion"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
         AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
-        answerTableViewController.answer = object;
+        answerTableViewController.question = object;
     }
 }
 

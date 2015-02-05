@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseUI/ParseUI.h>
 
 @interface AddAnswerViewController : UIViewController
+
+@property (nonatomic, strong) PFObject *question;
 
 @end
