@@ -27,14 +27,6 @@
     [super viewDidLoad];
     
     self.questionTitleLabel.text = [self.question objectForKey:@"questionTitle"];
-        
-    // Check to see if note is not nil, which let's us know that the note
-    // had already been saved.
-    /*
-     if (self.answer != nil) {
-     self.titleTextField.text = [self.note objectForKey:@"title"];
-     self.contentTextView.text = [self.note objectForKey:@"content"];
-     }*/
 }
 
 - (IBAction)save:(UIBarButtonItem *)sender {
@@ -85,39 +77,5 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-/*
- - (void)updateNote
- {
- 
- PFQuery *query = [PFQuery queryWithClassName:@"Post"];
- 
- // Retrieve the object by id
- [query getObjectInBackgroundWithId:[self.note objectId] block:^(PFObject *oldNote, NSError *error) {
- 
- if (error) {
- UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
- message:[error.userInfo objectForKey:@"error"]
- delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
- [alertView show];
- }
- else {
- oldNote[@"title"] = self.titleTextField.text;
- oldNote[@"content"] = self.contentTextView.text;
- 
- [oldNote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
- if (succeeded) {
- [self.navigationController popViewControllerAnimated:YES];
- } else {
- UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
- message:[error.userInfo objectForKey:@"error"]
- delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
- [alertView show];
- }
- }];
- }
- 
- }];
- 
- }*/
 
 @end
