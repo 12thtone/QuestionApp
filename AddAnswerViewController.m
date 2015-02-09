@@ -61,11 +61,11 @@
     //newAnswer[@"questionsAnswer"] = self.answerTextView.text;
     
     [self.question addObject:@[self.answer] forKey:@"answers"];
-    [self.question saveInBackground];
+    //[self.question saveInBackground];
     
     [self.question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            NSLog(@"%@", self.answer);
+            //NSLog(@"%@", self.answer);
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"

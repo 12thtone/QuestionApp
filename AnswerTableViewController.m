@@ -83,18 +83,22 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [self.question createdAt];
-    NSLog(@"%@", date);
+    //NSLog(@"%@", date);
     
     // Configure the cell
     
     self.answerArray = [self.question objectForKey:@"answers"];
     
-    NSLog(@"%@", self.question);
+    ///////////////////////////////////NSString *title = [self.titleField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    //NSLog(@"%@", self.question);
 
     for (int i; i < self.answerArray.count; i++) {
-        //NSLog(@"%@", self.answerArray[i]);
+        self.answerArray[i] = [self.answerArray[i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSLog(@"%@", self.answerArray[i]);
     }
+    //////////////////////////////////
     
+    //cell.textLabel.text = [self.answerArray[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     //cell.textLabel.text = [self.answerArray objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
     

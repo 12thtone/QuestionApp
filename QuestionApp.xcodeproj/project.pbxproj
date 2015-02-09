@@ -29,6 +29,11 @@
 		F9118DF41A819B1500E878AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF31A819B1500E878AA /* libz.dylib */; };
 		F9118DF61A819B3300E878AA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF51A819B3300E878AA /* libsqlite3.dylib */; };
 		F9118DF91A81A7A400E878AA /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF81A81A7A300E878AA /* ParseUI.framework */; };
+		F9B718161A89021E0070C134 /* 536-disguise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718151A89021E0070C134 /* 536-disguise@2x.png */; };
+		F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718171A89025F0070C134 /* 564-camera@2x.png */; };
+		F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718191A8902EE0070C134 /* 644-coversation@2x.png */; };
+		F9B7181C1A8908A80070C134 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B7181B1A8908A80070C134 /* placeholder.png */; };
+		F9B718221A890EA80070C134 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B718211A890EA80070C134 /* MyProfileTableViewController.m */; };
 		F9CBBE741A82662100680486 /* AnswerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE731A82662000680486 /* AnswerTableViewController.m */; };
 		F9CBBE771A82664000680486 /* AddQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE761A82664000680486 /* AddQuestionViewController.m */; };
 		F9CBBE7A1A82665200680486 /* AddAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE791A82665200680486 /* AddAnswerViewController.m */; };
@@ -76,6 +81,12 @@
 		F9118DF31A819B1500E878AA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F9118DF51A819B3300E878AA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F9118DF81A81A7A300E878AA /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		F9B718151A89021E0070C134 /* 536-disguise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "536-disguise@2x.png"; sourceTree = "<group>"; };
+		F9B718171A89025F0070C134 /* 564-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "564-camera@2x.png"; sourceTree = "<group>"; };
+		F9B718191A8902EE0070C134 /* 644-coversation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "644-coversation@2x.png"; sourceTree = "<group>"; };
+		F9B7181B1A8908A80070C134 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		F9B718201A890EA80070C134 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyProfileTableViewController.h; path = ../MyProfileTableViewController.h; sourceTree = "<group>"; };
+		F9B718211A890EA80070C134 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyProfileTableViewController.m; path = ../MyProfileTableViewController.m; sourceTree = "<group>"; };
 		F9CBBE721A82662000680486 /* AnswerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerTableViewController.h; path = ../AnswerTableViewController.h; sourceTree = "<group>"; };
 		F9CBBE731A82662000680486 /* AnswerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerTableViewController.m; path = ../AnswerTableViewController.m; sourceTree = "<group>"; };
 		F9CBBE751A82664000680486 /* AddQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddQuestionViewController.h; path = ../AddQuestionViewController.h; sourceTree = "<group>"; };
@@ -148,6 +159,8 @@
 		F9118DAF1A8196EB00E878AA /* QuestionApp */ = {
 			isa = PBXGroup;
 			children = (
+				F9B718201A890EA80070C134 /* MyProfileTableViewController.h */,
+				F9B718211A890EA80070C134 /* MyProfileTableViewController.m */,
 				F9CBBE781A82665200680486 /* AddAnswerViewController.h */,
 				F9CBBE791A82665200680486 /* AddAnswerViewController.m */,
 				F9CBBE751A82664000680486 /* AddQuestionViewController.h */,
@@ -175,6 +188,10 @@
 		F9118DB01A8196EB00E878AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9B7181B1A8908A80070C134 /* placeholder.png */,
+				F9B718191A8902EE0070C134 /* 644-coversation@2x.png */,
+				F9B718171A89025F0070C134 /* 564-camera@2x.png */,
+				F9B718151A89021E0070C134 /* 536-disguise@2x.png */,
 				F9118DB11A8196EB00E878AA /* Info.plist */,
 				F9118DB21A8196EB00E878AA /* main.m */,
 			);
@@ -301,9 +318,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9B718161A89021E0070C134 /* 536-disguise@2x.png in Resources */,
 				F9118DD81A81999500E878AA /* MainStoryboard.storyboard in Resources */,
 				F9118DC11A8196EB00E878AA /* LaunchScreen.xib in Resources */,
 				F9118DBE1A8196EB00E878AA /* Images.xcassets in Resources */,
+				F9B7181C1A8908A80070C134 /* placeholder.png in Resources */,
+				F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */,
+				F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */,
+				F9B718221A890EA80070C134 /* MyProfileTableViewController.m in Sources */,
 				F9CBBE7A1A82665200680486 /* AddAnswerViewController.m in Sources */,
 				F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */,
 				F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */,
