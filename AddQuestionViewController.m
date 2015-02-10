@@ -50,6 +50,7 @@
     PFObject *newQuestion = [PFObject objectWithClassName:@"Question"];
     newQuestion[@"questionTitle"] = self.titleField.text;
     newQuestion[@"questionText"] = self.textField.text;
+    newQuestion[@"author"] = [PFUser currentUser];
     
     [newQuestion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {

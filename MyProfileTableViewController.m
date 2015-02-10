@@ -30,6 +30,10 @@
     self.usernameProfile.text = currentUser.username;
     //self.profileImage.image = [currentUser objectForKey:@"picture"];
     
+    if (currentUser.description) {
+        self.textProfile.text = [currentUser objectForKey:@"description"];
+    }
+    
     PFFile *pictureFile = [currentUser objectForKey:@"picture"];
     [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error){

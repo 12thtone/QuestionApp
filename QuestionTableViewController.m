@@ -9,9 +9,13 @@
 #import "QuestionTableViewController.h"
 #import <Parse/Parse.h>
 #import "AnswerTableViewController.h"
+#import "ProfileTableViewController.h"
 
 @interface QuestionTableViewController ()
 - (IBAction)logout:(id)sender;
+- (IBAction)tapProfile:(UITapGestureRecognizer *)sender;
+
+@property (weak, nonatomic) UIImageView *userImage;
 
 @end
 
@@ -75,13 +79,51 @@
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    UILabel *questionLabel = (UILabel *)[self.view viewWithTag:101];
+    UILabel *usernameLabel = (UILabel *)[self.view viewWithTag:102];
+    UILabel *dateLabel = (UILabel *)[self.view viewWithTag:103];
+    self.userImage = (UIImageView *)[self.view viewWithTag:104];
+    /*
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [object createdAt];
     
-    // Configure the cell
-    cell.textLabel.text = [object objectForKey:@"questionTitle"];
-    cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
+    PFUser *user = [object objectForKey:@"author"];
+    [user fetchIfNeeded];
+    PFFile *pictureFile = [user objectForKey:@"picture"];
+    [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error){
+            [self.userImage setImage:[UIImage imageWithData:data]];
+            questionLabel.text = [object objectForKey:@"questionTitle"];
+            usernameLabel.text = [user objectForKey:@"username"];
+            dateLabel.text = [dateFormatter stringFromDate:date];
+        }
+        else {
+            NSLog(@"no data!");
+        }
+    }];
+    */
+    
+    PFUser *user = [object objectForKey:@"author"];
+    [user fetchIfNeeded];
+    PFFile *pictureFile = [user objectForKey:@"picture"];
+    
+    [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error){
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
+            NSDate *date = [object createdAt];
+            
+            [self.userImage setImage:[UIImage imageWithData:data]];
+            questionLabel.text = [object objectForKey:@"questionTitle"];
+            usernameLabel.text = [user objectForKey:@"username"];
+            dateLabel.text = [dateFormatter stringFromDate:date];
+        }
+        else {
+            NSLog(@"no data!");
+        }
+    }];
     
     return cell;
 }
@@ -107,9 +149,20 @@
     }
 }
 
+- (void) tapProfile:(UITapGestureRecognizer *)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    PFObject *object = [self.objects objectAtIndex:indexPath.row];
+    ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
+    profileVC.userProfile = object;
+    [self presentViewController:profileVC animated:YES completion:nil];
+}
+
 - (IBAction)logout:(UIBarButtonItem *)sender {
     [PFUser logOut];
     [self performSegueWithIdentifier:@"showLogin" sender:self];
+}
+
+- (IBAction)seeProfile:(id)sender {
 }
 
 @end

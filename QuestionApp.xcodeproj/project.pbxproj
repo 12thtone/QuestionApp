@@ -29,6 +29,7 @@
 		F9118DF41A819B1500E878AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF31A819B1500E878AA /* libz.dylib */; };
 		F9118DF61A819B3300E878AA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF51A819B3300E878AA /* libsqlite3.dylib */; };
 		F9118DF91A81A7A400E878AA /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF81A81A7A300E878AA /* ParseUI.framework */; };
+		F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */; };
 		F9B718161A89021E0070C134 /* 536-disguise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718151A89021E0070C134 /* 536-disguise@2x.png */; };
 		F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718171A89025F0070C134 /* 564-camera@2x.png */; };
 		F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718191A8902EE0070C134 /* 644-coversation@2x.png */; };
@@ -81,6 +82,8 @@
 		F9118DF31A819B1500E878AA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F9118DF51A819B3300E878AA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F9118DF81A81A7A300E878AA /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTableViewController.h; path = ../ProfileTableViewController.h; sourceTree = "<group>"; };
+		F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileTableViewController.m; path = ../ProfileTableViewController.m; sourceTree = "<group>"; };
 		F9B718151A89021E0070C134 /* 536-disguise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "536-disguise@2x.png"; sourceTree = "<group>"; };
 		F9B718171A89025F0070C134 /* 564-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "564-camera@2x.png"; sourceTree = "<group>"; };
 		F9B718191A8902EE0070C134 /* 644-coversation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "644-coversation@2x.png"; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 		F9118DAF1A8196EB00E878AA /* QuestionApp */ = {
 			isa = PBXGroup;
 			children = (
+				F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */,
+				F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */,
 				F9B718201A890EA80070C134 /* MyProfileTableViewController.h */,
 				F9B718211A890EA80070C134 /* MyProfileTableViewController.m */,
 				F9CBBE781A82665200680486 /* AddAnswerViewController.h */,
@@ -347,6 +352,7 @@
 				F9CBBE7A1A82665200680486 /* AddAnswerViewController.m in Sources */,
 				F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */,
 				F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */,
+				F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */,
 				F9CBBE741A82662100680486 /* AnswerTableViewController.m in Sources */,
 				F9CBBE801A829A9700680486 /* QuestionTableViewController.m in Sources */,
 				F9CBBE771A82664000680486 /* AddQuestionViewController.m in Sources */,
