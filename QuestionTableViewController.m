@@ -91,9 +91,9 @@
     
     [self.usernameButton addTarget:self action:@selector(tapProfile:) forControlEvents:UIControlEventTouchUpInside];
     
-    UILabel *questionLabel = (UILabel *)[self.view viewWithTag:101];
-    self.usernameButton = (UIButton *)[self.view viewWithTag:102];
-    UILabel *dateLabel = (UILabel *)[self.view viewWithTag:103];
+    //UILabel *questionLabel = (UILabel *)[self.view viewWithTag:101];
+    //self.usernameButton = (UIButton *)[self.view viewWithTag:102];
+    //UILabel *dateLabel = (UILabel *)[self.view viewWithTag:103];
     /*
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
@@ -136,9 +136,10 @@
     PFUser *user = [object objectForKey:@"author"];
     [user fetchIfNeeded];
     
-    questionLabel.text = [object objectForKey:@"questionTitle"];
-    [self.usernameButton setTitle:[user objectForKey:@"username"] forState:UIControlStateNormal];
-    dateLabel.text = [dateFormatter stringFromDate:date];
+    cell.textLabel.text = [object objectForKey:@"questionTitle"];
+    cell.detailTextLabel.text = [user objectForKey:@"username"];
+    //[self.usernameButton setTitle:[user objectForKey:@"username"] forState:UIControlStateNormal];
+    //dateLabel.text = [dateFormatter stringFromDate:date];
     
     return cell;
 }
