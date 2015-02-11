@@ -30,12 +30,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //self.usernameProfile.text = [self.userProfile objectForKey:@"questionTitle"];
+    //PFUser *user = [self.userProfile objectForKey:@"author"];
+    //[user fetchIfNeeded];
     
     PFUser *user = [self.userProfile objectForKey:@"author"];
     [user fetchIfNeeded];
     PFFile *pictureFile = [user objectForKey:@"picture"];
-    //PFObject *userDescription = [self.userProfile objectForKey:@"description"];
     
     [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error){

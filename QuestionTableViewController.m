@@ -13,9 +13,8 @@
 
 @interface QuestionTableViewController ()
 - (IBAction)logout:(id)sender;
-- (IBAction)tapProfile:(UITapGestureRecognizer *)sender;
 
-@property (weak, nonatomic) UIImageView *userImage;
+@property (weak, nonatomic) UIButton *usernameButton;
 
 @end
 
@@ -54,6 +53,8 @@
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
     
+    [self queryForTable];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -63,15 +64,24 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    //[self.tableView reloadData];
+    //[self loadObjects:0 clear:NO];
+    [self queryForTable];
     [self loadObjects];
 }
 
 #pragma mark - PFQueryTableViewController
+/*
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
-// Override to customize the look of a cell representing an object. The default is to display
-// a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
-// and the imageView being the imageKey in the object.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self count];
+}
+*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+    
     static NSString *CellIdentifier = @"Cell";
     
     PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -79,10 +89,11 @@
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    [self.usernameButton addTarget:self action:@selector(tapProfile:) forControlEvents:UIControlEventTouchUpInside];
+    
     UILabel *questionLabel = (UILabel *)[self.view viewWithTag:101];
-    UILabel *usernameLabel = (UILabel *)[self.view viewWithTag:102];
+    self.usernameButton = (UIButton *)[self.view viewWithTag:102];
     UILabel *dateLabel = (UILabel *)[self.view viewWithTag:103];
-    self.userImage = (UIImageView *)[self.view viewWithTag:104];
     /*
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
@@ -103,31 +114,57 @@
         }
     }];
     */
-    
-    PFUser *user = [object objectForKey:@"author"];
-    [user fetchIfNeeded];
+    /*
     PFFile *pictureFile = [user objectForKey:@"picture"];
     
     [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error){
             
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
-            NSDate *date = [object createdAt];
-            
             [self.userImage setImage:[UIImage imageWithData:data]];
-            questionLabel.text = [object objectForKey:@"questionTitle"];
-            usernameLabel.text = [user objectForKey:@"username"];
-            dateLabel.text = [dateFormatter stringFromDate:date];
+            NSLog(@"%@", [user objectForKey:@"username"]);
         }
         else {
             NSLog(@"no data!");
         }
     }];
+    */
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
+    NSDate *date = [object createdAt];
+    
+    PFUser *user = [object objectForKey:@"author"];
+    [user fetchIfNeeded];
+    
+    questionLabel.text = [object objectForKey:@"questionTitle"];
+    [self.usernameButton setTitle:[user objectForKey:@"username"] forState:UIControlStateNormal];
+    dateLabel.text = [dateFormatter stringFromDate:date];
     
     return cell;
 }
 
+- (PFQuery *)queryForTable {
+    
+    // Create a query
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    
+    [query orderByDescending:@"createdAt"];
+    /*
+    // Follow relationship
+    if ([PFUser currentUser]) {
+        [query whereKey:@"author" equalTo:[PFUser currentUser]];
+    }
+    else {
+        // I added this so that when there is no currentUser, the query will not return any data
+        // Without this, when a user signs up and is logged in automatically, they briefly see a table with data
+        // before loadObjects is called and the table is refreshed.
+        // There are other ways to get an empty query, of course. With the below, I know that there
+        // is no such column with the value in the database.
+        [query whereKey:@"nonexistent" equalTo:@"doesn't exist"];
+    }*/
+    
+    return query;
+}
 
 #pragma mark - UITableViewDelegate
 
@@ -144,16 +181,20 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
+        NSLog(@"%@", object);
+        
         AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
         answerTableViewController.question = object;
     }
 }
 
-- (void) tapProfile:(UITapGestureRecognizer *)sender {
+- (void) tapProfile:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     PFObject *object = [self.objects objectAtIndex:indexPath.row];
+    
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfile = object;
+    
     [self presentViewController:profileVC animated:YES completion:nil];
 }
 
