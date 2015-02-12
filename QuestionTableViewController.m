@@ -14,7 +14,7 @@
 
 @interface QuestionTableViewController ()
 - (IBAction)logout:(id)sender;
-- (IBAction)userProfileTapped:(id)sender;
+@property (weak, nonatomic) PFUser *tappedUser;
 
 @end
 
@@ -90,6 +90,10 @@
     PFUser *user = [object objectForKey:@"author"];
     [user fetchIfNeeded];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
+    [tap setNumberOfTapsRequired:1];
+    [cell.textLabel addGestureRecognizer:tap];
+    
     cell.textLabel.text = [user objectForKey:@"username"];
     cell.detailTextLabel.text = [object objectForKey:@"questionTitle"];
     [user objectForKey:@"username"];
@@ -119,11 +123,15 @@
     }
 }
 
-- (IBAction)userProfileTapped:(id)sender {
-    NSLog(@"%@", sender);
+- (void)userProfileTapped:(UITapGestureRecognizer *)sender {
+    //NSLog(@"%@", sender);
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    PFObject *object = [self.objects objectAtIndex:indexPath.row];
+    CGPoint tapLocation = [sender locationInView:self.tableView];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    //UITableViewCell* tappedCell = [self.tableView cellForRowAtIndexPath:tapIndexPath];
+    
+    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfile = object;
