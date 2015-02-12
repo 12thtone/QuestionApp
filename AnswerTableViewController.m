@@ -10,10 +10,10 @@
 #import <Parse/Parse.h>
 #import "AddAnswerViewController.h"
 
-@interface AnswerTableViewController ()
+@interface AnswerTableViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
-@property (weak, nonatomic) NSMutableArray *answerArray;
-@property (weak, nonatomic) NSArray *theAnswers;
+//@property (weak, nonatomic) NSMutableArray *answerArray;
+@property (strong, nonatomic) NSMutableArray *theAnswers;
 
 @end
 
@@ -44,7 +44,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
     self.questionTextView.text = [self.question objectForKey:@"questionText"];
+    
+    NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
     
     //NSLog(@"To Go %@", self.question);
     
@@ -78,7 +83,18 @@
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
 // and the imageView being the imageKey in the object.
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+/*
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
+    return self.theAnswers.count;
+}
+*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIdentifier = @"Cell";
     
@@ -90,33 +106,28 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [self.question createdAt];
-    /*
-    PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
-    [query whereKey:@"answerAuthor" equalTo:self.question];
-    [query fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
-            
-            cell.textLabel.text = [objects objectForKey:@"answerText"];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    */
-    /*
-    PFObject *answers = [PFObject objectWithClassName:@"Answer"];
-    [answers fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
-            cell.textLabel.text = [answers objectForKey:@"answerText"];
-        }
-    }];
-    */
-    PFObject *answers = [PFObject objectWithClassName:@"Answer"];
-    [answers fetchIfNeeded];
-    NSLog(@"%@", answers);
-    cell.textLabel.text = [object objectForKey:@"answerText"];
-    cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
     
+    NSMutableArray *answerArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
+    
+    [query whereKey:@"answerQuestion" equalTo:self.question];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *object, NSError *error) {
+        //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
+        //self.theAnswers = [object copy];
+        for (PFObject *objects in object) {
+            //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
+            [answerArray addObject:[objects objectForKey:@"answerText"]];
+            //NSLog(@"ANSWER ARRAY: %@", answerArray);
+        }
+        self.theAnswers = [answerArray copy];
+        cell.textLabel.text = [answerArray objectAtIndex:indexPath.row];
+    }];
+    
+    NSLog(@"mmmmmmmmm%lu", (unsigned long)self.theAnswers.count);
+    
+    cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
+
     return cell;
 }
 

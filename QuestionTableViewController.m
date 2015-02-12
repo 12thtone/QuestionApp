@@ -164,7 +164,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
-        //NSLog(@"sdfbsdfbsdfb%@", object);
+        //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
         
         AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
         answerTableViewController.question = object;
