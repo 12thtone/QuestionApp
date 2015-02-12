@@ -64,8 +64,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //[self.tableView reloadData];
-    //[self loadObjects:0 clear:NO];
     [self queryForTable];
     [self loadObjects];
 }
@@ -89,62 +87,12 @@
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    //[self.usernameButton addTarget:self action:@selector(tapProfile:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //UILabel *questionLabel = (UILabel *)[self.view viewWithTag:101];
-    //self.usernameButton = (UIButton *)[self.view viewWithTag:102];
-    //UILabel *dateLabel = (UILabel *)[self.view viewWithTag:103];
-    /*
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
-    NSDate *date = [object createdAt];
-    
-    PFUser *user = [object objectForKey:@"author"];
-    [user fetchIfNeeded];
-    PFFile *pictureFile = [user objectForKey:@"picture"];
-    [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error){
-            [self.userImage setImage:[UIImage imageWithData:data]];
-            questionLabel.text = [object objectForKey:@"questionTitle"];
-            usernameLabel.text = [user objectForKey:@"username"];
-            dateLabel.text = [dateFormatter stringFromDate:date];
-        }
-        else {
-            NSLog(@"no data!");
-        }
-    }];
-    */
-    /*
-    PFFile *pictureFile = [user objectForKey:@"picture"];
-    
-    [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error){
-            
-            [self.userImage setImage:[UIImage imageWithData:data]];
-            NSLog(@"%@", [user objectForKey:@"username"]);
-        }
-        else {
-            NSLog(@"no data!");
-        }
-    }];
-    */
-    
-    //UIGestureRecognizer* recognizer = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(tapProfile:)];
-    //[cell.textLabel addGestureRecognizer:recognizer];
-    //[cell.textLabel setUserInteractionEnabled:YES];
-    /*
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
-    NSDate *date = [object createdAt];
-    */
     PFUser *user = [object objectForKey:@"author"];
     [user fetchIfNeeded];
     
     cell.textLabel.text = [user objectForKey:@"username"];
     cell.detailTextLabel.text = [object objectForKey:@"questionTitle"];
     [user objectForKey:@"username"];
-    //[self.usernameButton setTitle:[user objectForKey:@"username"] forState:UIControlStateNormal];
-    //dateLabel.text = [dateFormatter stringFromDate:date];
     
     return cell;
 }

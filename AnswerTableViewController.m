@@ -9,6 +9,7 @@
 #import "AnswerTableViewController.h"
 #import <Parse/Parse.h>
 #import "AddAnswerViewController.h"
+#import "DataSource.h"
 
 @interface AnswerTableViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
@@ -48,34 +49,33 @@
     self.tableView.delegate = self;
     
     self.questionTextView.text = [self.question objectForKey:@"questionText"];
-    
-    NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
-    
-    //NSLog(@"To Go %@", self.question);
-    
-    //self.answerArray = [self.question objectForKey:@"answers"];
-    //NSLog(@"Array: %@", self.answerArray);
-    
-    //NSLog(@"%@", self.question);
-    /*
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        NSLog(@"Current user: %@", currentUser.username);
-    }
-    else {
-        [self performSegueWithIdentifier:@"showLogin" sender:self];
-    }
-    */
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self answerQuery];
+    //self.theAnswers = [[DataSource sharedInstance] answerQuery:self.question].mutableCopy;
+    //NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
     [self loadObjects];
+}
+
+- (NSArray *)answerQuery {
+    NSMutableArray *answerArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
+    
+    [query whereKey:@"answerQuestion" equalTo:self.question];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *object, NSError *error) {
+        //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
+        for (PFObject *objects in object) {
+            //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
+            [answerArray addObject:[objects objectForKey:@"answerText"]];
+            //NSLog(@"ANSWER ARRAY: %@", answerArray);
+        }
+        self.theAnswers = [answerArray copy];
+    }];
+    
+    return answerArray;
 }
 
 #pragma mark - PFQueryTableViewController
@@ -89,12 +89,12 @@
     // Return the number of sections.
     return 1;
 }
-/*
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
+    //NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
     return self.theAnswers.count;
 }
-*/
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIdentifier = @"Cell";
     
@@ -107,25 +107,9 @@
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [self.question createdAt];
     
-    NSMutableArray *answerArray = [[NSMutableArray alloc] init];
+    //NSLog(@"mmmmmmmmm%lu", (unsigned long)self.theAnswers.count);
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
-    
-    [query whereKey:@"answerQuestion" equalTo:self.question];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *object, NSError *error) {
-        //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
-        //self.theAnswers = [object copy];
-        for (PFObject *objects in object) {
-            //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
-            [answerArray addObject:[objects objectForKey:@"answerText"]];
-            //NSLog(@"ANSWER ARRAY: %@", answerArray);
-        }
-        self.theAnswers = [answerArray copy];
-        cell.textLabel.text = [answerArray objectAtIndex:indexPath.row];
-    }];
-    
-    NSLog(@"mmmmmmmmm%lu", (unsigned long)self.theAnswers.count);
-    
+    cell.textLabel.text = [self.theAnswers objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
 
     return cell;
@@ -143,9 +127,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"addAnswer"]) {
-        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        //PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        //NSLog(@"%@", self.question);
         AddAnswerViewController *addAnswerViewController = (AddAnswerViewController *)segue.destinationViewController;
         addAnswerViewController.question = self.question;
     }

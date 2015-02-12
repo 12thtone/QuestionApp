@@ -14,5 +14,6 @@
 + (instancetype) sharedInstance;
 
 - (PFQuery *)queryForTable:(NSString *)className;
+//- (NSArray *)answerQuery:(PFObject *)selectedItem;
 
 @end

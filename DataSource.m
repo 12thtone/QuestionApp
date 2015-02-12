@@ -46,5 +46,30 @@
     
     return query;
 }
-
+/*
+- (NSArray *)answerQuery:(PFObject *)selectedItem {
+    NSMutableArray *answerArray = [[NSMutableArray alloc] init];
+    //NSMutableArray *answerArrayToGo = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
+    
+    [query whereKey:@"answerQuestion" equalTo:selectedItem];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *object, NSError *error) {
+        //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
+        //self.theAnswers = [object copy];
+        for (PFObject *objects in object) {
+            //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
+            [answerArray addObject:[objects objectForKey:@"answerText"]];
+            NSLog(@"ANSWER ARRAY: %@", answerArray);
+            //NSLog(@"LPLLPL %lu", (unsigned long)answerArray.count);
+        }
+        NSLog(@"LPLLPL %lu", (unsigned long)answerArray.count);
+        //answerArrayToGo = [answerArray copy];
+    }];
+    
+    //NSLog(@"uiiuiui %@", answerArray[0]);
+    
+    return answerArray;
+}
+*/
 @end
