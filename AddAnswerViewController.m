@@ -25,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     self.questionTitleLabel.text = [self.question objectForKey:@"questionTitle"];
 }
 
@@ -49,6 +49,23 @@
 */
 - (void)saveAnswer
 {
+    PFObject *newAnswer = [PFObject objectWithClassName:@"Answer"];
+    newAnswer[@"answerText"] = self.answer;
+    newAnswer[@"answerQuestion"] = self.question;
+    newAnswer[@"answerAuthor"] = [PFUser currentUser];
+    
+    //NSLog(@"%@", self.question);
+    
+    [newAnswer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                message:[error.userInfo objectForKey:@"error"]
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }];
     
     //PFObject *newAnswer = [PFObject objectWithClassName:@"Question"];
     //PFObject *newAnswer = [self.question objectForKey:@"answers"];
@@ -59,7 +76,8 @@
     [currentQuestion saveInBackground];
     */
     //newAnswer[@"questionsAnswer"] = self.answerTextView.text;
-    
+    /////////////////////////////////
+    /*
     [self.question addObject:@[self.answer] forKey:@"answers"];
     //[self.question saveInBackground];
     
@@ -74,7 +92,7 @@
             [alertView show];
         }
     }];
-    
+    */
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

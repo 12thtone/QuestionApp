@@ -10,11 +10,11 @@
 #import <Parse/Parse.h>
 #import "AnswerTableViewController.h"
 #import "ProfileTableViewController.h"
+#import "DataSource.h"
 
 @interface QuestionTableViewController ()
 - (IBAction)logout:(id)sender;
-
-@property (weak, nonatomic) UIButton *usernameButton;
+- (IBAction)userProfileTapped:(id)sender;
 
 @end
 
@@ -53,7 +53,7 @@
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
     
-    [self queryForTable];
+    [[DataSource sharedInstance] queryForTable:self.parseClassName];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -89,7 +89,7 @@
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    [self.usernameButton addTarget:self action:@selector(tapProfile:) forControlEvents:UIControlEventTouchUpInside];
+    //[self.usernameButton addTarget:self action:@selector(tapProfile:) forControlEvents:UIControlEventTouchUpInside];
     
     //UILabel *questionLabel = (UILabel *)[self.view viewWithTag:101];
     //self.usernameButton = (UIButton *)[self.view viewWithTag:102];
@@ -129,42 +129,24 @@
     }];
     */
     
+    //UIGestureRecognizer* recognizer = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(tapProfile:)];
+    //[cell.textLabel addGestureRecognizer:recognizer];
+    //[cell.textLabel setUserInteractionEnabled:YES];
+    /*
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [object createdAt];
-    
+    */
     PFUser *user = [object objectForKey:@"author"];
     [user fetchIfNeeded];
     
-    cell.textLabel.text = [object objectForKey:@"questionTitle"];
-    cell.detailTextLabel.text = [user objectForKey:@"username"];
+    cell.textLabel.text = [user objectForKey:@"username"];
+    cell.detailTextLabel.text = [object objectForKey:@"questionTitle"];
+    [user objectForKey:@"username"];
     //[self.usernameButton setTitle:[user objectForKey:@"username"] forState:UIControlStateNormal];
     //dateLabel.text = [dateFormatter stringFromDate:date];
     
     return cell;
-}
-
-- (PFQuery *)queryForTable {
-    
-    // Create a query
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    
-    [query orderByDescending:@"createdAt"];
-    /*
-    // Follow relationship
-    if ([PFUser currentUser]) {
-        [query whereKey:@"author" equalTo:[PFUser currentUser]];
-    }
-    else {
-        // I added this so that when there is no currentUser, the query will not return any data
-        // Without this, when a user signs up and is logged in automatically, they briefly see a table with data
-        // before loadObjects is called and the table is refreshed.
-        // There are other ways to get an empty query, of course. With the below, I know that there
-        // is no such column with the value in the database.
-        [query whereKey:@"nonexistent" equalTo:@"doesn't exist"];
-    }*/
-    
-    return query;
 }
 
 #pragma mark - UITableViewDelegate
@@ -182,14 +164,16 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
-        NSLog(@"%@", object);
+        //NSLog(@"sdfbsdfbsdfb%@", object);
         
         AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
         answerTableViewController.question = object;
     }
 }
 
-- (void) tapProfile:(id)sender {
+- (IBAction)userProfileTapped:(id)sender {
+    NSLog(@"%@", sender);
+    
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     PFObject *object = [self.objects objectAtIndex:indexPath.row];
     
@@ -202,9 +186,6 @@
 - (IBAction)logout:(UIBarButtonItem *)sender {
     [PFUser logOut];
     [self performSegueWithIdentifier:@"showLogin" sender:self];
-}
-
-- (IBAction)seeProfile:(id)sender {
 }
 
 @end

@@ -13,6 +13,7 @@
 @interface AnswerTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
 @property (weak, nonatomic) NSMutableArray *answerArray;
+@property (weak, nonatomic) NSArray *theAnswers;
 
 @end
 
@@ -20,11 +21,11 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithClassName:@"Question"];
+    self = [super initWithClassName:@"Answer"];
     self = [super initWithCoder:aDecoder];
     if (self) {
         // The className to query on
-        self.parseClassName = @"Question";
+        self.parseClassName = @"Answer";
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -44,6 +45,12 @@
     [super viewDidLoad];
     
     self.questionTextView.text = [self.question objectForKey:@"questionText"];
+    
+    //NSLog(@"To Go %@", self.question);
+    
+    //self.answerArray = [self.question objectForKey:@"answers"];
+    //NSLog(@"Array: %@", self.answerArray);
+    
     //NSLog(@"%@", self.question);
     /*
     PFUser *currentUser = [PFUser currentUser];
@@ -83,39 +90,33 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [self.question createdAt];
-    //NSLog(@"%@", date);
-    
-    // Configure the cell
-    
-    self.answerArray = [self.question objectForKey:@"answers"];
-    
-    ///////////////////////////////////NSString *title = [self.titleField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    //NSLog(@"%@", self.question);
-
-    for (int i; i < self.answerArray.count; i++) {
-        self.answerArray[i] = [self.answerArray[i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSLog(@"%@", self.answerArray[i]);
-    }
-    //////////////////////////////////
-    
-    //cell.textLabel.text = [self.answerArray[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    //cell.textLabel.text = [self.answerArray objectAtIndex:indexPath.row];
+    /*
+    PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
+    [query whereKey:@"answerAuthor" equalTo:self.question];
+    [query fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            
+            cell.textLabel.text = [objects objectForKey:@"answerText"];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    */
+    /*
+    PFObject *answers = [PFObject objectWithClassName:@"Answer"];
+    [answers fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            cell.textLabel.text = [answers objectForKey:@"answerText"];
+        }
+    }];
+    */
+    PFObject *answers = [PFObject objectWithClassName:@"Answer"];
+    [answers fetchIfNeeded];
+    NSLog(@"%@", answers);
+    cell.textLabel.text = [object objectForKey:@"answerText"];
     cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
     
-    /*
-    UILabel *answerTextField = (UILabel *)[self.view viewWithTag:102];
-    answerTextField.text = [answers objectAtIndex:indexPath.row];
-    //answerTextField.text = [self.question objectForKey:@"answers"];
-    NSLog(@"%@", [object objectForKey:@"answers"]);
-    
-    UILabel *answerUsernameLabel = (UILabel *)[self.view viewWithTag:103];
-    answerUsernameLabel.text = [object objectForKey:@"username"];
-    //NSLog(@"%@", [object objectForKey:@"username"]);
-    
-    UILabel *answerDateLabel = (UILabel *)[self.view viewWithTag:104];
-    answerDateLabel.text = [dateFormatter stringFromDate:date];
-    NSLog(@"%@", [dateFormatter stringFromDate:date]);
-    */
     return cell;
 }
 
@@ -133,7 +134,7 @@
     if ([segue.identifier isEqualToString:@"addAnswer"]) {
         //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         //PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        
+        //NSLog(@"%@", self.question);
         AddAnswerViewController *addAnswerViewController = (AddAnswerViewController *)segue.destinationViewController;
         addAnswerViewController.question = self.question;
     }

@@ -7,7 +7,6 @@
 //
 
 #import "AddQuestionViewController.h"
-//#import <ParseUI/ParseUI.h>
 #import <Parse/Parse.h>
 #import "QuestionTableViewController.h"
 
@@ -37,6 +36,7 @@
         [alertView show];
     } else {
         [self saveQuestion];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

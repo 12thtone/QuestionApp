@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ParseUI/ParseUI.h>
 
 @interface DataSource : NSObject
+
++ (instancetype) sharedInstance;
+
+- (PFQuery *)queryForTable:(NSString *)className;
 
 @end

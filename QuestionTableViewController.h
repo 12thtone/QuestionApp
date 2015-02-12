@@ -11,5 +11,6 @@
 @interface QuestionTableViewController : PFQueryTableViewController
 
 - (IBAction)logout:(id)sender;
+//@property (nonatomic, weak) PFObject *object;
 
 @end

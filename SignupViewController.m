@@ -27,6 +27,10 @@
     NSString *password = [self.passwordSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *email = [self.emailSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    UIImage *iconImage = [UIImage imageNamed:@"536-disguise@2x.png"];
+    NSData *imageData = UIImagePNGRepresentation(iconImage);
+    PFFile *imageFile = [PFFile fileWithName:@"Iconimage.png" data:imageData];
+    
     if ([username length] == 0 || [password length] == 0 || [email length] == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
                                                             message:@"We need a username, password, and email"
@@ -38,6 +42,7 @@
         newUser.username = username;
         newUser.password = password;
         newUser.email = email;
+        newUser[@"icon"] = imageFile;
         
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
