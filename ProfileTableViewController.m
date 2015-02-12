@@ -33,7 +33,17 @@
     //PFUser *user = [self.userProfile objectForKey:@"author"];
     //[user fetchIfNeeded];
     
-    PFUser *user = [self.userProfile objectForKey:@"author"];
+    PFUser *user = [[PFUser alloc] init];
+    
+    if (self.userProfile) {
+        user = [self.userProfile objectForKey:@"author"];
+        
+    } else {
+        user = [self.userProfileAnswer objectForKey:@"answerAuthor"];
+        NSLog(@"Fresh from the AnswerTVC");
+    }
+    
+    //PFUser *user = [self.userProfile objectForKey:@"author"];
     [user fetchIfNeeded];
     PFFile *pictureFile = [user objectForKey:@"picture"];
     

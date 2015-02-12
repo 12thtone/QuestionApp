@@ -10,6 +10,8 @@
 #import <Parse/Parse.h>
 #import "AddAnswerViewController.h"
 #import "DataSource.h"
+#import "AnswerTableViewCell.h"
+#import "ProfileTableViewController.h"
 
 @interface AnswerTableViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
@@ -47,6 +49,9 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     self.questionTextView.text = [self.question objectForKey:@"questionText"];
 }
@@ -96,25 +101,59 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"Cell";
+    //static NSString *CellIdentifier = @"Cell";
     
+    AnswerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnswerTVC" forIndexPath:indexPath];
+    /*
     PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    */
+    
+    PFUser *author = [self.question objectForKey:@"author"];
+    [author fetchIfNeeded];
+    NSLog(@"%@", [author username]);
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
+    [tap setNumberOfTapsRequired:1];
+    tap.enabled = YES;
+    [cell.usernameLabel addGestureRecognizer:tap];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [self.question createdAt];
     
-    //NSLog(@"mmmmmmmmm%lu", (unsigned long)self.theAnswers.count);
+    //cell.textLabel.text = [self.theAnswers objectAtIndex:indexPath.row];
+    //cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
     
-    cell.textLabel.text = [self.theAnswers objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
+    cell.answerTextView.text = [self.theAnswers objectAtIndex:indexPath.row];
+    cell.usernameLabel.text = [author username];
+    cell.dateLabel.text = [dateFormatter stringFromDate:date];
+    //cell.voteButton.text = [post valueForKey:@"title"];
 
     return cell;
 }
 
+- (void)userProfileTapped:(UITapGestureRecognizer *)sender {
+    
+    CGPoint tapLocation = [sender locationInView:self.tableView];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    //UITableViewCell* tappedCell = [self.tableView cellForRowAtIndexPath:tapIndexPath];
+    
+    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
+    
+    NSLog(@"OBJECTS: %@", self.objects[0]);
+    
+    //PFUser *authorToGo = [self.objects objectForKey:@"author"];
+    //[author fetchIfNeeded];
+    
+    ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
+    profileVC.userProfileAnswer = object;
+    
+    [self presentViewController:profileVC animated:YES completion:nil];
+}
 
 #pragma mark - UITableViewDelegate
 /*

@@ -53,6 +53,9 @@
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
     [[DataSource sharedInstance] queryForTable:self.parseClassName];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -96,7 +99,6 @@
     
     cell.textLabel.text = [user objectForKey:@"username"];
     cell.detailTextLabel.text = [object objectForKey:@"questionTitle"];
-    [user objectForKey:@"username"];
     
     return cell;
 }
@@ -132,6 +134,8 @@
     
     //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
+    
+    NSLog(@"OBJECTS QQQ: %@", self.objects[0]);
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfile = object;

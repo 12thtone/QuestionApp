@@ -12,5 +12,6 @@
 @interface ProfileTableViewController : UITableViewController
 
 @property (nonatomic, strong) PFObject *userProfile;
+@property (nonatomic, strong) PFObject *userProfileAnswer;
 
 @end
