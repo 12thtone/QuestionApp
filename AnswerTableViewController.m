@@ -15,8 +15,8 @@
 
 @interface AnswerTableViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
-//@property (weak, nonatomic) NSMutableArray *answerArray;
 @property (strong, nonatomic) NSMutableArray *theAnswers;
+@property (strong, nonatomic) NSMutableArray *theVotes;
 
 @end
 
@@ -59,13 +59,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self answerQuery];
-    //self.theAnswers = [[DataSource sharedInstance] answerQuery:self.question].mutableCopy;
     //NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
     [self loadObjects];
 }
 
 - (NSArray *)answerQuery {
     NSMutableArray *answerArray = [[NSMutableArray alloc] init];
+    NSMutableArray *voteArray = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
     
@@ -75,9 +75,11 @@
         for (PFObject *objects in object) {
             //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
             [answerArray addObject:[objects objectForKey:@"answerText"]];
-            //NSLog(@"ANSWER ARRAY: %@", answerArray);
+            [voteArray addObject:[objects objectForKey:@"vote"]];
+            //NSLog(@"VOTE ARRAY: %@", voteArray[0]);
         }
         self.theAnswers = [answerArray copy];
+        self.theVotes = [voteArray copy];
     }];
     
     return answerArray;
@@ -96,20 +98,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
     return self.theAnswers.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    //static NSString *CellIdentifier = @"Cell";
     
     AnswerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnswerTVC" forIndexPath:indexPath];
-    /*
-    PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    */
     
     PFUser *author = [self.question objectForKey:@"author"];
     [author fetchIfNeeded];
@@ -120,39 +114,47 @@
     tap.enabled = YES;
     [cell.usernameLabel addGestureRecognizer:tap];
     
+    UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
+    [voteTap setNumberOfTapsRequired:1];
+    tap.enabled = YES;
+    [cell.voteLabel addGestureRecognizer:voteTap];
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     NSDate *date = [self.question createdAt];
     
-    //cell.textLabel.text = [self.theAnswers objectAtIndex:indexPath.row];
-    //cell.detailTextLabel.text = [dateFormatter stringFromDate:date];
-    
     cell.answerTextView.text = [self.theAnswers objectAtIndex:indexPath.row];
     cell.usernameLabel.text = [author username];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    //cell.voteButton.text = [post valueForKey:@"title"];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [self.theVotes objectAtIndex:indexPath.row]];
 
     return cell;
 }
 
-- (void)userProfileTapped:(UITapGestureRecognizer *)sender {
+#pragma mark - Votes
+
+- (void)saveVote:(UITapGestureRecognizer *)sender {
     
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
-    //UITableViewCell* tappedCell = [self.tableView cellForRowAtIndexPath:tapIndexPath];
     
-    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
+    PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
     
-    NSLog(@"OBJECTS: %@", self.objects[0]);
+    [newVote incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
     
-    //PFUser *authorToGo = [self.objects objectForKey:@"author"];
-    //[author fetchIfNeeded];
-    
-    ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
-    profileVC.userProfileAnswer = object;
-    
-    [self presentViewController:profileVC animated:YES completion:nil];
+    [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
+                                                                message:@"Thanks for you vote!"
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                message:[error.userInfo objectForKey:@"error"]
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }];
 }
 
 #pragma mark - UITableViewDelegate
@@ -169,6 +171,21 @@
         AddAnswerViewController *addAnswerViewController = (AddAnswerViewController *)segue.destinationViewController;
         addAnswerViewController.question = self.question;
     }
+}
+
+- (void)userProfileTapped:(UITapGestureRecognizer *)sender {
+    
+    CGPoint tapLocation = [sender locationInView:self.tableView];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    
+    PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
+    
+    NSLog(@"OBJECTS: %@", self.objects[0]);
+    
+    ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
+    profileVC.userProfileAnswer = object;
+    
+    [self presentViewController:profileVC animated:YES completion:nil];
 }
 
 @end

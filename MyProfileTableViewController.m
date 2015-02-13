@@ -26,9 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer *tapDismissKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tapDismissKeyboard];
+    
     PFUser *currentUser = [PFUser currentUser];
     self.usernameProfile.text = currentUser.username;
-    //self.profileImage.image = [currentUser objectForKey:@"picture"];
     
     if (currentUser.description) {
         self.textProfile.text = [currentUser objectForKey:@"description"];
@@ -58,6 +60,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dismissKeyboard {
+    [self.textProfile resignFirstResponder];
+}
+
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
     if (self.chosenImage && self.textProfile) {
         
@@ -74,11 +80,7 @@
 - (void)saveProfile
 {
     NSString *profileString = self.textProfile.text;
-    /*
-    UIImage *iconImage = [UIImage imageNamed:@"536-disguise@2x.png"];
-    NSData *iconData = UIImagePNGRepresentation(iconImage);
-    PFFile *iconFile = [PFFile fileWithName:@"Iconimage.png" data:iconData];
-    */
+    
     NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
     PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -87,7 +89,6 @@
                 PFUser *user = [PFUser currentUser];
                 user[@"description"] = profileString;
                 user[@"picture"] = imageFile;
-                //user[@"icon"] = iconFile;
                 [user saveInBackground];
             }
         } else {

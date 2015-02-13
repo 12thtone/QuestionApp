@@ -130,7 +130,6 @@
     
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
-    //UITableViewCell* tappedCell = [self.tableView cellForRowAtIndexPath:tapIndexPath];
     
     //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];

@@ -7,6 +7,8 @@
 //
 
 #import "AnswerTableViewCell.h"
+#import <Parse/Parse.h>
+#import "AnswerTableViewController.h"
 
 @implementation AnswerTableViewCell
 
@@ -20,6 +22,4 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)voteButton:(id)sender {
-}
 @end

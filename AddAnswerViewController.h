@@ -14,6 +14,5 @@
 @interface AddAnswerViewController : UIViewController
 
 @property (nonatomic, strong) PFObject *question;
-//@property (nonatomic, weak) QuestionTableViewController *question;
 
 @end

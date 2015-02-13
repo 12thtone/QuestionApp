@@ -30,9 +30,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //PFUser *user = [self.userProfile objectForKey:@"author"];
-    //[user fetchIfNeeded];
-    
     PFUser *user = [[PFUser alloc] init];
     
     if (self.userProfile) {
