@@ -37,10 +37,9 @@
         
     } else {
         user = [self.userProfileAnswer objectForKey:@"answerAuthor"];
-        NSLog(@"Fresh from the AnswerTVC");
+        NSLog(@"Fresh from the AnswerTVC %@", self.userProfileAnswer);
     }
     
-    //PFUser *user = [self.userProfile objectForKey:@"author"];
     [user fetchIfNeeded];
     PFFile *pictureFile = [user objectForKey:@"picture"];
     

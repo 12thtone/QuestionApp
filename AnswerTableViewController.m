@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
 @property (strong, nonatomic) NSMutableArray *theAnswers;
 @property (strong, nonatomic) NSMutableArray *theVotes;
+@property (strong, nonatomic) NSMutableArray *theObjects;
+@property (strong, nonatomic) NSMutableArray *theAuthors;
 
 @end
 
@@ -65,21 +67,27 @@
 - (NSArray *)answerQuery {
     NSMutableArray *answerArray = [[NSMutableArray alloc] init];
     NSMutableArray *voteArray = [[NSMutableArray alloc] init];
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
     
     [query whereKey:@"answerQuestion" equalTo:self.question];
     [query orderByDescending:@"vote"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *object, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
-        for (PFObject *objects in object) {
+        for (PFObject *object in objects) {
             //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
-            [answerArray addObject:[objects objectForKey:@"answerText"]];
-            [voteArray addObject:[objects objectForKey:@"vote"]];
+            [answerArray addObject:[object objectForKey:@"answerText"]];
+            [voteArray addObject:[object objectForKey:@"vote"]];
+            [authorArray addObject:[object objectForKey:@"answerAuthor"]];
+            [objectArray addObject:object];
             NSLog(@"Answer ARRAY: %lu", (unsigned long)answerArray.count);
             
             self.theAnswers = [answerArray copy];
             self.theVotes = [voteArray copy];
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
         }
     }];
     
@@ -105,11 +113,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     AnswerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnswerTVC" forIndexPath:indexPath];
-    
+    /*
     PFUser *author = [self.question objectForKey:@"author"];
     [author fetchIfNeeded];
     NSLog(@"%@", [author username]);
-    
+    */
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
     tap.enabled = YES;
@@ -125,7 +133,8 @@
     NSDate *date = [self.question createdAt];
     
     cell.answerTextView.text = [self.theAnswers objectAtIndex:indexPath.row];
-    cell.usernameLabel.text = [author username];
+    //cell.usernameLabel.text = [author username];
+    cell.usernameLabel.text = [[[self.theAuthors objectAtIndex:indexPath.row] fetchIfNeeded] objectForKey:@"username"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [self.theVotes objectAtIndex:indexPath.row]];
 
@@ -139,14 +148,16 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
-    
+    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
     [newVote incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
+    //[newVote saveInBackground];
+    
+    NSLog(@"VOTE: %@", newVote);
     
     [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
-                                                                message:@"Thanks for you vote!"
+                                                                message:@"Thanks for your vote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         } else {
@@ -179,9 +190,12 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
+    //PFObject *object1 = [self.objects objectAtIndex:tapIndexPath.row];
+    PFObject *object = [self.theObjects objectAtIndex:tapIndexPath.row];
     
-    NSLog(@"OBJECTS: %@", self.objects[0]);
+    NSLog(@"PROFILE: %@", object);
+    
+    //////////// Make a PFUser?
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfileAnswer = object;
