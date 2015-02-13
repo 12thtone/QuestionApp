@@ -59,7 +59,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self answerQuery];
-    //NSLog(@"iiiiiiii%lu", (unsigned long)self.theAnswers.count);
     [self loadObjects];
 }
 
@@ -70,6 +69,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
     
     [query whereKey:@"answerQuestion" equalTo:self.question];
+    [query orderByDescending:@"vote"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *object, NSError *error) {
         //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
         for (PFObject *objects in object) {
@@ -81,11 +81,6 @@
             self.theAnswers = [answerArray copy];
             self.theVotes = [voteArray copy];
         }
-        NSLog(@"POST-BLOCK ARRAY: %lu", (unsigned long)answerArray.count);
-        //self.theAnswers = [answerArray copy];
-        //self.theVotes = [voteArray copy];
-        
-        NSLog(@"ANSWER COUNT: %lu", (unsigned long)self.theAnswers.count);
     }];
     
     return answerArray;
