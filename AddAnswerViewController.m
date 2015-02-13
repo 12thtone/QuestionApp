@@ -49,8 +49,11 @@
 */
 - (void)saveAnswer
 {
+    NSNumber *voteCount = [NSNumber numberWithInt:1];
+    
     PFObject *newAnswer = [PFObject objectWithClassName:@"Answer"];
     newAnswer[@"answerText"] = self.answer;
+    newAnswer[@"vote"] = voteCount;
     newAnswer[@"answerQuestion"] = self.question;
     newAnswer[@"answerAuthor"] = [PFUser currentUser];
     

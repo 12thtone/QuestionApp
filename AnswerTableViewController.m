@@ -76,10 +76,16 @@
             //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
             [answerArray addObject:[objects objectForKey:@"answerText"]];
             [voteArray addObject:[objects objectForKey:@"vote"]];
-            //NSLog(@"VOTE ARRAY: %@", voteArray[0]);
+            NSLog(@"Answer ARRAY: %lu", (unsigned long)answerArray.count);
+            
+            self.theAnswers = [answerArray copy];
+            self.theVotes = [voteArray copy];
         }
-        self.theAnswers = [answerArray copy];
-        self.theVotes = [voteArray copy];
+        NSLog(@"POST-BLOCK ARRAY: %lu", (unsigned long)answerArray.count);
+        //self.theAnswers = [answerArray copy];
+        //self.theVotes = [voteArray copy];
+        
+        NSLog(@"ANSWER COUNT: %lu", (unsigned long)self.theAnswers.count);
     }];
     
     return answerArray;
