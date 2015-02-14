@@ -118,6 +118,12 @@
     [author fetchIfNeeded];
     NSLog(@"%@", [author username]);
     */
+    
+    PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
+    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        cell.usernameLabel.text = [object objectForKey:@"username"];
+    }];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
     tap.enabled = YES;
@@ -133,8 +139,8 @@
     NSDate *date = [self.question createdAt];
     
     cell.answerTextView.text = [self.theAnswers objectAtIndex:indexPath.row];
-    //cell.usernameLabel.text = [author username];
-    cell.usernameLabel.text = [[[self.theAuthors objectAtIndex:indexPath.row] fetchIfNeeded] objectForKey:@"username"];
+    //cell.usernameLabel.text = [user username];
+    //cell.usernameLabel.text = [[[self.theAuthors objectAtIndex:indexPath.row] fetchIfNeeded] objectForKey:@"username"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [self.theVotes objectAtIndex:indexPath.row]];
 

@@ -18,19 +18,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Question's Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1B-j0-8yW">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Question's Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1B-j0-8yW">
                                 <rect key="frame" x="16" y="72" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5vc-yr-c2H"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-VQ-ekd">
-                                <rect key="frame" x="0.0" y="110" width="600" height="490"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the Question:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sL3-MN-uFq">
+                                <rect key="frame" x="16" y="110" width="568" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="Zip-G4-oXE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-VQ-ekd">
+                                <rect key="frame" x="16" y="132" width="568" height="448"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2lt-VQ-ekd" secondAttribute="trailing" constant="16" id="MHC-AH-Fdh"/>
+                            <constraint firstItem="RWH-pB-gPI" firstAttribute="top" secondItem="2lt-VQ-ekd" secondAttribute="bottom" constant="20" id="Om1-ua-SWh"/>
+                            <constraint firstAttribute="trailing" secondItem="F1B-j0-8yW" secondAttribute="trailing" constant="16" id="P9e-iW-Jbf"/>
+                            <constraint firstItem="sL3-MN-uFq" firstAttribute="top" secondItem="F1B-j0-8yW" secondAttribute="bottom" constant="8" id="U3y-Sj-wDS"/>
+                            <constraint firstItem="sL3-MN-uFq" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="adj-RV-Lbw"/>
+                            <constraint firstItem="F1B-j0-8yW" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="gnZ-Xw-PAr"/>
+                            <constraint firstItem="F1B-j0-8yW" firstAttribute="top" secondItem="pqe-AP-R9K" secondAttribute="bottom" constant="8" id="leM-Rw-cVT"/>
+                            <constraint firstAttribute="trailing" secondItem="sL3-MN-uFq" secondAttribute="trailing" constant="16" id="oxn-1l-Qbj"/>
+                            <constraint firstItem="2lt-VQ-ekd" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="pfZ-Tk-3Pl"/>
+                            <constraint firstItem="2lt-VQ-ekd" firstAttribute="top" secondItem="sL3-MN-uFq" secondAttribute="bottom" constant="8" id="uRH-9H-XY4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Question" id="qah-07-gV8">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="uV3-Vj-yQz">
@@ -96,11 +120,9 @@
                     <navigationItem key="navigationItem" title="Questions" id="J3A-lN-H55">
                         <barButtonItem key="leftBarButtonItem" style="done" id="O54-wS-x8p">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vGB-dJ-mXp">
-                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
+                                <rect key="frame" x="16" y="7" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <state key="normal" image="602-exit.png"/>
                                 <connections>
                                     <action selector="logout:" destination="kSX-Pp-37A" eventType="touchUpInside" id="V4a-eo-6qG"/>
                                 </connections>
@@ -304,20 +326,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="URz-uI-ZxX">
-                                <rect key="frame" x="0.0" y="101" width="600" height="499"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVa-dO-CLY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVa-dO-CLY">
                                 <rect key="frame" x="16" y="72" width="568" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="J7m-lQ-YLL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVd-98-G6y">
+                                <rect key="frame" x="16" y="101" width="568" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="fbc-HL-Znt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URz-uI-ZxX">
+                                <rect key="frame" x="16" y="123" width="568" height="420"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="URz-uI-ZxX" secondAttribute="bottom" constant="8" id="8eY-HW-FtM"/>
+                            <constraint firstItem="mVd-98-G6y" firstAttribute="top" secondItem="CVa-dO-CLY" secondAttribute="bottom" constant="8" id="KtO-fi-aJW"/>
+                            <constraint firstItem="CVa-dO-CLY" firstAttribute="top" secondItem="aVK-0y-wTC" secondAttribute="bottom" constant="8" id="RrP-SQ-vQ5"/>
+                            <constraint firstItem="URz-uI-ZxX" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="ecx-oa-C8Y"/>
+                            <constraint firstItem="CVa-dO-CLY" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="hza-D5-FUB"/>
+                            <constraint firstAttribute="trailing" secondItem="CVa-dO-CLY" secondAttribute="trailing" constant="16" id="lEA-5J-N61"/>
+                            <constraint firstItem="URz-uI-ZxX" firstAttribute="top" secondItem="mVd-98-G6y" secondAttribute="bottom" constant="8" id="n24-7C-XPk"/>
+                            <constraint firstAttribute="trailing" secondItem="URz-uI-ZxX" secondAttribute="trailing" constant="16" id="rOQ-b3-8Up"/>
+                            <constraint firstItem="mVd-98-G6y" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="uUf-kz-OfQ"/>
+                            <constraint firstAttribute="trailing" secondItem="mVd-98-G6y" secondAttribute="trailing" constant="16" id="vFp-4c-Jsz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Answer" id="joG-cm-RyX">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="p41-d2-Kbv">
@@ -344,21 +390,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.33000000000000002" colorSpace="calibratedRGB"/>
-                        <textView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="G67-Tc-da0">
+                        <textView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" id="G67-Tc-da0">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.029999999999999999" colorSpace="calibratedRGB"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                         </textView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswerTVC" rowHeight="104" id="ZpP-mX-SSu" customClass="AnswerTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswerTVC" rowHeight="104" id="ZpP-mX-SSu" customClass="AnswerTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZpP-mX-SSu" id="pR6-oy-Idb">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTL-Q7-bGl">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTL-Q7-bGl">
                                             <rect key="frame" x="57" y="9" width="535" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -367,6 +414,7 @@
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                         </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9G-Uz-1UH">
                                             <rect key="frame" x="8" y="80" width="530" height="11"/>
@@ -555,7 +603,7 @@
                                                         <constraint firstAttribute="height" constant="13" id="VNy-fW-nO3"/>
                                                         <constraint firstAttribute="height" constant="13" id="tqF-CY-nDY"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -749,7 +797,7 @@
         <scene sceneID="6uY-oC-qNO">
             <objects>
                 <tableViewController storyboardIdentifier="viewProfile" id="xq2-Yu-M98" customClass="ProfileTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VE5-yt-iyc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VE5-yt-iyc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -780,7 +828,7 @@
                                                         <constraint firstAttribute="width" secondItem="V7Z-oo-coE" secondAttribute="height" multiplier="1:1" id="FCN-2F-kog"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uc1-G9-y9e">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uc1-G9-y9e">
                                                     <rect key="frame" x="8" y="97" width="584" height="55"/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.040000000000000001" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -795,7 +843,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="3ON-yD-aMH"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -848,6 +896,7 @@
     </scenes>
     <resources>
         <image name="536-disguise.png" width="30" height="18"/>
+        <image name="602-exit.png" width="22" height="22"/>
         <image name="644-coversation.png" width="28" height="24"/>
         <image name="placeholder.png" width="391" height="391"/>
     </resources>

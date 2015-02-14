@@ -89,15 +89,25 @@
     if (cell == nil) {
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    /*
+    PFUser *user = [object objectForKey:@"author"];
+    //[user fetchIfNeededInBackground];
+    [user fetchIfNeeded];
+    */
     
     PFUser *user = [object objectForKey:@"author"];
-    [user fetchIfNeeded];
+    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        NSString *username = user.username;
+        //NSString *question = [object objectForKey:@"questionTitle"];
+        cell.textLabel.text = username;
+        //cell.detailTextLabel.text = question;
+    }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
     [cell.textLabel addGestureRecognizer:tap];
     
-    cell.textLabel.text = [user objectForKey:@"username"];
+    //cell.textLabel.text = [user objectForKey:@"username"];
     cell.detailTextLabel.text = [object objectForKey:@"questionTitle"];
     
     return cell;
@@ -134,7 +144,7 @@
     //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
     
-    NSLog(@"OBJECTS QQQ: %@", self.objects[0]);
+    //NSLog(@"OBJECTS QQQ: %@", self.objects[0]);
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfile = object;

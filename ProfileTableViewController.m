@@ -37,10 +37,27 @@
         
     } else {
         user = [self.userProfileAnswer objectForKey:@"answerAuthor"];
-        NSLog(@"Fresh from the AnswerTVC %@", self.userProfileAnswer);
+        //NSLog(@"Fresh from the AnswerTVC %@", self.userProfileAnswer);
     }
     
-    [user fetchIfNeeded];
+    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        PFFile *pictureFile = [user objectForKey:@"picture"];
+        
+        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error){
+                
+                [self.imageProfile setImage:[UIImage imageWithData:data]];
+                self.descriptionProfile.text = [user objectForKey:@"description"];
+                self.usernameProfile.text = [user objectForKey:@"username"];
+            }
+            else {
+                NSLog(@"no data!");
+            }
+        }];
+    }];
+    
+    //[user fetchIfNeeded];
+    /*
     PFFile *pictureFile = [user objectForKey:@"picture"];
     
     [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -53,7 +70,7 @@
         else {
             NSLog(@"no data!");
         }
-    }];
+    }];*/
 }
 
 - (void)didReceiveMemoryWarning {
