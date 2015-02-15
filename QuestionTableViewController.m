@@ -11,6 +11,7 @@
 #import "AnswerTableViewController.h"
 #import "ProfileTableViewController.h"
 #import "DataSource.h"
+#import "QuestionTableViewCell.h"
 
 @interface QuestionTableViewController ()
 - (IBAction)logout:(id)sender;
@@ -83,12 +84,15 @@
 */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
+    QuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTVC" forIndexPath:indexPath];
+    /*
     static NSString *CellIdentifier = @"Cell";
     
     PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+     */
     /*
     PFUser *user = [object objectForKey:@"author"];
     //[user fetchIfNeededInBackground];
@@ -99,16 +103,16 @@
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
         //NSString *question = [object objectForKey:@"questionTitle"];
-        cell.textLabel.text = username;
+        cell.usernameLabel.text = username;
         //cell.detailTextLabel.text = question;
     }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
-    [cell.textLabel addGestureRecognizer:tap];
+    [cell.usernameLabel addGestureRecognizer:tap];
     
     //cell.textLabel.text = [user objectForKey:@"username"];
-    cell.detailTextLabel.text = [object objectForKey:@"questionTitle"];
+    cell.questionTitleLabel.text = [object objectForKey:@"questionTitle"];
     
     return cell;
 }
