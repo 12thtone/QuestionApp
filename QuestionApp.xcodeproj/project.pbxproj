@@ -32,6 +32,8 @@
 		F93F3E0D1A8FF2D3003E046F /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F93F3E0C1A8FF2D3003E046F /* QuestionTableViewCell.m */; };
 		F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F947C4231A8E956E00363937 /* 602-exit@2x.png */; };
 		F983B1481A8D43EA000C597C /* AnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F983B1471A8D43EA000C597C /* AnswerTableViewCell.m */; };
+		F99E87421A91835C00D7B5AF /* 552-flag-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */; };
+		F99E87441A91839400D7B5AF /* 571-microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87431A91839400D7B5AF /* 571-microphone@2x.png */; };
 		F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */; };
 		F9B718161A89021E0070C134 /* 536-disguise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718151A89021E0070C134 /* 536-disguise@2x.png */; };
 		F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718171A89025F0070C134 /* 564-camera@2x.png */; };
@@ -90,6 +92,8 @@
 		F947C4231A8E956E00363937 /* 602-exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "602-exit@2x.png"; sourceTree = "<group>"; };
 		F983B1461A8D43EA000C597C /* AnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerTableViewCell.h; path = ../AnswerTableViewCell.h; sourceTree = "<group>"; };
 		F983B1471A8D43EA000C597C /* AnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerTableViewCell.m; path = ../AnswerTableViewCell.m; sourceTree = "<group>"; };
+		F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "552-flag-1@2x.png"; sourceTree = "<group>"; };
+		F99E87431A91839400D7B5AF /* 571-microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "571-microphone@2x.png"; sourceTree = "<group>"; };
 		F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTableViewController.h; path = ../ProfileTableViewController.h; sourceTree = "<group>"; };
 		F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileTableViewController.m; path = ../ProfileTableViewController.m; sourceTree = "<group>"; };
 		F9B718151A89021E0070C134 /* 536-disguise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "536-disguise@2x.png"; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 		F9118DB01A8196EB00E878AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F99E87431A91839400D7B5AF /* 571-microphone@2x.png */,
+				F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */,
 				F9B7181B1A8908A80070C134 /* placeholder.png */,
 				F947C4231A8E956E00363937 /* 602-exit@2x.png */,
 				F9B718191A8902EE0070C134 /* 644-coversation@2x.png */,
@@ -340,7 +346,9 @@
 				F9118DD81A81999500E878AA /* MainStoryboard.storyboard in Resources */,
 				F9118DC11A8196EB00E878AA /* LaunchScreen.xib in Resources */,
 				F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */,
+				F99E87441A91839400D7B5AF /* 571-microphone@2x.png in Resources */,
 				F9118DBE1A8196EB00E878AA /* Images.xcassets in Resources */,
+				F99E87421A91835C00D7B5AF /* 552-flag-1@2x.png in Resources */,
 				F9B7181C1A8908A80070C134 /* placeholder.png in Resources */,
 				F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */,
 				F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */,

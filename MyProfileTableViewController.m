@@ -13,6 +13,7 @@
 - (IBAction)camera:(UIBarButtonItem *)sender;
 - (IBAction)saveButton:(UIBarButtonItem *)sender;
 - (IBAction)imageLibrary:(id)sender;
+- (IBAction)logout:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameProfile;
 @property (weak, nonatomic) IBOutlet UITextView *textProfile;
@@ -146,6 +147,11 @@
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
+}
+
+- (IBAction)logout:(UIBarButtonItem *)sender {
+    [PFUser logOut];
+    [self performSegueWithIdentifier:@"showLogin" sender:self];
 }
 
 @end

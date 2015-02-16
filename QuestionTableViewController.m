@@ -14,7 +14,6 @@
 #import "QuestionTableViewCell.h"
 
 @interface QuestionTableViewController ()
-- (IBAction)logout:(id)sender;
 @property (weak, nonatomic) PFUser *tappedUser;
 
 @end
@@ -154,11 +153,6 @@
     profileVC.userProfile = object;
     
     [self presentViewController:profileVC animated:YES completion:nil];
-}
-
-- (IBAction)logout:(UIBarButtonItem *)sender {
-    [PFUser logOut];
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
 }
 
 @end

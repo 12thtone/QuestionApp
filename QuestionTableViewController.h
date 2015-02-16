@@ -10,6 +10,4 @@
 
 @interface QuestionTableViewController : PFQueryTableViewController
 
-- (IBAction)logout:(id)sender;
-
 @end

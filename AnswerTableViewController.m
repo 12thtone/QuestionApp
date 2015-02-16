@@ -56,6 +56,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     self.questionTextView.text = [self.question objectForKey:@"questionText"];
+    [self.questionTextView sizeToFit];
+    [self.questionTextView.textContainer setSize:self.questionTextView.frame.size];
+    [self.questionTextView layoutIfNeeded];
+    [self.questionTextView setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -118,7 +123,7 @@
     [author fetchIfNeeded];
     NSLog(@"%@", [author username]);
     */
-    
+        
     PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.usernameLabel.text = [object objectForKey:@"username"];
