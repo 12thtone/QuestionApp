@@ -46,10 +46,12 @@
 
 - (void)saveQuestion
 {
+    NSNumber *voteCount = [NSNumber numberWithInt:1];
     
     PFObject *newQuestion = [PFObject objectWithClassName:@"Question"];
     newQuestion[@"questionTitle"] = self.titleField.text;
     newQuestion[@"questionText"] = self.textField.text;
+    newQuestion[@"voteQuestion"] = voteCount;
     newQuestion[@"author"] = [PFUser currentUser];
     
     [newQuestion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

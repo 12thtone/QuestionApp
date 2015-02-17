@@ -47,6 +47,9 @@
 		F9CBBE801A829A9700680486 /* QuestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE7F1A829A9700680486 /* QuestionTableViewController.m */; };
 		F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE821A82AC0A00680486 /* LoginViewController.m */; };
 		F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE851A82AE8700680486 /* SignupViewController.m */; };
+		F9E55EAF1A9241210061CBCE /* TabsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */; };
+		F9E55EB21A92413D0061CBCE /* TabsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EB11A92413D0061CBCE /* TabsTableViewCell.m */; };
+		F9E55EB81A92939E0061CBCE /* AllTabbersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EB71A92939E0061CBCE /* AllTabbersTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,12 @@
 		F9CBBE821A82AC0A00680486 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
 		F9CBBE841A82AE8700680486 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = ../SignupViewController.h; sourceTree = "<group>"; };
 		F9CBBE851A82AE8700680486 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = ../SignupViewController.m; sourceTree = "<group>"; };
+		F9E55EAD1A9241210061CBCE /* TabsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabsTableViewController.h; path = ../TabsTableViewController.h; sourceTree = "<group>"; };
+		F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabsTableViewController.m; path = ../TabsTableViewController.m; sourceTree = "<group>"; };
+		F9E55EB01A92413D0061CBCE /* TabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabsTableViewCell.h; path = ../TabsTableViewCell.h; sourceTree = "<group>"; };
+		F9E55EB11A92413D0061CBCE /* TabsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabsTableViewCell.m; path = ../TabsTableViewCell.m; sourceTree = "<group>"; };
+		F9E55EB61A92939E0061CBCE /* AllTabbersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AllTabbersTableViewController.h; path = ../AllTabbersTableViewController.h; sourceTree = "<group>"; };
+		F9E55EB71A92939E0061CBCE /* AllTabbersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AllTabbersTableViewController.m; path = ../AllTabbersTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +183,8 @@
 		F9118DAF1A8196EB00E878AA /* QuestionApp */ = {
 			isa = PBXGroup;
 			children = (
+				F9E55EB61A92939E0061CBCE /* AllTabbersTableViewController.h */,
+				F9E55EB71A92939E0061CBCE /* AllTabbersTableViewController.m */,
 				F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */,
 				F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */,
 				F9B718201A890EA80070C134 /* MyProfileTableViewController.h */,
@@ -186,6 +197,10 @@
 				F983B1471A8D43EA000C597C /* AnswerTableViewCell.m */,
 				F9CBBE721A82662000680486 /* AnswerTableViewController.h */,
 				F9CBBE731A82662000680486 /* AnswerTableViewController.m */,
+				F9E55EB01A92413D0061CBCE /* TabsTableViewCell.h */,
+				F9E55EB11A92413D0061CBCE /* TabsTableViewCell.m */,
+				F9E55EAD1A9241210061CBCE /* TabsTableViewController.h */,
+				F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */,
 				F93F3E0B1A8FF2D3003E046F /* QuestionTableViewCell.h */,
 				F93F3E0C1A8FF2D3003E046F /* QuestionTableViewCell.m */,
 				F9CBBE7E1A829A9700680486 /* QuestionTableViewController.h */,
@@ -372,14 +387,17 @@
 				F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */,
 				F9B718221A890EA80070C134 /* MyProfileTableViewController.m in Sources */,
 				F9CBBE7A1A82665200680486 /* AddAnswerViewController.m in Sources */,
+				F9E55EAF1A9241210061CBCE /* TabsTableViewController.m in Sources */,
 				F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */,
 				F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */,
 				F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */,
 				F9CBBE741A82662100680486 /* AnswerTableViewController.m in Sources */,
+				F9E55EB21A92413D0061CBCE /* TabsTableViewCell.m in Sources */,
 				F93F3E0D1A8FF2D3003E046F /* QuestionTableViewCell.m in Sources */,
 				F9CBBE801A829A9700680486 /* QuestionTableViewController.m in Sources */,
 				F9CBBE771A82664000680486 /* AddQuestionViewController.m in Sources */,
 				F9CBBE7D1A8283DD00680486 /* DataSource.m in Sources */,
+				F9E55EB81A92939E0061CBCE /* AllTabbersTableViewController.m in Sources */,
 				F9118DB31A8196EB00E878AA /* main.m in Sources */,
 				F983B1481A8D43EA000C597C /* AnswerTableViewCell.m in Sources */,
 			);

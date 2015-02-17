@@ -148,6 +148,12 @@
     //cell.usernameLabel.text = [[[self.theAuthors objectAtIndex:indexPath.row] fetchIfNeeded] objectForKey:@"username"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [self.theVotes objectAtIndex:indexPath.row]];
+    
+    if ([cell.voteLabel.text  isEqual:@"1"]) {
+        cell.voteVotesLabel.text = @"Vote";
+    } else {
+        cell.voteVotesLabel.text = @"Votes";
+    }
 
     return cell;
 }

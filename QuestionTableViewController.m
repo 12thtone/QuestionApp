@@ -15,6 +15,11 @@
 
 @interface QuestionTableViewController ()
 @property (weak, nonatomic) PFUser *tappedUser;
+//@property (strong, nonatomic) NSMutableArray *questionObject;
+@property (strong, nonatomic) NSMutableArray *theQuestions;
+@property (strong, nonatomic) NSMutableArray *theVotes;
+@property (strong, nonatomic) NSMutableArray *theObjects;
+@property (strong, nonatomic) NSMutableArray *theAuthors;
 
 @end
 
@@ -68,7 +73,35 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self queryForTable];
+    [self questionQuery];
     [self loadObjects];
+}
+
+- (NSArray *)questionQuery {
+    NSMutableArray *questionArray = [[NSMutableArray alloc] init];
+    NSMutableArray *voteArray = [[NSMutableArray alloc] init];
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    
+    //[query whereKey:@"answerQuestion" equalTo:self.question];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            [questionArray addObject:[object objectForKey:@"questionTitle"]];
+            [voteArray addObject:[object objectForKey:@"voteQuestion"]];
+            [authorArray addObject:[object objectForKey:@"author"]];
+            [objectArray addObject:object];
+            
+            self.theQuestions = [questionArray copy];
+            self.theVotes = [voteArray copy];
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
+        }
+    }];
+    
+    return objectArray;
 }
 
 #pragma mark - PFQueryTableViewController
@@ -104,14 +137,35 @@
         //NSString *question = [object objectForKey:@"questionTitle"];
         cell.usernameLabel.text = username;
         //cell.detailTextLabel.text = question;
+        //[self.questionObject addObject:object];
     }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
     [cell.usernameLabel addGestureRecognizer:tap];
     
+    UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
+    [voteTap setNumberOfTapsRequired:1];
+    tap.enabled = YES;
+    [cell.voteLabel addGestureRecognizer:voteTap];
+    
     //cell.textLabel.text = [user objectForKey:@"username"];
     cell.questionTitleLabel.text = [object objectForKey:@"questionTitle"];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"voteQuestion"]];
+    
+    if ([cell.voteLabel.text  isEqual:@"1"]) {
+        cell.voteVotesLabel.text = @"Vote";
+    } else {
+        cell.voteVotesLabel.text = @"Votes";
+    }
+    
+    //self.questionObject = [NSMutableArray arrayWithObject:object];
+    
+    //NSLog(@"object: %@", object);
+    
+    //[self.questionObject addObject:object];
+    
+    //NSLog(@"self.questionObject: %@", self.questionObject);
     
     return cell;
 }
@@ -153,6 +207,41 @@
     profileVC.userProfile = object;
     
     [self presentViewController:profileVC animated:YES completion:nil];
+}
+
+#pragma mark - Votes
+
+- (void)saveVote:(UITapGestureRecognizer *)sender {
+    
+    //NSLog(@"self.questionObject: %@", self.questionObject);
+    
+    CGPoint tapLocation = [sender locationInView:self.tableView];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    
+    //NSLog(@"%@", [[self.questionObject objectForKey:@"voteQuestion"] objectAtIndex:tapIndexPath.row]);
+    //NSLog(@"%@", self.questionObject);
+    
+    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
+    //NSLog(@"%@", newVote);
+    //PFObject *newVote = [self.questionObject objectAtIndex:tapIndexPath.row];
+    [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
+    //[newVote saveInBackground];
+    
+    //NSLog(@"VOTE: %@", newVote);
+    
+    [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
+                                                                message:@"Thanks for your vote!"
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                message:[error.userInfo objectForKey:@"error"]
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }];
 }
 
 @end
