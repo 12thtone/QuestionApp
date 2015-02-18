@@ -32,6 +32,7 @@
 		F93F3E0D1A8FF2D3003E046F /* QuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F93F3E0C1A8FF2D3003E046F /* QuestionTableViewCell.m */; };
 		F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F947C4231A8E956E00363937 /* 602-exit@2x.png */; };
 		F983B1481A8D43EA000C597C /* AnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F983B1471A8D43EA000C597C /* AnswerTableViewCell.m */; };
+		F991024E1A94E103009DC951 /* FullAnswerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F991024D1A94E103009DC951 /* FullAnswerTableViewController.m */; };
 		F99E87421A91835C00D7B5AF /* 552-flag-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */; };
 		F99E87441A91839400D7B5AF /* 571-microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87431A91839400D7B5AF /* 571-microphone@2x.png */; };
 		F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */; };
@@ -95,6 +96,8 @@
 		F947C4231A8E956E00363937 /* 602-exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "602-exit@2x.png"; sourceTree = "<group>"; };
 		F983B1461A8D43EA000C597C /* AnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerTableViewCell.h; path = ../AnswerTableViewCell.h; sourceTree = "<group>"; };
 		F983B1471A8D43EA000C597C /* AnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerTableViewCell.m; path = ../AnswerTableViewCell.m; sourceTree = "<group>"; };
+		F991024C1A94E103009DC951 /* FullAnswerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullAnswerTableViewController.h; path = ../FullAnswerTableViewController.h; sourceTree = "<group>"; };
+		F991024D1A94E103009DC951 /* FullAnswerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullAnswerTableViewController.m; path = ../FullAnswerTableViewController.m; sourceTree = "<group>"; };
 		F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "552-flag-1@2x.png"; sourceTree = "<group>"; };
 		F99E87431A91839400D7B5AF /* 571-microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "571-microphone@2x.png"; sourceTree = "<group>"; };
 		F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTableViewController.h; path = ../ProfileTableViewController.h; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				F9CBBE791A82665200680486 /* AddAnswerViewController.m */,
 				F9CBBE751A82664000680486 /* AddQuestionViewController.h */,
 				F9CBBE761A82664000680486 /* AddQuestionViewController.m */,
+				F991024C1A94E103009DC951 /* FullAnswerTableViewController.h */,
+				F991024D1A94E103009DC951 /* FullAnswerTableViewController.m */,
 				F983B1461A8D43EA000C597C /* AnswerTableViewCell.h */,
 				F983B1471A8D43EA000C597C /* AnswerTableViewCell.m */,
 				F9CBBE721A82662000680486 /* AnswerTableViewController.h */,
@@ -384,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F991024E1A94E103009DC951 /* FullAnswerTableViewController.m in Sources */,
 				F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */,
 				F9B718221A890EA80070C134 /* MyProfileTableViewController.m in Sources */,
 				F9CBBE7A1A82665200680486 /* AddAnswerViewController.m in Sources */,

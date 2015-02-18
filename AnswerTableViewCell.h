@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface AnswerTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UITextView *answerTextView;
+@property (weak, nonatomic) IBOutlet UILabel *answerTextView;
+//@property (weak, nonatomic) IBOutlet UITextView *answerTextView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteVotesLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userImage;
 
 @end

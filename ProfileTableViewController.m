@@ -45,8 +45,10 @@
     } else if (self.userProfileAnswer) {
         self.user = [self.userProfileAnswer objectForKey:@"answerAuthor"];
         //NSLog(@"Fresh from the AnswerTVC %@", self.userProfileAnswer);
-    } else {
+    } else if (self.userFromTabList) {
         self.user = self.userFromTabList;
+    } else {
+        self.user = self.userFromFullAnswerList;
     }
     
     [self.user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -116,6 +118,56 @@
 
 - (IBAction)keepTabs:(id)sender {
     
+    NSMutableArray *tabbersList = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+    
+    [query whereKey:@"tabReceiver" equalTo:self.user];
+    [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFUser *aUser in objects) {
+            [tabbersList addObject:aUser];
+        }
+            NSString *alreadyString = [NSString stringWithFormat:@"You're already keeping tabs on %@", [self.user username]];
+        
+        //NSLog(@"%lu", (unsigned long)tabbersList.count);
+        //NSLog(@"%@", tabbersList);
+        
+            if (tabbersList.count == 0) {
+                [self saveTabs];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                                    message:alreadyString
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+            }
+    }];
+    
+    ////////////////////////
+    /*
+    PFObject *newTab = [PFObject objectWithClassName:@"Tab"];
+    newTab[@"tabMaker"] = [PFUser currentUser];
+    newTab[@"tabReceiver"] = self.user;
+    
+    NSString *userString = [NSString stringWithFormat:@"You're keeping tabs on %@", [self.user username]];
+    
+    [newTab saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Tabs!"
+                                                                message:userString
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                message:[error.userInfo objectForKey:@"error"]
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }];
+     */
+}
+
+- (void)saveTabs {
     PFObject *newTab = [PFObject objectWithClassName:@"Tab"];
     newTab[@"tabMaker"] = [PFUser currentUser];
     newTab[@"tabReceiver"] = self.user;

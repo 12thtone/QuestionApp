@@ -12,6 +12,7 @@
 #import "DataSource.h"
 #import "AnswerTableViewCell.h"
 #import "ProfileTableViewController.h"
+#import "FullAnswerTableViewController.h"
 
 @interface AnswerTableViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
@@ -127,6 +128,17 @@
     PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.usernameLabel.text = [object objectForKey:@"username"];
+        
+        PFFile *pictureFile = [user objectForKey:@"picture"];
+        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error){
+                
+                [cell.userImage setImage:[UIImage imageWithData:data]];
+            }
+            else {
+                NSLog(@"no data!");
+            }
+        }];
     }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
@@ -140,7 +152,8 @@
     [cell.voteLabel addGestureRecognizer:voteTap];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
+    //[dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
+    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [self.question createdAt];
     
     cell.answerTextView.text = [self.theAnswers objectAtIndex:indexPath.row];
@@ -193,6 +206,20 @@
     if ([segue.identifier isEqualToString:@"addAnswer"]) {
         AddAnswerViewController *addAnswerViewController = (AddAnswerViewController *)segue.destinationViewController;
         addAnswerViewController.question = self.question;
+    }
+    
+    if ([segue.identifier isEqualToString:@"showAnswer"]) {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
+        
+        //NSLog(@"sdfbsdfbsdfb%@", self.theObjects);
+        
+        //AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
+        //answerTableViewController.question = object;
+        
+        FullAnswerTableViewController *fullAnswerTableViewController = (FullAnswerTableViewController *)segue.destinationViewController;
+        fullAnswerTableViewController.fullAnswer = object;
     }
 }
 

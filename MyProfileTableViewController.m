@@ -151,7 +151,7 @@
 
 - (IBAction)logout:(UIBarButtonItem *)sender {
     [PFUser logOut];
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
+    [self performSegueWithIdentifier:@"showLoginFromLogout" sender:self];
 }
 
 @end

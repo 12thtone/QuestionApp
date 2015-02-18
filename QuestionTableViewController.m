@@ -117,28 +117,28 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     QuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTVC" forIndexPath:indexPath];
-    /*
-    static NSString *CellIdentifier = @"Cell";
-    
-    PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-     */
-    /*
-    PFUser *user = [object objectForKey:@"author"];
-    //[user fetchIfNeededInBackground];
-    [user fetchIfNeeded];
-    */
     
     PFUser *user = [object objectForKey:@"author"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
-        //NSString *question = [object objectForKey:@"questionTitle"];
         cell.usernameLabel.text = username;
-        //cell.detailTextLabel.text = question;
-        //[self.questionObject addObject:object];
+        
+        PFFile *pictureFile = [user objectForKey:@"picture"];
+        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error){
+                
+                [cell.userImage setImage:[UIImage imageWithData:data]];
+            }
+            else {
+                NSLog(@"no data!");
+            }
+        }];
     }];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //[dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
+    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+    NSDate *date = [object createdAt];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
@@ -149,7 +149,8 @@
     tap.enabled = YES;
     [cell.voteLabel addGestureRecognizer:voteTap];
     
-    //cell.textLabel.text = [user objectForKey:@"username"];
+    cell.statusLabel.text = [object objectForKey:@"status"];
+    cell.dateLabel.text = [dateFormatter stringFromDate:date];
     cell.questionTitleLabel.text = [object objectForKey:@"questionTitle"];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"voteQuestion"]];
     
@@ -158,14 +159,6 @@
     } else {
         cell.voteVotesLabel.text = @"Votes";
     }
-    
-    //self.questionObject = [NSMutableArray arrayWithObject:object];
-    
-    //NSLog(@"object: %@", object);
-    
-    //[self.questionObject addObject:object];
-    
-    //NSLog(@"self.questionObject: %@", self.questionObject);
     
     return cell;
 }

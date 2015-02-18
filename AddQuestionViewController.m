@@ -13,8 +13,11 @@
 @interface AddQuestionViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *textField;
+@property (weak, nonatomic) NSString *statusString;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *jokeStatusSegment;
 - (IBAction)savePressed:(UIBarButtonItem *)sender;
 - (IBAction)cancelPressed:(UIBarButtonItem *)sender;
+- (IBAction)indexChanged:(id)sender;
 
 @end
 
@@ -23,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.statusString = @"Got One for Ya";
 }
 
 - (IBAction)savePressed:(UIBarButtonItem *)sender {
@@ -44,6 +49,20 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)indexChanged:(id)sender {
+    switch (self.jokeStatusSegment.selectedSegmentIndex)
+    {
+        case 0:
+            self.statusString = @"Got One for Ya";
+            break;
+        case 1:
+            self.statusString = @"Finish My Joke";
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)saveQuestion
 {
     NSNumber *voteCount = [NSNumber numberWithInt:1];
@@ -52,6 +71,7 @@
     newQuestion[@"questionTitle"] = self.titleField.text;
     newQuestion[@"questionText"] = self.textField.text;
     newQuestion[@"voteQuestion"] = voteCount;
+    newQuestion[@"status"] = self.statusString;
     newQuestion[@"author"] = [PFUser currentUser];
     
     [newQuestion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
