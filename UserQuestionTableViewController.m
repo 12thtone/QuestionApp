@@ -1,29 +1,29 @@
 //
-//  QuestionTableViewController.m
+//  UserQuestionTableViewController.m
 //  QuestionApp
 //
-//  Created by Matt Maher on 2/4/15.
+//  Created by Matt Maher on 2/18/15.
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "QuestionTableViewController.h"
+#import "UserQuestionTableViewController.h"
 #import <Parse/Parse.h>
 #import "AnswerTableViewController.h"
-#import "ProfileTableViewController.h"
 #import "DataSource.h"
-#import "QuestionTableViewCell.h"
+#import "UserQuestionTableViewCell.h"
 
-@interface QuestionTableViewController ()
+@interface UserQuestionTableViewController ()
 @property (weak, nonatomic) PFUser *tappedUser;
 //@property (strong, nonatomic) NSMutableArray *questionObject;
 @property (strong, nonatomic) NSMutableArray *theQuestions;
 @property (strong, nonatomic) NSMutableArray *theVotes;
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
+- (IBAction)exitUserQuestions:(UIBarButtonItem *)sender;
 
 @end
 
-@implementation QuestionTableViewController
+@implementation UserQuestionTableViewController
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -50,14 +50,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        NSLog(@"Current user: %@", currentUser.username);
-    }
-    else {
-        [self performSegueWithIdentifier:@"showLogin" sender:self];
-    }
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
@@ -72,9 +64,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self queryForTable];
+    //[self queryForTable];
     [self questionQuery];
-    [self loadObjects];
+    //[self loadObjects];
 }
 
 - (NSArray *)questionQuery {
@@ -85,7 +77,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Question"];
     
-    //[query whereKey:@"answerQuestion" equalTo:self.question];
+    [query whereKey:@"author" equalTo:self.user];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
@@ -99,26 +91,28 @@
             self.theObjects = [objectArray copy];
             self.theAuthors = [authorArray copy];
         }
+        NSLog(@"%@", self.theAuthors);
     }];
     
     return objectArray;
 }
 
 #pragma mark - PFQueryTableViewController
-/*
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self count];
+    return self.theObjects.count;
 }
-*/
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
-    QuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTVC" forIndexPath:indexPath];
+    UserQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserQuestionTVCell" forIndexPath:indexPath];
     
-    PFUser *user = [object objectForKey:@"author"];
+    //PFUser *user = [self.user objectForKey:@"author"];
+    PFUser *user = self.user;
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
         cell.usernameLabel.text = username;
@@ -138,22 +132,21 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //[dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [object createdAt];
-    
+    NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
+    /*
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
-    tap.enabled = YES;
     [cell.usernameLabel addGestureRecognizer:tap];
-    
+    */
     UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
     [voteTap setNumberOfTapsRequired:1];
     voteTap.enabled = YES;
     [cell.voteLabel addGestureRecognizer:voteTap];
     
-    cell.statusLabel.text = [object objectForKey:@"status"];
+    cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.questionTitleLabel.text = [object objectForKey:@"questionTitle"];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"voteQuestion"]];
+    cell.questionTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
         cell.voteVotesLabel.text = @"Vote";
@@ -175,9 +168,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"showQuestion"]) {
+    if ([segue.identifier isEqualToString:@"showUserAnswers"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFObject *object = [self.objects objectAtIndex:indexPath.row];
+        PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
         
         //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
         
@@ -185,7 +178,7 @@
         answerTableViewController.question = object;
     }
 }
-
+/*
 - (void)userProfileTapped:(UITapGestureRecognizer *)sender {
     //NSLog(@"%@", sender);
     
@@ -202,7 +195,7 @@
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }
-
+*/
 #pragma mark - Votes
 
 - (void)saveVote:(UITapGestureRecognizer *)sender {
@@ -238,4 +231,7 @@
     }];
 }
 
+- (IBAction)exitUserQuestions:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

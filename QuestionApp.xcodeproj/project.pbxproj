@@ -33,6 +33,10 @@
 		F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F947C4231A8E956E00363937 /* 602-exit@2x.png */; };
 		F983B1481A8D43EA000C597C /* AnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F983B1471A8D43EA000C597C /* AnswerTableViewCell.m */; };
 		F991024E1A94E103009DC951 /* FullAnswerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F991024D1A94E103009DC951 /* FullAnswerTableViewController.m */; };
+		F99102511A95091A009DC951 /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F99102501A95091A009DC951 /* SearchResultsTableViewController.m */; };
+		F99102531A950B1B009DC951 /* 518-filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99102521A950B1B009DC951 /* 518-filter@2x.png */; };
+		F99102551A950B32009DC951 /* 534-eye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99102541A950B32009DC951 /* 534-eye@2x.png */; };
+		F99102581A950F15009DC951 /* UserQuestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F99102571A950F15009DC951 /* UserQuestionTableViewController.m */; };
 		F99E87421A91835C00D7B5AF /* 552-flag-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */; };
 		F99E87441A91839400D7B5AF /* 571-microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87431A91839400D7B5AF /* 571-microphone@2x.png */; };
 		F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */; };
@@ -48,6 +52,7 @@
 		F9CBBE801A829A9700680486 /* QuestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE7F1A829A9700680486 /* QuestionTableViewController.m */; };
 		F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE821A82AC0A00680486 /* LoginViewController.m */; };
 		F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE851A82AE8700680486 /* SignupViewController.m */; };
+		F9D057AF1A951A2E0098A9E2 /* UserQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D057AE1A951A2E0098A9E2 /* UserQuestionTableViewCell.m */; };
 		F9E55EAF1A9241210061CBCE /* TabsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */; };
 		F9E55EB21A92413D0061CBCE /* TabsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EB11A92413D0061CBCE /* TabsTableViewCell.m */; };
 		F9E55EB81A92939E0061CBCE /* AllTabbersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EB71A92939E0061CBCE /* AllTabbersTableViewController.m */; };
@@ -98,6 +103,12 @@
 		F983B1471A8D43EA000C597C /* AnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerTableViewCell.m; path = ../AnswerTableViewCell.m; sourceTree = "<group>"; };
 		F991024C1A94E103009DC951 /* FullAnswerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullAnswerTableViewController.h; path = ../FullAnswerTableViewController.h; sourceTree = "<group>"; };
 		F991024D1A94E103009DC951 /* FullAnswerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullAnswerTableViewController.m; path = ../FullAnswerTableViewController.m; sourceTree = "<group>"; };
+		F991024F1A95091A009DC951 /* SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultsTableViewController.h; path = ../SearchResultsTableViewController.h; sourceTree = "<group>"; };
+		F99102501A95091A009DC951 /* SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultsTableViewController.m; path = ../SearchResultsTableViewController.m; sourceTree = "<group>"; };
+		F99102521A950B1B009DC951 /* 518-filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "518-filter@2x.png"; sourceTree = "<group>"; };
+		F99102541A950B32009DC951 /* 534-eye@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "534-eye@2x.png"; sourceTree = "<group>"; };
+		F99102561A950F15009DC951 /* UserQuestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserQuestionTableViewController.h; path = ../UserQuestionTableViewController.h; sourceTree = "<group>"; };
+		F99102571A950F15009DC951 /* UserQuestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserQuestionTableViewController.m; path = ../UserQuestionTableViewController.m; sourceTree = "<group>"; };
 		F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "552-flag-1@2x.png"; sourceTree = "<group>"; };
 		F99E87431A91839400D7B5AF /* 571-microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "571-microphone@2x.png"; sourceTree = "<group>"; };
 		F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTableViewController.h; path = ../ProfileTableViewController.h; sourceTree = "<group>"; };
@@ -122,6 +133,8 @@
 		F9CBBE821A82AC0A00680486 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
 		F9CBBE841A82AE8700680486 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = ../SignupViewController.h; sourceTree = "<group>"; };
 		F9CBBE851A82AE8700680486 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = ../SignupViewController.m; sourceTree = "<group>"; };
+		F9D057AD1A951A2E0098A9E2 /* UserQuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserQuestionTableViewCell.h; path = ../UserQuestionTableViewCell.h; sourceTree = "<group>"; };
+		F9D057AE1A951A2E0098A9E2 /* UserQuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserQuestionTableViewCell.m; path = ../UserQuestionTableViewCell.m; sourceTree = "<group>"; };
 		F9E55EAD1A9241210061CBCE /* TabsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabsTableViewController.h; path = ../TabsTableViewController.h; sourceTree = "<group>"; };
 		F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabsTableViewController.m; path = ../TabsTableViewController.m; sourceTree = "<group>"; };
 		F9E55EB01A92413D0061CBCE /* TabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabsTableViewCell.h; path = ../TabsTableViewCell.h; sourceTree = "<group>"; };
@@ -206,6 +219,12 @@
 				F9E55EB11A92413D0061CBCE /* TabsTableViewCell.m */,
 				F9E55EAD1A9241210061CBCE /* TabsTableViewController.h */,
 				F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */,
+				F991024F1A95091A009DC951 /* SearchResultsTableViewController.h */,
+				F99102501A95091A009DC951 /* SearchResultsTableViewController.m */,
+				F9D057AD1A951A2E0098A9E2 /* UserQuestionTableViewCell.h */,
+				F9D057AE1A951A2E0098A9E2 /* UserQuestionTableViewCell.m */,
+				F99102561A950F15009DC951 /* UserQuestionTableViewController.h */,
+				F99102571A950F15009DC951 /* UserQuestionTableViewController.m */,
 				F93F3E0B1A8FF2D3003E046F /* QuestionTableViewCell.h */,
 				F93F3E0C1A8FF2D3003E046F /* QuestionTableViewCell.m */,
 				F9CBBE7E1A829A9700680486 /* QuestionTableViewController.h */,
@@ -229,6 +248,8 @@
 		F9118DB01A8196EB00E878AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F99102521A950B1B009DC951 /* 518-filter@2x.png */,
+				F99102541A950B32009DC951 /* 534-eye@2x.png */,
 				F99E87431A91839400D7B5AF /* 571-microphone@2x.png */,
 				F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */,
 				F9B7181B1A8908A80070C134 /* placeholder.png */,
@@ -365,6 +386,7 @@
 				F9B718161A89021E0070C134 /* 536-disguise@2x.png in Resources */,
 				F9118DD81A81999500E878AA /* MainStoryboard.storyboard in Resources */,
 				F9118DC11A8196EB00E878AA /* LaunchScreen.xib in Resources */,
+				F99102531A950B1B009DC951 /* 518-filter@2x.png in Resources */,
 				F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */,
 				F99E87441A91839400D7B5AF /* 571-microphone@2x.png in Resources */,
 				F9118DBE1A8196EB00E878AA /* Images.xcassets in Resources */,
@@ -372,6 +394,7 @@
 				F9B7181C1A8908A80070C134 /* placeholder.png in Resources */,
 				F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */,
 				F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */,
+				F99102551A950B32009DC951 /* 534-eye@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,10 +412,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9D057AF1A951A2E0098A9E2 /* UserQuestionTableViewCell.m in Sources */,
 				F991024E1A94E103009DC951 /* FullAnswerTableViewController.m in Sources */,
 				F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */,
 				F9B718221A890EA80070C134 /* MyProfileTableViewController.m in Sources */,
 				F9CBBE7A1A82665200680486 /* AddAnswerViewController.m in Sources */,
+				F99102511A95091A009DC951 /* SearchResultsTableViewController.m in Sources */,
 				F9E55EAF1A9241210061CBCE /* TabsTableViewController.m in Sources */,
 				F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */,
 				F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */,
@@ -405,6 +430,7 @@
 				F9CBBE7D1A8283DD00680486 /* DataSource.m in Sources */,
 				F9E55EB81A92939E0061CBCE /* AllTabbersTableViewController.m in Sources */,
 				F9118DB31A8196EB00E878AA /* main.m in Sources */,
+				F99102581A950F15009DC951 /* UserQuestionTableViewController.m in Sources */,
 				F983B1481A8D43EA000C597C /* AnswerTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

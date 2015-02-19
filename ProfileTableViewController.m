@@ -9,10 +9,12 @@
 #import "ProfileTableViewController.h"
 #import <Parse/Parse.h>
 #import "AllTabbersTableViewController.h"
+#import "UserQuestionTableViewController.h"
 
 @interface ProfileTableViewController ()
 - (IBAction)closeProfile:(id)sender;
 - (IBAction)keepTabs:(id)sender;
+- (IBAction)viewUserQuestions:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *usernameProfile;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionProfile;
 @property (weak, nonatomic) IBOutlet UIImageView *imageProfile;
@@ -167,6 +169,9 @@
      */
 }
 
+- (IBAction)viewUserQuestions:(id)sender {
+}
+
 - (void)saveTabs {
     PFObject *newTab = [PFObject objectWithClassName:@"Tab"];
     newTab[@"tabMaker"] = [PFUser currentUser];
@@ -229,6 +234,15 @@
         UINavigationController *navigationController = segue.destinationViewController;
         AllTabbersTableViewController *allTabbersTableViewController = (AllTabbersTableViewController * )navigationController.topViewController;
         allTabbersTableViewController.user = self.user;
+        
+        //AllTabbersTableViewController.user = self.user;
+    }
+    
+    if ([segue.identifier isEqualToString:@"viewUserQuestions"]) {
+        
+        UINavigationController *navigationController = segue.destinationViewController;
+        UserQuestionTableViewController *userQuestionTableViewController = (UserQuestionTableViewController * )navigationController.topViewController;
+        userQuestionTableViewController.user = self.user;
         
         //AllTabbersTableViewController.user = self.user;
     }
