@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface JokeTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *questionTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jokeTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteVotesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteLabel;

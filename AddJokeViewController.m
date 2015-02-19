@@ -67,14 +67,14 @@
 {
     NSNumber *voteCount = [NSNumber numberWithInt:1];
     
-    PFObject *newQuestion = [PFObject objectWithClassName:@"Question"];
-    newQuestion[@"questionTitle"] = self.titleField.text;
-    newQuestion[@"questionText"] = self.textField.text;
-    newQuestion[@"voteQuestion"] = voteCount;
-    newQuestion[@"status"] = self.statusString;
-    newQuestion[@"author"] = [PFUser currentUser];
+    PFObject *newJoke = [PFObject objectWithClassName:@"Question"];
+    newJoke[@"questionTitle"] = self.titleField.text;
+    newJoke[@"questionText"] = self.textField.text;
+    newJoke[@"voteQuestion"] = voteCount;
+    newJoke[@"status"] = self.statusString;
+    newJoke[@"author"] = [PFUser currentUser];
     
-    [newQuestion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [newJoke saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             [self.navigationController popViewControllerAnimated:YES];
         } else {

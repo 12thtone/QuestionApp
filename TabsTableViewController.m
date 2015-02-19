@@ -16,7 +16,7 @@
 @interface TabsTableViewController ()
 @property (weak, nonatomic) PFUser *tappedUser;
 //@property (strong, nonatomic) NSMutableArray *questionObject;
-@property (strong, nonatomic) NSMutableArray *theQuestions;
+@property (strong, nonatomic) NSMutableArray *theJokes;
 @property (strong, nonatomic) NSMutableArray *theVotes;
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
@@ -112,7 +112,7 @@
             //[authorArray addObject:[object objectForKey:@"tabReceiver"]];
             [objectArray addObject:object];
             
-            self.theQuestions = [questionArray copy];
+            self.theJokes = [questionArray copy];
             self.theVotes = [voteArray copy];
             self.theObjects = [objectArray copy];
             //self.theAuthors = [authorArray copy];
@@ -173,7 +173,7 @@
     
     cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.questionTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+    cell.jokeTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
@@ -203,7 +203,7 @@
         //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
         
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
-        answerTableViewController.question = object;
+        answerTableViewController.joke = object;
     }
 }
 /*

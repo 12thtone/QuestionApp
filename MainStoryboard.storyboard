@@ -104,7 +104,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.39000000000000001" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuestionTVC" rowHeight="81" id="6RA-nF-WaF" customClass="JokeTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JokeTVC" rowHeight="81" id="6RA-nF-WaF" customClass="JokeTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6RA-nF-WaF" id="OTx-wa-I6S">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -191,13 +191,13 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateLabel" destination="3h0-oW-8mv" id="zoq-M8-mps"/>
-                                    <outlet property="questionTitleLabel" destination="Obs-nD-38T" id="urx-Tc-ka5"/>
+                                    <outlet property="jokeTitleLabel" destination="Obs-nD-38T" id="SSd-u3-4gM"/>
                                     <outlet property="statusLabel" destination="Bc4-bM-mGz" id="rHb-xc-umI"/>
                                     <outlet property="userImage" destination="B5D-g8-HDo" id="5Wn-Nn-34z"/>
                                     <outlet property="usernameLabel" destination="tB9-pM-cAY" id="4SC-Vi-KyD"/>
                                     <outlet property="voteLabel" destination="fsz-uD-EfP" id="gqT-ha-WoH"/>
                                     <outlet property="voteVotesLabel" destination="nfU-Pq-j0u" id="5FG-wm-CgU"/>
-                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showQuestion" id="flv-mp-dDE"/>
+                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showJoke" id="flv-mp-dDE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -479,8 +479,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="answerTextView" destination="URz-uI-ZxX" id="klv-zK-2Eq"/>
-                        <outlet property="questionTitleLabel" destination="CVa-dO-CLY" id="IbR-BA-0Lc"/>
+                        <outlet property="jokeTitleLabel" destination="CVa-dO-CLY" id="g6f-kb-3NJ"/>
+                        <outlet property="responseTextView" destination="URz-uI-ZxX" id="kWx-1I-Pnv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJ6-xi-8aE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -507,7 +507,7 @@
                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                         </textView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswerTVC" rowHeight="104" id="ZpP-mX-SSu" customClass="ResponseTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResponseTVC" rowHeight="104" id="ZpP-mX-SSu" customClass="ResponseTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZpP-mX-SSu" id="pR6-oy-Idb">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -586,13 +586,13 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="answerTextView" destination="fe6-l6-dFB" id="ICt-cr-HqD"/>
                                     <outlet property="dateLabel" destination="H9G-Uz-1UH" id="Kgu-gh-SrM"/>
+                                    <outlet property="responseLabel" destination="fe6-l6-dFB" id="ciY-mj-68X"/>
                                     <outlet property="userImage" destination="Dgr-Dg-mVE" id="yfY-qK-Df1"/>
                                     <outlet property="usernameLabel" destination="9K8-Py-eIq" id="GKY-4s-HqY"/>
                                     <outlet property="voteLabel" destination="n2t-Wi-nf0" id="Ykk-be-kMc"/>
                                     <outlet property="voteVotesLabel" destination="lOS-jn-jhP" id="i8d-z4-Ph4"/>
-                                    <segue destination="dd6-h2-gCa" kind="show" identifier="showAnswer" id="zvR-mo-Lra"/>
+                                    <segue destination="dd6-h2-gCa" kind="show" identifier="showResponse" id="zvR-mo-Lra"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -604,12 +604,12 @@
                     <navigationItem key="navigationItem" title="Responses" id="Inb-Up-Qq6">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="gtR-YO-0EY">
                             <connections>
-                                <segue destination="QEc-IA-Rns" kind="show" identifier="addAnswer" id="kCm-Nc-W4U"/>
+                                <segue destination="QEc-IA-Rns" kind="show" identifier="addResponse" id="kCm-Nc-W4U"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="questionTextView" destination="jpd-SA-9YT" id="lUH-9w-u8z"/>
+                        <outlet property="jokeTextView" destination="jpd-SA-9YT" id="PfL-NT-fWV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jm8-9r-EQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -720,8 +720,8 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="answerTextView" destination="6Bi-PE-GPE" id="J6G-Kt-Q99"/>
                         <outlet property="dateLabel" destination="WFT-Fl-BXV" id="bfh-Fn-Kik"/>
+                        <outlet property="responseTextView" destination="6Bi-PE-GPE" id="lG0-la-cMC"/>
                         <outlet property="userImage" destination="BWd-5j-R55" id="D9n-9O-sU4"/>
                         <outlet property="usernameLabel" destination="qYW-dQ-eqY" id="eKi-bi-0VC"/>
                         <outlet property="voteCountLabel" destination="CgQ-OZ-qjv" id="oxx-Th-JXE"/>
@@ -1164,7 +1164,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uba-c5-IhV">
-                                            <rect key="frame" x="81" y="59" width="66" height="13"/>
+                                            <rect key="frame" x="81" y="59" width="66" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="1" alpha="0.60999999999999999" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1196,7 +1196,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Votes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwl-hE-Uqh">
-                                            <rect key="frame" x="531" y="61" width="61" height="13"/>
+                                            <rect key="frame" x="531" y="61" width="61" height="12"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="pRb-f3-fJf"/>
                                             </constraints>
@@ -1237,7 +1237,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.029999999999999999" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="8zs-dr-Bad" id="oKh-WQ-KPD"/>
-                                    <outlet property="questionTitleLabel" destination="u5F-Cx-271" id="9vl-gs-vKO"/>
+                                    <outlet property="jokeTitleLabel" destination="u5F-Cx-271" id="cCV-jx-o0M"/>
                                     <outlet property="statusLabel" destination="y1B-RS-liX" id="VoB-lg-BF7"/>
                                     <outlet property="userImage" destination="dht-Ac-fKC" id="UBW-kh-Gaj"/>
                                     <outlet property="usernameLabel" destination="Uba-c5-IhV" id="ZYj-hd-YAA"/>
@@ -1390,7 +1390,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateLabel" destination="vPB-aL-Z02" id="2pm-cu-GTj"/>
-                                    <outlet property="questionTitleLabel" destination="GSa-9l-29p" id="zrt-O8-844"/>
+                                    <outlet property="jokeTitleLabel" destination="GSa-9l-29p" id="GZV-WZ-1tE"/>
                                     <outlet property="statusLabel" destination="xzf-Sx-bws" id="oam-mk-XhL"/>
                                     <outlet property="userImage" destination="caU-1N-Lfm" id="apG-sc-X8k"/>
                                     <outlet property="usernameLabel" destination="Urg-ag-MYd" id="wZG-ys-Pak"/>

@@ -16,8 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *voteCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteVotesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UITextView *answerTextView;
-@property (strong, nonatomic) PFUser *fullAnswerUser;
+@property (weak, nonatomic) IBOutlet UITextView *responseTextView;
+@property (strong, nonatomic) PFUser *fullResponseUser;
 
 @end
 
@@ -28,16 +28,16 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [self.fullAnswer createdAt];
+    NSDate *date = [self.fullResponse createdAt];
     
-    [self.fullAnswer fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        PFFile *pictureFile = [self.fullAnswer objectForKey:@"answerAuthor"][@"picture"];
+    [self.fullResponse fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        PFFile *pictureFile = [self.fullResponse objectForKey:@"answerAuthor"][@"picture"];
         
         [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error){
                 
                 [self.userImage setImage:[UIImage imageWithData:data]];
-                self.usernameLabel.text = [self.fullAnswer objectForKey:@"answerAuthor"][@"username"];
+                self.usernameLabel.text = [self.fullResponse objectForKey:@"answerAuthor"][@"username"];
             }
             else {
                 NSLog(@"no data!");
@@ -52,8 +52,8 @@
     }
     
     self.dateLabel.text = [dateFormatter stringFromDate:date];
-    self.voteCountLabel.text = [NSString stringWithFormat:@"%@", [self.fullAnswer objectForKey:@"vote"]];
-    self.answerTextView.text = [self.fullAnswer objectForKey:@"answerText"];
+    self.voteCountLabel.text = [NSString stringWithFormat:@"%@", [self.fullResponse objectForKey:@"vote"]];
+    self.responseTextView.text = [self.fullResponse objectForKey:@"answerText"];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
@@ -80,10 +80,10 @@
 
 - (void)userProfileTapped:(UITapGestureRecognizer *)sender {
     
-    self.fullAnswerUser = [self.fullAnswer objectForKey:@"answerAuthor"];
+    self.fullResponseUser = [self.fullResponse objectForKey:@"answerAuthor"];
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
-    profileVC.userFromFullAnswerList = self.fullAnswerUser;
+    profileVC.userFromFullAnswerList = self.fullResponseUser;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }
@@ -93,11 +93,11 @@
 - (void)saveVote:(UITapGestureRecognizer *)sender {
     
     //PFObject *newVote = self.fullAnswer objectForKey:@"objectId"];
-    [self.fullAnswer incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
+    [self.fullResponse incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
     
-    NSLog(@"VOTE: %@", self.fullAnswer);
+    NSLog(@"VOTE: %@", self.fullResponse);
     
-    [self.fullAnswer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [self.fullResponse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
                                                                 message:@"Thanks for your vote!"

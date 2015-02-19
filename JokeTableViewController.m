@@ -15,8 +15,7 @@
 
 @interface JokeTableViewController ()
 @property (weak, nonatomic) PFUser *tappedUser;
-//@property (strong, nonatomic) NSMutableArray *questionObject;
-@property (strong, nonatomic) NSMutableArray *theQuestions;
+@property (strong, nonatomic) NSMutableArray *theJokes;
 @property (strong, nonatomic) NSMutableArray *theVotes;
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
@@ -78,7 +77,7 @@
 }
 
 - (NSArray *)questionQuery {
-    NSMutableArray *questionArray = [[NSMutableArray alloc] init];
+    NSMutableArray *jokeArray = [[NSMutableArray alloc] init];
     NSMutableArray *voteArray = [[NSMutableArray alloc] init];
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
@@ -89,12 +88,12 @@
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
-            [questionArray addObject:[object objectForKey:@"questionTitle"]];
+            [jokeArray addObject:[object objectForKey:@"questionTitle"]];
             [voteArray addObject:[object objectForKey:@"voteQuestion"]];
             [authorArray addObject:[object objectForKey:@"author"]];
             [objectArray addObject:object];
             
-            self.theQuestions = [questionArray copy];
+            self.theJokes = [jokeArray copy];
             self.theVotes = [voteArray copy];
             self.theObjects = [objectArray copy];
             self.theAuthors = [authorArray copy];
@@ -116,7 +115,7 @@
 */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
-    JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTVC" forIndexPath:indexPath];
+    JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JokeTVC" forIndexPath:indexPath];
     
     PFUser *user = [object objectForKey:@"author"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -152,7 +151,7 @@
     
     cell.statusLabel.text = [object objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.questionTitleLabel.text = [object objectForKey:@"questionTitle"];
+    cell.jokeTitleLabel.text = [object objectForKey:@"questionTitle"];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
@@ -175,14 +174,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"showQuestion"]) {
+    if ([segue.identifier isEqualToString:@"showJoke"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
         //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
         
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
-        answerTableViewController.question = object;
+        answerTableViewController.joke = object;
     }
 }
 

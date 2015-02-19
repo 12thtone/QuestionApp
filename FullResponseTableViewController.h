@@ -11,6 +11,6 @@
 
 @interface FullResponseTableViewController : UITableViewController
 
-@property (nonatomic, strong)PFObject *fullAnswer;
+@property (nonatomic, strong)PFObject *fullResponse;
 
 @end

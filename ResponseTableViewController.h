@@ -11,6 +11,6 @@
 
 @interface ResponseTableViewController : PFQueryTableViewController
 
-@property (nonatomic, strong) PFObject *question;
+@property (nonatomic, strong) PFObject *joke;
 
 @end

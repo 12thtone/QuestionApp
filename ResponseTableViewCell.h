@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ResponseTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *answerTextView;
-//@property (weak, nonatomic) IBOutlet UITextView *answerTextView;
+@property (weak, nonatomic) IBOutlet UILabel *responseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteLabel;

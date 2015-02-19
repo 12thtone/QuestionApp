@@ -15,8 +15,8 @@
 #import "FullResponseTableViewController.h"
 
 @interface ResponseTableViewController () <UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITextView *questionTextView;
-@property (strong, nonatomic) NSMutableArray *theAnswers;
+@property (weak, nonatomic) IBOutlet UITextView *jokeTextView;
+@property (strong, nonatomic) NSMutableArray *theResponses;
 @property (strong, nonatomic) NSMutableArray *theVotes;
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
@@ -56,11 +56,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
-    self.questionTextView.text = [self.question objectForKey:@"questionText"];
-    [self.questionTextView sizeToFit];
-    [self.questionTextView.textContainer setSize:self.questionTextView.frame.size];
-    [self.questionTextView layoutIfNeeded];
-    [self.questionTextView setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    self.jokeTextView.text = [self.joke objectForKey:@"questionText"];
+    [self.jokeTextView sizeToFit];
+    [self.jokeTextView.textContainer setSize:self.jokeTextView.frame.size];
+    [self.jokeTextView layoutIfNeeded];
+    [self.jokeTextView setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     
 }
 
@@ -71,33 +71,33 @@
 }
 
 - (NSArray *)answerQuery {
-    NSMutableArray *answerArray = [[NSMutableArray alloc] init];
+    NSMutableArray *responseArray = [[NSMutableArray alloc] init];
     NSMutableArray *voteArray = [[NSMutableArray alloc] init];
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
     
-    [query whereKey:@"answerQuestion" equalTo:self.question];
+    [query whereKey:@"answerQuestion" equalTo:self.joke];
     [query orderByDescending:@"vote"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
         for (PFObject *object in objects) {
             //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
-            [answerArray addObject:[object objectForKey:@"answerText"]];
+            [responseArray addObject:[object objectForKey:@"answerText"]];
             [voteArray addObject:[object objectForKey:@"vote"]];
             [authorArray addObject:[object objectForKey:@"answerAuthor"]];
             [objectArray addObject:object];
-            NSLog(@"Answer ARRAY: %lu", (unsigned long)answerArray.count);
+            NSLog(@"Answer ARRAY: %lu", (unsigned long)responseArray.count);
             
-            self.theAnswers = [answerArray copy];
+            self.theResponses = [responseArray copy];
             self.theVotes = [voteArray copy];
             self.theObjects = [objectArray copy];
             self.theAuthors = [authorArray copy];
         }
     }];
     
-    return answerArray;
+    return responseArray;
 }
 
 #pragma mark - PFQueryTableViewController
@@ -113,12 +113,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.theAnswers.count;
+    return self.theResponses.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
-    ResponseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnswerTVC" forIndexPath:indexPath];
+    ResponseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ResponseTVC" forIndexPath:indexPath];
     /*
     PFUser *author = [self.question objectForKey:@"author"];
     [author fetchIfNeeded];
@@ -154,9 +154,9 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //[dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [self.question createdAt];
+    NSDate *date = [self.joke createdAt];
     
-    cell.answerTextView.text = [self.theAnswers objectAtIndex:indexPath.row];
+    cell.responseLabel.text = [self.theResponses objectAtIndex:indexPath.row];
     //cell.usernameLabel.text = [user username];
     //cell.usernameLabel.text = [[[self.theAuthors objectAtIndex:indexPath.row] fetchIfNeeded] objectForKey:@"username"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
@@ -203,12 +203,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"addAnswer"]) {
+    if ([segue.identifier isEqualToString:@"addResponse"]) {
         AddResponseViewController *addAnswerViewController = (AddResponseViewController *)segue.destinationViewController;
-        addAnswerViewController.question = self.question;
+        addAnswerViewController.joke = self.joke;
     }
     
-    if ([segue.identifier isEqualToString:@"showAnswer"]) {
+    if ([segue.identifier isEqualToString:@"showResponse"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
@@ -219,7 +219,7 @@
         //answerTableViewController.question = object;
         
         FullResponseTableViewController *fullAnswerTableViewController = (FullResponseTableViewController *)segue.destinationViewController;
-        fullAnswerTableViewController.fullAnswer = object;
+        fullAnswerTableViewController.fullResponse = object;
     }
 }
 

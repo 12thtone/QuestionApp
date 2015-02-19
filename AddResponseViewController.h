@@ -13,6 +13,6 @@
 
 @interface AddResponseViewController : UIViewController
 
-@property (nonatomic, strong) PFObject *question;
+@property (nonatomic, strong) PFObject *joke;
 
 @end

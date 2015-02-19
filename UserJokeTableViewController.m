@@ -15,7 +15,7 @@
 @interface UserJokeTableViewController ()
 @property (weak, nonatomic) PFUser *tappedUser;
 //@property (strong, nonatomic) NSMutableArray *questionObject;
-@property (strong, nonatomic) NSMutableArray *theQuestions;
+@property (strong, nonatomic) NSMutableArray *theJokes;
 @property (strong, nonatomic) NSMutableArray *theVotes;
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
@@ -70,7 +70,7 @@
 }
 
 - (NSArray *)questionQuery {
-    NSMutableArray *questionArray = [[NSMutableArray alloc] init];
+    NSMutableArray *jokeArray = [[NSMutableArray alloc] init];
     NSMutableArray *voteArray = [[NSMutableArray alloc] init];
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
@@ -81,12 +81,12 @@
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
-            [questionArray addObject:[object objectForKey:@"questionTitle"]];
+            [jokeArray addObject:[object objectForKey:@"questionTitle"]];
             [voteArray addObject:[object objectForKey:@"voteQuestion"]];
             [authorArray addObject:[object objectForKey:@"author"]];
             [objectArray addObject:object];
             
-            self.theQuestions = [questionArray copy];
+            self.theJokes = [jokeArray copy];
             self.theVotes = [voteArray copy];
             self.theObjects = [objectArray copy];
             self.theAuthors = [authorArray copy];
@@ -145,7 +145,7 @@
     
     cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.questionTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+    cell.jokeTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
@@ -175,7 +175,7 @@
         //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
         
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
-        answerTableViewController.question = object;
+        answerTableViewController.joke = object;
     }
 }
 /*

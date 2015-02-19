@@ -12,9 +12,9 @@
 
 @interface AddResponseViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *questionTitleLabel;
-@property (weak, nonatomic) IBOutlet UITextView *answerTextView;
-@property (weak, nonatomic) NSString *answer;
+@property (weak, nonatomic) IBOutlet UILabel *jokeTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *responseTextView;
+@property (weak, nonatomic) NSString *response;
 //- (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)save:(UIBarButtonItem *)sender;
 
@@ -26,14 +26,14 @@
 {
     [super viewDidLoad];
         
-    self.questionTitleLabel.text = [self.question objectForKey:@"questionTitle"];
+    self.jokeTitleLabel.text = [self.joke objectForKey:@"questionTitle"];
 }
 
 - (IBAction)save:(UIBarButtonItem *)sender {
     
-    self.answer = [self.answerTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.response = [self.responseTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    if ([self.answer length] == 0) {
+    if ([self.response length] == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
                                                             message:@"We're hoping for an answer."
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -51,15 +51,15 @@
 {
     NSNumber *voteCount = [NSNumber numberWithInt:1];
     
-    PFObject *newAnswer = [PFObject objectWithClassName:@"Answer"];
-    newAnswer[@"answerText"] = self.answer;
-    newAnswer[@"vote"] = voteCount;
-    newAnswer[@"answerQuestion"] = self.question;
-    newAnswer[@"answerAuthor"] = [PFUser currentUser];
+    PFObject *newResponse = [PFObject objectWithClassName:@"Answer"];
+    newResponse[@"answerText"] = self.response;
+    newResponse[@"vote"] = voteCount;
+    newResponse[@"answerQuestion"] = self.joke;
+    newResponse[@"answerAuthor"] = [PFUser currentUser];
     
     //NSLog(@"%@", self.question);
     
-    [newAnswer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [newResponse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             [self.navigationController popViewControllerAnimated:YES];
         } else {
