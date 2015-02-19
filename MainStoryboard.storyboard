@@ -189,6 +189,7 @@
                                         <constraint firstItem="fsz-uD-EfP" firstAttribute="top" secondItem="Bc4-bM-mGz" secondAttribute="bottom" constant="3" id="yvF-s2-A2k"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="3h0-oW-8mv" id="zoq-M8-mps"/>
                                     <outlet property="jokeTitleLabel" destination="Obs-nD-38T" id="SSd-u3-4gM"/>
@@ -1234,7 +1235,7 @@
                                         <constraint firstAttribute="bottom" secondItem="Pwl-hE-Uqh" secondAttribute="bottom" constant="7" id="yGb-dj-T1W"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.029999999999999999" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="8zs-dr-Bad" id="oKh-WQ-KPD"/>
                                     <outlet property="jokeTitleLabel" destination="u5F-Cx-271" id="cCV-jx-o0M"/>
@@ -1243,6 +1244,7 @@
                                     <outlet property="usernameLabel" destination="Uba-c5-IhV" id="ZYj-hd-YAA"/>
                                     <outlet property="voteLabel" destination="s5K-iP-9iD" id="NO6-U8-619"/>
                                     <outlet property="voteVotesLabel" destination="Pwl-hE-Uqh" id="sr2-MF-eYf"/>
+                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showTabResponses" id="z7f-hL-hma"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1446,6 +1448,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iYY-yP-HsU"/>
-        <segue reference="flv-mp-dDE"/>
+        <segue reference="z7f-hL-hma"/>
     </inferredMetricsTieBreakers>
 </document>
