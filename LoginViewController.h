@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 - (IBAction)login:(id)sender;
+- (IBAction)forgotPassword:(id)sender;
 
 @end

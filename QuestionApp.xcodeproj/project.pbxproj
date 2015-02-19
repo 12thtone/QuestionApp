@@ -31,6 +31,7 @@
 		F9118DF91A81A7A400E878AA /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF81A81A7A300E878AA /* ParseUI.framework */; };
 		F93F3E0D1A8FF2D3003E046F /* JokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F93F3E0C1A8FF2D3003E046F /* JokeTableViewCell.m */; };
 		F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F947C4231A8E956E00363937 /* 602-exit@2x.png */; };
+		F9669FF71A968BF6007D142B /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */; };
 		F983B1481A8D43EA000C597C /* ResponseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */; };
 		F991024E1A94E103009DC951 /* FullResponseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F991024D1A94E103009DC951 /* FullResponseTableViewController.m */; };
 		F99102511A95091A009DC951 /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F99102501A95091A009DC951 /* SearchResultsTableViewController.m */; };
@@ -99,6 +100,8 @@
 		F93F3E0B1A8FF2D3003E046F /* JokeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JokeTableViewCell.h; path = ../JokeTableViewCell.h; sourceTree = "<group>"; };
 		F93F3E0C1A8FF2D3003E046F /* JokeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JokeTableViewCell.m; path = ../JokeTableViewCell.m; sourceTree = "<group>"; };
 		F947C4231A8E956E00363937 /* 602-exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "602-exit@2x.png"; sourceTree = "<group>"; };
+		F9669FF51A968BF6007D142B /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgotPasswordViewController.h; path = ../ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordViewController.m; path = ../ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		F983B1461A8D43EA000C597C /* ResponseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponseTableViewCell.h; path = ../ResponseTableViewCell.h; sourceTree = "<group>"; };
 		F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseTableViewCell.m; path = ../ResponseTableViewCell.m; sourceTree = "<group>"; };
 		F991024C1A94E103009DC951 /* FullResponseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullResponseTableViewController.h; path = ../FullResponseTableViewController.h; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 				F93F3E0C1A8FF2D3003E046F /* JokeTableViewCell.m */,
 				F9CBBE7E1A829A9700680486 /* JokeTableViewController.h */,
 				F9CBBE7F1A829A9700680486 /* JokeTableViewController.m */,
+				F9669FF51A968BF6007D142B /* ForgotPasswordViewController.h */,
+				F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */,
 				F9CBBE841A82AE8700680486 /* SignupViewController.h */,
 				F9CBBE851A82AE8700680486 /* SignupViewController.m */,
 				F9CBBE811A82AC0A00680486 /* LoginViewController.h */,
@@ -430,6 +435,7 @@
 				F9CBBE7D1A8283DD00680486 /* DataSource.m in Sources */,
 				F9E55EB81A92939E0061CBCE /* AllTabbersTableViewController.m in Sources */,
 				F9118DB31A8196EB00E878AA /* main.m in Sources */,
+				F9669FF71A968BF6007D142B /* ForgotPasswordViewController.m in Sources */,
 				F99102581A950F15009DC951 /* UserJokeTableViewController.m in Sources */,
 				F983B1481A8D43EA000C597C /* ResponseTableViewCell.m in Sources */,
 			);
