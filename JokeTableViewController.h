@@ -8,6 +8,6 @@
 
 #import <ParseUI/ParseUI.h>
 
-@interface QuestionTableViewController : PFQueryTableViewController
+@interface JokeTableViewController : PFQueryTableViewController
 
 @end

@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "AddQuestionViewController.h"
+#import "AddJokeViewController.h"
 #import <Parse/Parse.h>
-#import "QuestionTableViewController.h"
+#import "JokeTableViewController.h"
 
-@interface AddQuestionViewController ()
+@interface AddJokeViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 @property (weak, nonatomic) NSString *statusString;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation AddQuestionViewController
+@implementation AddJokeViewController
 
 - (void)viewDidLoad
 {

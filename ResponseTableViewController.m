@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "AnswerTableViewController.h"
+#import "ResponseTableViewController.h"
 #import <Parse/Parse.h>
-#import "AddAnswerViewController.h"
+#import "AddResponseViewController.h"
 #import "DataSource.h"
-#import "AnswerTableViewCell.h"
+#import "ResponseTableViewCell.h"
 #import "ProfileTableViewController.h"
-#import "FullAnswerTableViewController.h"
+#import "FullResponseTableViewController.h"
 
-@interface AnswerTableViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface ResponseTableViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextView *questionTextView;
 @property (strong, nonatomic) NSMutableArray *theAnswers;
 @property (strong, nonatomic) NSMutableArray *theVotes;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation AnswerTableViewController
+@implementation ResponseTableViewController
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -118,7 +118,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
-    AnswerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnswerTVC" forIndexPath:indexPath];
+    ResponseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnswerTVC" forIndexPath:indexPath];
     /*
     PFUser *author = [self.question objectForKey:@"author"];
     [author fetchIfNeeded];
@@ -204,7 +204,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"addAnswer"]) {
-        AddAnswerViewController *addAnswerViewController = (AddAnswerViewController *)segue.destinationViewController;
+        AddResponseViewController *addAnswerViewController = (AddResponseViewController *)segue.destinationViewController;
         addAnswerViewController.question = self.question;
     }
     
@@ -218,7 +218,7 @@
         //AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
         //answerTableViewController.question = object;
         
-        FullAnswerTableViewController *fullAnswerTableViewController = (FullAnswerTableViewController *)segue.destinationViewController;
+        FullResponseTableViewController *fullAnswerTableViewController = (FullResponseTableViewController *)segue.destinationViewController;
         fullAnswerTableViewController.fullAnswer = object;
     }
 }

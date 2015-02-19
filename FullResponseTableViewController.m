@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "FullAnswerTableViewController.h"
+#import "FullResponseTableViewController.h"
 #import <Parse/Parse.h>
 #import "ProfileTableViewController.h"
 
-@interface FullAnswerTableViewController ()
+@interface FullResponseTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteCountLabel;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation FullAnswerTableViewController
+@implementation FullResponseTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

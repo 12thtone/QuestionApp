@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AnswerTableViewCell : UITableViewCell
+@interface ResponseTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *answerTextView;
 //@property (weak, nonatomic) IBOutlet UITextView *answerTextView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;

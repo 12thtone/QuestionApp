@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <ParseUI/ParseUI.h>
 
-@interface FullAnswerTableViewController : UITableViewController
+@interface FullResponseTableViewController : UITableViewController
 
 @property (nonatomic, strong)PFObject *fullAnswer;
 

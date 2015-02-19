@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 //#import <ParseUI/ParseUI.h>
 
-@interface AddQuestionViewController : UIViewController
+@interface AddJokeViewController : UIViewController
 
 @end

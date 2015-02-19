@@ -9,7 +9,7 @@
 #import "ProfileTableViewController.h"
 #import <Parse/Parse.h>
 #import "AllTabbersTableViewController.h"
-#import "UserQuestionTableViewController.h"
+#import "UserJokeTableViewController.h"
 
 @interface ProfileTableViewController ()
 - (IBAction)closeProfile:(id)sender;
@@ -241,7 +241,7 @@
     if ([segue.identifier isEqualToString:@"viewUserQuestions"]) {
         
         UINavigationController *navigationController = segue.destinationViewController;
-        UserQuestionTableViewController *userQuestionTableViewController = (UserQuestionTableViewController * )navigationController.topViewController;
+        UserJokeTableViewController *userQuestionTableViewController = (UserJokeTableViewController * )navigationController.topViewController;
         userQuestionTableViewController.user = self.user;
         
         //AllTabbersTableViewController.user = self.user;

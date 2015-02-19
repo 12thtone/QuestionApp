@@ -8,7 +8,7 @@
 
 #import <ParseUI/ParseUI.h>
 
-@interface UserQuestionTableViewController : PFQueryTableViewController
+@interface UserJokeTableViewController : PFQueryTableViewController
 
 @property (nonatomic, strong) PFUser *user;
 

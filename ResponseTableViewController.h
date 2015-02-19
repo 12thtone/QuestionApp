@@ -1,5 +1,5 @@
 //
-//  AddAnswerViewController.h
+//  AnswerTableViewController.h
 //  QuestionApp
 //
 //  Created by Matt Maher on 2/4/15.
@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <ParseUI/ParseUI.h>
 
-@class QuestionTableViewController;
-
-@interface AddAnswerViewController : UIViewController
+@interface ResponseTableViewController : PFQueryTableViewController
 
 @property (nonatomic, strong) PFObject *question;
 

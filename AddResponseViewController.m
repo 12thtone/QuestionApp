@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "AddAnswerViewController.h"
+#import "AddResponseViewController.h"
 #import <Parse/Parse.h>
-#import "AnswerTableViewController.h"
+#import "ResponseTableViewController.h"
 
-@interface AddAnswerViewController ()
+@interface AddResponseViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *questionTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *answerTextView;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation AddAnswerViewController
+@implementation AddResponseViewController
 
 - (void)viewDidLoad
 {

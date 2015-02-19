@@ -8,7 +8,7 @@
 
 #import "TabsTableViewController.h"
 #import <Parse/Parse.h>
-#import "AnswerTableViewController.h"
+#import "ResponseTableViewController.h"
 #import "ProfileTableViewController.h"
 #import "DataSource.h"
 #import "TabsTableViewCell.h"
@@ -202,7 +202,7 @@
         
         //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
         
-        AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
+        ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.question = object;
     }
 }

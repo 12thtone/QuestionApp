@@ -9,7 +9,7 @@
         <!--Add Question-->
         <scene sceneID="4XC-7w-ri0">
             <objects>
-                <viewController id="AQa-up-Vc0" customClass="AddQuestionViewController" sceneMemberID="viewController">
+                <viewController id="AQa-up-Vc0" customClass="AddJokeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pqe-AP-R9K"/>
                         <viewControllerLayoutGuide type="bottom" id="RWH-pB-gPI"/>
@@ -97,14 +97,14 @@
         <!--Latest Jokes-->
         <scene sceneID="l0g-fs-sUP">
             <objects>
-                <tableViewController id="kSX-Pp-37A" customClass="QuestionTableViewController" sceneMemberID="viewController">
+                <tableViewController id="kSX-Pp-37A" customClass="JokeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="81" sectionHeaderHeight="22" sectionFooterHeight="22" id="dJi-5U-RmM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.39000000000000001" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuestionTVC" rowHeight="81" id="6RA-nF-WaF" customClass="QuestionTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuestionTVC" rowHeight="81" id="6RA-nF-WaF" customClass="JokeTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6RA-nF-WaF" id="OTx-wa-I6S">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -423,7 +423,7 @@
         <!--Add Answer-->
         <scene sceneID="Azo-ea-Lh5">
             <objects>
-                <viewController id="QEc-IA-Rns" customClass="AddAnswerViewController" sceneMemberID="viewController">
+                <viewController id="QEc-IA-Rns" customClass="AddResponseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aVK-0y-wTC"/>
                         <viewControllerLayoutGuide type="bottom" id="C0P-Lo-K1a"/>
@@ -490,7 +490,7 @@
         <!--Responses-->
         <scene sceneID="R2c-TH-uhD">
             <objects>
-                <tableViewController id="x2g-4H-aWw" customClass="AnswerTableViewController" sceneMemberID="viewController">
+                <tableViewController id="x2g-4H-aWw" customClass="ResponseTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" id="HbB-qo-jDy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -507,7 +507,7 @@
                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                         </textView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswerTVC" rowHeight="104" id="ZpP-mX-SSu" customClass="AnswerTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswerTVC" rowHeight="104" id="ZpP-mX-SSu" customClass="ResponseTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZpP-mX-SSu" id="pR6-oy-Idb">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -616,10 +616,10 @@
             </objects>
             <point key="canvasLocation" x="2241" y="-656"/>
         </scene>
-        <!--Full Answer Table View Controller-->
+        <!--Full Response Table View Controller-->
         <scene sceneID="lrH-4U-fSh">
             <objects>
-                <tableViewController id="dd6-h2-gCa" customClass="FullAnswerTableViewController" sceneMemberID="viewController">
+                <tableViewController id="dd6-h2-gCa" customClass="FullResponseTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ihz-MA-dWU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1297,13 +1297,13 @@
         <!--User Jokes-->
         <scene sceneID="GUg-kh-3tP">
             <objects>
-                <tableViewController id="bZX-T0-sIn" customClass="UserQuestionTableViewController" sceneMemberID="viewController">
+                <tableViewController id="bZX-T0-sIn" customClass="UserJokeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="tSl-jw-83b">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserQuestionTVCell" rowHeight="81" id="lvE-sJ-Zgw" customClass="UserQuestionTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserQuestionTVCell" rowHeight="81" id="lvE-sJ-Zgw" customClass="UserJokeTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lvE-sJ-Zgw" id="Dfn-9k-1cA">
                                     <autoresizingMask key="autoresizingMask"/>
