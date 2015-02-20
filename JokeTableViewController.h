@@ -8,8 +8,6 @@
 
 #import <ParseUI/ParseUI.h>
 
-@interface QuestionTableViewController : PFQueryTableViewController
-
-- (IBAction)logout:(id)sender;
+@interface JokeTableViewController : PFQueryTableViewController
 
 @end

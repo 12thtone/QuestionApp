@@ -13,5 +13,8 @@
 
 @property (nonatomic, strong) PFObject *userProfile;
 @property (nonatomic, strong) PFObject *userProfileAnswer;
+@property (nonatomic, strong) PFUser *userFromTabList;
+@property (nonatomic, strong) PFUser *userFromFullAnswerList;
+
 
 @end

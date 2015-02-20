@@ -1,16 +1,14 @@
 //
-//  AnswerTableViewCell.m
+//  TabsTableViewCell.m
 //  QuestionApp
 //
-//  Created by Matt Maher on 2/12/15.
+//  Created by Matt Maher on 2/16/15.
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "AnswerTableViewCell.h"
-#import <Parse/Parse.h>
-#import "AnswerTableViewController.h"
+#import "TabsTableViewCell.h"
 
-@implementation AnswerTableViewCell
+@implementation TabsTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code

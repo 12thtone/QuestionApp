@@ -6,23 +6,28 @@
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "AddQuestionViewController.h"
+#import "AddJokeViewController.h"
 #import <Parse/Parse.h>
-#import "QuestionTableViewController.h"
+#import "JokeTableViewController.h"
 
-@interface AddQuestionViewController ()
+@interface AddJokeViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *textField;
+@property (weak, nonatomic) NSString *statusString;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *jokeStatusSegment;
 - (IBAction)savePressed:(UIBarButtonItem *)sender;
 - (IBAction)cancelPressed:(UIBarButtonItem *)sender;
+- (IBAction)indexChanged:(id)sender;
 
 @end
 
-@implementation AddQuestionViewController
+@implementation AddJokeViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.statusString = @"Got One for Ya";
 }
 
 - (IBAction)savePressed:(UIBarButtonItem *)sender {
@@ -44,15 +49,32 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)indexChanged:(id)sender {
+    switch (self.jokeStatusSegment.selectedSegmentIndex)
+    {
+        case 0:
+            self.statusString = @"Got One for Ya";
+            break;
+        case 1:
+            self.statusString = @"Finish My Joke";
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)saveQuestion
 {
+    NSNumber *voteCount = [NSNumber numberWithInt:1];
     
-    PFObject *newQuestion = [PFObject objectWithClassName:@"Question"];
-    newQuestion[@"questionTitle"] = self.titleField.text;
-    newQuestion[@"questionText"] = self.textField.text;
-    newQuestion[@"author"] = [PFUser currentUser];
+    PFObject *newJoke = [PFObject objectWithClassName:@"Question"];
+    newJoke[@"questionTitle"] = self.titleField.text;
+    newJoke[@"questionText"] = self.textField.text;
+    newJoke[@"voteQuestion"] = voteCount;
+    newJoke[@"status"] = self.statusString;
+    newJoke[@"author"] = [PFUser currentUser];
     
-    [newQuestion saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [newJoke saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             [self.navigationController popViewControllerAnimated:YES];
         } else {
