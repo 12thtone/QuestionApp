@@ -41,6 +41,7 @@
 		F99E87421A91835C00D7B5AF /* 552-flag-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */; };
 		F99E87441A91839400D7B5AF /* 571-microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87431A91839400D7B5AF /* 571-microphone@2x.png */; };
 		F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */; };
+		F9AF73F91A9A163700DE9A39 /* 651-sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9AF73F81A9A163700DE9A39 /* 651-sun@2x.png */; };
 		F9B718161A89021E0070C134 /* 536-disguise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718151A89021E0070C134 /* 536-disguise@2x.png */; };
 		F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718171A89025F0070C134 /* 564-camera@2x.png */; };
 		F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718191A8902EE0070C134 /* 644-coversation@2x.png */; };
@@ -116,6 +117,7 @@
 		F99E87431A91839400D7B5AF /* 571-microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "571-microphone@2x.png"; sourceTree = "<group>"; };
 		F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTableViewController.h; path = ../ProfileTableViewController.h; sourceTree = "<group>"; };
 		F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileTableViewController.m; path = ../ProfileTableViewController.m; sourceTree = "<group>"; };
+		F9AF73F81A9A163700DE9A39 /* 651-sun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "651-sun@2x.png"; path = "../../../Dev/Tab Bar Icons/Glyphish 5 Icons (PNG)/Gray/651-sun@2x.png"; sourceTree = "<group>"; };
 		F9B718151A89021E0070C134 /* 536-disguise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "536-disguise@2x.png"; sourceTree = "<group>"; };
 		F9B718171A89025F0070C134 /* 564-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "564-camera@2x.png"; sourceTree = "<group>"; };
 		F9B718191A8902EE0070C134 /* 644-coversation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "644-coversation@2x.png"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		F9118DB01A8196EB00E878AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9AF73F81A9A163700DE9A39 /* 651-sun@2x.png */,
 				F99102521A950B1B009DC951 /* 518-filter@2x.png */,
 				F99102541A950B32009DC951 /* 534-eye@2x.png */,
 				F99E87431A91839400D7B5AF /* 571-microphone@2x.png */,
@@ -357,6 +360,7 @@
 				TargetAttributes = {
 					F9118DAC1A8196EB00E878AA = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = RCJFFV5UHS;
 					};
 					F9118DC51A8196EB00E878AA = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -393,6 +397,7 @@
 				F9118DC11A8196EB00E878AA /* LaunchScreen.xib in Resources */,
 				F99102531A950B1B009DC951 /* 518-filter@2x.png in Resources */,
 				F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */,
+				F9AF73F91A9A163700DE9A39 /* 651-sun@2x.png in Resources */,
 				F99E87441A91839400D7B5AF /* 571-microphone@2x.png in Resources */,
 				F9118DBE1A8196EB00E878AA /* Images.xcassets in Resources */,
 				F99E87421A91835C00D7B5AF /* 552-flag-1@2x.png in Resources */,
@@ -553,6 +558,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -560,6 +567,7 @@
 				INFOPLIST_FILE = QuestionApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -567,6 +575,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -574,6 +584,7 @@
 				INFOPLIST_FILE = QuestionApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
