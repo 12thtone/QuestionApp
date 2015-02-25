@@ -102,6 +102,7 @@
         self.theUsers = [userArray copy];
         NSLog(@"outside: %@", self.theUsers);
         [self.tableView reloadData];
+        
     }];
     
 }

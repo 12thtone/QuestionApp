@@ -66,7 +66,7 @@
     [super viewWillAppear:animated];
     //[self queryForTable];
     [self questionQuery];
-    //[self loadObjects];
+    [self loadObjects];
 }
 
 - (NSArray *)questionQuery {
@@ -92,6 +92,7 @@
             self.theAuthors = [authorArray copy];
         }
         NSLog(@"%@", self.theAuthors);
+        [self.tableView reloadData];
     }];
     
     return objectArray;

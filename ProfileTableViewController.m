@@ -17,12 +17,15 @@
 - (IBAction)viewUserQuestions:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *usernameProfile;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionProfile;
+@property (weak, nonatomic) IBOutlet UILabel *jokesCount;
 @property (weak, nonatomic) IBOutlet UIImageView *imageProfile;
 @property (weak, nonatomic) IBOutlet UILabel *totalTabbers;
 //@property (weak, nonatomic) IBOutlet UIButton *tabbersLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *tabbersLabel;
 @property (weak, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSMutableArray *theTabbers;
+@property (strong, nonatomic) NSMutableArray *theUntabbers;
+@property (strong, nonatomic) NSMutableArray *theJokes;
 
 @end
 
@@ -70,6 +73,7 @@
     }];
     
     [self tabbersQuery];
+    [self jokeQuery];
     /*
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(listTabbers:)];
     [tap setNumberOfTapsRequired:1];
@@ -130,49 +134,21 @@
         for (PFUser *aUser in objects) {
             [tabbersList addObject:aUser];
         }
-            NSString *alreadyString = [NSString stringWithFormat:@"You're already keeping tabs on %@", [self.user username]];
         
-        //NSLog(@"%lu", (unsigned long)tabbersList.count);
-        //NSLog(@"%@", tabbersList);
-        
-            if (tabbersList.count == 0) {
-                [self saveTabs];
-            } else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                                    message:alreadyString
-                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alertView show];
-            }
-    }];
-    
-    ////////////////////////
-    /*
-    PFObject *newTab = [PFObject objectWithClassName:@"Tab"];
-    newTab[@"tabMaker"] = [PFUser currentUser];
-    newTab[@"tabReceiver"] = self.user;
-    
-    NSString *userString = [NSString stringWithFormat:@"You're keeping tabs on %@", [self.user username]];
-    
-    [newTab saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Tabs!"
-                                                                message:userString
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
+        if (tabbersList.count == 0) {
+            [self saveTabs];
         } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                message:[error.userInfo objectForKey:@"error"]
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
+            [self deleteTabs];
         }
     }];
-     */
+    
 }
 
 - (IBAction)viewUserQuestions:(id)sender {
 }
 
 - (void)saveTabs {
+    
     PFObject *newTab = [PFObject objectWithClassName:@"Tab"];
     newTab[@"tabMaker"] = [PFUser currentUser];
     newTab[@"tabReceiver"] = self.user;
@@ -192,6 +168,19 @@
             [alertView show];
         }
     }];
+}
+
+- (void)deleteTabs {
+    
+    NSString *userString = [NSString stringWithFormat:@"You're no longer keeping tabs on %@", [self.user username]];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Untabbed"
+                                                        message:userString
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+    
+    [self untabDeleteQuery];
+    
 }
 
 - (NSArray *)tabbersQuery {
@@ -201,7 +190,8 @@
     
     [query whereKey:@"tabReceiver" equalTo:self.user];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFUser *tabber in objects) {
+        //for (PFUser *tabber in objects) {
+        for (PFObject *tabber in objects) {
             [tabberArray addObject:tabber];
             
             self.theTabbers = [tabberArray copy];
@@ -224,6 +214,93 @@
     //[self loadView];
     
     return tabberArray;
+}
+
+/*
+- (NSArray *)tabbersQuery {
+    NSMutableArray *tabberArray = [[NSMutableArray alloc] init];
+    NSMutableArray *jokeArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+    
+    [query whereKey:@"tabReceiver" equalTo:self.user];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        //for (PFUser *tabber in objects) {
+        for (PFObject *tabber in objects) {
+            [tabberArray addObject:tabber];
+            
+            self.theTabbers = [tabberArray copy];
+        }
+        
+        NSString *totalTabberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.theTabbers.count];
+        self.totalTabbers.text = totalTabberString;
+        
+        UIButton *tabButtonTextSet = (UIButton *)[self.view viewWithTag:101];
+        
+        if (self.theTabbers.count == 1) {
+            [tabButtonTextSet setTitle:@"Tabber" forState:UIControlStateNormal];
+        } else {
+            [tabButtonTextSet setTitle:@"Tabbers" forState:UIControlStateNormal];
+        }
+    }];
+    
+    //NSLog(@"%lu", (unsigned long)self.theTabbers.count);
+    
+    //[self loadView];
+    
+    return tabberArray;
+}
+*/
+- (void)jokeQuery {
+    NSMutableArray *jokeArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    
+    [query whereKey:@"author" equalTo:self.user];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        //for (PFUser *tabber in objects) {
+        for (PFObject *joke in objects) {
+            [jokeArray addObject:joke];
+            
+            self.theJokes = [jokeArray copy];
+        }
+        //self.theJokes = [jokeArray copy];
+        NSString *totalJokesString = [NSString stringWithFormat:@"%lu", (unsigned long)self.theJokes.count];
+        self.jokesCount.text = totalJokesString;
+        
+    }];
+    
+    //NSString *totalJokesString = [NSString stringWithFormat:@"%lu", (unsigned long)self.theJokes.count];
+    //self.jokesCount.text = totalJokesString;
+    
+    //NSLog(@"%lu", (unsigned long)self.theTabbers.count);
+    
+    //[self loadView];
+}
+
+- (void)untabDeleteQuery {
+    NSMutableArray *untabArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+    
+    [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
+    [query whereKey:@"tabReceiver" equalTo:self.user];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        //for (PFUser *tabber in objects) {
+        for (PFObject *tabber in objects) {
+            [untabArray addObject:tabber];
+            
+            [tabber deleteInBackground];
+            
+            //self.theUntabbers = [untabArray copy];
+        }
+        
+        //self.theUntabbers = [untabArray copy];
+    }];
+    
+    //NSLog(@"%lu", (unsigned long)self.theTabbers.count);
+    
+    //[self loadView];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

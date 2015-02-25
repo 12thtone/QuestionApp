@@ -102,6 +102,8 @@
             self.theObjects = [objectArray copy];
             self.theAuthors = [authorArray copy];
         }
+        
+        [self.tableView reloadData];
     }];
     
     return objectArray;

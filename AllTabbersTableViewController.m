@@ -77,6 +77,7 @@
             self.theTabbersList = [tabbersList copy];
             //NSLog(@"%lu", (unsigned long)self.theTabbersList.count);
         }
+        [self.tableView reloadData];
     }];
     
     return tabbersList;

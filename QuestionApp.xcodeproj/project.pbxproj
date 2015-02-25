@@ -31,6 +31,8 @@
 		F9118DF91A81A7A400E878AA /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF81A81A7A300E878AA /* ParseUI.framework */; };
 		F93F3E0D1A8FF2D3003E046F /* JokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F93F3E0C1A8FF2D3003E046F /* JokeTableViewCell.m */; };
 		F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F947C4231A8E956E00363937 /* 602-exit@2x.png */; };
+		F94B44C21A9E0EB500B39708 /* HotTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94B44C11A9E0EB500B39708 /* HotTableViewController.m */; };
+		F94B44C51A9E0ECA00B39708 /* HotTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94B44C41A9E0ECA00B39708 /* HotTableViewCell.m */; };
 		F9669FF71A968BF6007D142B /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */; };
 		F983B1481A8D43EA000C597C /* ResponseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */; };
 		F991024E1A94E103009DC951 /* FullResponseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F991024D1A94E103009DC951 /* FullResponseTableViewController.m */; };
@@ -102,6 +104,10 @@
 		F93F3E0B1A8FF2D3003E046F /* JokeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JokeTableViewCell.h; path = ../JokeTableViewCell.h; sourceTree = "<group>"; };
 		F93F3E0C1A8FF2D3003E046F /* JokeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JokeTableViewCell.m; path = ../JokeTableViewCell.m; sourceTree = "<group>"; };
 		F947C4231A8E956E00363937 /* 602-exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "602-exit@2x.png"; sourceTree = "<group>"; };
+		F94B44C01A9E0EB500B39708 /* HotTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HotTableViewController.h; path = ../HotTableViewController.h; sourceTree = "<group>"; };
+		F94B44C11A9E0EB500B39708 /* HotTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotTableViewController.m; path = ../HotTableViewController.m; sourceTree = "<group>"; };
+		F94B44C31A9E0ECA00B39708 /* HotTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HotTableViewCell.h; path = ../HotTableViewCell.h; sourceTree = "<group>"; };
+		F94B44C41A9E0ECA00B39708 /* HotTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotTableViewCell.m; path = ../HotTableViewCell.m; sourceTree = "<group>"; };
 		F9669FF51A968BF6007D142B /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgotPasswordViewController.h; path = ../ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordViewController.m; path = ../ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		F983B1461A8D43EA000C597C /* ResponseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponseTableViewCell.h; path = ../ResponseTableViewCell.h; sourceTree = "<group>"; };
@@ -227,6 +233,10 @@
 				F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */,
 				F9CBBE721A82662000680486 /* ResponseTableViewController.h */,
 				F9CBBE731A82662000680486 /* ResponseTableViewController.m */,
+				F94B44C31A9E0ECA00B39708 /* HotTableViewCell.h */,
+				F94B44C41A9E0ECA00B39708 /* HotTableViewCell.m */,
+				F94B44C01A9E0EB500B39708 /* HotTableViewController.h */,
+				F94B44C11A9E0EB500B39708 /* HotTableViewController.m */,
 				F9E55EB01A92413D0061CBCE /* TabsTableViewCell.h */,
 				F9E55EB11A92413D0061CBCE /* TabsTableViewCell.m */,
 				F9E55EAD1A9241210061CBCE /* TabsTableViewController.h */,
@@ -438,9 +448,11 @@
 				F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */,
 				F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */,
 				F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */,
+				F94B44C51A9E0ECA00B39708 /* HotTableViewCell.m in Sources */,
 				F9CBBE741A82662100680486 /* ResponseTableViewController.m in Sources */,
 				F9E55EB21A92413D0061CBCE /* TabsTableViewCell.m in Sources */,
 				F93F3E0D1A8FF2D3003E046F /* JokeTableViewCell.m in Sources */,
+				F94B44C21A9E0EB500B39708 /* HotTableViewController.m in Sources */,
 				F9CBBE801A829A9700680486 /* JokeTableViewController.m in Sources */,
 				F9CBBE771A82664000680486 /* AddJokeViewController.m in Sources */,
 				F9CBBE7D1A8283DD00680486 /* DataSource.m in Sources */,

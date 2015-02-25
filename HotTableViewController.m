@@ -1,28 +1,32 @@
 //
-//  TabsTableViewController.m
+//  HotTableViewController.m
 //  QuestionApp
 //
-//  Created by Matt Maher on 2/16/15.
+//  Created by Matt Maher on 2/25/15.
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "TabsTableViewController.h"
+#import "HotTableViewController.h"
 #import <Parse/Parse.h>
 #import "ResponseTableViewController.h"
 #import "ProfileTableViewController.h"
 #import "DataSource.h"
-#import "TabsTableViewCell.h"
+#import "JokeTableViewCell.h"
 
-@interface TabsTableViewController ()
+@interface HotTableViewController ()
+
 @property (weak, nonatomic) PFUser *tappedUser;
 @property (strong, nonatomic) NSMutableArray *theJokes;
 @property (strong, nonatomic) NSMutableArray *theVotes;
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
 
+@property (nonatomic, retain) NSMutableArray *searchResults;
+@property (nonatomic, retain) NSMutableArray *fixedResults;
+
 @end
 
-@implementation TabsTableViewController
+@implementation HotTableViewController
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -49,72 +53,63 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        NSLog(@"Current user: %@", currentUser.username);
+    }
+    else {
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    }
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     [[DataSource sharedInstance] queryForTable:self.parseClassName];
     
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //[self queryForTable];
-    [self tabQuery];
+    [self queryForTable];
+    [self questionQuery];
     [self loadObjects];
-    //[self loadObjects]; // Once doesn't work.
 }
 
-- (NSArray *)tabQuery {
-    
+- (NSArray *)questionQuery {
+    NSMutableArray *jokeArray = [[NSMutableArray alloc] init];
+    NSMutableArray *voteArray = [[NSMutableArray alloc] init];
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
-    [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
     
-    [query orderByDescending:@"createdAt"];
+    //[query whereKey:@"answerQuestion" equalTo:self.question];
+    [query orderByDescending:@"voteQuestion"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                
-                [authorArray addObject:[object objectForKey:@"tabReceiver"]];
-                
-            }
+        for (PFObject *object in objects) {
+            [jokeArray addObject:[object objectForKey:@"questionTitle"]];
+            [voteArray addObject:[object objectForKey:@"voteQuestion"]];
             
-            NSMutableArray *questionArray = [[NSMutableArray alloc] init];
-            NSMutableArray *voteArray = [[NSMutableArray alloc] init];
-            NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-            NSMutableArray *authorQuestionArray = [[NSMutableArray alloc] init];
+            //PFUser *user = [object objectForKey:@"author"];
+            [authorArray addObject:[object objectForKey:@"author"]];
             
-            PFQuery *queryQuestion = [PFQuery queryWithClassName:@"Question"];
+            [objectArray addObject:object];
             
-            [queryQuestion whereKey:@"author" containedIn:authorArray];
-            [queryQuestion orderByDescending:@"createdAt"];
-            [queryQuestion findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                for (PFObject *object in objects) {
-                    [questionArray addObject:[object objectForKey:@"questionTitle"]];
-                    [voteArray addObject:[object objectForKey:@"voteQuestion"]];
-                    [authorQuestionArray addObject:[object objectForKey:@"author"]];
-                    [objectArray addObject:object];
-                    
-                    self.theJokes = [questionArray copy];
-                    self.theVotes = [voteArray copy];
-                    self.theObjects = [objectArray copy];
-                    self.theAuthors = [authorQuestionArray copy];
-                }
-                
-                [self.tableView reloadData];
-            }];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            self.theJokes = [jokeArray copy];
+            self.theVotes = [voteArray copy];
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
         }
+        
+        [self.tableView reloadData];
     }];
     
-    NSLog(@"Objects ghgh: %lu", (unsigned long)self.theObjects.count);
-    
-    return authorArray;
-    
+    return objectArray;
 }
 
 #pragma mark - PFQueryTableViewController
@@ -124,23 +119,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"Objects ghgh: %lu", (unsigned long)self.theObjects.count);
-    
-    if (self.theObjects.count != 0) {
-        return self.theObjects.count;
-    } else {
-        return 0;
-    }
-    
+    return [self.theObjects count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
-    TabsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TabsTVCell" forIndexPath:indexPath];
+    JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hotTVCell" forIndexPath:indexPath];
     
     PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        //NSString *username = user.username;
+        //NSString *username = [object objectForKey:@"username"];
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
         PFFile *pictureFile = [user objectForKey:@"picture"];
@@ -155,12 +143,33 @@
         }];
     }];
     
+    /*
+    //PFUser *user = [object objectForKey:@"author"];
+    PFUser *user = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"author"];
+    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        NSString *username = user.username;
+        cell.usernameLabel.text = username;
+        
+        PFFile *pictureFile = [user objectForKey:@"picture"];
+        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error){
+                
+                [cell.userImage setImage:[UIImage imageWithData:data]];
+            }
+            else {
+                NSLog(@"no data!");
+            }
+        }];
+    }];
+    */
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //[dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
+    tap.enabled = YES;
     [cell.usernameLabel addGestureRecognizer:tap];
     
     UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
@@ -193,9 +202,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"showTabResponses"]) {
+    if ([segue.identifier isEqualToString:@"showResponsesFromHot"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
+        
+        //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
         
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
@@ -209,6 +220,8 @@
     
     PFUser *user = [self.theAuthors objectAtIndex:tapIndexPath.row];
     
+    NSLog(@"OBJECTS QQQ: %@", user);
+    
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userFromTabList = user;
     
@@ -219,12 +232,21 @@
 
 - (void)saveVote:(UITapGestureRecognizer *)sender {
     
+    //NSLog(@"self.questionObject: %@", self.questionObject);
+    
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
+    //NSLog(@"%@", [[self.questionObject objectForKey:@"voteQuestion"] objectAtIndex:tapIndexPath.row]);
+    //NSLog(@"%@", self.questionObject);
     
+    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
+    //NSLog(@"%@", newVote);
+    //PFObject *newVote = [self.questionObject objectAtIndex:tapIndexPath.row];
     [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
+    //[newVote saveInBackground];
+    
+    //NSLog(@"VOTE: %@", newVote);
     
     [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
