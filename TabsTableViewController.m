@@ -14,9 +14,7 @@
 #import "TabsTableViewCell.h"
 
 @interface TabsTableViewController ()
-@property (weak, nonatomic) PFUser *tappedUser;
-@property (strong, nonatomic) NSMutableArray *theJokes;
-@property (strong, nonatomic) NSMutableArray *theVotes;
+
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
 
@@ -51,20 +49,17 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
-    [[DataSource sharedInstance] queryForTable:self.parseClassName];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //[self queryForTable];
     [self tabQuery];
     [self loadObjects];
-    //[self loadObjects]; // Once doesn't work.
 }
 
-- (NSArray *)tabQuery {
+#pragma mark - PFQuery
+
+- (void)tabQuery {
     
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
@@ -80,8 +75,6 @@
                 
             }
             
-            NSMutableArray *questionArray = [[NSMutableArray alloc] init];
-            NSMutableArray *voteArray = [[NSMutableArray alloc] init];
             NSMutableArray *objectArray = [[NSMutableArray alloc] init];
             NSMutableArray *authorQuestionArray = [[NSMutableArray alloc] init];
             
@@ -91,13 +84,9 @@
             [queryQuestion orderByDescending:@"createdAt"];
             [queryQuestion findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 for (PFObject *object in objects) {
-                    [questionArray addObject:[object objectForKey:@"questionTitle"]];
-                    [voteArray addObject:[object objectForKey:@"voteQuestion"]];
                     [authorQuestionArray addObject:[object objectForKey:@"author"]];
                     [objectArray addObject:object];
                     
-                    self.theJokes = [questionArray copy];
-                    self.theVotes = [voteArray copy];
                     self.theObjects = [objectArray copy];
                     self.theAuthors = [authorQuestionArray copy];
                 }
@@ -110,11 +99,6 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
-    NSLog(@"Objects ghgh: %lu", (unsigned long)self.theObjects.count);
-    
-    return authorArray;
-    
 }
 
 #pragma mark - PFQueryTableViewController
@@ -140,7 +124,6 @@
     
     PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        //NSString *username = user.username;
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
         PFFile *pictureFile = [user objectForKey:@"picture"];

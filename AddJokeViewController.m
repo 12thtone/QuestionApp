@@ -11,10 +11,12 @@
 #import "JokeTableViewController.h"
 
 @interface AddJokeViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 @property (weak, nonatomic) NSString *statusString;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeStatusSegment;
+
 - (IBAction)savePressed:(UIBarButtonItem *)sender;
 - (IBAction)cancelPressed:(UIBarButtonItem *)sender;
 - (IBAction)indexChanged:(id)sender;

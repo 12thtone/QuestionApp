@@ -11,6 +11,7 @@
 #import "ProfileTableViewController.h"
 
 @interface FullResponseTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteCountLabel;

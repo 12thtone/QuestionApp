@@ -15,12 +15,7 @@
 
 @interface SearchTableViewController () <UISearchBarDelegate>
 
-@property (weak, nonatomic) PFUser *tappedUser;
-
 @property (strong, nonatomic) NSMutableArray *theUsers;
-
-@property (nonatomic, retain) NSMutableArray *searchResults;
-@property (nonatomic, retain) NSMutableArray *fixedResults;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
@@ -64,9 +59,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     self.searchBar.delegate = self;
-    
-    [[DataSource sharedInstance] queryForTable:self.parseClassName];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -74,6 +66,8 @@
     
     [self loadObjects];
 }
+
+#pragma mark - PFQuery
 
 - (void)searchQuery {
     
@@ -87,20 +81,15 @@
     
     PFQuery *query2 = [PFUser query];
     [query2 whereKey:@"realName" matchesRegex:searchString modifiers:@"i"];
-    //[query orderByDescending:@"createdAt"];
     
     PFQuery *mainQuery = [PFQuery orQueryWithSubqueries:@[query,query2]];
     
     [mainQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
-            NSLog(@"dfghdfgh: %@", object);
             [userArray addObject:object];
-            NSLog(@"in for: %@", userArray);
-            
         }
         
         self.theUsers = [userArray copy];
-        NSLog(@"outside: %@", self.theUsers);
         [self.tableView reloadData];
         
     }];
@@ -114,7 +103,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%lu", (unsigned long)[self.theUsers count]);
     
     return [self.theUsers count];
     
@@ -160,9 +148,7 @@
     if ([segue.identifier isEqualToString:@"searchToProfile"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFUser *object = [self.theUsers objectAtIndex:indexPath.row];
-        
-        //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
-        
+                
         ProfileTableViewController *profileTableViewController = (ProfileTableViewController *)segue.destinationViewController;
         profileTableViewController.userFromTabList = object;
     }

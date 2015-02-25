@@ -10,10 +10,12 @@
 #import <Parse/Parse.h>
 
 @interface MyProfileTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 - (IBAction)camera:(UIBarButtonItem *)sender;
 - (IBAction)saveButton:(UIBarButtonItem *)sender;
 - (IBAction)imageLibrary:(id)sender;
 - (IBAction)logout:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameProfile;
 @property (weak, nonatomic) IBOutlet UITextView *textProfile;
@@ -48,12 +50,6 @@
             
         }
     }];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {

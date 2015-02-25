@@ -13,12 +13,9 @@
 #import "UserJokeTableViewCell.h"
 
 @interface UserJokeTableViewController ()
-@property (weak, nonatomic) PFUser *tappedUser;
-//@property (strong, nonatomic) NSMutableArray *questionObject;
-@property (strong, nonatomic) NSMutableArray *theJokes;
-@property (strong, nonatomic) NSMutableArray *theVotes;
+
 @property (strong, nonatomic) NSMutableArray *theObjects;
-@property (strong, nonatomic) NSMutableArray *theAuthors;
+
 - (IBAction)exitUserQuestions:(UIBarButtonItem *)sender;
 
 @end
@@ -52,14 +49,6 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
-    [[DataSource sharedInstance] queryForTable:self.parseClassName];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,11 +58,10 @@
     [self loadObjects];
 }
 
-- (NSArray *)questionQuery {
-    NSMutableArray *jokeArray = [[NSMutableArray alloc] init];
-    NSMutableArray *voteArray = [[NSMutableArray alloc] init];
+#pragma mark - PFQuery
+
+- (void)questionQuery {
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Question"];
     
@@ -81,21 +69,12 @@
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
-            [jokeArray addObject:[object objectForKey:@"questionTitle"]];
-            [voteArray addObject:[object objectForKey:@"voteQuestion"]];
-            [authorArray addObject:[object objectForKey:@"author"]];
             [objectArray addObject:object];
             
-            self.theJokes = [jokeArray copy];
-            self.theVotes = [voteArray copy];
             self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
         }
-        NSLog(@"%@", self.theAuthors);
         [self.tableView reloadData];
     }];
-    
-    return objectArray;
 }
 
 #pragma mark - PFQueryTableViewController
@@ -112,7 +91,6 @@
     
     UserJokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserQuestionTVCell" forIndexPath:indexPath];
     
-    //PFUser *user = [self.user objectForKey:@"author"];
     PFUser *user = self.user;
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
@@ -131,14 +109,9 @@
     }];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //[dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
-    /*
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
-    [tap setNumberOfTapsRequired:1];
-    [cell.usernameLabel addGestureRecognizer:tap];
-    */
+    
     UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
     [voteTap setNumberOfTapsRequired:1];
     voteTap.enabled = YES;
@@ -179,43 +152,17 @@
         answerTableViewController.joke = object;
     }
 }
-/*
-- (void)userProfileTapped:(UITapGestureRecognizer *)sender {
-    //NSLog(@"%@", sender);
-    
-    CGPoint tapLocation = [sender locationInView:self.tableView];
-    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
-    
-    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
-    
-    //NSLog(@"OBJECTS QQQ: %@", self.objects[0]);
-    
-    ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
-    profileVC.userProfile = object;
-    
-    [self presentViewController:profileVC animated:YES completion:nil];
-}
-*/
+
 #pragma mark - Votes
 
 - (void)saveVote:(UITapGestureRecognizer *)sender {
     
-    //NSLog(@"self.questionObject: %@", self.questionObject);
-    
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    //NSLog(@"%@", [[self.questionObject objectForKey:@"voteQuestion"] objectAtIndex:tapIndexPath.row]);
-    //NSLog(@"%@", self.questionObject);
-    
     PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
-    //NSLog(@"%@", newVote);
-    //PFObject *newVote = [self.questionObject objectAtIndex:tapIndexPath.row];
-    [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
-    //[newVote saveInBackground];
     
-    //NSLog(@"VOTE: %@", newVote);
+    [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
     
     [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -235,4 +182,5 @@
 - (IBAction)exitUserQuestions:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

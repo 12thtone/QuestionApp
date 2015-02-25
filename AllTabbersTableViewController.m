@@ -11,7 +11,9 @@
 #import "ProfileTableViewController.h"
 
 @interface AllTabbersTableViewController () <UITableViewDataSource, UITableViewDelegate>
+
 - (IBAction)exitTabberList:(UIBarButtonItem *)sender;
+
 @property (nonatomic, strong) NSMutableArray *theTabbersList;
 
 @end
@@ -43,12 +45,6 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,10 +68,7 @@
         for (PFUser *aUser in objects) {
             [tabbersList addObject:aUser];
             
-            //NSLog(@"%lu", (unsigned long)tabbersList.count);
-            
             self.theTabbersList = [tabbersList copy];
-            //NSLog(@"%lu", (unsigned long)self.theTabbersList.count);
         }
         [self.tableView reloadData];
     }];
@@ -109,27 +102,11 @@
     PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
-        //NSString *question = [object objectForKey:@"questionTitle"];
         cell.textLabel.text = username;
-        //cell.detailTextLabel.text = question;
     }];
-    
-    //NSLog(@"%@", [[[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabReceiver"] username]);
-    
-    //cell.textLabel.text = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"username"];
     
     return cell;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)exitTabberList:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -140,11 +117,6 @@
     
     if ([segue.identifier isEqualToString:@"viewNewTabberProfile"]) {
         
-        //UINavigationController *navigationController = segue.destinationViewController;
-        //AllTabbersTableViewController *allTabbersTableViewController = (AllTabbersTableViewController * )navigationController.topViewController;
-        
-        //NSLog(@"%@", self.user);
-        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
         
@@ -152,8 +124,6 @@
                 
         ProfileTableViewController *profileTableViewController = segue.destinationViewController;
         profileTableViewController.userFromTabList = user;
-        
-        //AllTabbersTableViewController.user = self.user;
     }
 }
 

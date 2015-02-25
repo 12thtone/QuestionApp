@@ -15,6 +15,7 @@
 #import "FullResponseTableViewController.h"
 
 @interface ResponseTableViewController () <UITableViewDelegate,UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITextView *jokeTextView;
 @property (strong, nonatomic) NSMutableArray *theResponses;
 @property (strong, nonatomic) NSMutableArray *theVotes;
@@ -70,6 +71,8 @@
     [self loadObjects];
 }
 
+#pragma mark - PFQuery
+
 - (NSArray *)answerQuery {
     NSMutableArray *responseArray = [[NSMutableArray alloc] init];
     NSMutableArray *voteArray = [[NSMutableArray alloc] init];
@@ -81,9 +84,7 @@
     [query whereKey:@"answerQuestion" equalTo:self.joke];
     [query orderByDescending:@"vote"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
         for (PFObject *object in objects) {
-            //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
             [responseArray addObject:[object objectForKey:@"answerText"]];
             [voteArray addObject:[object objectForKey:@"vote"]];
             [authorArray addObject:[object objectForKey:@"answerAuthor"]];
@@ -95,6 +96,7 @@
             self.theObjects = [objectArray copy];
             self.theAuthors = [authorArray copy];
         }
+        
         [self.tableView reloadData];
     }];
     
@@ -102,10 +104,6 @@
 }
 
 #pragma mark - PFQueryTableViewController
-
-// Override to customize the look of a cell representing an object. The default is to display
-// a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
-// and the imageView being the imageKey in the object.
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -120,11 +118,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     ResponseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ResponseTVC" forIndexPath:indexPath];
-    /*
-    PFUser *author = [self.question objectForKey:@"author"];
-    [author fetchIfNeeded];
-    NSLog(@"%@", [author username]);
-    */
         
     PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -153,13 +146,10 @@
     [cell.voteLabel addGestureRecognizer:voteTap];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //[dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [self.joke createdAt];
     
     cell.responseLabel.text = [self.theResponses objectAtIndex:indexPath.row];
-    //cell.usernameLabel.text = [user username];
-    //cell.usernameLabel.text = [[[self.theAuthors objectAtIndex:indexPath.row] fetchIfNeeded] objectForKey:@"username"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [self.theVotes objectAtIndex:indexPath.row]];
     
@@ -181,7 +171,6 @@
     
     PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
     [newVote incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
-    //[newVote saveInBackground];
     
     NSLog(@"VOTE: %@", newVote);
     
@@ -214,11 +203,6 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
         
-        //NSLog(@"sdfbsdfbsdfb%@", self.theObjects);
-        
-        //AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
-        //answerTableViewController.question = object;
-        
         FullResponseTableViewController *fullAnswerTableViewController = (FullResponseTableViewController *)segue.destinationViewController;
         fullAnswerTableViewController.fullResponse = object;
     }
@@ -229,13 +213,8 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    //PFObject *object1 = [self.objects objectAtIndex:tapIndexPath.row];
     PFObject *object = [self.theObjects objectAtIndex:tapIndexPath.row];
-    
-    NSLog(@"PROFILE: %@", object);
-    
-    //////////// Make a PFUser?
-    
+        
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfileAnswer = object;
     

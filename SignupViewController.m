@@ -12,7 +12,6 @@
 @interface SignupViewController ()
 
 @property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSMutableArray *theUsername;
 
 @end
 
@@ -50,7 +49,6 @@
         newUser.username = self.username;
         newUser.password = password;
         newUser.email = email;
-        //newUser[@"icon"] = imageFile;
         
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
@@ -66,6 +64,8 @@
     }
 }
 
+#pragma mark - PFQuery
+
 - (NSMutableArray *)usernameQuery {
     NSMutableArray *usernameArray = [[NSMutableArray alloc] init];
     
@@ -74,12 +74,8 @@
     [query whereKey:@"username" equalTo:self.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
-            //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
             [usernameArray addObject:[object objectForKey:@"answerText"]];
-            //self.theUsername = [usernameArray copy];
         }
-        
-        self.theUsername = [usernameArray copy];
     }];
     
     return usernameArray;
