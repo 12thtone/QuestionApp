@@ -13,7 +13,7 @@
 #import "DataSource.h"
 #import "JokeTableViewCell.h"
 
-@interface JokeTableViewController () <UISearchResultsUpdating, UISearchBarDelegate>
+@interface JokeTableViewController ()
 
 @property (weak, nonatomic) PFUser *tappedUser;
 @property (strong, nonatomic) NSMutableArray *theJokes;

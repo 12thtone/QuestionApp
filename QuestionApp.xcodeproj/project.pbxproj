@@ -34,13 +34,14 @@
 		F9669FF71A968BF6007D142B /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */; };
 		F983B1481A8D43EA000C597C /* ResponseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */; };
 		F991024E1A94E103009DC951 /* FullResponseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F991024D1A94E103009DC951 /* FullResponseTableViewController.m */; };
-		F99102511A95091A009DC951 /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F99102501A95091A009DC951 /* SearchResultsTableViewController.m */; };
 		F99102531A950B1B009DC951 /* 518-filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99102521A950B1B009DC951 /* 518-filter@2x.png */; };
 		F99102551A950B32009DC951 /* 534-eye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99102541A950B32009DC951 /* 534-eye@2x.png */; };
 		F99102581A950F15009DC951 /* UserJokeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F99102571A950F15009DC951 /* UserJokeTableViewController.m */; };
 		F99E87421A91835C00D7B5AF /* 552-flag-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */; };
 		F99E87441A91839400D7B5AF /* 571-microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E87431A91839400D7B5AF /* 571-microphone@2x.png */; };
+		F9A38AE81A9CDED90080B174 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A38AE71A9CDED90080B174 /* SearchTableViewController.m */; };
 		F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */; };
+		F9AF506E1A9D3F550036F414 /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AF506D1A9D3F550036F414 /* SearchTableViewCell.m */; };
 		F9AF73F91A9A163700DE9A39 /* 651-sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9AF73F81A9A163700DE9A39 /* 651-sun@2x.png */; };
 		F9B718161A89021E0070C134 /* 536-disguise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718151A89021E0070C134 /* 536-disguise@2x.png */; };
 		F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718171A89025F0070C134 /* 564-camera@2x.png */; };
@@ -107,16 +108,18 @@
 		F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseTableViewCell.m; path = ../ResponseTableViewCell.m; sourceTree = "<group>"; };
 		F991024C1A94E103009DC951 /* FullResponseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullResponseTableViewController.h; path = ../FullResponseTableViewController.h; sourceTree = "<group>"; };
 		F991024D1A94E103009DC951 /* FullResponseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullResponseTableViewController.m; path = ../FullResponseTableViewController.m; sourceTree = "<group>"; };
-		F991024F1A95091A009DC951 /* SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultsTableViewController.h; path = ../SearchResultsTableViewController.h; sourceTree = "<group>"; };
-		F99102501A95091A009DC951 /* SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultsTableViewController.m; path = ../SearchResultsTableViewController.m; sourceTree = "<group>"; };
 		F99102521A950B1B009DC951 /* 518-filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "518-filter@2x.png"; sourceTree = "<group>"; };
 		F99102541A950B32009DC951 /* 534-eye@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "534-eye@2x.png"; sourceTree = "<group>"; };
 		F99102561A950F15009DC951 /* UserJokeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserJokeTableViewController.h; path = ../UserJokeTableViewController.h; sourceTree = "<group>"; };
 		F99102571A950F15009DC951 /* UserJokeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserJokeTableViewController.m; path = ../UserJokeTableViewController.m; sourceTree = "<group>"; };
 		F99E87411A91835C00D7B5AF /* 552-flag-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "552-flag-1@2x.png"; sourceTree = "<group>"; };
 		F99E87431A91839400D7B5AF /* 571-microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "571-microphone@2x.png"; sourceTree = "<group>"; };
+		F9A38AE61A9CDED90080B174 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewController.h; path = ../SearchTableViewController.h; sourceTree = "<group>"; };
+		F9A38AE71A9CDED90080B174 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewController.m; path = ../SearchTableViewController.m; sourceTree = "<group>"; };
 		F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTableViewController.h; path = ../ProfileTableViewController.h; sourceTree = "<group>"; };
 		F9A8A99E1A897F1900DFD090 /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileTableViewController.m; path = ../ProfileTableViewController.m; sourceTree = "<group>"; };
+		F9AF506C1A9D3F550036F414 /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewCell.h; path = ../SearchTableViewCell.h; sourceTree = "<group>"; };
+		F9AF506D1A9D3F550036F414 /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewCell.m; path = ../SearchTableViewCell.m; sourceTree = "<group>"; };
 		F9AF73F81A9A163700DE9A39 /* 651-sun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "651-sun@2x.png"; path = "../../../Dev/Tab Bar Icons/Glyphish 5 Icons (PNG)/Gray/651-sun@2x.png"; sourceTree = "<group>"; };
 		F9B718151A89021E0070C134 /* 536-disguise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "536-disguise@2x.png"; sourceTree = "<group>"; };
 		F9B718171A89025F0070C134 /* 564-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "564-camera@2x.png"; sourceTree = "<group>"; };
@@ -214,6 +217,10 @@
 				F9CBBE791A82665200680486 /* AddResponseViewController.m */,
 				F9CBBE751A82664000680486 /* AddJokeViewController.h */,
 				F9CBBE761A82664000680486 /* AddJokeViewController.m */,
+				F9AF506C1A9D3F550036F414 /* SearchTableViewCell.h */,
+				F9AF506D1A9D3F550036F414 /* SearchTableViewCell.m */,
+				F9A38AE61A9CDED90080B174 /* SearchTableViewController.h */,
+				F9A38AE71A9CDED90080B174 /* SearchTableViewController.m */,
 				F991024C1A94E103009DC951 /* FullResponseTableViewController.h */,
 				F991024D1A94E103009DC951 /* FullResponseTableViewController.m */,
 				F983B1461A8D43EA000C597C /* ResponseTableViewCell.h */,
@@ -224,8 +231,6 @@
 				F9E55EB11A92413D0061CBCE /* TabsTableViewCell.m */,
 				F9E55EAD1A9241210061CBCE /* TabsTableViewController.h */,
 				F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */,
-				F991024F1A95091A009DC951 /* SearchResultsTableViewController.h */,
-				F99102501A95091A009DC951 /* SearchResultsTableViewController.m */,
 				F9D057AD1A951A2E0098A9E2 /* UserJokeTableViewCell.h */,
 				F9D057AE1A951A2E0098A9E2 /* UserJokeTableViewCell.m */,
 				F99102561A950F15009DC951 /* UserJokeTableViewController.h */,
@@ -422,12 +427,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A38AE81A9CDED90080B174 /* SearchTableViewController.m in Sources */,
 				F9D057AF1A951A2E0098A9E2 /* UserJokeTableViewCell.m in Sources */,
 				F991024E1A94E103009DC951 /* FullResponseTableViewController.m in Sources */,
 				F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */,
 				F9B718221A890EA80070C134 /* MyProfileTableViewController.m in Sources */,
+				F9AF506E1A9D3F550036F414 /* SearchTableViewCell.m in Sources */,
 				F9CBBE7A1A82665200680486 /* AddResponseViewController.m in Sources */,
-				F99102511A95091A009DC951 /* SearchResultsTableViewController.m in Sources */,
 				F9E55EAF1A9241210061CBCE /* TabsTableViewController.m in Sources */,
 				F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */,
 				F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */,
