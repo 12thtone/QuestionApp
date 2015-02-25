@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *jokesCount;
 @property (weak, nonatomic) IBOutlet UIImageView *imageProfile;
 @property (weak, nonatomic) IBOutlet UILabel *totalTabbers;
+@property (weak, nonatomic) IBOutlet UIButton *tabberButton;
+@property (weak, nonatomic) IBOutlet UIButton *jokeButton;
 
 @property (weak, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSMutableArray *theTabbers;
@@ -111,6 +113,15 @@
             
             self.theJokes = [jokeArray copy];
         }
+        
+        UIButton *jokeButtonTextSet = (UIButton *)[self.view viewWithTag:102];
+        
+        if (self.theJokes.count == 1) {
+            [jokeButtonTextSet setTitle:@"Joke" forState:UIControlStateNormal];
+        } else {
+            [jokeButtonTextSet setTitle:@"Jokes" forState:UIControlStateNormal];
+        }
+        
         NSString *totalJokesString = [NSString stringWithFormat:@"%lu", (unsigned long)self.theJokes.count];
         self.jokesCount.text = totalJokesString;
         
@@ -130,7 +141,7 @@
             
             [tabber deleteInBackground];
         }
-        
+        [self tabbersQuery];
     }];
 }
 
@@ -194,6 +205,7 @@
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         }
+        [self tabbersQuery];
     }];
 }
 

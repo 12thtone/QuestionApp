@@ -197,6 +197,7 @@
                                                                 message:@"Thanks for your vote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
+            [self loadObjects];
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]

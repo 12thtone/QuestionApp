@@ -1205,7 +1205,7 @@
         <scene sceneID="6uY-oC-qNO">
             <objects>
                 <tableViewController storyboardIdentifier="viewProfile" id="xq2-Yu-M98" customClass="ProfileTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VE5-yt-iyc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VE5-yt-iyc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1277,7 +1277,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="eqH-nE-m3w" kind="show" identifier="viewTabbers" id="dJB-fL-QGr"/>
+                                                        <segue destination="eqH-nE-m3w" kind="presentation" identifier="viewTabbers" id="jOo-VH-5mD"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3588" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVO-h2-oJf">
@@ -1298,7 +1298,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4G-Pg-8fn">
+                                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4G-Pg-8fn">
                                                     <rect key="frame" x="50" y="125" width="41" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="fwD-4Q-7Gx"/>
@@ -1348,7 +1348,9 @@
                     <connections>
                         <outlet property="descriptionProfile" destination="Uc1-G9-y9e" id="6Em-Wo-Ho7"/>
                         <outlet property="imageProfile" destination="V7Z-oo-coE" id="hvX-4a-SQ7"/>
+                        <outlet property="jokeButton" destination="c4G-Pg-8fn" id="OlW-jb-rud"/>
                         <outlet property="jokesCount" destination="387-Yg-eb7" id="WDW-nS-tGj"/>
+                        <outlet property="tabberButton" destination="Ruy-cb-HH3" id="H03-4T-cAQ"/>
                         <outlet property="totalTabbers" destination="HVO-h2-oJf" id="u4z-oT-pnD"/>
                         <outlet property="usernameProfile" destination="kPR-SQ-ylI" id="kZp-G3-4M2"/>
                     </connections>
@@ -1726,7 +1728,7 @@
         <image name="placeholder.png" width="391" height="391"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iYY-yP-HsU"/>
+        <segue reference="bOq-2b-3eE"/>
         <segue reference="GVw-Ul-PlJ"/>
         <segue reference="mXV-ZJ-g1o"/>
     </inferredMetricsTieBreakers>

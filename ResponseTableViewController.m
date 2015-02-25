@@ -73,7 +73,7 @@
 
 #pragma mark - PFQuery
 
-- (NSArray *)answerQuery {
+- (void)answerQuery {
     NSMutableArray *responseArray = [[NSMutableArray alloc] init];
     NSMutableArray *voteArray = [[NSMutableArray alloc] init];
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
@@ -99,8 +99,6 @@
         
         [self.tableView reloadData];
     }];
-    
-    return responseArray;
 }
 
 #pragma mark - PFQueryTableViewController
@@ -180,6 +178,7 @@
                                                                 message:@"Thanks for your vote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
+            [self loadObjects];
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]

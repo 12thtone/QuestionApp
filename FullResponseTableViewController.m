@@ -97,7 +97,6 @@
 
 - (void)saveVote:(UITapGestureRecognizer *)sender {
     
-    //PFObject *newVote = self.fullAnswer objectForKey:@"objectId"];
     [self.fullResponse incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
     
     NSLog(@"VOTE: %@", self.fullResponse);
@@ -108,6 +107,7 @@
                                                                 message:@"Thanks for your vote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
+            [self viewDidLoad]; // Reloads the tableView and label
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]
