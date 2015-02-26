@@ -38,6 +38,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    [self.tabBarController.tabBar setBarTintColor:[UIColor redColor]];
+    
     if (self.userProfile) {
         self.user = [self.userProfile objectForKey:@"author"];
         

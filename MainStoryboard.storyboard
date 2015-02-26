@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Add Joke-->
+        <!--Add Joke View Controller-->
         <scene sceneID="4XC-7w-ri0">
             <objects>
                 <viewController id="AQa-up-Vc0" customClass="AddJokeViewController" sceneMemberID="viewController">
@@ -72,7 +72,7 @@
                             <constraint firstItem="sL3-MN-uFq" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="xEc-Ba-Xny"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Joke" id="qah-07-gV8">
+                    <navigationItem key="navigationItem" id="qah-07-gV8">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="uV3-Vj-yQz">
                             <connections>
                                 <action selector="cancelPressed:" destination="AQa-up-Vc0" id="hVc-bC-qRG"/>
@@ -94,7 +94,7 @@
             </objects>
             <point key="canvasLocation" x="1204" y="-1356"/>
         </scene>
-        <!--Latest Jokes-->
+        <!--Joke Table View Controller-->
         <scene sceneID="l0g-fs-sUP">
             <objects>
                 <tableViewController id="kSX-Pp-37A" customClass="JokeTableViewController" sceneMemberID="viewController">
@@ -207,13 +207,15 @@
                             <outlet property="delegate" destination="kSX-Pp-37A" id="r56-ja-4Mc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Latest Jokes" id="J3A-lN-H55">
+                    <navigationItem key="navigationItem" id="J3A-lN-H55">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="search" id="974-XI-LeK">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="MKc-tQ-GsS" kind="show" id="Uic-no-RW1"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="lbC-EK-mnZ">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="FWu-oG-4D1" kind="presentation" id="VLs-3Z-me4"/>
                             </connections>
@@ -227,7 +229,7 @@
             </objects>
             <point key="canvasLocation" x="1204" y="-671"/>
         </scene>
-        <!--Hot Jokes-->
+        <!--Hot Table View Controller-->
         <scene sceneID="pDA-rV-v3A">
             <objects>
                 <tableViewController id="3dr-eh-gYo" customClass="HotTableViewController" sceneMemberID="viewController">
@@ -344,7 +346,7 @@
                             <outlet property="delegate" destination="3dr-eh-gYo" id="YGx-SR-Qfd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Hot Jokes" id="3ht-9g-DgY"/>
+                    <navigationItem key="navigationItem" id="3ht-9g-DgY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fzQ-uM-kgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -362,7 +364,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pd7-Sq-17I">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pd7-Sq-17I">
                                 <rect key="frame" x="16" y="72" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BUd-xQ-V9l"/>
@@ -375,8 +377,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ERD-Mp-PtF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Submit">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -402,7 +405,7 @@
             </objects>
             <point key="canvasLocation" x="-670" y="3334"/>
         </scene>
-        <!--QuestionApp-->
+        <!--Signup View Controller-->
         <scene sceneID="3eG-BD-z9Q">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="UyC-6H-saY" customClass="SignupViewController" sceneMemberID="viewController">
@@ -414,7 +417,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="IAO-yt-39U">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="IAO-yt-39U">
                                 <rect key="frame" x="16" y="110" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OkI-4g-2nD"/>
@@ -422,7 +425,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="sZP-F4-L0V">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="sZP-F4-L0V">
                                 <rect key="frame" x="16" y="148" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="d9i-3U-Tqs"/>
@@ -430,15 +433,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="htb-u7-Xrt">
-                                <rect key="frame" x="16" y="186" width="568" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="l0g-Jp-RNH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First and Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6yz-4i-rE1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First and Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6yz-4i-rE1">
                                 <rect key="frame" x="16" y="72" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bhc-98-CoS"/>
@@ -451,14 +446,23 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BIe-IO-yAg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Create Account">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="createAccount:" destination="UyC-6H-saY" eventType="touchUpInside" id="d7N-ll-psD"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="htb-u7-Xrt">
+                                <rect key="frame" x="16" y="186" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="l0g-Jp-RNH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -479,7 +483,7 @@
                             <constraint firstItem="htb-u7-Xrt" firstAttribute="top" secondItem="sZP-F4-L0V" secondAttribute="bottom" constant="8" id="yq7-lj-kvb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="QuestionApp" id="Z3b-cu-Rka">
+                    <navigationItem key="navigationItem" id="Z3b-cu-Rka">
                         <barButtonItem key="backBarButtonItem" title="Login" id="Wix-MX-Qh6"/>
                     </navigationItem>
                     <connections>
@@ -493,7 +497,7 @@
             </objects>
             <point key="canvasLocation" x="38" y="3334"/>
         </scene>
-        <!--QuestionApp-->
+        <!--Login View Controller-->
         <scene sceneID="Z4H-Ui-nFU">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="xjh-wP-fs2" customClass="LoginViewController" sceneMemberID="viewController">
@@ -505,54 +509,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="EWP-fy-4Gu">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="EWP-fy-4Gu">
                                 <rect key="frame" x="16" y="72" width="568" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ENr-bI-rKb"/>
+                                    <constraint firstAttribute="height" constant="30" id="471-sT-FAg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="aAM-T9-Pql">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="aAM-T9-Pql">
                                 <rect key="frame" x="16" y="110" width="568" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="wHp-8K-X5b"/>
+                                    <constraint firstAttribute="height" constant="30" id="TPN-HA-eA5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0j-CJ-Ad5">
-                                <rect key="frame" x="248" y="155" width="104" height="30"/>
+                                <rect key="frame" x="16" y="148" width="568" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="104" id="Dbu-uy-IxG"/>
-                                    <constraint firstAttribute="height" constant="30" id="zt9-oQ-8BE"/>
+                                    <constraint firstAttribute="height" constant="30" id="MUp-65-8yd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="xjh-wP-fs2" eventType="touchUpInside" id="co2-yD-lUW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0S-m3-ztO">
-                                <rect key="frame" x="16" y="202" width="146" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="K2C-kI-AOa"/>
-                                    <constraint firstAttribute="width" constant="146" id="oMQ-4N-E2K"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEP-Ex-zmU">
-                                <rect key="frame" x="473" y="197" width="111" height="30"/>
+                                <rect key="frame" x="16" y="186" width="568" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="5ZB-fC-Kgp"/>
-                                    <constraint firstAttribute="width" constant="111" id="WOE-yD-ht9"/>
+                                    <constraint firstAttribute="height" constant="30" id="aGG-L4-CaI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="New Account">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -560,13 +553,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v68-kV-qxt">
-                                <rect key="frame" x="446" y="275" width="138" height="30"/>
+                                <rect key="frame" x="16" y="224" width="568" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="mO6-Z2-F9q"/>
-                                    <constraint firstAttribute="width" constant="138" id="tk8-AU-Tyn"/>
+                                    <constraint firstAttribute="height" constant="30" id="MJK-iP-JuU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="Forgot Password">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -574,25 +567,26 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="v68-kV-qxt" secondAttribute="trailing" constant="16" id="7oq-no-vkp"/>
-                            <constraint firstItem="v68-kV-qxt" firstAttribute="top" secondItem="sEP-Ex-zmU" secondAttribute="bottom" constant="48" id="C3I-6Q-ctV"/>
-                            <constraint firstItem="EWP-fy-4Gu" firstAttribute="leading" secondItem="Uqq-qg-m12" secondAttribute="leading" constant="16" id="DiR-Yl-1KQ"/>
-                            <constraint firstAttribute="trailing" secondItem="sEP-Ex-zmU" secondAttribute="trailing" constant="16" id="GqV-kb-YkA"/>
-                            <constraint firstItem="aAM-T9-Pql" firstAttribute="leading" secondItem="Uqq-qg-m12" secondAttribute="leading" constant="16" id="La8-gn-30k"/>
-                            <constraint firstAttribute="trailing" secondItem="EWP-fy-4Gu" secondAttribute="trailing" constant="16" id="QG6-Ne-UmE"/>
-                            <constraint firstAttribute="centerX" secondItem="O0j-CJ-Ad5" secondAttribute="centerX" id="Sjv-Hl-V45"/>
-                            <constraint firstItem="sEP-Ex-zmU" firstAttribute="top" secondItem="aAM-T9-Pql" secondAttribute="bottom" constant="57" id="Vez-Mr-2AL"/>
-                            <constraint firstItem="W0S-m3-ztO" firstAttribute="leading" secondItem="Uqq-qg-m12" secondAttribute="leading" constant="16" id="WnG-vP-44c"/>
-                            <constraint firstItem="W0S-m3-ztO" firstAttribute="top" secondItem="aAM-T9-Pql" secondAttribute="bottom" constant="62" id="Ws0-1n-6wH"/>
-                            <constraint firstItem="aAM-T9-Pql" firstAttribute="top" secondItem="EWP-fy-4Gu" secondAttribute="bottom" constant="8" id="abe-O0-O9f"/>
-                            <constraint firstItem="EWP-fy-4Gu" firstAttribute="top" secondItem="fcw-uo-SW9" secondAttribute="bottom" constant="8" id="bbv-au-dCh"/>
-                            <constraint firstAttribute="trailing" secondItem="aAM-T9-Pql" secondAttribute="trailing" constant="16" id="g6S-Sl-rA1"/>
-                            <constraint firstItem="O0j-CJ-Ad5" firstAttribute="top" secondItem="aAM-T9-Pql" secondAttribute="bottom" constant="15" id="wiv-vp-d6z"/>
+                            <constraint firstItem="O0j-CJ-Ad5" firstAttribute="leading" secondItem="Uqq-qg-m12" secondAttribute="leading" constant="16" id="1yr-j8-vtY"/>
+                            <constraint firstItem="sEP-Ex-zmU" firstAttribute="top" secondItem="O0j-CJ-Ad5" secondAttribute="bottom" constant="8" id="2KJ-FY-jjH"/>
+                            <constraint firstItem="aAM-T9-Pql" firstAttribute="leading" secondItem="Uqq-qg-m12" secondAttribute="leading" constant="16" id="5x6-Ef-YNG"/>
+                            <constraint firstItem="v68-kV-qxt" firstAttribute="top" secondItem="sEP-Ex-zmU" secondAttribute="bottom" constant="8" id="CRn-pF-UpT"/>
+                            <constraint firstAttribute="trailing" secondItem="aAM-T9-Pql" secondAttribute="trailing" constant="16" id="Cdt-oB-ozr"/>
+                            <constraint firstAttribute="trailing" secondItem="O0j-CJ-Ad5" secondAttribute="trailing" constant="16" id="X5o-h5-4ge"/>
+                            <constraint firstItem="aAM-T9-Pql" firstAttribute="top" secondItem="EWP-fy-4Gu" secondAttribute="bottom" constant="8" id="aEY-a3-twS"/>
+                            <constraint firstAttribute="trailing" secondItem="EWP-fy-4Gu" secondAttribute="trailing" constant="16" id="nTY-og-Ii5"/>
+                            <constraint firstItem="sEP-Ex-zmU" firstAttribute="leading" secondItem="Uqq-qg-m12" secondAttribute="leading" constant="16" id="o9Q-X6-Erb"/>
+                            <constraint firstItem="EWP-fy-4Gu" firstAttribute="leading" secondItem="Uqq-qg-m12" secondAttribute="leading" constant="16" id="onO-EI-wlg"/>
+                            <constraint firstItem="O0j-CJ-Ad5" firstAttribute="top" secondItem="aAM-T9-Pql" secondAttribute="bottom" constant="8" id="oyk-8f-rjU"/>
+                            <constraint firstItem="EWP-fy-4Gu" firstAttribute="top" secondItem="fcw-uo-SW9" secondAttribute="bottom" constant="8" id="qou-p5-lIb"/>
+                            <constraint firstItem="v68-kV-qxt" firstAttribute="leading" secondItem="Uqq-qg-m12" secondAttribute="leading" constant="16" id="rzL-V3-A0H"/>
+                            <constraint firstAttribute="trailing" secondItem="sEP-Ex-zmU" secondAttribute="trailing" constant="16" id="vfz-xC-Rl2"/>
+                            <constraint firstAttribute="trailing" secondItem="v68-kV-qxt" secondAttribute="trailing" constant="16" id="vy7-uI-zDa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="QuestionApp" id="ZGc-Sj-Gke"/>
+                    <navigationItem key="navigationItem" id="ZGc-Sj-Gke"/>
                     <connections>
                         <outlet property="passwordField" destination="aAM-T9-Pql" id="VUQ-Ou-9gd"/>
                         <outlet property="usernameField" destination="EWP-fy-4Gu" id="PNn-HE-nOK"/>
@@ -602,7 +596,7 @@
             </objects>
             <point key="canvasLocation" x="38" y="2551"/>
         </scene>
-        <!--Add Response-->
+        <!--Add Response View Controller-->
         <scene sceneID="Azo-ea-Lh5">
             <objects>
                 <viewController id="QEc-IA-Rns" customClass="AddResponseViewController" sceneMemberID="viewController">
@@ -653,7 +647,7 @@
                             <constraint firstAttribute="trailing" secondItem="mVd-98-G6y" secondAttribute="trailing" constant="16" id="vFp-4c-Jsz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Response" id="joG-cm-RyX">
+                    <navigationItem key="navigationItem" id="joG-cm-RyX">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="p41-d2-Kbv">
                             <connections>
                                 <action selector="save:" destination="QEc-IA-Rns" id="HlP-UC-DS5"/>
@@ -669,7 +663,7 @@
             </objects>
             <point key="canvasLocation" x="2241" y="-1355"/>
         </scene>
-        <!--Responses-->
+        <!--Response Table View Controller-->
         <scene sceneID="R2c-TH-uhD">
             <objects>
                 <tableViewController id="x2g-4H-aWw" customClass="ResponseTableViewController" sceneMemberID="viewController">
@@ -783,7 +777,7 @@
                             <outlet property="delegate" destination="x2g-4H-aWw" id="n47-S1-VtR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Responses" id="Inb-Up-Qq6">
+                    <navigationItem key="navigationItem" id="Inb-Up-Qq6">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="gtR-YO-0EY">
                             <connections>
                                 <segue destination="QEc-IA-Rns" kind="show" identifier="addResponse" id="kCm-Nc-W4U"/>
@@ -1077,7 +1071,7 @@
             </objects>
             <point key="canvasLocation" x="972" y="2551"/>
         </scene>
-        <!--My Profile-->
+        <!--My Profile Table View Controller-->
         <scene sceneID="tdN-HG-dCU">
             <objects>
                 <tableViewController id="UEo-b1-E4n" customClass="MyProfileTableViewController" sceneMemberID="viewController">
@@ -1179,7 +1173,7 @@
                             <outlet property="delegate" destination="UEo-b1-E4n" id="vRL-SE-Vel"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Profile" id="STj-aL-DVO">
+                    <navigationItem key="navigationItem" id="STj-aL-DVO">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="camera" id="jfF-4G-qNf">
                             <connections>
                                 <action selector="camera:" destination="UEo-b1-E4n" id="TMe-gY-p8S"/>
@@ -1359,7 +1353,7 @@
             </objects>
             <point key="canvasLocation" x="1663" y="3330"/>
         </scene>
-        <!--Tabbers-->
+        <!--All Tabbers Table View Controller-->
         <scene sceneID="mRS-5e-9BG">
             <objects>
                 <tableViewController id="UPX-RC-hMO" customClass="AllTabbersTableViewController" sceneMemberID="viewController">
@@ -1391,7 +1385,7 @@
                             <outlet property="delegate" destination="UPX-RC-hMO" id="FcE-rP-pJn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tabbers" id="EIq-dP-cfj">
+                    <navigationItem key="navigationItem" id="EIq-dP-cfj">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="ExE-GT-OF2">
                             <connections>
                                 <action selector="exitTabberList:" destination="UPX-RC-hMO" id="pTr-NC-9hx"/>
@@ -1422,7 +1416,7 @@
             </objects>
             <point key="canvasLocation" x="492" y="921"/>
         </scene>
-        <!--My Tabs-->
+        <!--Tabs Table View Controller-->
         <scene sceneID="wgk-Vw-6Xr">
             <objects>
                 <tableViewController id="DPd-AS-U8V" customClass="TabsTableViewController" sceneMemberID="viewController">
@@ -1534,7 +1528,7 @@
                             <outlet property="delegate" destination="DPd-AS-U8V" id="ZkJ-nO-PCt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Tabs" id="ioh-7E-ryW"/>
+                    <navigationItem key="navigationItem" id="ioh-7E-ryW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qw7-EZ-d38" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1577,7 +1571,7 @@
             </objects>
             <point key="canvasLocation" x="2438" y="3334"/>
         </scene>
-        <!--User Jokes-->
+        <!--User Joke Table View Controller-->
         <scene sceneID="GUg-kh-3tP">
             <objects>
                 <tableViewController id="bZX-T0-sIn" customClass="UserJokeTableViewController" sceneMemberID="viewController">
@@ -1688,7 +1682,7 @@
                             <outlet property="delegate" destination="bZX-T0-sIn" id="z84-eb-z9Z"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="User Jokes" id="gyz-q5-7dp">
+                    <navigationItem key="navigationItem" id="gyz-q5-7dp">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="OQb-Za-W24">
                             <connections>
                                 <action selector="exitUserQuestions:" destination="bZX-T0-sIn" id="LRR-5Q-73f"/>
@@ -1728,8 +1722,8 @@
         <image name="placeholder.png" width="391" height="391"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bOq-2b-3eE"/>
-        <segue reference="GVw-Ul-PlJ"/>
-        <segue reference="mXV-ZJ-g1o"/>
+        <segue reference="iYY-yP-HsU"/>
+        <segue reference="flv-mp-dDE"/>
+        <segue reference="Dj6-ii-vT0"/>
     </inferredMetricsTieBreakers>
 </document>
