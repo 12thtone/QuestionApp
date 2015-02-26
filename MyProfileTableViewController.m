@@ -30,9 +30,12 @@
     [super viewDidLoad];
     
     [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
-    [self.tabBarController.tabBar setBarTintColor:[UIColor redColor]];
+    self.tabBarController.tabBar.alpha = 0.9;
+    [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor redColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Profile", nil)];
     
     UITapGestureRecognizer *tapDismissKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];

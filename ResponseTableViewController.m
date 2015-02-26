@@ -58,9 +58,12 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
-    [self.tabBarController.tabBar setBarTintColor:[UIColor redColor]];
+    self.tabBarController.tabBar.alpha = 0.9;
+    [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor redColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Responses", nil)];
     
     self.jokeTextView.text = [self.joke objectForKey:@"questionText"];
@@ -144,10 +147,7 @@
     tap.enabled = YES;
     [cell.usernameLabel addGestureRecognizer:tap];
     
-    UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteTap setNumberOfTapsRequired:1];
-    tap.enabled = YES;
-    [cell.voteLabel addGestureRecognizer:voteTap];
+    [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
@@ -168,10 +168,10 @@
 
 #pragma mark - Votes
 
-- (void)saveVote:(UITapGestureRecognizer *)sender {
+- (void)saveVote:(id)sender {
     
-    CGPoint tapLocation = [sender locationInView:self.tableView];
-    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
     PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
     [newVote incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
@@ -185,6 +185,7 @@
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             [self loadObjects];
+            [self answerQuery]; /// loadObjects doesn't update the label
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]
