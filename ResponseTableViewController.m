@@ -186,6 +186,7 @@
             [alertView show];
             [self loadObjects];
             [self answerQuery]; /// loadObjects doesn't update the label
+            ((UIButton *)sender).enabled = NO;
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]

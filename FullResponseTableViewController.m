@@ -110,6 +110,7 @@
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             [self viewDidLoad]; // Reloads the tableView and label
+            ((UIButton *)sender).enabled = NO;
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]
