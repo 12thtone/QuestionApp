@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *voteVotesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *responseTextView;
+@property (weak, nonatomic) IBOutlet UIButton *upVoteButton;
 @property (strong, nonatomic) PFUser *fullResponseUser;
 
 @end
@@ -70,15 +71,7 @@
     tap.enabled = YES;
     [self.usernameLabel addGestureRecognizer:tap];
     
-    UITapGestureRecognizer *voteVotesTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteVotesTap setNumberOfTapsRequired:1];
-    tap.enabled = YES;
-    [self.voteVotesLabel addGestureRecognizer:voteVotesTap];
-    
-    UITapGestureRecognizer *voteCountTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteCountTap setNumberOfTapsRequired:1];
-    tap.enabled = YES;
-    [self.voteCountLabel addGestureRecognizer:voteCountTap];
+    [self.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,7 +97,7 @@
 
 #pragma mark - Votes
 
-- (void)saveVote:(UITapGestureRecognizer *)sender {
+- (void)saveVote:(id)sender {
     
     [self.fullResponse incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
     

@@ -70,6 +70,21 @@
     [self.textProfile resignFirstResponder];
 }
 
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+    UITableViewCell *cell;
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // Load resources for iOS 6.1 or earlier
+        cell = (UITableViewCell *) textField.superview.superview;
+        
+    } else {
+        // Load resources for iOS 7 or later
+        cell = (UITableViewCell *) textField.superview.superview.superview;
+        // TextField -> UITableVieCellContentView -> (in iOS 7!)ScrollView -> Cell!
+    }
+    [self.tableView scrollToRowAtIndexPath:[self.tableView indexPathForCell:cell] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
     if (self.chosenImage && self.textProfile) {
         

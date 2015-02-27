@@ -9,6 +9,7 @@
 #import "AllTabbersTableViewController.h"
 #import <Parse/Parse.h>
 #import "ProfileTableViewController.h"
+#import "AllTabbersTableViewCell.h"
 
 @interface AllTabbersTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -67,6 +68,8 @@
     [self loadObjects];
 }
 
+# pragma mark - PFQuery
+
 - (NSArray *)tabberQuery {
     NSMutableArray *tabbersList = [[NSMutableArray alloc] init];
     
@@ -100,19 +103,32 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    AllTabbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allTabbersTVCell" forIndexPath:indexPath];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+    NSDate *date = [[self.theTabbersList objectAtIndex:indexPath.row] createdAt];
     
     PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
-        cell.textLabel.text = username;
+        cell.usernameLabel.text = username;
+        cell.fullNameLabel.text = [user objectForKey:@"realName"];
+        
+        PFFile *pictureFile = [user objectForKey:@"picture"];
+        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error){
+                
+                [cell.userImage setImage:[UIImage imageWithData:data]];
+            }
+            else {
+                NSLog(@"no data!");
+            }
+        }];
     }];
+    
+    cell.dateLabel.text = [dateFormatter stringFromDate:date];
     
     return cell;
 }

@@ -35,6 +35,8 @@
 		F94B44C51A9E0ECA00B39708 /* HotTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94B44C41A9E0ECA00B39708 /* HotTableViewCell.m */; };
 		F9669FF71A968BF6007D142B /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */; };
 		F983B1481A8D43EA000C597C /* ResponseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */; };
+		F984500B1A9FDB320061A0AB /* half-arrow-left-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F984500A1A9FDB320061A0AB /* half-arrow-left-7@3x.png */; };
+		F984500E1A9FDE640061A0AB /* AllTabbersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F984500D1A9FDE640061A0AB /* AllTabbersTableViewCell.m */; };
 		F98CF63A1A9F725F008B91E3 /* arrow-up-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98CF6391A9F725F008B91E3 /* arrow-up-7@3x.png */; };
 		F98CF63C1A9F7286008B91E3 /* half-arrow-up-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98CF63B1A9F7286008B91E3 /* half-arrow-up-7@3x.png */; };
 		F98CF63E1A9F72AA008B91E3 /* half-arrow-up-circle-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98CF63D1A9F72AA008B91E3 /* half-arrow-up-circle-7@3x.png */; };
@@ -128,6 +130,9 @@
 		F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordViewController.m; path = ../ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		F983B1461A8D43EA000C597C /* ResponseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponseTableViewCell.h; path = ../ResponseTableViewCell.h; sourceTree = "<group>"; };
 		F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseTableViewCell.m; path = ../ResponseTableViewCell.m; sourceTree = "<group>"; };
+		F984500A1A9FDB320061A0AB /* half-arrow-left-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "half-arrow-left-7@3x.png"; sourceTree = "<group>"; };
+		F984500C1A9FDE640061A0AB /* AllTabbersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AllTabbersTableViewCell.h; path = ../AllTabbersTableViewCell.h; sourceTree = "<group>"; };
+		F984500D1A9FDE640061A0AB /* AllTabbersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AllTabbersTableViewCell.m; path = ../AllTabbersTableViewCell.m; sourceTree = "<group>"; };
 		F98CF6391A9F725F008B91E3 /* arrow-up-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-up-7@3x.png"; path = "../../../Reference/iconbeast-pro/line/arrows-7/png/grey/arrow-up-7@3x.png"; sourceTree = "<group>"; };
 		F98CF63B1A9F7286008B91E3 /* half-arrow-up-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "half-arrow-up-7@3x.png"; path = "../../../Reference/iconbeast-pro/line/arrows-7/png/grey/half-arrow-up-7@3x.png"; sourceTree = "<group>"; };
 		F98CF63D1A9F72AA008B91E3 /* half-arrow-up-circle-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "half-arrow-up-circle-7@3x.png"; path = "../../../Reference/iconbeast-pro/line/arrows-7/png/grey/half-arrow-up-circle-7@3x.png"; sourceTree = "<group>"; };
@@ -245,6 +250,8 @@
 		F9118DAF1A8196EB00E878AA /* QuestionApp */ = {
 			isa = PBXGroup;
 			children = (
+				F984500C1A9FDE640061A0AB /* AllTabbersTableViewCell.h */,
+				F984500D1A9FDE640061A0AB /* AllTabbersTableViewCell.m */,
 				F9E55EB61A92939E0061CBCE /* AllTabbersTableViewController.h */,
 				F9E55EB71A92939E0061CBCE /* AllTabbersTableViewController.m */,
 				F9A8A99D1A897F1900DFD090 /* ProfileTableViewController.h */,
@@ -303,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				F98CF6531A9F8842008B91E3 /* microphone-7@2x.png */,
+				F984500A1A9FDB320061A0AB /* half-arrow-left-7@3x.png */,
 				F98CF65B1A9F8B5D008B91E3 /* star-7@3x.png */,
 				F98CF6591A9F88FB008B91E3 /* user-7@2x.png */,
 				F98CF6571A9F88BD008B91E3 /* tag-tick-7@2x.png */,
@@ -482,6 +490,7 @@
 				F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */,
 				F98CF6441A9F81EF008B91E3 /* tag-minus-7@3x.png in Resources */,
 				F99102551A950B32009DC951 /* 534-eye@2x.png in Resources */,
+				F984500B1A9FDB320061A0AB /* half-arrow-left-7@3x.png in Resources */,
 				F98CF64E1A9F8634008B91E3 /* user-7@3x.png in Resources */,
 				F98CF63C1A9F7286008B91E3 /* half-arrow-up-7@3x.png in Resources */,
 			);
@@ -522,6 +531,7 @@
 				F9CBBE7D1A8283DD00680486 /* DataSource.m in Sources */,
 				F9E55EB81A92939E0061CBCE /* AllTabbersTableViewController.m in Sources */,
 				F9118DB31A8196EB00E878AA /* main.m in Sources */,
+				F984500E1A9FDE640061A0AB /* AllTabbersTableViewCell.m in Sources */,
 				F9669FF71A968BF6007D142B /* ForgotPasswordViewController.m in Sources */,
 				F99102581A950F15009DC951 /* UserJokeTableViewController.m in Sources */,
 				F983B1481A8D43EA000C597C /* ResponseTableViewCell.m in Sources */,

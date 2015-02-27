@@ -121,10 +121,7 @@
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
     
-    UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteTap setNumberOfTapsRequired:1];
-    voteTap.enabled = YES;
-    [cell.voteLabel addGestureRecognizer:voteTap];
+    [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     
     cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
@@ -164,10 +161,10 @@
 
 #pragma mark - Votes
 
-- (void)saveVote:(UITapGestureRecognizer *)sender {
+- (void)saveVote:(id)sender {
     
-    CGPoint tapLocation = [sender locationInView:self.tableView];
-    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
     PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
     
