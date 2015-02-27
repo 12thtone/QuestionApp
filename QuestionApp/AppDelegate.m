@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "Reachability.h"
 
 @interface AppDelegate () 
 
@@ -42,7 +43,15 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                            message:@"There's a problem with the internet connection. Some features will be limited."
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

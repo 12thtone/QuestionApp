@@ -8,6 +8,7 @@
 
 #import "MyProfileTableViewController.h"
 #import <Parse/Parse.h>
+#import "Reachability.h"
 
 @interface MyProfileTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -100,25 +101,35 @@
 
 - (void)saveProfile
 {
-    NSString *profileString = self.textProfile.text;
-    
-    NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
-    PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
-    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            if (succeeded) {
-                PFUser *user = [PFUser currentUser];
-                user[@"description"] = profileString;
-                user[@"picture"] = imageFile;
-                [user saveInBackground];
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                            message:@"There's a problem with the internet connection. Try again when there's a better signal."
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        
+        NSString *profileString = self.textProfile.text;
+        
+        NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
+        PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                if (succeeded) {
+                    PFUser *user = [PFUser currentUser];
+                    user[@"description"] = profileString;
+                    user[@"picture"] = imageFile;
+                    [user saveInBackground];
+                }
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                    message:[error.userInfo objectForKey:@"error"]
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
             }
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                message:[error.userInfo objectForKey:@"error"]
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
-    }];
+        }];
+    }
 }
 
 #pragma mark - Images

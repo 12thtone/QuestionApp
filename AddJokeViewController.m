@@ -9,6 +9,7 @@
 #import "AddJokeViewController.h"
 #import <Parse/Parse.h>
 #import "JokeTableViewController.h"
+#import "Reachability.h"
 
 @interface AddJokeViewController ()
 
@@ -72,6 +73,7 @@
 
 - (void)saveQuestion
 {
+    
     NSNumber *voteCount = [NSNumber numberWithInt:1];
     
     PFObject *newJoke = [PFObject objectWithClassName:@"Question"];
@@ -81,18 +83,29 @@
     newJoke[@"status"] = self.statusString;
     newJoke[@"author"] = [PFUser currentUser];
     
-    [newJoke saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                message:[error.userInfo objectForKey:@"error"]
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
-    }];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                            message:@"There's a problem with the internet connection. We'll get your joke up ASAP!"
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        [newJoke saveEventually];
+    } else {
+        
+        [newJoke saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                    message:[error.userInfo objectForKey:@"error"]
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+            }
+        }];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

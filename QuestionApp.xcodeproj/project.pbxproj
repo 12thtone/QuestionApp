@@ -48,6 +48,7 @@
 		F98333EE1AA0EE8800A2E295 /* half-arrow-up-circle-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98333ED1AA0EE8800A2E295 /* half-arrow-up-circle-7@3x.png */; };
 		F98333F01AA0EF2800A2E295 /* arrow-up-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98333EF1AA0EF2800A2E295 /* arrow-up-7@3x.png */; };
 		F98333F21AA0EF7700A2E295 /* half-arrow-up-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98333F11AA0EF7700A2E295 /* half-arrow-up-7@3x.png */; };
+		F98333F51AA0FCA500A2E295 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F98333F41AA0FCA500A2E295 /* Reachability.m */; };
 		F983B1481A8D43EA000C597C /* ResponseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */; };
 		F984500B1A9FDB320061A0AB /* half-arrow-left-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F984500A1A9FDB320061A0AB /* half-arrow-left-7@3x.png */; };
 		F984500E1A9FDE640061A0AB /* AllTabbersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F984500D1A9FDE640061A0AB /* AllTabbersTableViewCell.m */; };
@@ -141,6 +142,8 @@
 		F98333ED1AA0EE8800A2E295 /* half-arrow-up-circle-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "half-arrow-up-circle-7@3x.png"; sourceTree = "<group>"; };
 		F98333EF1AA0EF2800A2E295 /* arrow-up-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-up-7@3x.png"; sourceTree = "<group>"; };
 		F98333F11AA0EF7700A2E295 /* half-arrow-up-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "half-arrow-up-7@3x.png"; sourceTree = "<group>"; };
+		F98333F31AA0FCA500A2E295 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Reachability.h; sourceTree = "<group>"; };
+		F98333F41AA0FCA500A2E295 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Reachability.m; sourceTree = "<group>"; };
 		F983B1461A8D43EA000C597C /* ResponseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponseTableViewCell.h; path = ../ResponseTableViewCell.h; sourceTree = "<group>"; };
 		F983B1471A8D43EA000C597C /* ResponseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseTableViewCell.m; path = ../ResponseTableViewCell.m; sourceTree = "<group>"; };
 		F984500A1A9FDB320061A0AB /* half-arrow-left-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "half-arrow-left-7@3x.png"; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 				F9CBBE821A82AC0A00680486 /* LoginViewController.m */,
 				F9CBBE7B1A8283DD00680486 /* DataSource.h */,
 				F9CBBE7C1A8283DD00680486 /* DataSource.m */,
+				F98333F31AA0FCA500A2E295 /* Reachability.h */,
+				F98333F41AA0FCA500A2E295 /* Reachability.m */,
 				F9118DB41A8196EB00E878AA /* AppDelegate.h */,
 				F9118DB51A8196EB00E878AA /* AppDelegate.m */,
 				F9118DD71A81999500E878AA /* MainStoryboard.storyboard */,
@@ -506,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F98333F51AA0FCA500A2E295 /* Reachability.m in Sources */,
 				F9A38AE81A9CDED90080B174 /* SearchTableViewController.m in Sources */,
 				F9D057AF1A951A2E0098A9E2 /* UserJokeTableViewCell.m in Sources */,
 				F991024E1A94E103009DC951 /* FullResponseTableViewController.m in Sources */,

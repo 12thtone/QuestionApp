@@ -43,6 +43,8 @@
     [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
     [self.tabBarController.tabBar setBarTintColor:[UIColor redColor]];
     
+    [self.descriptionProfile setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:13]];
+    
     if (self.userProfile) {
         self.user = [self.userProfile objectForKey:@"author"];
         
