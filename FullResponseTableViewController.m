@@ -11,12 +11,14 @@
 #import "ProfileTableViewController.h"
 
 @interface FullResponseTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteVotesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *responseTextView;
+@property (weak, nonatomic) IBOutlet UIButton *upVoteButton;
 @property (strong, nonatomic) PFUser *fullResponseUser;
 
 @end
@@ -25,6 +27,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    self.tabBarController.tabBar.alpha = 0.9;
+    [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Full Response", nil)];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
@@ -60,20 +71,16 @@
     tap.enabled = YES;
     [self.usernameLabel addGestureRecognizer:tap];
     
-    UITapGestureRecognizer *voteVotesTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteVotesTap setNumberOfTapsRequired:1];
-    tap.enabled = YES;
-    [self.voteVotesLabel addGestureRecognizer:voteVotesTap];
-    
-    UITapGestureRecognizer *voteCountTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteCountTap setNumberOfTapsRequired:1];
-    tap.enabled = YES;
-    [self.voteCountLabel addGestureRecognizer:voteCountTap];
+    [self.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 #pragma mark - Navigation
@@ -90,9 +97,8 @@
 
 #pragma mark - Votes
 
-- (void)saveVote:(UITapGestureRecognizer *)sender {
+- (void)saveVote:(id)sender {
     
-    //PFObject *newVote = self.fullAnswer objectForKey:@"objectId"];
     [self.fullResponse incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
     
     NSLog(@"VOTE: %@", self.fullResponse);
@@ -103,6 +109,8 @@
                                                                 message:@"Thanks for your vote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
+            [self viewDidLoad]; // Reloads the tableView and label
+            ((UIButton *)sender).enabled = NO;
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]

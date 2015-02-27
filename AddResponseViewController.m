@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *jokeTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *responseTextView;
 @property (weak, nonatomic) NSString *response;
-//- (IBAction)cancel:(UIBarButtonItem *)sender;
+
 - (IBAction)save:(UIBarButtonItem *)sender;
 
 @end
@@ -25,6 +25,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Add a Response", nil)];
         
     self.jokeTitleLabel.text = [self.joke objectForKey:@"questionTitle"];
 }
@@ -42,11 +47,7 @@
         [self saveAnswer];
     }
 }
-/*
-- (IBAction)cancel:(UIBarButtonItem *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-*/
+
 - (void)saveAnswer
 {
     NSNumber *voteCount = [NSNumber numberWithInt:1];
@@ -56,8 +57,6 @@
     newResponse[@"vote"] = voteCount;
     newResponse[@"answerQuestion"] = self.joke;
     newResponse[@"answerAuthor"] = [PFUser currentUser];
-    
-    //NSLog(@"%@", self.question);
     
     [newResponse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -70,32 +69,6 @@
         }
     }];
     
-    //PFObject *newAnswer = [PFObject objectWithClassName:@"Question"];
-    //PFObject *newAnswer = [self.question objectForKey:@"answers"];
-    /*
-    PFObject *currentQuestion = [PFObject objectWithClassName:@"Question"];
-    PFRelation *relation = [newAnswer relationForKey:@"questionsAnswer"];
-    [relation addObject:newAnswer];
-    [currentQuestion saveInBackground];
-    */
-    //newAnswer[@"questionsAnswer"] = self.answerTextView.text;
-    /////////////////////////////////
-    /*
-    [self.question addObject:@[self.answer] forKey:@"answers"];
-    //[self.question saveInBackground];
-    
-    [self.question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            //NSLog(@"%@", self.answer);
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                message:[error.userInfo objectForKey:@"error"]
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
-    }];
-    */
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

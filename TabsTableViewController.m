@@ -14,9 +14,7 @@
 #import "TabsTableViewCell.h"
 
 @interface TabsTableViewController ()
-@property (weak, nonatomic) PFUser *tappedUser;
-@property (strong, nonatomic) NSMutableArray *theJokes;
-@property (strong, nonatomic) NSMutableArray *theVotes;
+
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
 
@@ -52,18 +50,25 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
-    [[DataSource sharedInstance] queryForTable:self.parseClassName];
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    self.tabBarController.tabBar.alpha = 0.9;
+    [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Tabs", nil)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //[self queryForTable];
     [self tabQuery];
-    //[self loadObjects];
+    [self loadObjects];
 }
 
-- (NSArray *)tabQuery {
+#pragma mark - PFQuery
+
+- (void)tabQuery {
     
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
@@ -79,8 +84,6 @@
                 
             }
             
-            NSMutableArray *questionArray = [[NSMutableArray alloc] init];
-            NSMutableArray *voteArray = [[NSMutableArray alloc] init];
             NSMutableArray *objectArray = [[NSMutableArray alloc] init];
             NSMutableArray *authorQuestionArray = [[NSMutableArray alloc] init];
             
@@ -90,20 +93,13 @@
             [queryQuestion orderByDescending:@"createdAt"];
             [queryQuestion findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 for (PFObject *object in objects) {
-                    [questionArray addObject:[object objectForKey:@"questionTitle"]];
-                    [voteArray addObject:[object objectForKey:@"voteQuestion"]];
                     [authorQuestionArray addObject:[object objectForKey:@"author"]];
                     [objectArray addObject:object];
                     
-                    self.theJokes = [questionArray copy];
-                    self.theVotes = [voteArray copy];
                     self.theObjects = [objectArray copy];
                     self.theAuthors = [authorQuestionArray copy];
                 }
                 
-                //NSLog(@"Objects: %@", self.theObjects);
-                NSLog(@"Objects: %lu", (unsigned long)self.theObjects.count);
-                [self.tableView reloadData];
                 [self.tableView reloadData];
             }];
             
@@ -112,11 +108,6 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
-    NSLog(@"Objects ghgh: %lu", (unsigned long)self.theObjects.count);
-    
-    return authorArray;
-    
 }
 
 #pragma mark - PFQueryTableViewController
@@ -142,8 +133,7 @@
     
     PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        NSString *username = user.username;
-        cell.usernameLabel.text = username;
+        cell.usernameLabel.text = [object objectForKey:@"username"];
         
         PFFile *pictureFile = [user objectForKey:@"picture"];
         [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -209,10 +199,10 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
+    PFUser *user = [self.theAuthors objectAtIndex:tapIndexPath.row];
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
-    profileVC.userProfile = object;
+    profileVC.userFromTabList = user;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }
@@ -234,6 +224,8 @@
                                                                 message:@"Thanks for your vote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
+            [self loadObjects];
+            ((UIButton *)sender).enabled = NO;
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]

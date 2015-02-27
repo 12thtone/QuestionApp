@@ -11,10 +11,12 @@
 #import "JokeTableViewController.h"
 
 @interface AddJokeViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 @property (weak, nonatomic) NSString *statusString;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeStatusSegment;
+
 - (IBAction)savePressed:(UIBarButtonItem *)sender;
 - (IBAction)cancelPressed:(UIBarButtonItem *)sender;
 - (IBAction)indexChanged:(id)sender;
@@ -26,6 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Add a Joke", nil)];
     
     self.statusString = @"Got One for Ya";
 }

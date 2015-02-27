@@ -11,6 +11,8 @@
 
 @interface SignupViewController ()
 
+@property (nonatomic, strong) NSString *username;
+
 @end
 
 @implementation SignupViewController
@@ -23,26 +25,30 @@
 }
 
 - (IBAction)createAccount:(id)sender {
-    NSString *username = [self.usernameSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *fullName = [self.nameSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.username = [self.usernameSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *email = [self.emailSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    UIImage *iconImage = [UIImage imageNamed:@"536-disguise@2x.png"];
-    NSData *imageData = UIImagePNGRepresentation(iconImage);
-    PFFile *imageFile = [PFFile fileWithName:@"Iconimage.png" data:imageData];
+    NSString *needString = [NSString stringWithFormat:@"We need first and last name, username, password, and email."];
+    NSString *takenString = [NSString stringWithFormat:@"%@ is already taken.", self.username];
     
-    if ([username length] == 0 || [password length] == 0 || [email length] == 0) {
+    if ([fullName length] == 0 || [self.username length] == 0 || [password length] == 0 || [email length] == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                            message:@"We need a username, password, and email"
+                                                            message:needString
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
-    }
-    else {
+    } else if (![self usernameQuery]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                            message:takenString
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    } else {
         PFUser *newUser = [PFUser user];
-        newUser.username = username;
+        newUser[@"realName"] = fullName;
+        newUser.username = self.username;
         newUser.password = password;
         newUser.email = email;
-        newUser[@"icon"] = imageFile;
         
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
@@ -56,6 +62,23 @@
             }
         }];
     }
+}
+
+#pragma mark - PFQuery
+
+- (NSMutableArray *)usernameQuery {
+    NSMutableArray *usernameArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFUser query];
+    
+    [query whereKey:@"username" equalTo:self.username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            [usernameArray addObject:[object objectForKey:@"answerText"]];
+        }
+    }];
+    
+    return usernameArray;
 }
 
 @end

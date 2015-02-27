@@ -15,6 +15,7 @@
 #import "FullResponseTableViewController.h"
 
 @interface ResponseTableViewController () <UITableViewDelegate,UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITextView *jokeTextView;
 @property (strong, nonatomic) NSMutableArray *theResponses;
 @property (strong, nonatomic) NSMutableArray *theVotes;
@@ -56,6 +57,15 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    self.tabBarController.tabBar.alpha = 0.9;
+    [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Responses", nil)];
+    
     self.jokeTextView.text = [self.joke objectForKey:@"questionText"];
     [self.jokeTextView sizeToFit];
     [self.jokeTextView.textContainer setSize:self.jokeTextView.frame.size];
@@ -70,7 +80,9 @@
     [self loadObjects];
 }
 
-- (NSArray *)answerQuery {
+#pragma mark - PFQuery
+
+- (void)answerQuery {
     NSMutableArray *responseArray = [[NSMutableArray alloc] init];
     NSMutableArray *voteArray = [[NSMutableArray alloc] init];
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
@@ -81,9 +93,7 @@
     [query whereKey:@"answerQuestion" equalTo:self.joke];
     [query orderByDescending:@"vote"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        //NSLog(@"BLOCK PRODUCT: %lu", (unsigned long)object.count);
         for (PFObject *object in objects) {
-            //NSLog(@"BLOCK PRODUCT: %@", [objects objectForKey:@"answerText"]);
             [responseArray addObject:[object objectForKey:@"answerText"]];
             [voteArray addObject:[object objectForKey:@"vote"]];
             [authorArray addObject:[object objectForKey:@"answerAuthor"]];
@@ -95,16 +105,12 @@
             self.theObjects = [objectArray copy];
             self.theAuthors = [authorArray copy];
         }
+        
+        [self.tableView reloadData];
     }];
-    
-    return responseArray;
 }
 
 #pragma mark - PFQueryTableViewController
-
-// Override to customize the look of a cell representing an object. The default is to display
-// a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
-// and the imageView being the imageKey in the object.
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -119,11 +125,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     ResponseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ResponseTVC" forIndexPath:indexPath];
-    /*
-    PFUser *author = [self.question objectForKey:@"author"];
-    [author fetchIfNeeded];
-    NSLog(@"%@", [author username]);
-    */
         
     PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -146,19 +147,13 @@
     tap.enabled = YES;
     [cell.usernameLabel addGestureRecognizer:tap];
     
-    UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteTap setNumberOfTapsRequired:1];
-    tap.enabled = YES;
-    [cell.voteLabel addGestureRecognizer:voteTap];
+    [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //[dateFormatter setDateFormat:@"EEEE, MMMM d yyyy"];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [self.joke createdAt];
     
     cell.responseLabel.text = [self.theResponses objectAtIndex:indexPath.row];
-    //cell.usernameLabel.text = [user username];
-    //cell.usernameLabel.text = [[[self.theAuthors objectAtIndex:indexPath.row] fetchIfNeeded] objectForKey:@"username"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
     cell.voteLabel.text = [NSString stringWithFormat:@"%@", [self.theVotes objectAtIndex:indexPath.row]];
     
@@ -173,14 +168,13 @@
 
 #pragma mark - Votes
 
-- (void)saveVote:(UITapGestureRecognizer *)sender {
+- (void)saveVote:(id)sender {
     
-    CGPoint tapLocation = [sender locationInView:self.tableView];
-    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
     PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
     [newVote incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
-    //[newVote saveInBackground];
     
     NSLog(@"VOTE: %@", newVote);
     
@@ -190,6 +184,9 @@
                                                                 message:@"Thanks for your vote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
+            [self loadObjects];
+            [self answerQuery]; /// loadObjects doesn't update the label
+            ((UIButton *)sender).enabled = NO;
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
                                                                 message:[error.userInfo objectForKey:@"error"]
@@ -213,11 +210,6 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
         
-        //NSLog(@"sdfbsdfbsdfb%@", self.theObjects);
-        
-        //AnswerTableViewController *answerTableViewController = (AnswerTableViewController *)segue.destinationViewController;
-        //answerTableViewController.question = object;
-        
         FullResponseTableViewController *fullAnswerTableViewController = (FullResponseTableViewController *)segue.destinationViewController;
         fullAnswerTableViewController.fullResponse = object;
     }
@@ -228,13 +220,8 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    //PFObject *object1 = [self.objects objectAtIndex:tapIndexPath.row];
     PFObject *object = [self.theObjects objectAtIndex:tapIndexPath.row];
-    
-    NSLog(@"PROFILE: %@", object);
-    
-    //////////// Make a PFUser?
-    
+        
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfileAnswer = object;
     

@@ -9,9 +9,12 @@
 #import "AllTabbersTableViewController.h"
 #import <Parse/Parse.h>
 #import "ProfileTableViewController.h"
+#import "AllTabbersTableViewCell.h"
 
 @interface AllTabbersTableViewController () <UITableViewDataSource, UITableViewDelegate>
+
 - (IBAction)exitTabberList:(UIBarButtonItem *)sender;
+
 @property (nonatomic, strong) NSMutableArray *theTabbersList;
 
 @end
@@ -44,11 +47,14 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    self.tabBarController.tabBar.alpha = 0.9;
+    [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"All Tabbers", nil)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +68,8 @@
     [self loadObjects];
 }
 
+# pragma mark - PFQuery
+
 - (NSArray *)tabberQuery {
     NSMutableArray *tabbersList = [[NSMutableArray alloc] init];
     
@@ -72,11 +80,9 @@
         for (PFUser *aUser in objects) {
             [tabbersList addObject:aUser];
             
-            //NSLog(@"%lu", (unsigned long)tabbersList.count);
-            
             self.theTabbersList = [tabbersList copy];
-            //NSLog(@"%lu", (unsigned long)self.theTabbersList.count);
         }
+        [self.tableView reloadData];
     }];
     
     return tabbersList;
@@ -97,38 +103,35 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    AllTabbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allTabbersTVCell" forIndexPath:indexPath];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+    NSDate *date = [[self.theTabbersList objectAtIndex:indexPath.row] createdAt];
     
     PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
-        //NSString *question = [object objectForKey:@"questionTitle"];
-        cell.textLabel.text = username;
-        //cell.detailTextLabel.text = question;
+        cell.usernameLabel.text = username;
+        cell.fullNameLabel.text = [user objectForKey:@"realName"];
+        
+        PFFile *pictureFile = [user objectForKey:@"picture"];
+        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error){
+                
+                [cell.userImage setImage:[UIImage imageWithData:data]];
+            }
+            else {
+                NSLog(@"no data!");
+            }
+        }];
     }];
     
-    //NSLog(@"%@", [[[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabReceiver"] username]);
-    
-    //cell.textLabel.text = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"username"];
+    cell.dateLabel.text = [dateFormatter stringFromDate:date];
     
     return cell;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)exitTabberList:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -139,11 +142,6 @@
     
     if ([segue.identifier isEqualToString:@"viewNewTabberProfile"]) {
         
-        //UINavigationController *navigationController = segue.destinationViewController;
-        //AllTabbersTableViewController *allTabbersTableViewController = (AllTabbersTableViewController * )navigationController.topViewController;
-        
-        //NSLog(@"%@", self.user);
-        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
         
@@ -151,8 +149,6 @@
                 
         ProfileTableViewController *profileTableViewController = segue.destinationViewController;
         profileTableViewController.userFromTabList = user;
-        
-        //AllTabbersTableViewController.user = self.user;
     }
 }
 

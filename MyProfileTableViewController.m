@@ -10,10 +10,12 @@
 #import <Parse/Parse.h>
 
 @interface MyProfileTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 - (IBAction)camera:(UIBarButtonItem *)sender;
 - (IBAction)saveButton:(UIBarButtonItem *)sender;
 - (IBAction)imageLibrary:(id)sender;
 - (IBAction)logout:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameProfile;
 @property (weak, nonatomic) IBOutlet UITextView *textProfile;
@@ -26,6 +28,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    self.tabBarController.tabBar.alpha = 0.9;
+    [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Profile", nil)];
     
     UITapGestureRecognizer *tapDismissKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tapDismissKeyboard];
@@ -48,12 +59,6 @@
             
         }
     }];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,6 +68,21 @@
 
 -(void)dismissKeyboard {
     [self.textProfile resignFirstResponder];
+}
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+    UITableViewCell *cell;
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // Load resources for iOS 6.1 or earlier
+        cell = (UITableViewCell *) textField.superview.superview;
+        
+    } else {
+        // Load resources for iOS 7 or later
+        cell = (UITableViewCell *) textField.superview.superview.superview;
+        // TextField -> UITableVieCellContentView -> (in iOS 7!)ScrollView -> Cell!
+    }
+    [self.tableView scrollToRowAtIndexPath:[self.tableView indexPathForCell:cell] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
@@ -151,7 +171,6 @@
 
 - (IBAction)logout:(UIBarButtonItem *)sender {
     [PFUser logOut];
-    [self performSegueWithIdentifier:@"showLoginFromLogout" sender:self];
 }
 
 @end

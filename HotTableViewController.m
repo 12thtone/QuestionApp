@@ -1,26 +1,26 @@
 //
-//  UserQuestionTableViewController.m
+//  HotTableViewController.m
 //  QuestionApp
 //
-//  Created by Matt Maher on 2/18/15.
+//  Created by Matt Maher on 2/25/15.
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "UserJokeTableViewController.h"
+#import "HotTableViewController.h"
 #import <Parse/Parse.h>
 #import "ResponseTableViewController.h"
+#import "ProfileTableViewController.h"
 #import "DataSource.h"
-#import "UserJokeTableViewCell.h"
+#import "JokeTableViewCell.h"
 
-@interface UserJokeTableViewController ()
+@interface HotTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *theObjects;
-
-- (IBAction)exitUserQuestions:(UIBarButtonItem *)sender;
+@property (strong, nonatomic) NSMutableArray *theAuthors;
 
 @end
 
-@implementation UserJokeTableViewController
+@implementation HotTableViewController
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -47,6 +47,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        NSLog(@"Current user: %@", currentUser.username);
+    }
+    else {
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    }
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
@@ -57,12 +65,11 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Jokes", nil)];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Hot Jokes", nil)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //[self queryForTable];
     [self questionQuery];
     [self loadObjects];
 }
@@ -71,17 +78,21 @@
 
 - (void)questionQuery {
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Question"];
     
-    [query whereKey:@"author" equalTo:self.user];
-    [query orderByDescending:@"createdAt"];
+    [query orderByDescending:@"voteQuestion"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
+            
+            [authorArray addObject:[object objectForKey:@"author"]];
             [objectArray addObject:object];
             
             self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
         }
+        
         [self.tableView reloadData];
     }];
 }
@@ -93,17 +104,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.theObjects.count;
+    return [self.theObjects count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
-    UserJokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserQuestionTVCell" forIndexPath:indexPath];
+    JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hotTVCell" forIndexPath:indexPath];
     
-    PFUser *user = self.user;
+    PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        NSString *username = user.username;
-        cell.usernameLabel.text = username;
+        cell.usernameLabel.text = [object objectForKey:@"username"];
         
         PFFile *pictureFile = [user objectForKey:@"picture"];
         [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -120,6 +130,11 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
+    [tap setNumberOfTapsRequired:1];
+    tap.enabled = YES;
+    [cell.usernameLabel addGestureRecognizer:tap];
     
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -148,15 +163,28 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"showUserAnswers"]) {
+    if ([segue.identifier isEqualToString:@"showResponsesFromHot"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
-        
-        //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
         
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
     }
+}
+
+- (void)userProfileTapped:(UITapGestureRecognizer *)sender {
+    
+    CGPoint tapLocation = [sender locationInView:self.tableView];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    
+    PFUser *user = [self.theAuthors objectAtIndex:tapIndexPath.row];
+    
+    NSLog(@"OBJECTS QQQ: %@", user);
+    
+    ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
+    profileVC.userFromTabList = user;
+    
+    [self presentViewController:profileVC animated:YES completion:nil];
 }
 
 #pragma mark - Votes
@@ -185,10 +213,6 @@
             [alertView show];
         }
     }];
-}
-
-- (IBAction)exitUserQuestions:(UIBarButtonItem *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
