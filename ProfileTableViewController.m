@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalTabbers;
 @property (weak, nonatomic) IBOutlet UIButton *tabberButton;
 @property (weak, nonatomic) IBOutlet UIButton *jokeButton;
+@property (weak, nonatomic) IBOutlet UILabel *realNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (weak, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSMutableArray *theTabbers;
@@ -61,6 +63,12 @@
                 [self.imageProfile setImage:[UIImage imageWithData:data]];
                 self.descriptionProfile.text = [self.user objectForKey:@"description"];
                 self.usernameProfile.text = [self.user objectForKey:@"username"];
+                self.realNameLabel.text = [self.user objectForKey:@"realName"];
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+                NSDate *date = [self.user createdAt];
+                self.dateLabel.text = [dateFormatter stringFromDate:date];
             }
             else {
                 NSLog(@"no data!");

@@ -200,7 +200,7 @@
                                     <outlet property="userImage" destination="B5D-g8-HDo" id="5Wn-Nn-34z"/>
                                     <outlet property="usernameLabel" destination="tB9-pM-cAY" id="4SC-Vi-KyD"/>
                                     <outlet property="voteLabel" destination="fsz-uD-EfP" id="gqT-ha-WoH"/>
-                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showJoke" id="Kb7-nq-0bO"/>
+                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showJoke" id="NcK-oC-OB6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -608,7 +608,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVa-dO-CLY">
                                 <rect key="frame" x="16" y="72" width="568" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="AVX-A8-aEW"/>
+                                    <constraint firstAttribute="height" constant="21" id="enQ-E3-WS9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
@@ -617,7 +617,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Response:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVd-98-G6y">
                                 <rect key="frame" x="16" y="101" width="568" height="14"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="h3I-V6-g7X"/>
+                                    <constraint firstAttribute="height" constant="14" id="4yd-QK-xva"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
@@ -631,16 +631,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="CVa-dO-CLY" secondAttribute="trailing" constant="16" id="2Xl-Y3-vZj"/>
-                            <constraint firstItem="mVd-98-G6y" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="JWB-1n-Mun"/>
-                            <constraint firstItem="CVa-dO-CLY" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="WdY-V8-jvB"/>
-                            <constraint firstItem="mVd-98-G6y" firstAttribute="top" secondItem="CVa-dO-CLY" secondAttribute="bottom" constant="8" id="XZo-KI-ACr"/>
-                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="URz-uI-ZxX" secondAttribute="bottom" constant="8" id="bqc-n1-EIr"/>
-                            <constraint firstItem="URz-uI-ZxX" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="dwv-CS-vhf"/>
-                            <constraint firstItem="CVa-dO-CLY" firstAttribute="top" secondItem="aVK-0y-wTC" secondAttribute="bottom" constant="8" id="mik-g7-tg3"/>
-                            <constraint firstAttribute="trailing" secondItem="mVd-98-G6y" secondAttribute="trailing" constant="16" id="nzS-xV-abS"/>
-                            <constraint firstAttribute="trailing" secondItem="URz-uI-ZxX" secondAttribute="trailing" constant="16" id="ug6-Gc-okB"/>
-                            <constraint firstItem="URz-uI-ZxX" firstAttribute="top" secondItem="mVd-98-G6y" secondAttribute="bottom" constant="8" id="vhF-4D-5eU"/>
+                            <constraint firstAttribute="trailing" secondItem="mVd-98-G6y" secondAttribute="trailing" constant="16" id="1L9-NZ-ACJ"/>
+                            <constraint firstItem="URz-uI-ZxX" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="BAQ-6U-0ic"/>
+                            <constraint firstItem="URz-uI-ZxX" firstAttribute="top" secondItem="mVd-98-G6y" secondAttribute="bottom" constant="8" id="Esb-x6-yeB"/>
+                            <constraint firstItem="CVa-dO-CLY" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="Hdh-Mc-NuV"/>
+                            <constraint firstAttribute="trailing" secondItem="URz-uI-ZxX" secondAttribute="trailing" constant="16" id="aMu-4d-X46"/>
+                            <constraint firstItem="mVd-98-G6y" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="i3b-2Y-mr8"/>
+                            <constraint firstItem="mVd-98-G6y" firstAttribute="top" secondItem="CVa-dO-CLY" secondAttribute="bottom" constant="8" id="iSc-UJ-WvM"/>
+                            <constraint firstItem="CVa-dO-CLY" firstAttribute="top" secondItem="aVK-0y-wTC" secondAttribute="bottom" constant="8" id="pxz-Vw-0iT"/>
+                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="URz-uI-ZxX" secondAttribute="bottom" constant="8" id="tmd-vQ-35M"/>
+                            <constraint firstAttribute="trailing" secondItem="CVa-dO-CLY" secondAttribute="trailing" constant="16" id="wB7-qu-vAe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="joG-cm-RyX">
@@ -1294,7 +1294,7 @@
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uc1-G9-y9e">
                                                     <rect key="frame" x="134" y="212" width="443" height="258"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1363,10 +1363,12 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="dateLabel" destination="WlT-io-esn" id="R5e-1t-NVq"/>
                         <outlet property="descriptionProfile" destination="Uc1-G9-y9e" id="6Em-Wo-Ho7"/>
                         <outlet property="imageProfile" destination="V7Z-oo-coE" id="hvX-4a-SQ7"/>
                         <outlet property="jokeButton" destination="c4G-Pg-8fn" id="OlW-jb-rud"/>
                         <outlet property="jokesCount" destination="387-Yg-eb7" id="WDW-nS-tGj"/>
+                        <outlet property="realNameLabel" destination="DOS-8C-wNP" id="6gN-pj-r1Q"/>
                         <outlet property="tabberButton" destination="Ruy-cb-HH3" id="H03-4T-cAQ"/>
                         <outlet property="totalTabbers" destination="HVO-h2-oJf" id="u4z-oT-pnD"/>
                         <outlet property="usernameProfile" destination="kPR-SQ-ylI" id="kZp-G3-4M2"/>
@@ -1796,8 +1798,8 @@
         <image name="user-7.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bOq-2b-3eE"/>
-        <segue reference="KKl-Ay-2xk"/>
+        <segue reference="iYY-yP-HsU"/>
+        <segue reference="NcK-oC-OB6"/>
         <segue reference="Dj6-ii-vT0"/>
     </inferredMetricsTieBreakers>
 </document>
