@@ -122,6 +122,7 @@
     NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
     
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
     
     cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
@@ -159,6 +160,10 @@
     }
 }
 
+- (IBAction)exitUserQuestions:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Votes
 
 - (void)saveVote:(id)sender {
@@ -187,8 +192,26 @@
     }];
 }
 
-- (IBAction)exitUserQuestions:(UIBarButtonItem *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+#pragma mark - Sharing
+
+- (void)shareJoke:(id)sender {
+    
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
+    
+    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on JokeApp!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download JokeApp!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
+    
+    NSMutableArray *jokeToShare = [NSMutableArray array];
+    [jokeToShare addObject:messageBody];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    if (UIActivityTypeMail) {
+        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
 }
 
 @end

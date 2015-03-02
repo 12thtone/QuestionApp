@@ -11,6 +11,14 @@
 
 @interface LoginViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *login;
+@property (weak, nonatomic) IBOutlet UIButton *needAccount;
+@property (weak, nonatomic) IBOutlet UIButton *forgotPassword;
+
+- (IBAction)login:(id)sender;
+
 @end
 
 @implementation LoginViewController
@@ -22,10 +30,29 @@
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.rightBarButtonItem = nil;
+    
+    [self.login addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    self.login.layer.borderWidth = 1;
+    self.login.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.login.layer.cornerRadius = 8;
+    self.login.layer.masksToBounds = YES;
+    
+    //[self.needAccount addTarget:self action:@selector(signUp:) forControlEvents:UIControlEventTouchUpInside];
+    self.needAccount.layer.borderWidth = 1;
+    self.needAccount.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.needAccount.layer.cornerRadius = 8;
+    self.needAccount.layer.masksToBounds = YES;
+    
+    //[self.forgotPassword addTarget:self action:@selector(newPassword:) forControlEvents:UIControlEventTouchUpInside];
+    self.forgotPassword.layer.borderWidth = 1;
+    self.forgotPassword.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.forgotPassword.layer.cornerRadius = 8;
+    self.forgotPassword.layer.masksToBounds = YES;
+    
 }
 
 
-- (IBAction)login:(id)sender {
+- (void)login:(id)sender {
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     

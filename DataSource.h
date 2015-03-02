@@ -15,4 +15,6 @@
 
 - (PFQuery *)queryForTable:(NSString *)className;
 
+- (BOOL)emailNotificationAllowed:(BOOL)yesOrNo;
+
 @end

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *responseTextView;
 @property (weak, nonatomic) IBOutlet UIButton *upVoteButton;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (strong, nonatomic) PFUser *fullResponseUser;
 
 @end
@@ -72,6 +73,7 @@
     [self.usernameLabel addGestureRecognizer:tap];
     
     [self.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,6 +120,23 @@
             [alertView show];
         }
     }];
+}
+
+#pragma mark - Sharing
+
+- (void)shareJoke:(id)sender {
+    
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on JokeApp!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download JokeApp!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.fullResponse objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [self.fullResponse objectForKey:@"answerText"]];
+    
+    NSMutableArray *jokeToShare = [NSMutableArray array];
+    [jokeToShare addObject:messageBody];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    if (UIActivityTypeMail) {
+        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
 }
 
 @end

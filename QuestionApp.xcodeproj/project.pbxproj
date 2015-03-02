@@ -34,6 +34,9 @@
 		F94B44C21A9E0EB500B39708 /* HotTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94B44C11A9E0EB500B39708 /* HotTableViewController.m */; };
 		F94B44C51A9E0ECA00B39708 /* HotTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94B44C41A9E0ECA00B39708 /* HotTableViewCell.m */; };
 		F9669FF71A968BF6007D142B /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */; };
+		F96EDDEF1AA3BFD100682BDD /* gear-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F96EDDEE1AA3BFD100682BDD /* gear-7@2x.png */; };
+		F96EDDF21AA3C07D00682BDD /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96EDDF11AA3C07D00682BDD /* SettingsTableViewController.m */; };
+		F96EDDF41AA3D9A500682BDD /* gear-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F96EDDF31AA3D9A500682BDD /* gear-7@3x.png */; };
 		F98333D81AA0EA6900A2E295 /* microphone-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98333D71AA0EA6900A2E295 /* microphone-7@2x.png */; };
 		F98333DA1AA0EA9A00A2E295 /* microphone-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98333D91AA0EA9A00A2E295 /* microphone-7@3x.png */; };
 		F98333DC1AA0EAF000A2E295 /* user-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F98333DB1AA0EAF000A2E295 /* user-7@2x.png */; };
@@ -68,6 +71,8 @@
 		F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B718191A8902EE0070C134 /* 644-coversation@2x.png */; };
 		F9B7181C1A8908A80070C134 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B7181B1A8908A80070C134 /* placeholder.png */; };
 		F9B718221A890EA80070C134 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B718211A890EA80070C134 /* MyProfileTableViewController.m */; };
+		F9B851901AA1FBAA0049EBC7 /* dot-more-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B8518F1AA1FBAA0049EBC7 /* dot-more-7@3x.png */; };
+		F9B851921AA1FBE80049EBC7 /* email-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B851911AA1FBE80049EBC7 /* email-7@3x.png */; };
 		F9CBBE741A82662100680486 /* ResponseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE731A82662000680486 /* ResponseTableViewController.m */; };
 		F9CBBE771A82664000680486 /* AddJokeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE761A82664000680486 /* AddJokeViewController.m */; };
 		F9CBBE7A1A82665200680486 /* AddResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE791A82665200680486 /* AddResponseViewController.m */; };
@@ -128,6 +133,10 @@
 		F94B44C41A9E0ECA00B39708 /* HotTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotTableViewCell.m; path = ../HotTableViewCell.m; sourceTree = "<group>"; };
 		F9669FF51A968BF6007D142B /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgotPasswordViewController.h; path = ../ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		F9669FF61A968BF6007D142B /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgotPasswordViewController.m; path = ../ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		F96EDDEE1AA3BFD100682BDD /* gear-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear-7@2x.png"; sourceTree = "<group>"; };
+		F96EDDF01AA3C07D00682BDD /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTableViewController.h; path = ../SettingsTableViewController.h; sourceTree = "<group>"; };
+		F96EDDF11AA3C07D00682BDD /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTableViewController.m; path = ../SettingsTableViewController.m; sourceTree = "<group>"; };
+		F96EDDF31AA3D9A500682BDD /* gear-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear-7@3x.png"; sourceTree = "<group>"; };
 		F98333D71AA0EA6900A2E295 /* microphone-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone-7@2x.png"; sourceTree = "<group>"; };
 		F98333D91AA0EA9A00A2E295 /* microphone-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "microphone-7@3x.png"; sourceTree = "<group>"; };
 		F98333DB1AA0EAF000A2E295 /* user-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-7@2x.png"; sourceTree = "<group>"; };
@@ -171,6 +180,8 @@
 		F9B7181B1A8908A80070C134 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		F9B718201A890EA80070C134 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyProfileTableViewController.h; path = ../MyProfileTableViewController.h; sourceTree = "<group>"; };
 		F9B718211A890EA80070C134 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyProfileTableViewController.m; path = ../MyProfileTableViewController.m; sourceTree = "<group>"; };
+		F9B8518F1AA1FBAA0049EBC7 /* dot-more-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot-more-7@3x.png"; sourceTree = "<group>"; };
+		F9B851911AA1FBE80049EBC7 /* email-7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email-7@3x.png"; sourceTree = "<group>"; };
 		F9CBBE721A82662000680486 /* ResponseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponseTableViewController.h; path = ../ResponseTableViewController.h; sourceTree = "<group>"; };
 		F9CBBE731A82662000680486 /* ResponseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseTableViewController.m; path = ../ResponseTableViewController.m; sourceTree = "<group>"; };
 		F9CBBE751A82664000680486 /* AddJokeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddJokeViewController.h; path = ../AddJokeViewController.h; sourceTree = "<group>"; };
@@ -295,6 +306,8 @@
 				F9CBBE851A82AE8700680486 /* SignupViewController.m */,
 				F9CBBE811A82AC0A00680486 /* LoginViewController.h */,
 				F9CBBE821A82AC0A00680486 /* LoginViewController.m */,
+				F96EDDF01AA3C07D00682BDD /* SettingsTableViewController.h */,
+				F96EDDF11AA3C07D00682BDD /* SettingsTableViewController.m */,
 				F9CBBE7B1A8283DD00680486 /* DataSource.h */,
 				F9CBBE7C1A8283DD00680486 /* DataSource.m */,
 				F98333F31AA0FCA500A2E295 /* Reachability.h */,
@@ -312,6 +325,10 @@
 		F9118DB01A8196EB00E878AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F96EDDEE1AA3BFD100682BDD /* gear-7@2x.png */,
+				F96EDDF31AA3D9A500682BDD /* gear-7@3x.png */,
+				F9B8518F1AA1FBAA0049EBC7 /* dot-more-7@3x.png */,
+				F9B851911AA1FBE80049EBC7 /* email-7@3x.png */,
 				F98333D71AA0EA6900A2E295 /* microphone-7@2x.png */,
 				F98333D91AA0EA9A00A2E295 /* microphone-7@3x.png */,
 				F98333DB1AA0EAF000A2E295 /* user-7@2x.png */,
@@ -473,9 +490,12 @@
 				F98333E81AA0ED8600A2E295 /* door-out-7@3x.png in Resources */,
 				F98333E01AA0EB6200A2E295 /* sun-7@2x.png in Resources */,
 				F98333EA1AA0EDE300A2E295 /* tag-minus-7@3x.png in Resources */,
+				F9B851901AA1FBAA0049EBC7 /* dot-more-7@3x.png in Resources */,
 				F98333DE1AA0EB1400A2E295 /* user-7@3x.png in Resources */,
 				F98333F21AA0EF7700A2E295 /* half-arrow-up-7@3x.png in Resources */,
 				F98333F01AA0EF2800A2E295 /* arrow-up-7@3x.png in Resources */,
+				F9B851921AA1FBE80049EBC7 /* email-7@3x.png in Resources */,
+				F96EDDEF1AA3BFD100682BDD /* gear-7@2x.png in Resources */,
 				F98CF65C1A9F8B5D008B91E3 /* star-7@3x.png in Resources */,
 				F98450131AA002DA0061A0AB /* half-arrow-left-circle-7@3x.png in Resources */,
 				F9118DC11A8196EB00E878AA /* LaunchScreen.xib in Resources */,
@@ -491,6 +511,7 @@
 				F9B718181A89025F0070C134 /* 564-camera@2x.png in Resources */,
 				F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */,
 				F99102551A950B32009DC951 /* 534-eye@2x.png in Resources */,
+				F96EDDF41AA3D9A500682BDD /* gear-7@3x.png in Resources */,
 				F98333D81AA0EA6900A2E295 /* microphone-7@2x.png in Resources */,
 				F984500B1A9FDB320061A0AB /* half-arrow-left-7@3x.png in Resources */,
 				F98333DA1AA0EA9A00A2E295 /* microphone-7@3x.png in Resources */,
@@ -523,6 +544,7 @@
 				F9118DB61A8196EB00E878AA /* AppDelegate.m in Sources */,
 				F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */,
 				F9A8A99F1A897F1900DFD090 /* ProfileTableViewController.m in Sources */,
+				F96EDDF21AA3C07D00682BDD /* SettingsTableViewController.m in Sources */,
 				F94B44C51A9E0ECA00B39708 /* HotTableViewCell.m in Sources */,
 				F9CBBE741A82662100680486 /* ResponseTableViewController.m in Sources */,
 				F9E55EB21A92413D0061CBCE /* TabsTableViewCell.m in Sources */,

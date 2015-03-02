@@ -155,10 +155,8 @@
     [tap setNumberOfTapsRequired:1];
     [cell.usernameLabel addGestureRecognizer:tap];
     
-    UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteTap setNumberOfTapsRequired:1];
-    voteTap.enabled = YES;
-    [cell.voteLabel addGestureRecognizer:voteTap];
+    [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
     
     cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
@@ -207,12 +205,16 @@
     [self presentViewController:profileVC animated:YES completion:nil];
 }
 
+- (IBAction)exitUserQuestions:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Votes
 
-- (void)saveVote:(UITapGestureRecognizer *)sender {
+- (void)saveVote:(id)sender {
     
-    CGPoint tapLocation = [sender locationInView:self.tableView];
-    NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
     PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
     
@@ -233,6 +235,28 @@
             [alertView show];
         }
     }];
+}
+
+#pragma mark - Sharing
+
+- (void)shareJoke:(id)sender {
+    
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
+    
+    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on JokeApp!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download JokeApp!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
+    
+    NSMutableArray *jokeToShare = [NSMutableArray array];
+    [jokeToShare addObject:messageBody];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    if (UIActivityTypeMail) {
+        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
 }
 
 @end

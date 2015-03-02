@@ -148,6 +148,7 @@
     [cell.usernameLabel addGestureRecognizer:tap];
     
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
@@ -194,6 +195,28 @@
             [alertView show];
         }
     }];
+}
+
+#pragma mark - Sharing
+
+- (void)shareJoke:(id)sender {
+    
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
+    
+    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on JokeApp!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download JokeApp!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"answerText"]];
+    
+    NSMutableArray *jokeToShare = [NSMutableArray array];
+    [jokeToShare addObject:messageBody];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    if (UIActivityTypeMail) {
+        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
 }
 
 #pragma mark - Navigation
