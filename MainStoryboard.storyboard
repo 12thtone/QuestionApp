@@ -79,11 +79,11 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="WZA-HL-Pga">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="XYW-zU-9U1">
-                                    <rect key="frame" x="104" y="0.0" width="33" height="33"/>
+                                    <rect key="frame" x="72" y="0.0" width="33" height="33"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -242,7 +242,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="eq4-yz-kFx">
-                            <rect key="frame" x="230" y="5.5" width="140" height="33"/>
+                            <rect key="frame" x="230" y="6" width="140" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Jokes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V43-SL-Ppt">
@@ -400,7 +400,7 @@
                     <navigationItem key="navigationItem" id="3ht-9g-DgY">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="fqf-Gd-a96">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="w6W-vS-Oc0">
@@ -711,7 +711,7 @@
                                 <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URz-uI-ZxX">
-                                <rect key="frame" x="16" y="123" width="568" height="420"/>
+                                <rect key="frame" x="16" y="123" width="568" height="469"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textView>
@@ -733,11 +733,11 @@
                     <navigationItem key="navigationItem" id="joG-cm-RyX">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="KCi-5h-KpY">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="QL4-lu-KRH">
-                                    <rect key="frame" x="104" y="0.0" width="33" height="33"/>
+                                    <rect key="frame" x="71" y="0.0" width="33" height="33"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -886,7 +886,7 @@
                     <navigationItem key="navigationItem" id="Inb-Up-Qq6">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="njd-ys-kLB">
-                            <rect key="frame" x="204" y="5.5" width="192" height="33"/>
+                            <rect key="frame" x="204" y="6" width="192" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3V-VG-WHo">
@@ -1159,7 +1159,7 @@
                     <navigationItem key="navigationItem" id="zgH-7O-8Tp">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="pia-Cb-uKs">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIG-eM-vl9">
@@ -1303,7 +1303,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i87-NE-uE0">
-                                                    <rect key="frame" x="101" y="162" width="64.5" height="20"/>
+                                                    <rect key="frame" x="101" y="162" width="65" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="DXZ-Un-OC2"/>
                                                         <constraint firstAttribute="height" constant="15" id="hPv-ga-zpc"/>
@@ -1336,7 +1336,7 @@
                                                         </mask>
                                                     </variation>
                                                     <connections>
-                                                        <segue destination="VSl-20-qO4" kind="presentation" id="p3y-ac-EqE"/>
+                                                        <segue destination="VSl-20-qO4" kind="presentation" identifier="toSettings" id="p3y-ac-EqE"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1380,7 +1380,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="9pg-JO-xdm">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cii-AZ-NFp">
@@ -1932,7 +1932,7 @@
                     <navigationItem key="navigationItem" id="ioh-7E-ryW">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="IX6-vP-b4S">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tabs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1Q-dL-KaN">
@@ -2124,7 +2124,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="7zI-Zd-MhN">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-yO-iRT">

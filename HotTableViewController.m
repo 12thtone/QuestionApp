@@ -8,6 +8,7 @@
 
 #import "HotTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "ResponseTableViewController.h"
 #import "ProfileTableViewController.h"
 #import "DataSource.h"
@@ -71,6 +72,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.canDisplayBannerAds = YES;
+    
     [self questionQuery];
     [self loadObjects];
 }
@@ -189,6 +193,7 @@
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userFromTabList = user;
+    profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }
@@ -230,7 +235,7 @@
     
     PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
     
-    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on JokeApp!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download JokeApp!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokinit!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokinit!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
     
     NSMutableArray *jokeToShare = [NSMutableArray array];
     [jokeToShare addObject:messageBody];

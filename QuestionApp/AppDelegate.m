@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import <iAd/iAd.h>
 #import "Reachability.h"
 
 @interface AppDelegate () 
@@ -32,6 +33,8 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    
+    [UIViewController prepareInterstitialAds];
     
     return YES;
 }

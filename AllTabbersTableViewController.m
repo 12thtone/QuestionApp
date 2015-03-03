@@ -8,6 +8,7 @@
 
 #import "AllTabbersTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "ProfileTableViewController.h"
 #import "AllTabbersTableViewCell.h"
 
@@ -68,6 +69,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.canDisplayBannerAds = YES;
+    
     [self tabberQuery];
     [self loadObjects];
 }
@@ -157,6 +161,7 @@
                 
         ProfileTableViewController *profileTableViewController = segue.destinationViewController;
         profileTableViewController.userFromTabList = user;
+        profileTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

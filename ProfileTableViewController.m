@@ -8,6 +8,7 @@
 
 #import "ProfileTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "AllTabbersTableViewController.h"
 #import "UserJokeTableViewController.h"
 #import <MessageUI/MessageUI.h>
@@ -105,7 +106,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+        
     [self userTabbingQuery];
 }
 

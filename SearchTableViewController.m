@@ -8,6 +8,7 @@
 
 #import "SearchTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "ResponseTableViewController.h"
 #import "ProfileTableViewController.h"
 #import "DataSource.h"
@@ -72,6 +73,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.canDisplayBannerAds = YES;
     
     [self loadObjects];
 }
@@ -164,6 +167,7 @@
                 
         ProfileTableViewController *profileTableViewController = (ProfileTableViewController *)segue.destinationViewController;
         profileTableViewController.userFromTabList = object;
+        profileTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

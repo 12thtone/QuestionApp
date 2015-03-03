@@ -8,7 +8,9 @@
 
 #import "MyProfileTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "Reachability.h"
+#import "SettingsTableViewController.h"
 
 @interface MyProfileTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -68,6 +70,10 @@
             
         }
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,6 +143,17 @@
                 [alertView show];
             }
         }];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"toSettings"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        
+        SettingsTableViewController *settingsTableViewController = (SettingsTableViewController*) navigationController;
+        settingsTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

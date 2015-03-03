@@ -91,6 +91,7 @@
 		F9CBBE831A82AC0A00680486 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE821A82AC0A00680486 /* LoginViewController.m */; };
 		F9CBBE861A82AE8700680486 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CBBE851A82AE8700680486 /* SignupViewController.m */; };
 		F9D057AF1A951A2E0098A9E2 /* UserJokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D057AE1A951A2E0098A9E2 /* UserJokeTableViewCell.m */; };
+		F9DDD2211AA65C5800750AB1 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DDD2201AA65C5800750AB1 /* iAd.framework */; };
 		F9E55EAF1A9241210061CBCE /* TabsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */; };
 		F9E55EB21A92413D0061CBCE /* TabsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EB11A92413D0061CBCE /* TabsTableViewCell.m */; };
 		F9E55EB81A92939E0061CBCE /* AllTabbersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E55EB71A92939E0061CBCE /* AllTabbersTableViewController.m */; };
@@ -218,6 +219,7 @@
 		F9CBBE851A82AE8700680486 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = ../SignupViewController.m; sourceTree = "<group>"; };
 		F9D057AD1A951A2E0098A9E2 /* UserJokeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserJokeTableViewCell.h; path = ../UserJokeTableViewCell.h; sourceTree = "<group>"; };
 		F9D057AE1A951A2E0098A9E2 /* UserJokeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserJokeTableViewCell.m; path = ../UserJokeTableViewCell.m; sourceTree = "<group>"; };
+		F9DDD2201AA65C5800750AB1 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		F9E55EAD1A9241210061CBCE /* TabsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabsTableViewController.h; path = ../TabsTableViewController.h; sourceTree = "<group>"; };
 		F9E55EAE1A9241210061CBCE /* TabsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabsTableViewController.m; path = ../TabsTableViewController.m; sourceTree = "<group>"; };
 		F9E55EB01A92413D0061CBCE /* TabsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabsTableViewCell.h; path = ../TabsTableViewCell.h; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9DDD2211AA65C5800750AB1 /* iAd.framework in Frameworks */,
 				F9118DF61A819B3300E878AA /* libsqlite3.dylib in Frameworks */,
 				F9118DF41A819B1500E878AA /* libz.dylib in Frameworks */,
 				F9118DF21A819AED00E878AA /* SystemConfiguration.framework in Frameworks */,
@@ -411,6 +414,7 @@
 		F9118DF71A819B5300E878AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F9DDD2201AA65C5800750AB1 /* iAd.framework */,
 				F9118DF51A819B3300E878AA /* libsqlite3.dylib */,
 				F9118DF31A819B1500E878AA /* libz.dylib */,
 				F9118DF81A81A7A300E878AA /* ParseUI.framework */,
@@ -713,6 +717,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -730,6 +735,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

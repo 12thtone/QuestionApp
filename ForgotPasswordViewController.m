@@ -48,7 +48,7 @@
         [PFUser requestPasswordResetForEmailInBackground:email];
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Check Your Email"
-                                                            message:@"We sent you a link to reset your password. You'll be ready to Lafitup soon!"
+                                                            message:@"We sent you a link to reset your password. You'll be Jokinit soon!"
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }
