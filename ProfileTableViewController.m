@@ -43,6 +43,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.imageProfile setImage:[UIImage imageNamed:@"placeholder.png"]];
+    self.imageProfile.layer.cornerRadius = 8.0;
+    self.imageProfile.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.imageProfile.layer.borderWidth = 1.0;
+    self.imageProfile.layer.masksToBounds = YES;
+    
     [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
     [self.tabBarController.tabBar setBarTintColor:[UIColor redColor]];
     
@@ -73,6 +79,11 @@
             if (!error){
                 
                 [self.imageProfile setImage:[UIImage imageWithData:data]];
+                self.imageProfile.layer.cornerRadius = 8.0;
+                self.imageProfile.layer.borderColor = [[UIColor grayColor] CGColor];
+                self.imageProfile.layer.borderWidth = 1.0;
+                self.imageProfile.layer.masksToBounds = YES;
+                
                 self.descriptionProfile.text = [self.user objectForKey:@"description"];
                 self.usernameProfile.text = [self.user objectForKey:@"username"];
                 self.realNameLabel.text = [self.user objectForKey:@"realName"];

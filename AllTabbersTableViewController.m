@@ -47,14 +47,18 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
     [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
     self.tabBarController.tabBar.alpha = 0.9;
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"All Tabbers", nil)];
+     */
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,6 +125,10 @@
             if (!error){
                 
                 [cell.userImage setImage:[UIImage imageWithData:data]];
+                cell.userImage.layer.cornerRadius = 8.0;
+                cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
+                cell.userImage.layer.borderWidth = 1.0;
+                cell.userImage.layer.masksToBounds = YES;
             }
             else {
                 NSLog(@"no data!");

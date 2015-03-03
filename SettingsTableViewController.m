@@ -8,9 +8,11 @@
 
 #import "SettingsTableViewController.h"
 #import "DataSource.h"
+#import <Parse/Parse.h>
 
 @interface SettingsTableViewController ()
 - (IBAction)doneButton:(id)sender;
+- (IBAction)logoutButton:(id)sender;
 
 @end
 
@@ -36,6 +38,10 @@
 
 - (IBAction)doneButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)logoutButton:(id)sender {
+    [PFUser logOut];
 }
 
 @end

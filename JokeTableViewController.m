@@ -65,12 +65,19 @@
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"New Jokes", nil)];
+    */
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.navigationItem.hidesBackButton = YES;
+    [self.navigationItem setHidesBackButton:YES animated:NO];
+    [self.navigationItem setTitle:@""];
+    
     [self questionQuery];
     [self loadObjects];
 }
@@ -121,6 +128,10 @@
             if (!error){
                 
                 [cell.userImage setImage:[UIImage imageWithData:data]];
+                cell.userImage.layer.cornerRadius = 8.0;
+                cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
+                cell.userImage.layer.borderWidth = 1.0;
+                cell.userImage.layer.masksToBounds = YES;
             }
             else {
                 NSLog(@"no data!");

@@ -56,8 +56,13 @@
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     } else {
+        
+        NSData *imageData = UIImagePNGRepresentation([UIImage imageNamed:@"placeholder.png"]);
+        PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+        
         PFUser *newUser = [PFUser user];
         newUser[@"realName"] = fullName;
+        newUser[@"picture"] = imageFile;
         newUser.username = self.username;
         newUser.password = password;
         newUser.email = email;

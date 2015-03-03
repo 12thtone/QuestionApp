@@ -35,10 +35,10 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Profile", nil)];
-    
+    */
     UITapGestureRecognizer *tapDismissKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tapDismissKeyboard];
     
@@ -53,10 +53,18 @@
     [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error){
             [self.profileImage setImage:[UIImage imageWithData:data]];
+            self.profileImage.layer.cornerRadius = 8.0;
+            self.profileImage.layer.borderColor = [[UIColor grayColor] CGColor];
+            self.profileImage.layer.borderWidth = 1.0;
+            self.profileImage.layer.masksToBounds = YES;
         }
         else {
             NSLog(@"no data!");
             [self.profileImage setImage:[UIImage imageNamed:@"placeholder.png"]]; //Set Custom Image if there is no user picture.
+            self.profileImage.layer.cornerRadius = 8.0;
+            self.profileImage.layer.borderColor = [[UIColor grayColor] CGColor];
+            self.profileImage.layer.borderWidth = 1.0;
+            self.profileImage.layer.masksToBounds = YES;
             
         }
     }];

@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *needAccount;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPassword;
 
-- (IBAction)login:(id)sender;
-
 @end
 
 @implementation LoginViewController
@@ -28,8 +26,8 @@
     [super viewDidLoad];
     
     self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = nil;
+    [self.navigationItem setHidesBackButton:YES animated:NO];
+    [self.navigationItem setTitle:@""];
     
     [self.login addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     self.login.layer.borderWidth = 1;
