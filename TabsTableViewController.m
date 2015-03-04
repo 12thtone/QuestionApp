@@ -116,12 +116,56 @@
         }
     }];
 }
-
+/*
+- (void)gotOneQuery {
+    
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+    [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
+    
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                
+                [authorArray addObject:[object objectForKey:@"tabReceiver"]];
+                
+            }
+            
+            NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+            NSMutableArray *authorQuestionArray = [[NSMutableArray alloc] init];
+            
+            PFQuery *queryQuestion = [PFQuery queryWithClassName:@"Question"];
+            
+            [queryQuestion whereKey:@"author" containedIn:authorArray];
+            [query whereKey:@"status" equalTo:@"Got One for Ya"];
+            [queryQuestion orderByDescending:@"createdAt"];
+            [queryQuestion findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                for (PFObject *object in objects) {
+                    [authorQuestionArray addObject:[object objectForKey:@"author"]];
+                    [objectArray addObject:object];
+                    
+                    self.theObjects = [objectArray copy];
+                    self.theAuthors = [authorQuestionArray copy];
+                }
+                [self loadObjects];
+                //[self.tableView reloadData];
+            }];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+*/
 - (void)gotOneQuery {
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"author" containedIn:self.theAuthors];
     [query whereKey:@"status" equalTo:@"Got One for Ya"];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -142,6 +186,7 @@
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"author" containedIn:self.theAuthors];
     [query whereKey:@"status" equalTo:@"Finish My Joke"];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -315,9 +360,12 @@
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
         case 0:
-            [self gotOneQuery];
+            [self tabQuery];
             break;
         case 1:
+            [self gotOneQuery];
+            break;
+        case 2:
             [self finishJokeQuery];
             break;
         default:

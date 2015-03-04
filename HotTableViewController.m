@@ -110,7 +110,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Question"];
     [query whereKey:@"status" equalTo:@"Got One for Ya"];
-    [query orderByDescending:@"createdAt"];
+    [query orderByDescending:@"voteQuestion"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
             [authorArray addObject:[object objectForKey:@"author"]];
@@ -130,7 +130,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Question"];
     [query whereKey:@"status" equalTo:@"Finish My Joke"];
-    [query orderByDescending:@"createdAt"];
+    [query orderByDescending:@"voteQuestion"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
             [authorArray addObject:[object objectForKey:@"author"]];
@@ -294,9 +294,12 @@
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
         case 0:
-            [self gotOneQuery];
+            [self questionQuery];
             break;
         case 1:
+            [self gotOneQuery];
+            break;
+        case 2:
             [self finishJokeQuery];
             break;
         default:

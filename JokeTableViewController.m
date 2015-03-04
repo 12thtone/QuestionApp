@@ -298,9 +298,12 @@
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
         case 0:
-            [self gotOneQuery];
+            [self questionQuery];
             break;
         case 1:
+            [self gotOneQuery];
+            break;
+        case 2:
             [self finishJokeQuery];
             break;
         default:
