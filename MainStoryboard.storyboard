@@ -25,9 +25,18 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-VQ-ekd">
-                                <rect key="frame" x="16" y="168" width="568" height="412"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
+                                <rect key="frame" x="16" y="168" width="568" height="216"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="FEY-nZ-apK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FEY-nZ-apK"/>
+                                    </mask>
+                                </variation>
                             </textView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bri-gV-EPk">
                                 <rect key="frame" x="16" y="110" width="568" height="29"/>
@@ -58,8 +67,8 @@
                             <constraint firstAttribute="trailing" secondItem="bri-gV-EPk" secondAttribute="trailing" constant="16" id="545-8w-QGU"/>
                             <constraint firstItem="2lt-VQ-ekd" firstAttribute="top" secondItem="sL3-MN-uFq" secondAttribute="bottom" constant="8" id="BcM-VZ-18q"/>
                             <constraint firstAttribute="trailing" secondItem="F1B-j0-8yW" secondAttribute="trailing" constant="16" id="IK7-5c-C5q"/>
+                            <constraint firstItem="RWH-pB-gPI" firstAttribute="top" secondItem="2lt-VQ-ekd" secondAttribute="bottom" constant="216" id="Oxo-EX-TIT"/>
                             <constraint firstItem="bri-gV-EPk" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="S1d-oY-jJ6"/>
-                            <constraint firstItem="RWH-pB-gPI" firstAttribute="top" secondItem="2lt-VQ-ekd" secondAttribute="bottom" constant="20" id="XsP-LL-zJl"/>
                             <constraint firstAttribute="trailing" secondItem="2lt-VQ-ekd" secondAttribute="trailing" constant="16" id="c2O-5y-T3c"/>
                             <constraint firstAttribute="trailing" secondItem="sL3-MN-uFq" secondAttribute="trailing" constant="16" id="jB4-hb-ZEa"/>
                             <constraint firstItem="F1B-j0-8yW" firstAttribute="top" secondItem="pqe-AP-R9K" secondAttribute="bottom" constant="8" id="jW9-wq-Pck"/>
@@ -114,6 +123,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="jDx-sH-kCL">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="kRq-ej-Dfw"/>
+                                <barButtonItem style="plain" id="f0H-tF-Wrm">
+                                    <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="QQ2-Fl-D46">
+                                        <rect key="frame" x="195" y="6" width="210" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <segments>
+                                            <segment title="Got One for Ya"/>
+                                            <segment title="Finish My Joke"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="jokeType:" destination="kSX-Pp-37A" eventType="valueChanged" id="M7a-IP-ZOT"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="rwL-jD-Ljx"/>
+                            </items>
+                            <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JokeTVC" rowHeight="93" id="6RA-nF-WaF" customClass="JokeTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -265,12 +298,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="jokeTypeControl" destination="QQ2-Fl-D46" id="Goa-mL-SEF"/>
                         <segue destination="xjh-wP-fs2" kind="show" identifier="showLogin" id="iYY-yP-HsU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9pl-ra-j6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="-685"/>
+            <point key="canvasLocation" x="1318" y="-694.5"/>
         </scene>
         <!--Hot Table View Controller-->
         <scene sceneID="pDA-rV-v3A">
@@ -281,6 +315,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="cJ8-X3-KdV">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="W2R-9Q-ZG9"/>
+                                <barButtonItem style="plain" id="1ux-7i-LAW">
+                                    <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gWy-AZ-Z4b">
+                                        <rect key="frame" x="195" y="7" width="210" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <segments>
+                                            <segment title="Got One for Ya"/>
+                                            <segment title="Finish My Joke"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="jokeType:" destination="3dr-eh-gYo" eventType="valueChanged" id="8f9-Ce-F7e"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="cf5-EI-V2W"/>
+                            </items>
+                            <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hotTVCell" rowHeight="93" id="q9a-uI-fLY" customClass="HotTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -416,10 +474,13 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="jokeTypeControl" destination="gWy-AZ-Z4b" id="j0P-Hp-Ekz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fzQ-uM-kgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="921"/>
+            <point key="canvasLocation" x="1213" y="920.5"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="yBR-Uz-ZxQ">
@@ -652,7 +713,7 @@
                     <navigationItem key="navigationItem" id="ZGc-Sj-Gke">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="HaT-1K-663">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jokinit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cg-wg-VxJ">
@@ -711,7 +772,7 @@
                                 <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URz-uI-ZxX">
-                                <rect key="frame" x="16" y="123" width="568" height="469"/>
+                                <rect key="frame" x="16" y="123" width="568" height="212"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textView>
@@ -719,6 +780,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="mVd-98-G6y" secondAttribute="trailing" constant="16" id="1L9-NZ-ACJ"/>
+                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="URz-uI-ZxX" secondAttribute="bottom" constant="216" id="4yy-sT-fYq"/>
                             <constraint firstItem="URz-uI-ZxX" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="BAQ-6U-0ic"/>
                             <constraint firstItem="URz-uI-ZxX" firstAttribute="top" secondItem="mVd-98-G6y" secondAttribute="bottom" constant="8" id="Esb-x6-yeB"/>
                             <constraint firstItem="CVa-dO-CLY" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="Hdh-Mc-NuV"/>
@@ -726,7 +788,6 @@
                             <constraint firstItem="mVd-98-G6y" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="i3b-2Y-mr8"/>
                             <constraint firstItem="mVd-98-G6y" firstAttribute="top" secondItem="CVa-dO-CLY" secondAttribute="bottom" constant="8" id="iSc-UJ-WvM"/>
                             <constraint firstItem="CVa-dO-CLY" firstAttribute="top" secondItem="aVK-0y-wTC" secondAttribute="bottom" constant="8" id="pxz-Vw-0iT"/>
-                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="URz-uI-ZxX" secondAttribute="bottom" constant="8" id="tmd-vQ-35M"/>
                             <constraint firstAttribute="trailing" secondItem="CVa-dO-CLY" secondAttribute="trailing" constant="16" id="wB7-qu-vAe"/>
                         </constraints>
                     </view>
@@ -768,13 +829,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.33000000000000002" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <textView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" id="jpd-SA-9YT">
-                            <rect key="frame" x="0.0" y="64" width="600" height="148"/>
+                        <textView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="jpd-SA-9YT">
+                            <rect key="frame" x="0.0" y="64" width="600" height="298"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                         </textView>
@@ -1812,6 +1873,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="g0Y-Zf-XLt">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="ovf-6i-cm8"/>
+                                <barButtonItem style="plain" id="Uvp-gj-RlV">
+                                    <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Mgl-fI-f6f">
+                                        <rect key="frame" x="195" y="1" width="210" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <segments>
+                                            <segment title="Got One for Ya"/>
+                                            <segment title="Finish My Joke"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="jokeType:" destination="DPd-AS-U8V" eventType="valueChanged" id="hcB-pv-1qQ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="3dy-bJ-Jwp"/>
+                            </items>
+                            <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TabsTVCell" rowHeight="93" id="oqs-oz-TTK" customClass="TabsTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1948,10 +2033,13 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="jokeTypeControl" destination="Mgl-fI-f6f" id="S57-WI-qMy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qw7-EZ-d38" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="1707.5"/>
+            <point key="canvasLocation" x="1213" y="1707.5"/>
         </scene>
         <!--Tabs-->
         <scene sceneID="ale-j0-rby">
@@ -2209,8 +2297,8 @@
         <image name="user-7.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="z7f-hL-hma"/>
         <segue reference="mXV-ZJ-g1o"/>
-        <segue reference="KKl-Ay-2xk"/>
         <segue reference="DdN-yH-8uP"/>
     </inferredMetricsTieBreakers>
 </document>

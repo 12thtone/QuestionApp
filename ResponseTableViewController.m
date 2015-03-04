@@ -67,12 +67,18 @@
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Responses", nil)];
     */
+    
+    CGRect frame = self.jokeTextView.frame;
+    frame.size.height = self.jokeTextView.contentSize.height;
+    self.jokeTextView.frame = frame;
+    
     self.jokeTextView.text = [self.joke objectForKey:@"questionText"];
     [self.jokeTextView sizeToFit];
+    
+    
     [self.jokeTextView.textContainer setSize:self.jokeTextView.frame.size];
     [self.jokeTextView layoutIfNeeded];
     [self.jokeTextView setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

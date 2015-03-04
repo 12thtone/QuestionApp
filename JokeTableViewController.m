@@ -19,6 +19,8 @@
 @property (weak, nonatomic) PFUser *tappedUser;
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
+- (IBAction)jokeType:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
 @end
 
@@ -107,21 +109,61 @@
     }];
 }
 
+- (void)gotOneQuery {
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"status" equalTo:@"Got One for Ya"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            [authorArray addObject:[object objectForKey:@"author"]];
+            [objectArray addObject:object];
+            
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
+        }
+        [self loadObjects];
+        //[self.tableView reloadData];
+    }];
+}
+
+- (void)finishJokeQuery {
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"status" equalTo:@"Finish My Joke"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            [authorArray addObject:[object objectForKey:@"author"]];
+            [objectArray addObject:object];
+            
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
+        }
+        [self loadObjects];
+        //[self.tableView reloadData];
+    }];
+}
+
 #pragma mark - PFQueryTableViewController
-/*
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self count];
+    return [self.theObjects count];
 }
-*/
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JokeTVC" forIndexPath:indexPath];
     
-    PFUser *user = [object objectForKey:@"author"];
+    PFUser *user = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"author"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
         cell.usernameLabel.text = username;
@@ -154,10 +196,10 @@
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
     
-    cell.statusLabel.text = [object objectForKey:@"status"];
+    cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.jokeTitleLabel.text = [object objectForKey:@"questionTitle"];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"voteQuestion"]];
+    cell.jokeTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
         cell.voteVotesLabel.text = @"Vote";
@@ -249,6 +291,20 @@
     
     if (UIActivityTypeMail) {
         [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
+}
+
+- (IBAction)jokeType:(id)sender {
+    switch (self.jokeTypeControl.selectedSegmentIndex)
+    {
+        case 0:
+            [self gotOneQuery];
+            break;
+        case 1:
+            [self finishJokeQuery];
+            break;
+        default:
+            break;
     }
 }
 

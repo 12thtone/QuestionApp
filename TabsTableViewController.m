@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
+- (IBAction)jokeType:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
 @end
 
@@ -112,6 +114,46 @@
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
+    }];
+}
+
+- (void)gotOneQuery {
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"status" equalTo:@"Got One for Ya"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            [authorArray addObject:[object objectForKey:@"author"]];
+            [objectArray addObject:object];
+            
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
+        }
+        [self loadObjects];
+        //[self.tableView reloadData];
+    }];
+}
+
+- (void)finishJokeQuery {
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"status" equalTo:@"Finish My Joke"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            [authorArray addObject:[object objectForKey:@"author"]];
+            [objectArray addObject:object];
+            
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
+        }
+        [self loadObjects];
+        //[self.tableView reloadData];
     }];
 }
 
@@ -266,6 +308,20 @@
     
     if (UIActivityTypeMail) {
         [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
+}
+
+- (IBAction)jokeType:(id)sender {
+    switch (self.jokeTypeControl.selectedSegmentIndex)
+    {
+        case 0:
+            [self gotOneQuery];
+            break;
+        case 1:
+            [self finishJokeQuery];
+            break;
+        default:
+            break;
     }
 }
 
