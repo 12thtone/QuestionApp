@@ -283,6 +283,10 @@
     [jokeToShare addObject:messageBody];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
     
+    if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
+        activityVC.popoverPresentationController.sourceView = self.view;
+    }
+    
     [self presentViewController:activityVC animated:YES completion:nil];
     
     if (UIActivityTypeMail) {

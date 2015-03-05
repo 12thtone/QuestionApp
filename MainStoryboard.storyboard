@@ -835,7 +835,7 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="298"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1479,49 +1479,71 @@
         <scene sceneID="4vj-2s-7di">
             <objects>
                 <tableViewController id="pPb-oI-95Q" customClass="SettingsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gVa-vl-FE0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gVa-vl-FE0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="csm-qw-hGc">
-                                <cells/>
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="myp-zH-6Vz" style="IBUITableViewCellStyleDefault" id="jKD-eH-IuF">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jKD-eH-IuF" id="9f1-r7-1UM">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rules" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="myp-zH-6Vz">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="eHC-7I-K5v" kind="show" id="dv8-tN-DT3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
                             </tableViewSection>
                             <tableViewSection id="52Q-uB-jhn">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="209" id="Yjy-DE-0k6">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="SQ7-yX-k6E" style="IBUITableViewCellStyleDefault" id="Yjy-DE-0k6">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yjy-DE-0k6" id="T1y-c9-a9s">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="This is a really cool place to tell and read joke." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxZ-d8-BuE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="208"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                                                </textView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Terms of Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SQ7-yX-k6E">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="TdR-6a-iAm" kind="show" id="SPt-aq-NaQ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="7Ca-rI-I39">
+                            <tableViewSection id="1si-gm-z4H">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="234" id="SuO-bt-uCM">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="dpF-ZR-8iy" style="IBUITableViewCellStyleDefault" id="KNT-BD-RBk">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SuO-bt-uCM" id="UdV-t0-ojz">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KNT-BD-RBk" id="JY7-GR-mKM">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="If you are rude, you account will be deleted." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-gA-v0N">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="233"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                                                </textView>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Privacy Policy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dpF-ZR-8iy">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="s1v-JA-LsE" kind="show" id="IQe-7O-usF"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1826,7 +1848,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="Z7p-7L-u97">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="msy-5x-HjX">
@@ -2254,6 +2276,194 @@
             </objects>
             <point key="canvasLocation" x="2438" y="4038"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="g0e-fC-oDw">
+            <objects>
+                <viewController id="s1v-JA-LsE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AqM-Dv-TdX"/>
+                        <viewControllerLayoutGuide type="bottom" id="7vf-qA-45a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lnl-5c-2lI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ0-6V-c8O">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Privacy Policy of Jokinit
+
+This Application collects some Personal Data from its Users.
+
+Data Controller and Owner      
+Matt Maher
+contact@12thtone.com
+
+Types of Data collected
+
+Among the types of Personal Data that this Application collects, by itself or through third parties, there are:
+Cookie and Usage data.
+
+Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection.
+
+The Personal Data may be freely provided by the User, or collected automatically when using this Application.
+
+Any use of Cookies - or of other tracking tools - by this Application or by the owners of third party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User.
+
+Failure to provide certain Personal Data may make it impossible for this Application to provide its services.
+
+Users are responsible for any Personal Data of third parties obtained, published or shared through this Application and confirm that they have the third party's consent to provide the Data to the Owner.
+
+Mode and place of processing the Data
+
+Methods of processing
+
+The Data Controller processes the Data of Users in a proper manner and shall take appropriate security measures to prevent unauthorized access, disclosure, modification, or unauthorized destruction of the Data.
+
+The Data processing is carried out using computers and/or IT enabled tools, following organizational procedures and modes strictly related to the purposes indicated. In addition to the Data Controller, in some cases, the Data may be accessible to certain types of persons in charge, involved with the operation of the site (administration, sales, marketing, legal, system administration) or external parties (such as third party technical service providers, mail carriers, hosting providers, IT companies, communications agencies) appointed, if necessary, as Data Processors by the Owner. The updated list of these parties may be requested from the Data Controller at any time.
+
+Place
+
+The Data is processed at the Data Controller's operating offices and in any other places where the parties involved with the processing are located. For further information, please contact the Data Controller.
+
+Retention time
+
+The Data is kept for the time necessary to provide the service requested by the User, or stated by the purposes outlined in this document, and the User can always request that the Data Controller suspend or remove the data.
+
+The use of the collected Data
+
+The Data concerning the User is collected to allow the Owner to provide its services, as well as for the following purposes:
+
+Analytics and Hosting and backend infrastructure.
+
+The Personal Data used for each purpose is outlined in the specific sections of this document.
+
+Detailed information on the processing of Personal Data
+
+Personal Data is collected for the following purposes and using the following services:
+
+Analytics
+
+The services contained in this section enable the Owner to monitor and analyze web traffic and can be used to keep track of User behavior.
+
+Parse Analytics (Parse LLC.)
+
+Parse Analytics is an analytics service provided by Parse LLC.
+
+Personal Data collected:
+
+Cookie and Usage data.
+
+Place of processing: USA
+https://parse.com/about/privacy
+Privacy Policy
+
+Hosting and backend infrastructure
+
+These services have the purpose of hosting data and files that enable this Application to run and be distributed as well as to provide a ready-made infrastructure to run specific features or parts of this Application.  Some of these services work through geographically distributed servers, making it difficult to determine the actual location where the Personal Data are stored.
+
+Parse Core &amp; Push (Parse LLC.)
+Parse Core &amp; Push is a hosting and backend service provided by Parse LLC.
+Personal Data collected:
+Various types of Data as specified in the privacy policy of the service.
+
+Place of processing: USA
+https://parse.com/about/privacy
+Privacy Policy
+
+Additional information about Data collection and processing
+
+Legal action
+The User's Personal Data may be used for legal purposes by the Data Controller, in Court or in the stages leading to possible legal action arising from improper use of this Application or the related services.
+
+The User declares to be aware that the Data Controller may be required to reveal personal data upon request of public authorities.
+
+Additional information about User's Personal Data
+
+In addition to the information contained in this privacy policy, this Application may provide the User with additional and contextual information concerning particular services or the collection and processing of Personal Data upon request.
+
+System Logs and Maintenance
+
+For operation and maintenance purposes, this Application and any third party services may collect files that record interaction with this Application (System Logs) or use for this purpose other Personal Data (such as IP Address).
+
+Information not contained in this policy
+
+More details concerning the collection or processing of Personal Data may be requested from the Data Controller at any time. Please see the contact information at the beginning of this document.
+
+The rights of Users
+
+Users have the right, at any time, to know whether their Personal Data has been stored and can consult the Data Controller to learn about their contents and origin, to verify their accuracy or to ask for them to be supplemented, cancelled, updated or corrected, or for their transformation into anonymous format or to block any data held in violation of the law, as well as to oppose their treatment for any and all legitimate reasons. Requests should be sent to the Data Controller at the contact information set out above.
+
+This Application does not support 
+
+Do Not Track requests.
+
+To determine whether any of the third party services it uses honor the Do Not Track requests, please read their privacy policies.
+
+Changes to this privacy policy
+
+The Data Controller reserves the right to make changes to this privacy policy at any time by giving notice to its Users on this page. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. If a User objects to any of the changes to the Policy, the User must cease using this Application and can request that the Data Controller removes the Personal Data. Unless stated otherwise, the then-current privacy policy applies to all Personal Data the Data Controller has about Users.
+
+Information about this privacy policy
+
+The Data Controller is responsible for this privacy policy, prepared starting from the modules provided by Iubenda and hosted on Iubenda's servers.
+
+Definitions and legal references
+
+Personal Data (or Data)
+
+Any information regarding a natural person, a legal person, an institution or an association, which is, or can be, identified, even indirectly, by reference to any other information, including a personal identification number.
+
+Usage Data
+
+Information collected automatically from this Application (or third party services employed in this Application ), which can include: the IP addresses or domain names of the computers utilized by the Users who use this Application, the URI addresses (Uniform Resource Identifier), the time of the request, the method utilized to submit the request to the server, the size of the file received in response, the numerical code indicating the status of the server's answer (successful outcome, error, etc.), the country of origin, the features of the browser and the operating system utilized by the User, the various time details per visit (e.g., the time spent on each page within the Application) and the details about the path followed within the Application with special reference to the sequence of pages visited, and other parameters about the device operating system and/or the User's IT environment.
+
+User
+
+The individual using this Application, which must coincide with or be authorized by the Data Subject, to whom the Personal Data refer.
+
+Data Subject
+
+The legal or natural person to whom the Personal Data refers.
+
+Data Processor (or Data Supervisor)
+
+The natural person, legal person, public administration or any other body, association or organization authorized by the Data Controller to process the Personal Data in compliance with this privacy policy.
+
+Data Controller (or Owner)
+
+The natural person, legal person, public administration or any other body, association or organization with the right, also jointly with another Data Controller, to make decisions regarding the purposes, and the methods of processing of Personal Data and the means used, including the security measures concerning the operation and use of this Application. The Data Controller, unless otherwise specified, is the Owner of  this Application.
+
+This Application
+
+The hardware or software tool by which the Personal Data of the User is collected.
+
+Cookie
+
+Small piece of data stored in the User's device.
+
+Legal information
+
+Notice to European Users: this privacy statement has been prepared in fulfillment of the obligations under Art. 10 of EC Directive n. 95/46/EC, and under the provisions of Directive 2002/58/EC, as revised by Directive 2009/136/EC, on the subject of Cookies.
+
+This privacy policy relates solely to this Application.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="leading" secondItem="lnl-5c-2lI" secondAttribute="leading" id="Byz-e7-75Z"/>
+                            <constraint firstAttribute="trailing" secondItem="nQ0-6V-c8O" secondAttribute="trailing" id="Cpx-H4-9kn"/>
+                            <constraint firstItem="7vf-qA-45a" firstAttribute="top" secondItem="nQ0-6V-c8O" secondAttribute="bottom" id="q3N-xk-VnG"/>
+                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="top" secondItem="lnl-5c-2lI" secondAttribute="top" id="tfl-As-3Nf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Io-ZR-G3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2550" y="4836"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="UYl-nQ-m2N">
             <objects>
@@ -2283,6 +2493,227 @@
             </objects>
             <point key="canvasLocation" x="972" y="4066"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="D01-3D-5f2">
+            <objects>
+                <viewController id="eHC-7I-K5v" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1sB-Fg-C4G"/>
+                        <viewControllerLayoutGuide type="bottom" id="VId-YU-fMI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cJX-ev-cAs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ExL-b1-TSV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Rules
+
+The goal of Jokinit is to provide a place for users to share jokes. We will not actively monitor all posts, but it is important to follow the rules below. Failure to follow the rules with result in, but is not limited to, account removal or account suspension.
+
+Content Boundaries and Use of Jokinit
+
+In order to provide the Jokinit service and the ability to communicate and stay connected with others, there are some limitations on the type of content that can be published with Jokinit. These limitations comply with legal requirements and make Jokinit a better experience for all. We may need to change these rules from time to time and reserve the right to do so. Please check back here to see the latest.
+
+Impersonation is prohibited.
+
+Trademarked usernames and images may be reclaimed by their legal owners.
+
+The publication of other people’s private information is prohibited.
+
+Specific threats of violence are prohibited.
+
+Cases of copyright infringement will be handled as-per the Terms of Service.
+
+Jokinit may not be used to commit illegal activities. 
+
+Creating multiple accounts to commit abusive behavior is prohibited.
+
+Abuse and harassment are prohibited.
+
+Inactive usernames will be deleted after six months of inactivity.
+
+Malware, phishing, and spam are prohibited.
+
+We may revise these Rules from time to time. 
+
+Contact us to report a violation or with questions.
+
+contact@12thtone.com</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ExL-b1-TSV" secondAttribute="trailing" id="FEu-LE-7XZ"/>
+                            <constraint firstItem="ExL-b1-TSV" firstAttribute="leading" secondItem="cJX-ev-cAs" secondAttribute="leading" id="HBa-EK-JJB"/>
+                            <constraint firstItem="ExL-b1-TSV" firstAttribute="top" secondItem="cJX-ev-cAs" secondAttribute="top" id="stR-bX-pbb"/>
+                            <constraint firstItem="VId-YU-fMI" firstAttribute="top" secondItem="ExL-b1-TSV" secondAttribute="bottom" id="zGk-V6-Mcc"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3bu-KU-HbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="4842"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FFR-aZ-NpP">
+            <objects>
+                <viewController id="TdR-6a-iAm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vJ2-78-p7l"/>
+                        <viewControllerLayoutGuide type="bottom" id="9fm-VQ-ijW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZwW-rG-SW2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tEE-fR-qRM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Terms of Service
+
+These Terms of Service (“Terms”) govern your access to and use of the services, including our website, SMS, email notifications, application, buttons, widgets, ads, and commerce services, and any information, text, graphics, photos or other materials uploaded, downloaded or appearing on the Services (collectively referred to as “Content”). Your access to and use of the Services are conditioned on your acceptance of and compliance with these Terms. By accessing or using the Services you agree to be bound by these Terms.
+
+1.	Basic Terms
+
+You are responsible for your use of the Services, for any Content you post to the Services, and for any consequences thereof. The Content you submit, post, or display will be able to be viewed by other users of the Services. You should only provide Content that you are comfortable sharing with others under these Terms.
+
+You may use the Services only if you can form a binding contract with Jokinit and are not a person barred from receiving services under the laws of the United States or other applicable jurisdiction. If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so. You may use the Services only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations.
+
+The Services that Jokinit provides are always evolving and the form and nature of the Services that Jokinit provides may change from time to time without prior notice to you. In addition, Jokinit may stop (permanently or temporarily) providing the Services (or any features within the Services) to you or to users generally and may not be able to provide you with prior notice. We also retain the right to create limits on use and storage at our sole discretion at any time without prior notice to you.
+
+The Services may include advertisements, which may be targeted to the Content or information on the Services, queries made through the Services, or other information. The types and extent of advertising by Jokinit on the Services are subject to change. In consideration for Jokinit granting you access to and use of the Services, you agree that Jokinit and its third party providers and partners may place such advertising on the Services or in connection with the display of Content or information from the Services whether submitted by you or others.
+
+2. Privacy
+
+Any information that you provide to Jokinit is subject to our Privacy Policy, which governs our collection and use of your information. You understand that through your use of the Services you consent to the collection and use (as set forth in the Privacy Policy) of this information, including the transfer of this information to the United States and/or other countries for storage, processing and use by Jokinit. As part of providing you the Services, we may need to provide you with certain communications, such as service announcements and administrative messages. These communications are considered part of the Services and your Jokinit account, which you may not be able to opt-out from receiving.
+
+Tip You can opt-out of most communications from Jokinit.
+
+3. Passwords
+
+You are responsible for safeguarding the password that you use to access the Services and for any activities or actions under your password. We encourage you to use “strong” passwords (passwords that use a combination of upper and lower case letters, numbers and symbols) with your account. Jokinit cannot and will not be liable for any loss or damage arising from your failure to comply with the above.
+
+4. Content on the Services
+
+All Content, whether publicly posted or privately transmitted, is the sole responsibility of the person who originated such Content. We may not monitor or control the Content posted via the Services and, we cannot take responsibility for such Content. Any use or reliance on any Content or materials posted via the Services or obtained by you through the Services is at your own risk.
+
+We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services. You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive. Under no circumstances will Jokinit be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available via the Services or broadcast elsewhere.
+
+5. Your Rights
+
+You retain your rights to any Content you submit, post or display on or through the Services. By submitting, posting or displaying Content on or through the Services, you grant us a worldwide, non-exclusive, royalty-free license (with the right to sublicense) to use, copy, reproduce, process, adapt, modify, publish, transmit, display and distribute such Content in any and all media or distribution methods (now known or later developed).
+
+Tip This license is you authorizing us to make your Posts available to the rest of the world and to let others do the same.
+
+You agree that this license includes the right for Jokinit to provide, promote, and improve the Services and to make Content submitted to or through the Services available to other companies, organizations or individuals who partner with Jokinit for the syndication, broadcast, distribution or publication of such Content on other media and services, subject to our terms and conditions for such Content use.
+
+Such additional uses by Jokinit, or other companies, organizations or individuals who partner with Jokinit, may be made with no compensation paid to you with respect to the Content that you submit, post, transmit or otherwise make available through the Services.
+
+We may modify or adapt your Content in order to transmit, display or distribute it over computer networks and in various media and/or make changes to your Content as are necessary to conform and adapt that Content to any requirements or limitations of any networks, devices, services or media.
+
+You are responsible for your use of the Services, for any Content you provide, and for any consequences thereof, including the use of your Content by other users and our third party partners. You understand that your Content may be syndicated, broadcast, distributed, or published by our partners and if you do not have the right to submit Content for such use, it may subject you to liability. Jokinit will not be responsible or liable for any use of your Content by Jokinit in accordance with these Terms. You represent and warrant that you have all the rights, power and authority necessary to grant the rights granted herein to any Content that you submit.
+
+6. Your License To Use the Services
+
+Jokinit gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software that is provided to you by Jokinit as part of the Services. This license is for the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by Jokinit, in the manner permitted by these Terms.
+
+7. Jokinit Rights
+
+All right, title, and interest in and to the Services (excluding Content provided by users) are and will remain the exclusive property of Jokinit and its licensors. The Services are protected by copyright, trademark, and other laws of both the United States and foreign countries. Nothing in the Terms gives you a right to use the Jokinit name or any of the Jokinit trademarks, logos, domain names, and other distinctive brand features. Any feedback, comments, or suggestions you may provide regarding Jokinit, or the Services is entirely voluntary and we will be free to use such feedback, comments or suggestions as we see fit and without any obligation to you.
+
+8. Restrictions on Content and Use of the Services
+
+We reserve the right at all times (but will not have an obligation) to remove or refuse to distribute any Content on the Services, to suspend or terminate users, and to reclaim usernames without liability to you. We also reserve the right to access, read, preserve, and disclose any information as we reasonably believe is necessary to (i) satisfy any applicable law, regulation, legal process or governmental request, (ii) enforce the Terms, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests, or (v) protect the rights, property or safety of Jokinit, its users and the public.
+
+You may not do any of the following while accessing or using the Services: (i) access, tamper with, or use non-public areas of the Services, Jokinit’s computer systems, or the technical delivery systems of Jokinit ‘s providers; (ii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures; (iii) access or search or attempt to access or search the Services by any means (automated or otherwise) other than through our currently available, published interfaces that are provided by Jokinit (and only pursuant to those terms and conditions), unless you have been specifically allowed to do so in a separate agreement with Jokinit (NOTE: crawling the Services is permissible if done in accordance with the provisions of the robots.txt file, however, scraping the Services without the prior consent of Jokinit is expressly prohibited); (iv) forge any TCP/IP packet header or any part of the header information in any email or posting, or in any way use the Services to send altered, deceptive or false source-identifying information; or (v) interfere with, or disrupt, (or attempt to do so), the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, mail-bombing the Services, or by scripting the creation of Content in such a manner as to interfere with or create an undue burden on the Services.
+
+9. Copyright Policy
+
+Jokinit respects the intellectual property rights of others and expects users of the Services to do the same. We will respond to notices of alleged copyright infringement that comply with applicable law and are properly provided to us. If you believe that your Content has been copied in a way that constitutes copyright infringement, please provide us with the following information: (i) a physical or electronic signature of the copyright owner or a person authorized to act on their behalf; (ii) identification of the copyrighted work claimed to have been infringed; (iii) identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material; (iv) your contact information, including your address, telephone number, and an email address; (v) a statement by you that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and (vi) a statement that the information in the notification is accurate, and, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.
+
+We reserve the right to remove Content alleged to be infringing without prior notice, at our sole discretion, and without liability to you. In appropriate circumstances, Jokinit will also terminate a user’s account if the user is determined to be a repeat infringer. Our designated copyright agent for notice of alleged copyright infringement appearing on the Services is:
+
+12thTone
+440 Cowan Rd
+Covington, GA 30016
+Reports: https://12thtone.com
+Email: contact@12thtone.com
+
+10. Ending These Terms
+
+The Terms will continue to apply until terminated by either you or Jokinit as follows.
+
+You may end your legal agreement with Jokinit at any time for any reason by deactivating your accounts and discontinuing your use of the Services. You do not need to specifically inform Jokinit when you stop using the Services. If you stop using the Services without deactivating your accounts, your accounts may be deactivated due to prolonged inactivity.
+
+We may suspend or terminate your accounts or cease providing you with all or part of the Services at any time for any reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms or the Jokinit Rules, (ii) you create risk or possible legal exposure for us; or (iii) our provision of the Services to you is no longer commercially viable. We will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account.
+
+In all such cases, the Terms shall terminate, including, without limitation, your license to use the Services, except that the following sections shall continue to apply: 4, 5, 7, 8, 10, 11, and 12.
+
+Nothing in this section shall affect Jokinit ‘s rights to change, limit or stop the provision of the Services without prior notice, as provided above in section 1.
+
+11.Disclaimers and Limitations of Liability
+
+Please read this section carefully since it limits the liability of Jokinit and its parents, subsidiaries, affiliates, related companies, officers, directors, employees, agents, representatives, partners, and licensors (collectively, the “Jokinit Entities”). Each of the subsections below only applies up to the maximum extent permitted under applicable law. Some jurisdictions do not allow the disclaimer of implied warranties or the limitation of liability in contracts, and as a result the contents of this section may not apply to you. Nothing in this section is intended to limit any rights you may have which may not be lawfully limited.
+
+A.	The Services are Available “AS-IS”
+
+Your access to and use of the Services or any Content are at your own risk. You understand and agree that the Services are provided to you on an “AS IS” and “AS AVAILABLE” basis. Without limiting the foregoing, to the maximum extent permitted under applicable law, THE Jokinit ENTITIES DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+
+The Jokinit Entities make no warranty and disclaim all responsibility and liability for: (i) the completeness, accuracy, availability, timeliness, security or reliability of the Services or any Content; (ii) any harm to your computer system, loss of data, or other harm that results from your access to or use of the Services or any Content; (iii) the deletion of, or the failure to store or to transmit, any Content and other communications maintained by the Services; and (iv) whether the Services will meet your requirements or be available on an uninterrupted, secure, or error-free basis. No advice or information, whether oral or written, obtained from the Jokinit Entities or through the Services, will create any warranty not expressly made herein.
+
+B. Links
+
+The Services may contain links to third-party websites or resources. You acknowledge and agree that the Jokinit Entities are not responsible or liable for: (i) the availability or accuracy of such websites or resources; or (ii) the content, products, or services on or available from such websites or resources. Links to such websites or resources do not imply any endorsement by the Jokinit Entities of such websites or resources or the content, products, or services available from such websites or resources. You acknowledge sole responsibility for and assume all risk arising from your use of any such websites or resources.
+
+C. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE Jokinit ENTITIES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOOD-WILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICES; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICES, INCLUDING WITHOUT LIMITATION, ANY DEFAMATORY, OFFENSIVE OR ILLEGAL CONDUCT OF OTHER USERS OR THIRD PARTIES; (iii) ANY CONTENT OBTAINED FROM THE SERVICES; OR (iv) UNAUTHORIZED ACCESS, USE OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.
+
+IN NO EVENT SHALL THE AGGREGATE LIABILITY OF THE Jokinit ENTITIES EXCEED THE GREATER OF ONE HUNDRED U.S. DOLLARS (U.S. $100.00) OR THE AMOUNT YOU PAID Jokinit, IF ANY, IN THE PAST SIX MONTHS FOR THE SERVICES GIVING RISE TO THE CLAIM.
+
+THE LIMITATIONS OF THIS SUBSECTION SHALL APPLY TO ANY THEORY OF LIABILITY, WHETHER BASED ON WARRANTY, CONTRACT, STATUTE, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, AND WHETHER OR NOT THE Jokinit ENTITIES HAVE BEEN INFORMED OF THE POSSIBILITY OF ANY SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.
+
+12. General Terms
+
+A.	Waiver and Severability
+
+The failure of Jokinit to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. In the event that any provision of these Terms is held to be invalid or unenforceable, then that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.
+
+B. Controlling Law and Jurisdiction
+
+These Terms and any action related thereto will be governed by the laws of the State of Georgia without regard to or application of its conflict of law provisions or your state or country of residence. All claims, legal proceedings or litigation arising in connection with the Services will be brought solely in the federal or state courts located in Newton County, Georgia, United States, and you consent to the jurisdiction of and venue in such courts and waive any objection as to inconvenient forum.
+
+If you are a federal, state, or local government entity in the United States using the Services in your official capacity and legally unable to accept the controlling law, jurisdiction or venue clauses above, then those clauses do not apply to you. For such U.S. federal government entities, these Terms and any action related thereto will be governed by the laws of the United States of America (without reference to conflict of laws) and, in the absence of federal law and to the extent permitted under federal law, the laws of the State of Georgia (excluding choice of law).
+
+C. Entire Agreement
+
+These Terms, the Jokinit rules and our Privacy Policy are the entire and exclusive agreement between Jokinit and you regarding the Services (excluding any services for which you have a separate agreement with Jokinit that is explicitly in addition or in place of these Terms), and these Terms supersede and replace any prior agreements between Jokinit and you regarding the Services. Other than members of the group of companies of Jokinit, Inc. is the parent, no other person or company will be third party beneficiaries to the Terms.
+We may revise these Terms from time to time, the most current version will always be at 12thtone.com. If the revision, in our sole discretion, is material we will notify you via an update or e-mail to the email associated with your account. By continuing to access or use the Services after those revisions become effective, you agree to be bound by the revised Terms.
+
+These Services are operated and provided by Matt Maher – 12thTone. If you have any questions about these Terms, please contact us.
+Effective: March 5, 2015
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tEE-fR-qRM" firstAttribute="leading" secondItem="ZwW-rG-SW2" secondAttribute="leading" id="eNV-4d-VR3"/>
+                            <constraint firstAttribute="trailing" secondItem="tEE-fR-qRM" secondAttribute="trailing" id="fLc-hM-fmp"/>
+                            <constraint firstItem="tEE-fR-qRM" firstAttribute="top" secondItem="ZwW-rG-SW2" secondAttribute="top" id="js6-Vr-Cqg"/>
+                            <constraint firstItem="9fm-VQ-ijW" firstAttribute="top" secondItem="tEE-fR-qRM" secondAttribute="bottom" id="wxD-Go-45u"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vai-Vv-zbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1862" y="4840"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AJ-Buddy-laughing.png" width="2135" height="2192"/>
@@ -2301,7 +2732,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lUT-b0-2Wf"/>
-        <segue reference="iYY-yP-HsU"/>
+        <segue reference="DdN-yH-8uP"/>
         <segue reference="mXV-ZJ-g1o"/>
     </inferredMetricsTieBreakers>
 </document>
