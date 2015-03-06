@@ -9,6 +9,7 @@
 #import "AddResponseViewController.h"
 #import <Parse/Parse.h>
 #import "ResponseTableViewController.h"
+#import "Reachability.h"
 
 @interface AddResponseViewController ()
 
@@ -27,10 +28,10 @@
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Add a Response", nil)];
-        
+       */ 
     self.jokeTitleLabel.text = [self.joke objectForKey:@"questionTitle"];
 }
 
@@ -58,18 +59,29 @@
     newResponse[@"answerQuestion"] = self.joke;
     newResponse[@"answerAuthor"] = [PFUser currentUser];
     
-    [newResponse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                message:[error.userInfo objectForKey:@"error"]
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
-    }];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                            message:@"There's a problem with the internet connection. We'll get your response up ASAP!"
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        [newResponse saveEventually];
+    } else {
+        
+        [newResponse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                    message:[error.userInfo objectForKey:@"error"]
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+            }
+        }];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "ResponseTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "AddResponseViewController.h"
 #import "DataSource.h"
 #import "ResponseTableViewCell.h"
@@ -62,20 +63,29 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Responses", nil)];
+    */
+    
+    CGRect frame = self.jokeTextView.frame;
+    frame.size.height = self.jokeTextView.contentSize.height;
+    self.jokeTextView.frame = frame;
     
     self.jokeTextView.text = [self.joke objectForKey:@"questionText"];
     [self.jokeTextView sizeToFit];
+    
+    
     [self.jokeTextView.textContainer setSize:self.jokeTextView.frame.size];
     [self.jokeTextView layoutIfNeeded];
     [self.jokeTextView setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.canDisplayBannerAds = YES;
+    
     [self answerQuery];
     [self loadObjects];
 }
@@ -135,6 +145,10 @@
             if (!error){
                 
                 [cell.userImage setImage:[UIImage imageWithData:data]];
+                cell.userImage.layer.cornerRadius = 8.0;
+                cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
+                cell.userImage.layer.borderWidth = 1.0;
+                cell.userImage.layer.masksToBounds = YES;
             }
             else {
                 NSLog(@"no data!");
@@ -148,6 +162,7 @@
     [cell.usernameLabel addGestureRecognizer:tap];
     
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
@@ -196,6 +211,32 @@
     }];
 }
 
+#pragma mark - Sharing
+
+- (void)shareJoke:(id)sender {
+    
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
+    
+    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokinit!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokinit!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"answerText"]];
+    
+    NSMutableArray *jokeToShare = [NSMutableArray array];
+    [jokeToShare addObject:messageBody];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+    
+    if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
+        activityVC.popoverPresentationController.sourceView = self.view;
+    }
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    if (UIActivityTypeMail) {
+        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -212,6 +253,7 @@
         
         FullResponseTableViewController *fullAnswerTableViewController = (FullResponseTableViewController *)segue.destinationViewController;
         fullAnswerTableViewController.fullResponse = object;
+        fullAnswerTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 
@@ -224,6 +266,7 @@
         
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfileAnswer = object;
+    profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }

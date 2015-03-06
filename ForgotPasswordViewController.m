@@ -12,8 +12,7 @@
 @interface ForgotPasswordViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *userEmail;
-
-- (IBAction)submitEmail:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *submitEmail;
 
 @end
 
@@ -22,6 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.submitEmail addTarget:self action:@selector(submitEmail:) forControlEvents:UIControlEventTouchUpInside];
+    self.submitEmail.layer.borderWidth = 1;
+    self.submitEmail.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.submitEmail.layer.cornerRadius = 8;
+    self.submitEmail.layer.masksToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,8 +34,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)submitEmail:(id)sender {
-    NSString *email = [self.userEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [PFUser requestPasswordResetForEmailInBackground:email];
+- (void)submitEmail:(id)sender {
+    
+    if (self.userEmail.text.length == 0) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                            message:@"Please enter your email address."
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        
+        NSString *email = [self.userEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [PFUser requestPasswordResetForEmailInBackground:email];
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Check Your Email"
+                                                            message:@"We sent you a link to reset your password. You'll be Jokinit soon!"
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
 }
+
 @end

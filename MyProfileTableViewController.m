@@ -8,6 +8,9 @@
 
 #import "MyProfileTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
+#import "Reachability.h"
+#import "SettingsTableViewController.h"
 
 @interface MyProfileTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -34,10 +37,10 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Profile", nil)];
-    
+    */
     UITapGestureRecognizer *tapDismissKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tapDismissKeyboard];
     
@@ -52,13 +55,25 @@
     [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error){
             [self.profileImage setImage:[UIImage imageWithData:data]];
+            self.profileImage.layer.cornerRadius = 8.0;
+            self.profileImage.layer.borderColor = [[UIColor grayColor] CGColor];
+            self.profileImage.layer.borderWidth = 1.0;
+            self.profileImage.layer.masksToBounds = YES;
         }
         else {
             NSLog(@"no data!");
             [self.profileImage setImage:[UIImage imageNamed:@"placeholder.png"]]; //Set Custom Image if there is no user picture.
+            self.profileImage.layer.cornerRadius = 8.0;
+            self.profileImage.layer.borderColor = [[UIColor grayColor] CGColor];
+            self.profileImage.layer.borderWidth = 1.0;
+            self.profileImage.layer.masksToBounds = YES;
             
         }
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,25 +115,46 @@
 
 - (void)saveProfile
 {
-    NSString *profileString = self.textProfile.text;
-    
-    NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
-    PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
-    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            if (succeeded) {
-                PFUser *user = [PFUser currentUser];
-                user[@"description"] = profileString;
-                user[@"picture"] = imageFile;
-                [user saveInBackground];
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                            message:@"There's a problem with the internet connection. Try again when there's a better signal."
+                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        
+        NSString *profileString = self.textProfile.text;
+        
+        NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
+        PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                if (succeeded) {
+                    PFUser *user = [PFUser currentUser];
+                    user[@"description"] = profileString;
+                    user[@"picture"] = imageFile;
+                    [user saveInBackground];
+                }
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                    message:[error.userInfo objectForKey:@"error"]
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
             }
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                message:[error.userInfo objectForKey:@"error"]
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
-    }];
+        }];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"toSettings"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        
+        SettingsTableViewController *settingsTableViewController = (SettingsTableViewController*) navigationController;
+        settingsTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+    }
 }
 
 #pragma mark - Images

@@ -8,6 +8,7 @@
 
 #import "SearchTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "ResponseTableViewController.h"
 #import "ProfileTableViewController.h"
 #import "DataSource.h"
@@ -63,15 +64,17 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Search", nil)];
-    
+    */
     self.searchBar.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.canDisplayBannerAds = YES;
     
     [self loadObjects];
 }
@@ -130,6 +133,10 @@
         if (!error){
             
             [cell.userImage setImage:[UIImage imageWithData:data]];
+            cell.userImage.layer.cornerRadius = 8.0;
+            cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
+            cell.userImage.layer.borderWidth = 1.0;
+            cell.userImage.layer.masksToBounds = YES;
         }
         else {
             NSLog(@"no data!");
@@ -160,6 +167,7 @@
                 
         ProfileTableViewController *profileTableViewController = (ProfileTableViewController *)segue.destinationViewController;
         profileTableViewController.userFromTabList = object;
+        profileTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

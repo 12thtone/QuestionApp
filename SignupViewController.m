@@ -13,6 +13,12 @@
 
 @property (nonatomic, strong) NSString *username;
 
+@property (weak, nonatomic) IBOutlet UITextField *nameSignupField;
+@property (weak, nonatomic) IBOutlet UITextField *usernameSignupField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordSignupField;
+@property (weak, nonatomic) IBOutlet UITextField *emailSignupField;
+@property (weak, nonatomic) IBOutlet UIButton *createAccount;
+
 @end
 
 @implementation SignupViewController
@@ -22,9 +28,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = NO;
+    
+    [self.createAccount addTarget:self action:@selector(createAccount:) forControlEvents:UIControlEventTouchUpInside];
+    self.createAccount.layer.borderWidth = 1;
+    self.createAccount.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.createAccount.layer.cornerRadius = 8;
+    self.createAccount.layer.masksToBounds = YES;
 }
 
-- (IBAction)createAccount:(id)sender {
+- (void)createAccount:(id)sender {
     NSString *fullName = [self.nameSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     self.username = [self.usernameSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -44,8 +56,13 @@
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     } else {
+        
+        NSData *imageData = UIImagePNGRepresentation([UIImage imageNamed:@"placeholder.png"]);
+        PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+        
         PFUser *newUser = [PFUser user];
         newUser[@"realName"] = fullName;
+        newUser[@"picture"] = imageFile;
         newUser.username = self.username;
         newUser.password = password;
         newUser.email = email;

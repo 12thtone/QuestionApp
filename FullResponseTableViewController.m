@@ -8,6 +8,7 @@
 
 #import "FullResponseTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "ProfileTableViewController.h"
 
 @interface FullResponseTableViewController ()
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *responseTextView;
 @property (weak, nonatomic) IBOutlet UIButton *upVoteButton;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (strong, nonatomic) PFUser *fullResponseUser;
 
 @end
@@ -33,10 +35,10 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Full Response", nil)];
-    
+    */
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [self.fullResponse createdAt];
@@ -48,6 +50,11 @@
             if (!error){
                 
                 [self.userImage setImage:[UIImage imageWithData:data]];
+                self.userImage.layer.cornerRadius = 8.0;
+                self.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
+                self.userImage.layer.borderWidth = 1.0;
+                self.userImage.layer.masksToBounds = YES;
+                
                 self.usernameLabel.text = [self.fullResponse objectForKey:@"answerAuthor"][@"username"];
             }
             else {
@@ -72,6 +79,7 @@
     [self.usernameLabel addGestureRecognizer:tap];
     
     [self.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,6 +89,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.canDisplayBannerAds = YES;
 }
 
 #pragma mark - Navigation
@@ -91,6 +101,7 @@
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userFromFullAnswerList = self.fullResponseUser;
+    profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }
@@ -118,6 +129,27 @@
             [alertView show];
         }
     }];
+}
+
+#pragma mark - Sharing
+
+- (void)shareJoke:(id)sender {
+    
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokinit!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokinit!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.fullResponse objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [self.fullResponse objectForKey:@"answerText"]];
+    
+    NSMutableArray *jokeToShare = [NSMutableArray array];
+    [jokeToShare addObject:messageBody];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+    
+    if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
+        activityVC.popoverPresentationController.sourceView = self.view;
+    }
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    if (UIActivityTypeMail) {
+        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
 }
 
 @end

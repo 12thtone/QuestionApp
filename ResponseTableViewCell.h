@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *voteVotesLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UIButton *upVoteButton;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 
 @end

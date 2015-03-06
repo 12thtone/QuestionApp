@@ -8,6 +8,7 @@
 
 #import "JokeTableViewController.h"
 #import <Parse/Parse.h>
+#import <iAd/iAd.h>
 #import "ResponseTableViewController.h"
 #import "ProfileTableViewController.h"
 #import "DataSource.h"
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) PFUser *tappedUser;
 @property (strong, nonatomic) NSMutableArray *theObjects;
 @property (strong, nonatomic) NSMutableArray *theAuthors;
+- (IBAction)jokeType:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
 @end
 
@@ -65,12 +68,21 @@
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
+    /*
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"New Jokes", nil)];
+    */
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.canDisplayBannerAds = YES;
+    
+    self.navigationItem.hidesBackButton = YES;
+    [self.navigationItem setHidesBackButton:YES animated:NO];
+    [self.navigationItem setTitle:@""];
+    
     [self questionQuery];
     [self loadObjects];
 }
@@ -97,21 +109,61 @@
     }];
 }
 
+- (void)gotOneQuery {
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"status" equalTo:@"Got One for Ya"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            [authorArray addObject:[object objectForKey:@"author"]];
+            [objectArray addObject:object];
+            
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
+        }
+        [self loadObjects];
+        //[self.tableView reloadData];
+    }];
+}
+
+- (void)finishJokeQuery {
+    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
+    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
+    [query whereKey:@"status" equalTo:@"Finish My Joke"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            [authorArray addObject:[object objectForKey:@"author"]];
+            [objectArray addObject:object];
+            
+            self.theObjects = [objectArray copy];
+            self.theAuthors = [authorArray copy];
+        }
+        [self loadObjects];
+        //[self.tableView reloadData];
+    }];
+}
+
 #pragma mark - PFQueryTableViewController
-/*
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self count];
+    return [self.theObjects count];
 }
-*/
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JokeTVC" forIndexPath:indexPath];
     
-    PFUser *user = [object objectForKey:@"author"];
+    PFUser *user = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"author"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
         cell.usernameLabel.text = username;
@@ -121,6 +173,10 @@
             if (!error){
                 
                 [cell.userImage setImage:[UIImage imageWithData:data]];
+                cell.userImage.layer.cornerRadius = 8.0;
+                cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
+                cell.userImage.layer.borderWidth = 1.0;
+                cell.userImage.layer.masksToBounds = YES;
             }
             else {
                 NSLog(@"no data!");
@@ -136,18 +192,14 @@
     [tap setNumberOfTapsRequired:1];
     tap.enabled = YES;
     [cell.usernameLabel addGestureRecognizer:tap];
-    /*
-    UITapGestureRecognizer *voteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVote:)];
-    [voteTap setNumberOfTapsRequired:1];
-    voteTap.enabled = YES;
-    [cell.upVoteButton addGestureRecognizer:voteTap];
-    */
-    [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     
-    cell.statusLabel.text = [object objectForKey:@"status"];
+    [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.jokeTitleLabel.text = [object objectForKey:@"questionTitle"];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [object objectForKey:@"voteQuestion"]];
+    cell.jokeTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
         cell.voteVotesLabel.text = @"Vote";
@@ -187,6 +239,7 @@
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfile = object;
+    profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }
@@ -197,9 +250,6 @@
     
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
-    
-    //CGPoint tapLocation = [sender locationInView:self.tableView];
-    //NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
     PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
     
@@ -220,6 +270,49 @@
             [alertView show];
         }
     }];
+}
+
+#pragma mark - Sharing
+
+- (void)shareJoke:(id)sender {
+    
+    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
+    
+    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokinit!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokinit!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
+    
+    NSMutableArray *jokeToShare = [NSMutableArray array];
+    [jokeToShare addObject:messageBody];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+    
+    if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
+        activityVC.popoverPresentationController.sourceView = self.view;
+    }
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+    if (UIActivityTypeMail) {
+        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+    }
+}
+
+- (IBAction)jokeType:(id)sender {
+    switch (self.jokeTypeControl.selectedSegmentIndex)
+    {
+        case 0:
+            [self questionQuery];
+            break;
+        case 1:
+            [self gotOneQuery];
+            break;
+        case 2:
+            [self finishJokeQuery];
+            break;
+        default:
+            break;
+    }
 }
 
 @end

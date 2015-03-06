@@ -24,6 +24,10 @@
     return sharedInstance;
 }
 
+- (BOOL)emailNotificationAllowed:(BOOL)yesOrNo {
+    return yesOrNo;
+}
+
 - (PFQuery *)queryForTable:(NSString *)className {
     PFQuery *query = [PFQuery queryWithClassName:className];
     
