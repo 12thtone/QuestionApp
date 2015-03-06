@@ -40,13 +40,13 @@
     self.needAccount.layer.borderColor = [UIColor purpleColor].CGColor;
     self.needAccount.layer.cornerRadius = 8;
     self.needAccount.layer.masksToBounds = YES;
-    
+    /*
     //[self.forgotPassword addTarget:self action:@selector(newPassword:) forControlEvents:UIControlEventTouchUpInside];
     self.forgotPassword.layer.borderWidth = 1;
     self.forgotPassword.layer.borderColor = [UIColor purpleColor].CGColor;
     self.forgotPassword.layer.cornerRadius = 8;
     self.forgotPassword.layer.masksToBounds = YES;
-    
+    */
 }
 
 

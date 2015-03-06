@@ -126,7 +126,9 @@
         
         NSString *profileString = self.textProfile.text;
         
-        NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
+        //NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
+        NSData *imageData = UIImageJPEGRepresentation(self.chosenImage, 0.0f);
+        NSLog(@"MyImage size in bytes:%lu",(unsigned long)[imageData length]);
         PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
         [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {

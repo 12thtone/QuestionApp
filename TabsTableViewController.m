@@ -363,15 +363,43 @@
 - (IBAction)jokeType:(id)sender {
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
+            
         case 0:
-            [self tabQuery];
-            break;
+            if (self.theObjects == nil) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
+                                                                    message:@"Keep Tabs on Some Funny Users."
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+                
+                break;
+            } else {
+                [self tabQuery];
+                break;
+            }
         case 1:
-            [self gotOneQuery];
-            break;
+            if (self.theObjects == nil) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
+                                                                    message:@"Keep Tabs on Some Funny Users."
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+                
+                break;
+            } else {
+                [self gotOneQuery];
+                break;
+            }
         case 2:
-            [self finishJokeQuery];
-            break;
+            if (self.theObjects == nil) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
+                                                                    message:@"Keep Tabs on Some Funny Users."
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+                
+                break;
+            } else {
+                [self finishJokeQuery];
+                break;
+            }
         default:
             break;
     }
