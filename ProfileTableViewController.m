@@ -72,6 +72,10 @@
     }
     */
     [self.keepTabsButton addTarget:self action:@selector(keepTabs:) forControlEvents:UIControlEventTouchUpInside];
+    self.keepTabsButton.layer.borderWidth = 1;
+    self.keepTabsButton.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.keepTabsButton.layer.cornerRadius = 8;
+    self.keepTabsButton.layer.masksToBounds = YES;
     
     [self.user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         PFFile *pictureFile = [self.user objectForKey:@"picture"];
@@ -164,14 +168,14 @@
             self.theJokes = [jokeArray copy];
         }
         
-        UIButton *jokeButtonTextSet = (UIButton *)[self.view viewWithTag:102];
-        
+        //UIButton *jokeButtonTextSet = (UIButton *)[self.view viewWithTag:102];
+        /*
         if (self.theJokes.count == 1) {
             [jokeButtonTextSet setTitle:@"Joke" forState:UIControlStateNormal];
         } else {
             [jokeButtonTextSet setTitle:@"Jokes" forState:UIControlStateNormal];
         }
-        
+        */
         NSString *totalJokesString = [NSString stringWithFormat:@"%lu", (unsigned long)self.theJokes.count];
         self.jokesCount.text = totalJokesString;
         
