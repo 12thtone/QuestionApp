@@ -73,12 +73,14 @@
 
 - (void)saveQuestion
 {
+    NSString *jokeString = [NSString stringWithFormat:@"\n%@\n", self.textField.text];
     
     NSNumber *voteCount = [NSNumber numberWithInt:1];
     
     PFObject *newJoke = [PFObject objectWithClassName:@"Question"];
     newJoke[@"questionTitle"] = self.titleField.text;
-    newJoke[@"questionText"] = self.textField.text;
+    //newJoke[@"questionText"] = self.textField.text;
+    newJoke[@"questionText"] = jokeString;
     newJoke[@"voteQuestion"] = voteCount;
     newJoke[@"status"] = self.statusString;
     newJoke[@"author"] = [PFUser currentUser];

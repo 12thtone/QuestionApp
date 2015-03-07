@@ -101,7 +101,7 @@
 }
 
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
-    if (self.chosenImage && self.textProfile) {
+    if (self.chosenImage || self.textProfile) {
         
         [self saveProfile];
         
@@ -124,27 +124,36 @@
         [alertView show];
     } else {
         
-        NSString *profileString = self.textProfile.text;
-        
-        //NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
-        NSData *imageData = UIImageJPEGRepresentation(self.chosenImage, 0.0f);
-        NSLog(@"MyImage size in bytes:%lu",(unsigned long)[imageData length]);
-        PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
-        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                if (succeeded) {
-                    PFUser *user = [PFUser currentUser];
-                    user[@"description"] = profileString;
-                    user[@"picture"] = imageFile;
-                    [user saveInBackground];
+        if (self.chosenImage) {
+            NSString *profileString = self.textProfile.text;
+            
+            //NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
+            NSData *imageData = UIImageJPEGRepresentation(self.chosenImage, 0.0f);
+            NSLog(@"MyImage size in bytes:%lu",(unsigned long)[imageData length]);
+            PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+            [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    if (succeeded) {
+                        PFUser *user = [PFUser currentUser];
+                        user[@"description"] = profileString;
+                        user[@"picture"] = imageFile;
+                        [user saveInBackground];
+                    }
+                } else {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                        message:[error.userInfo objectForKey:@"error"]
+                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
                 }
-            } else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                    message:[error.userInfo objectForKey:@"error"]
-                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alertView show];
-            }
-        }];
+            }];
+        } else {
+            NSString *profileString = self.textProfile.text;
+            
+            PFUser *user = [PFUser currentUser];
+            user[@"description"] = profileString;
+            [user saveInBackground];
+        }
+        
     }
 }
 
