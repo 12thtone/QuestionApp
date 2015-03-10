@@ -66,10 +66,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Hot Jokes", nil)];
-     */
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -120,7 +117,6 @@
             self.theAuthors = [authorArray copy];
         }
         [self loadObjects];
-        //[self.tableView reloadData];
     }];
 }
 
@@ -140,7 +136,6 @@
             self.theAuthors = [authorArray copy];
         }
         [self loadObjects];
-        //[self.tableView reloadData];
     }];
 }
 

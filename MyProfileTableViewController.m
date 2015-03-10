@@ -37,10 +37,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Profile", nil)];
-    */
+    
     UITapGestureRecognizer *tapDismissKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tapDismissKeyboard];
     
@@ -127,7 +124,6 @@
         if (self.chosenImage) {
             NSString *profileString = self.textProfile.text;
             
-            //NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
             NSData *imageData = UIImageJPEGRepresentation(self.chosenImage, 0.0f);
             NSLog(@"MyImage size in bytes:%lu",(unsigned long)[imageData length]);
             PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];

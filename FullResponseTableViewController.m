@@ -35,10 +35,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Full Response", nil)];
-    */
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [self.fullResponse createdAt];

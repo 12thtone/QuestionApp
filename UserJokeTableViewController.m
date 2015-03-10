@@ -56,10 +56,6 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Jokes", nil)];
-     */
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,7 +63,6 @@
     
     self.canDisplayBannerAds = YES;
     
-    //[self queryForTable];
     [self questionQuery];
     [self loadObjects];
 }
@@ -161,9 +156,7 @@
     if ([segue.identifier isEqualToString:@"showUserAnswers"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
-        
-        //NSLog(@"sdfbsdfbsdfb%@", [object objectId]);
-        
+                
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
     }

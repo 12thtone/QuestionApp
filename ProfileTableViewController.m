@@ -66,11 +66,7 @@
     } else {
         self.user = self.userFromFullAnswerList;
     }
-    /*
-    if ([[PFUser currentUser] username] == [self.user username]) {
-        [self.keepTabsButton setHidden:YES];
-    }
-    */
+    
     [self.keepTabsButton addTarget:self action:@selector(keepTabs:) forControlEvents:UIControlEventTouchUpInside];
     self.keepTabsButton.layer.borderWidth = 1;
     self.keepTabsButton.layer.borderColor = [UIColor purpleColor].CGColor;
@@ -130,7 +126,7 @@
         }
         
         self.tabbersCount = self.theTabbers.count;
-        //NSString *totalTabberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.theTabbers.count];
+        
         NSString *totalTabberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.self.tabbersCount];
         self.totalTabbers.text = totalTabberString;
     }];
@@ -145,11 +141,9 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects.count == 0) {
             [self.keepTabsButton setTitle:@" Keep Tabs" forState:UIControlStateNormal];
-            //self.keepTabsButton.imageView.image = [UIImage imageNamed:@"tag-plus-7@3x.png"];
             [self.keepTabsButton setImage:[UIImage imageNamed:@"tag-plus-7@3x.png"] forState:UIControlStateNormal];
         } else {
             [self.keepTabsButton setTitle:@" Untab" forState:UIControlStateNormal];
-            //self.keepTabsButton.imageView.image = [UIImage imageNamed:@"tag-minus-7@3x.png"];
             [self.keepTabsButton setImage:[UIImage imageNamed:@"tag-minus-7@3x.png"] forState:UIControlStateNormal];
         }
     }];
@@ -168,14 +162,6 @@
             self.theJokes = [jokeArray copy];
         }
         
-        //UIButton *jokeButtonTextSet = (UIButton *)[self.view viewWithTag:102];
-        /*
-        if (self.theJokes.count == 1) {
-            [jokeButtonTextSet setTitle:@"Joke" forState:UIControlStateNormal];
-        } else {
-            [jokeButtonTextSet setTitle:@"Jokes" forState:UIControlStateNormal];
-        }
-        */
         NSString *totalJokesString = [NSString stringWithFormat:@"%lu", (unsigned long)self.theJokes.count];
         self.jokesCount.text = totalJokesString;
         
@@ -195,9 +181,7 @@
             
             [tabber deleteInBackground];
         }
-        //[self tabbersQuery];
         
-        //NSInteger tabbersCount = self.theTabbers.count + 1;
         self.tabbersCount = self.tabbersCount - 1;
         NSString *totalTabberString = [NSString stringWithFormat:@"%lu", (unsigned long)self.tabbersCount];
         self.totalTabbers.text = totalTabberString;
@@ -285,11 +269,9 @@
                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
     
-    //self.keepTabsButton.imageView.image = [UIImage imageNamed:@"tag-plus-7@3x.png"];
     [self.keepTabsButton setTitle:@" Keep Tabs" forState:UIControlStateNormal];
     [self.keepTabsButton setImage:[UIImage imageNamed:@"tag-plus-7@3x.png"] forState:UIControlStateNormal];
     [self untabDeleteQuery];
-    //[self removeInstallation];
     
 }
 

@@ -58,10 +58,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Tabs", nil)];
-     */
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -116,50 +113,7 @@
         }
     }];
 }
-/*
-- (void)gotOneQuery {
-    
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
-    [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
-    
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                
-                [authorArray addObject:[object objectForKey:@"tabReceiver"]];
-                
-            }
-            
-            NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-            NSMutableArray *authorQuestionArray = [[NSMutableArray alloc] init];
-            
-            PFQuery *queryQuestion = [PFQuery queryWithClassName:@"Question"];
-            
-            [queryQuestion whereKey:@"author" containedIn:authorArray];
-            [query whereKey:@"status" equalTo:@"Got One for Ya"];
-            [queryQuestion orderByDescending:@"createdAt"];
-            [queryQuestion findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                for (PFObject *object in objects) {
-                    [authorQuestionArray addObject:[object objectForKey:@"author"]];
-                    [objectArray addObject:object];
-                    
-                    self.theObjects = [objectArray copy];
-                    self.theAuthors = [authorQuestionArray copy];
-                }
-                [self loadObjects];
-                //[self.tableView reloadData];
-            }];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-*/
+
 - (void)gotOneQuery {
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
@@ -177,7 +131,6 @@
             self.theAuthors = [authorArray copy];
         }
         [self loadObjects];
-        //[self.tableView reloadData];
     }];
 }
 
@@ -198,7 +151,6 @@
             self.theAuthors = [authorArray copy];
         }
         [self loadObjects];
-        //[self.tableView reloadData];
     }];
 }
 
