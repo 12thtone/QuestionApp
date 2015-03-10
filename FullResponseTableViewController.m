@@ -135,7 +135,7 @@
 
 - (void)shareJoke:(id)sender {
     
-    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokinit!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokinit!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.fullResponse objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [self.fullResponse objectForKey:@"answerText"]];
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.fullResponse objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [self.fullResponse objectForKey:@"answerText"]];
     
     NSMutableArray *jokeToShare = [NSMutableArray array];
     [jokeToShare addObject:messageBody];

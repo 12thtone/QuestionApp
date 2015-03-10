@@ -133,7 +133,14 @@
             PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
             [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
+                    
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Profile Updated"
+                                                                        message:@"Your changes have been saved."
+                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                    
                     if (succeeded) {
+                        
                         PFUser *user = [PFUser currentUser];
                         user[@"description"] = profileString;
                         user[@"picture"] = imageFile;

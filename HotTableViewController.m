@@ -277,7 +277,7 @@
     
     PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
     
-    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokinit!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokinit!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
     
     NSMutableArray *jokeToShare = [NSMutableArray array];
     [jokeToShare addObject:messageBody];

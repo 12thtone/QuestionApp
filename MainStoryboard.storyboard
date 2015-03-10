@@ -88,11 +88,11 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="WZA-HL-Pga">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="XYW-zU-9U1">
-                                    <rect key="frame" x="72" y="0.0" width="33" height="33"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="RM7-ks-uUC">
+                                    <rect key="frame" x="38" y="-5" width="110" height="42"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -271,7 +271,7 @@
                                     <outlet property="userImage" destination="B5D-g8-HDo" id="5Wn-Nn-34z"/>
                                     <outlet property="usernameLabel" destination="tB9-pM-cAY" id="4SC-Vi-KyD"/>
                                     <outlet property="voteLabel" destination="fsz-uD-EfP" id="gqT-ha-WoH"/>
-                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showJoke" id="lUT-b0-2Wf"/>
+                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showJoke" id="6YK-ad-UIl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -289,7 +289,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="eq4-yz-kFx">
-                            <rect key="frame" x="230" y="6" width="140" height="33"/>
+                            <rect key="frame" x="230" y="5.5" width="140" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Jokes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V43-SL-Ppt">
@@ -476,7 +476,7 @@
                     <navigationItem key="navigationItem" id="3ht-9g-DgY">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="fqf-Gd-a96">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="w6W-vS-Oc0">
@@ -735,17 +735,11 @@
                     <navigationItem key="navigationItem" id="ZGc-Sj-Gke">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="HaT-1K-663">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jokinit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cg-wg-VxJ">
-                                    <rect key="frame" x="114" y="0.0" width="58" height="33"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                    <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="nrH-XQ-Xy8">
-                                    <rect key="frame" x="73" y="-2" width="33" height="33"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="So6-8N-bA4">
+                                    <rect key="frame" x="67" y="-5" width="110" height="42"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -761,7 +755,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="olq-FX-2EI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38" y="2551.5"/>
+            <point key="canvasLocation" x="38" y="2551"/>
         </scene>
         <!--Add Response View Controller-->
         <scene sceneID="Azo-ea-Lh5">
@@ -815,16 +809,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="joG-cm-RyX">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="KCi-5h-KpY">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="QL4-lu-KRH">
-                                    <rect key="frame" x="100" y="0.0" width="33" height="33"/>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="p41-d2-Kbv">
                             <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -970,7 +954,7 @@
                     <navigationItem key="navigationItem" id="Inb-Up-Qq6">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="njd-ys-kLB">
-                            <rect key="frame" x="204" y="6" width="192" height="33"/>
+                            <rect key="frame" x="204" y="5.5" width="192" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3V-VG-WHo">
@@ -1227,7 +1211,7 @@
                     <navigationItem key="navigationItem" id="zgH-7O-8Tp">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="pia-Cb-uKs">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIG-eM-vl9">
@@ -1407,6 +1391,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="O78-3F-Uhb">
+                                                    <rect key="frame" x="97" y="233" width="110" height="42"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="42" id="SbK-eC-a5F"/>
+                                                        <constraint firstAttribute="width" constant="110" id="gpM-cH-gVA"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ezw-PB-JMr" secondAttribute="trailing" constant="23" id="2gW-qM-AfN"/>
@@ -1419,7 +1410,9 @@
                                                 <constraint firstItem="ezw-PB-JMr" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="OJt-Fy-VUF"/>
                                                 <constraint firstItem="83o-CS-Zfp" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="SKd-yu-hWJ"/>
                                                 <constraint firstItem="H6i-Iq-Gwb" firstAttribute="top" secondItem="ezw-PB-JMr" secondAttribute="bottom" constant="8" id="UCx-fu-miD"/>
+                                                <constraint firstItem="O78-3F-Uhb" firstAttribute="leading" secondItem="83o-CS-Zfp" secondAttribute="trailing" constant="47" id="YVu-Yp-hYu"/>
                                                 <constraint firstItem="Q8h-GO-3if" firstAttribute="top" secondItem="vhg-cf-tjQ" secondAttribute="top" constant="8" id="dX0-gd-DFn"/>
+                                                <constraint firstItem="O78-3F-Uhb" firstAttribute="top" secondItem="zli-MQ-KME" secondAttribute="bottom" constant="23" id="hZj-eS-Q3I"/>
                                                 <constraint firstItem="Q8h-GO-3if" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="kdy-Ko-37j"/>
                                                 <constraint firstItem="ezw-PB-JMr" firstAttribute="top" secondItem="Q8h-GO-3if" secondAttribute="bottom" constant="8" id="nIg-z6-F0c"/>
                                                 <constraint firstItem="83o-CS-Zfp" firstAttribute="top" secondItem="H6i-Iq-Gwb" secondAttribute="bottom" constant="8" id="pDm-Lw-JiH"/>
@@ -1448,7 +1441,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="9pg-JO-xdm">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cii-AZ-NFp">
@@ -1717,19 +1710,36 @@
                                                         <segue destination="eqH-nE-m3w" kind="presentation" identifier="viewTabbers" id="jOo-VH-5mD"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="AqW-pu-kfO">
+                                                    <rect key="frame" x="243" y="23" width="115" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="10F-dY-vtS"/>
+                                                        <constraint firstAttribute="height" constant="44" id="1bZ-uh-azU"/>
+                                                        <constraint firstAttribute="width" constant="115" id="N4s-6Q-QHH"/>
+                                                        <constraint firstAttribute="width" constant="115" id="muf-UF-bww"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="1bZ-uh-azU"/>
+                                                            <exclude reference="muf-UF-bww"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hqV-W9-zxT" firstAttribute="top" secondItem="e3c-yM-1ix" secondAttribute="top" constant="23" id="0YK-wc-Ife"/>
                                                 <constraint firstItem="c4G-Pg-8fn" firstAttribute="leading" secondItem="387-Yg-eb7" secondAttribute="trailing" constant="8" id="1qZ-C5-rzD"/>
+                                                <constraint firstAttribute="centerX" secondItem="AqW-pu-kfO" secondAttribute="centerX" id="3Gl-xd-wFW"/>
                                                 <constraint firstItem="c4G-Pg-8fn" firstAttribute="top" secondItem="WlT-io-esn" secondAttribute="bottom" constant="5" id="4h7-cr-Zhg"/>
                                                 <constraint firstItem="kPR-SQ-ylI" firstAttribute="leading" secondItem="V7Z-oo-coE" secondAttribute="trailing" constant="8" id="6xn-mq-a02"/>
+                                                <constraint firstItem="kPR-SQ-ylI" firstAttribute="top" secondItem="AqW-pu-kfO" secondAttribute="bottom" constant="48" id="Aox-Vq-ASR"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ruy-cb-HH3" secondAttribute="trailing" constant="22" id="BXz-dB-7BU"/>
                                                 <constraint firstItem="Ruy-cb-HH3" firstAttribute="leading" secondItem="HVO-h2-oJf" secondAttribute="trailing" constant="8" id="Cl6-aR-rzt"/>
                                                 <constraint firstItem="HVO-h2-oJf" firstAttribute="top" secondItem="WlT-io-esn" secondAttribute="bottom" constant="8" id="DCb-MA-I1A"/>
+                                                <constraint firstItem="AqW-pu-kfO" firstAttribute="top" secondItem="e3c-yM-1ix" secondAttribute="top" constant="23" id="Gf2-VY-tjM"/>
                                                 <constraint firstItem="WlT-io-esn" firstAttribute="top" secondItem="DOS-8C-wNP" secondAttribute="bottom" constant="8" id="IPP-p2-2W5"/>
                                                 <constraint firstAttribute="trailing" secondItem="kPR-SQ-ylI" secondAttribute="trailing" constant="22" id="Iec-6M-230"/>
                                                 <constraint firstItem="DOS-8C-wNP" firstAttribute="top" secondItem="kPR-SQ-ylI" secondAttribute="bottom" constant="8" id="Meo-fD-jEk"/>
-                                                <constraint firstItem="kPR-SQ-ylI" firstAttribute="top" secondItem="e3c-yM-1ix" secondAttribute="top" constant="115" id="PYP-wa-HOy"/>
                                                 <constraint firstItem="Uc1-G9-y9e" firstAttribute="leading" secondItem="e3c-yM-1ix" secondAttribute="leading" constant="106" id="QUh-ti-S60"/>
                                                 <constraint firstItem="DOS-8C-wNP" firstAttribute="leading" secondItem="V7Z-oo-coE" secondAttribute="trailing" constant="8" id="SSY-gY-DX2"/>
                                                 <constraint firstItem="lnA-xL-dZE" firstAttribute="top" secondItem="c4G-Pg-8fn" secondAttribute="bottom" constant="8" id="SW6-Bw-6zz"/>
@@ -1740,12 +1750,22 @@
                                                 <constraint firstAttribute="trailing" secondItem="Uc1-G9-y9e" secondAttribute="trailing" constant="22" id="cC1-9e-eJq"/>
                                                 <constraint firstAttribute="trailing" secondItem="DOS-8C-wNP" secondAttribute="trailing" constant="22" id="cKf-05-1n7"/>
                                                 <constraint firstItem="lnA-xL-dZE" firstAttribute="leading" secondItem="e3c-yM-1ix" secondAttribute="leading" constant="111" id="cn3-2e-yyC"/>
+                                                <constraint firstItem="AqW-pu-kfO" firstAttribute="top" secondItem="e3c-yM-1ix" secondAttribute="top" constant="23" id="dYV-In-18b"/>
+                                                <constraint firstItem="AqW-pu-kfO" firstAttribute="leading" secondItem="hqV-W9-zxT" secondAttribute="trailing" constant="53" id="dpg-DZ-LD7"/>
                                                 <constraint firstItem="V7Z-oo-coE" firstAttribute="leading" secondItem="e3c-yM-1ix" secondAttribute="leading" constant="23" id="h0m-6K-X4W"/>
                                                 <constraint firstAttribute="trailing" secondItem="WlT-io-esn" secondAttribute="trailing" constant="22" id="mXm-Io-IW5"/>
                                                 <constraint firstItem="387-Yg-eb7" firstAttribute="top" secondItem="WlT-io-esn" secondAttribute="bottom" constant="8" id="nmA-i8-HWA"/>
                                                 <constraint firstItem="387-Yg-eb7" firstAttribute="leading" secondItem="e3c-yM-1ix" secondAttribute="leading" constant="111" id="rsO-Bq-QCQ"/>
                                                 <constraint firstItem="Ruy-cb-HH3" firstAttribute="top" secondItem="WlT-io-esn" secondAttribute="bottom" constant="5" id="sta-mA-0At"/>
+                                                <constraint firstItem="kPR-SQ-ylI" firstAttribute="top" secondItem="AqW-pu-kfO" secondAttribute="bottom" constant="48" id="yHd-iR-O7N"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Aox-Vq-ASR"/>
+                                                    <exclude reference="Gf2-VY-tjM"/>
+                                                    <exclude reference="dpg-DZ-LD7"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1860,7 +1880,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="Z7p-7L-u97">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="msy-5x-HjX">
@@ -2057,7 +2077,7 @@
                     <navigationItem key="navigationItem" id="ioh-7E-ryW">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="IX6-vP-b4S">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tabs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1Q-dL-KaN">
@@ -2255,7 +2275,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="7zI-Zd-MhN">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-yO-iRT">
@@ -2309,7 +2329,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ0-6V-c8O">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Privacy Policy of Jokinit
+                                <string key="text">Privacy Policy of Jokadoo
 
 This Application collects some Personal Data from its Users.
 
@@ -2528,11 +2548,11 @@ This privacy policy relates solely to this Application.</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Rules
 
-The goal of Jokinit is to provide a place for users to share jokes. We will not actively monitor all posts, but it is important to follow the rules below. Failure to follow the rules with result in, but is not limited to, account removal or account suspension.
+The goal of Jokadoo is to provide a place for users to share jokes. We will not actively monitor all posts, but it is important to follow the rules below. Failure to follow the rules with result in, but is not limited to, account removal or account suspension.
 
-Content Boundaries and Use of Jokinit
+Content Boundaries and Use of Jokadoo
 
-In order to provide the Jokinit service and the ability to communicate and stay connected with others, there are some limitations on the type of content that can be published with Jokinit. These limitations comply with legal requirements and make Jokinit a better experience for all. We may need to change these rules from time to time and reserve the right to do so. Please check back here to see the latest.
+In order to provide the Jokadoo service and the ability to communicate and stay connected with others, there are some limitations on the type of content that can be published with Jokadoo. These limitations comply with legal requirements and make Jokadoo a better experience for all. We may need to change these rules from time to time and reserve the right to do so. Please check back here to see the latest.
 
 Impersonation is prohibited.
 
@@ -2544,7 +2564,7 @@ Specific threats of violence are prohibited.
 
 Cases of copyright infringement will be handled as-per the Terms of Service.
 
-Jokinit may not be used to commit illegal activities. 
+Jokadoo may not be used to commit illegal activities. 
 
 Creating multiple accounts to commit abusive behavior is prohibited.
 
@@ -2599,27 +2619,27 @@ These Terms of Service (“Terms”) govern your access to and use of the servic
 
 You are responsible for your use of the Services, for any Content you post to the Services, and for any consequences thereof. The Content you submit, post, or display will be able to be viewed by other users of the Services. You should only provide Content that you are comfortable sharing with others under these Terms.
 
-You may use the Services only if you can form a binding contract with Jokinit and are not a person barred from receiving services under the laws of the United States or other applicable jurisdiction. If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so. You may use the Services only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations.
+You may use the Services only if you can form a binding contract with Jokadoo and are not a person barred from receiving services under the laws of the United States or other applicable jurisdiction. If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so. You may use the Services only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations.
 
-The Services that Jokinit provides are always evolving and the form and nature of the Services that Jokinit provides may change from time to time without prior notice to you. In addition, Jokinit may stop (permanently or temporarily) providing the Services (or any features within the Services) to you or to users generally and may not be able to provide you with prior notice. We also retain the right to create limits on use and storage at our sole discretion at any time without prior notice to you.
+The Services that Jokadoo provides are always evolving and the form and nature of the Services that Jokadoo provides may change from time to time without prior notice to you. In addition, Jokadoo may stop (permanently or temporarily) providing the Services (or any features within the Services) to you or to users generally and may not be able to provide you with prior notice. We also retain the right to create limits on use and storage at our sole discretion at any time without prior notice to you.
 
-The Services may include advertisements, which may be targeted to the Content or information on the Services, queries made through the Services, or other information. The types and extent of advertising by Jokinit on the Services are subject to change. In consideration for Jokinit granting you access to and use of the Services, you agree that Jokinit and its third party providers and partners may place such advertising on the Services or in connection with the display of Content or information from the Services whether submitted by you or others.
+The Services may include advertisements, which may be targeted to the Content or information on the Services, queries made through the Services, or other information. The types and extent of advertising by Jokadoo on the Services are subject to change. In consideration for Jokadoo granting you access to and use of the Services, you agree that Jokadoo and its third party providers and partners may place such advertising on the Services or in connection with the display of Content or information from the Services whether submitted by you or others.
 
 2. Privacy
 
-Any information that you provide to Jokinit is subject to our Privacy Policy, which governs our collection and use of your information. You understand that through your use of the Services you consent to the collection and use (as set forth in the Privacy Policy) of this information, including the transfer of this information to the United States and/or other countries for storage, processing and use by Jokinit. As part of providing you the Services, we may need to provide you with certain communications, such as service announcements and administrative messages. These communications are considered part of the Services and your Jokinit account, which you may not be able to opt-out from receiving.
+Any information that you provide to Jokadoo is subject to our Privacy Policy, which governs our collection and use of your information. You understand that through your use of the Services you consent to the collection and use (as set forth in the Privacy Policy) of this information, including the transfer of this information to the United States and/or other countries for storage, processing and use by Jokadoo. As part of providing you the Services, we may need to provide you with certain communications, such as service announcements and administrative messages. These communications are considered part of the Services and your Jokadoo account, which you may not be able to opt-out from receiving.
 
-Tip You can opt-out of most communications from Jokinit.
+Tip You can opt-out of most communications from Jokadoo.
 
 3. Passwords
 
-You are responsible for safeguarding the password that you use to access the Services and for any activities or actions under your password. We encourage you to use “strong” passwords (passwords that use a combination of upper and lower case letters, numbers and symbols) with your account. Jokinit cannot and will not be liable for any loss or damage arising from your failure to comply with the above.
+You are responsible for safeguarding the password that you use to access the Services and for any activities or actions under your password. We encourage you to use “strong” passwords (passwords that use a combination of upper and lower case letters, numbers and symbols) with your account. Jokadoo cannot and will not be liable for any loss or damage arising from your failure to comply with the above.
 
 4. Content on the Services
 
 All Content, whether publicly posted or privately transmitted, is the sole responsibility of the person who originated such Content. We may not monitor or control the Content posted via the Services and, we cannot take responsibility for such Content. Any use or reliance on any Content or materials posted via the Services or obtained by you through the Services is at your own risk.
 
-We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services. You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive. Under no circumstances will Jokinit be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available via the Services or broadcast elsewhere.
+We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services. You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive. Under no circumstances will Jokadoo be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available via the Services or broadcast elsewhere.
 
 5. Your Rights
 
@@ -2627,33 +2647,33 @@ You retain your rights to any Content you submit, post or display on or through 
 
 Tip This license is you authorizing us to make your Posts available to the rest of the world and to let others do the same.
 
-You agree that this license includes the right for Jokinit to provide, promote, and improve the Services and to make Content submitted to or through the Services available to other companies, organizations or individuals who partner with Jokinit for the syndication, broadcast, distribution or publication of such Content on other media and services, subject to our terms and conditions for such Content use.
+You agree that this license includes the right for Jokadoo to provide, promote, and improve the Services and to make Content submitted to or through the Services available to other companies, organizations or individuals who partner with Jokadoo for the syndication, broadcast, distribution or publication of such Content on other media and services, subject to our terms and conditions for such Content use.
 
-Such additional uses by Jokinit, or other companies, organizations or individuals who partner with Jokinit, may be made with no compensation paid to you with respect to the Content that you submit, post, transmit or otherwise make available through the Services.
+Such additional uses by Jokadoo, or other companies, organizations or individuals who partner with Jokadoo, may be made with no compensation paid to you with respect to the Content that you submit, post, transmit or otherwise make available through the Services.
 
 We may modify or adapt your Content in order to transmit, display or distribute it over computer networks and in various media and/or make changes to your Content as are necessary to conform and adapt that Content to any requirements or limitations of any networks, devices, services or media.
 
-You are responsible for your use of the Services, for any Content you provide, and for any consequences thereof, including the use of your Content by other users and our third party partners. You understand that your Content may be syndicated, broadcast, distributed, or published by our partners and if you do not have the right to submit Content for such use, it may subject you to liability. Jokinit will not be responsible or liable for any use of your Content by Jokinit in accordance with these Terms. You represent and warrant that you have all the rights, power and authority necessary to grant the rights granted herein to any Content that you submit.
+You are responsible for your use of the Services, for any Content you provide, and for any consequences thereof, including the use of your Content by other users and our third party partners. You understand that your Content may be syndicated, broadcast, distributed, or published by our partners and if you do not have the right to submit Content for such use, it may subject you to liability. Jokadoo will not be responsible or liable for any use of your Content by Jokadoo in accordance with these Terms. You represent and warrant that you have all the rights, power and authority necessary to grant the rights granted herein to any Content that you submit.
 
 6. Your License To Use the Services
 
-Jokinit gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software that is provided to you by Jokinit as part of the Services. This license is for the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by Jokinit, in the manner permitted by these Terms.
+Jokadoo gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software that is provided to you by Jokadoo as part of the Services. This license is for the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by Jokadoo, in the manner permitted by these Terms.
 
-7. Jokinit Rights
+7. Jokadoo Rights
 
-All right, title, and interest in and to the Services (excluding Content provided by users) are and will remain the exclusive property of Jokinit and its licensors. The Services are protected by copyright, trademark, and other laws of both the United States and foreign countries. Nothing in the Terms gives you a right to use the Jokinit name or any of the Jokinit trademarks, logos, domain names, and other distinctive brand features. Any feedback, comments, or suggestions you may provide regarding Jokinit, or the Services is entirely voluntary and we will be free to use such feedback, comments or suggestions as we see fit and without any obligation to you.
+All right, title, and interest in and to the Services (excluding Content provided by users) are and will remain the exclusive property of Jokadoo and its licensors. The Services are protected by copyright, trademark, and other laws of both the United States and foreign countries. Nothing in the Terms gives you a right to use the Jokadoo name or any of the Jokadoo trademarks, logos, domain names, and other distinctive brand features. Any feedback, comments, or suggestions you may provide regarding Jokadoo, or the Services is entirely voluntary and we will be free to use such feedback, comments or suggestions as we see fit and without any obligation to you.
 
 8. Restrictions on Content and Use of the Services
 
-We reserve the right at all times (but will not have an obligation) to remove or refuse to distribute any Content on the Services, to suspend or terminate users, and to reclaim usernames without liability to you. We also reserve the right to access, read, preserve, and disclose any information as we reasonably believe is necessary to (i) satisfy any applicable law, regulation, legal process or governmental request, (ii) enforce the Terms, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests, or (v) protect the rights, property or safety of Jokinit, its users and the public.
+We reserve the right at all times (but will not have an obligation) to remove or refuse to distribute any Content on the Services, to suspend or terminate users, and to reclaim usernames without liability to you. We also reserve the right to access, read, preserve, and disclose any information as we reasonably believe is necessary to (i) satisfy any applicable law, regulation, legal process or governmental request, (ii) enforce the Terms, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests, or (v) protect the rights, property or safety of Jokadoo, its users and the public.
 
-You may not do any of the following while accessing or using the Services: (i) access, tamper with, or use non-public areas of the Services, Jokinit’s computer systems, or the technical delivery systems of Jokinit ‘s providers; (ii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures; (iii) access or search or attempt to access or search the Services by any means (automated or otherwise) other than through our currently available, published interfaces that are provided by Jokinit (and only pursuant to those terms and conditions), unless you have been specifically allowed to do so in a separate agreement with Jokinit (NOTE: crawling the Services is permissible if done in accordance with the provisions of the robots.txt file, however, scraping the Services without the prior consent of Jokinit is expressly prohibited); (iv) forge any TCP/IP packet header or any part of the header information in any email or posting, or in any way use the Services to send altered, deceptive or false source-identifying information; or (v) interfere with, or disrupt, (or attempt to do so), the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, mail-bombing the Services, or by scripting the creation of Content in such a manner as to interfere with or create an undue burden on the Services.
+You may not do any of the following while accessing or using the Services: (i) access, tamper with, or use non-public areas of the Services, Jokadoo's computer systems, or the technical delivery systems of Jokadoo ‘s providers; (ii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures; (iii) access or search or attempt to access or search the Services by any means (automated or otherwise) other than through our currently available, published interfaces that are provided by Jokadoo (and only pursuant to those terms and conditions), unless you have been specifically allowed to do so in a separate agreement with Jokadoo (NOTE: crawling the Services is permissible if done in accordance with the provisions of the robots.txt file, however, scraping the Services without the prior consent of Jokadoo is expressly prohibited); (iv) forge any TCP/IP packet header or any part of the header information in any email or posting, or in any way use the Services to send altered, deceptive or false source-identifying information; or (v) interfere with, or disrupt, (or attempt to do so), the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, mail-bombing the Services, or by scripting the creation of Content in such a manner as to interfere with or create an undue burden on the Services.
 
 9. Copyright Policy
 
-Jokinit respects the intellectual property rights of others and expects users of the Services to do the same. We will respond to notices of alleged copyright infringement that comply with applicable law and are properly provided to us. If you believe that your Content has been copied in a way that constitutes copyright infringement, please provide us with the following information: (i) a physical or electronic signature of the copyright owner or a person authorized to act on their behalf; (ii) identification of the copyrighted work claimed to have been infringed; (iii) identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material; (iv) your contact information, including your address, telephone number, and an email address; (v) a statement by you that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and (vi) a statement that the information in the notification is accurate, and, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.
+Jokadoo respects the intellectual property rights of others and expects users of the Services to do the same. We will respond to notices of alleged copyright infringement that comply with applicable law and are properly provided to us. If you believe that your Content has been copied in a way that constitutes copyright infringement, please provide us with the following information: (i) a physical or electronic signature of the copyright owner or a person authorized to act on their behalf; (ii) identification of the copyrighted work claimed to have been infringed; (iii) identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material; (iv) your contact information, including your address, telephone number, and an email address; (v) a statement by you that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and (vi) a statement that the information in the notification is accurate, and, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.
 
-We reserve the right to remove Content alleged to be infringing without prior notice, at our sole discretion, and without liability to you. In appropriate circumstances, Jokinit will also terminate a user’s account if the user is determined to be a repeat infringer. Our designated copyright agent for notice of alleged copyright infringement appearing on the Services is:
+We reserve the right to remove Content alleged to be infringing without prior notice, at our sole discretion, and without liability to you. In appropriate circumstances, Jokadoo will also terminate a user’s account if the user is determined to be a repeat infringer. Our designated copyright agent for notice of alleged copyright infringement appearing on the Services is:
 
 12thTone
 440 Cowan Rd
@@ -2663,43 +2683,43 @@ Email: contact@12thtone.com
 
 10. Ending These Terms
 
-The Terms will continue to apply until terminated by either you or Jokinit as follows.
+The Terms will continue to apply until terminated by either you or Jokadoo as follows.
 
-You may end your legal agreement with Jokinit at any time for any reason by deactivating your accounts and discontinuing your use of the Services. You do not need to specifically inform Jokinit when you stop using the Services. If you stop using the Services without deactivating your accounts, your accounts may be deactivated due to prolonged inactivity.
+You may end your legal agreement with Jokadoo at any time for any reason by deactivating your accounts and discontinuing your use of the Services. You do not need to specifically inform Jokadoo when you stop using the Services. If you stop using the Services without deactivating your accounts, your accounts may be deactivated due to prolonged inactivity.
 
-We may suspend or terminate your accounts or cease providing you with all or part of the Services at any time for any reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms or the Jokinit Rules, (ii) you create risk or possible legal exposure for us; or (iii) our provision of the Services to you is no longer commercially viable. We will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account.
+We may suspend or terminate your accounts or cease providing you with all or part of the Services at any time for any reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms or the Jokadoo Rules, (ii) you create risk or possible legal exposure for us; or (iii) our provision of the Services to you is no longer commercially viable. We will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account.
 
 In all such cases, the Terms shall terminate, including, without limitation, your license to use the Services, except that the following sections shall continue to apply: 4, 5, 7, 8, 10, 11, and 12.
 
-Nothing in this section shall affect Jokinit ‘s rights to change, limit or stop the provision of the Services without prior notice, as provided above in section 1.
+Nothing in this section shall affect Jokadoo ‘s rights to change, limit or stop the provision of the Services without prior notice, as provided above in section 1.
 
 11.Disclaimers and Limitations of Liability
 
-Please read this section carefully since it limits the liability of Jokinit and its parents, subsidiaries, affiliates, related companies, officers, directors, employees, agents, representatives, partners, and licensors (collectively, the “Jokinit Entities”). Each of the subsections below only applies up to the maximum extent permitted under applicable law. Some jurisdictions do not allow the disclaimer of implied warranties or the limitation of liability in contracts, and as a result the contents of this section may not apply to you. Nothing in this section is intended to limit any rights you may have which may not be lawfully limited.
+Please read this section carefully since it limits the liability of Jokadoo and its parents, subsidiaries, affiliates, related companies, officers, directors, employees, agents, representatives, partners, and licensors (collectively, the “Jokadoo Entities”). Each of the subsections below only applies up to the maximum extent permitted under applicable law. Some jurisdictions do not allow the disclaimer of implied warranties or the limitation of liability in contracts, and as a result the contents of this section may not apply to you. Nothing in this section is intended to limit any rights you may have which may not be lawfully limited.
 
 A.	The Services are Available “AS-IS”
 
-Your access to and use of the Services or any Content are at your own risk. You understand and agree that the Services are provided to you on an “AS IS” and “AS AVAILABLE” basis. Without limiting the foregoing, to the maximum extent permitted under applicable law, THE Jokinit ENTITIES DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+Your access to and use of the Services or any Content are at your own risk. You understand and agree that the Services are provided to you on an “AS IS” and “AS AVAILABLE” basis. Without limiting the foregoing, to the maximum extent permitted under applicable law, THE Jokadoo ENTITIES DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
 
-The Jokinit Entities make no warranty and disclaim all responsibility and liability for: (i) the completeness, accuracy, availability, timeliness, security or reliability of the Services or any Content; (ii) any harm to your computer system, loss of data, or other harm that results from your access to or use of the Services or any Content; (iii) the deletion of, or the failure to store or to transmit, any Content and other communications maintained by the Services; and (iv) whether the Services will meet your requirements or be available on an uninterrupted, secure, or error-free basis. No advice or information, whether oral or written, obtained from the Jokinit Entities or through the Services, will create any warranty not expressly made herein.
+The Jokadoo Entities make no warranty and disclaim all responsibility and liability for: (i) the completeness, accuracy, availability, timeliness, security or reliability of the Services or any Content; (ii) any harm to your computer system, loss of data, or other harm that results from your access to or use of the Services or any Content; (iii) the deletion of, or the failure to store or to transmit, any Content and other communications maintained by the Services; and (iv) whether the Services will meet your requirements or be available on an uninterrupted, secure, or error-free basis. No advice or information, whether oral or written, obtained from the Jokadoo Entities or through the Services, will create any warranty not expressly made herein.
 
 B. Links
 
-The Services may contain links to third-party websites or resources. You acknowledge and agree that the Jokinit Entities are not responsible or liable for: (i) the availability or accuracy of such websites or resources; or (ii) the content, products, or services on or available from such websites or resources. Links to such websites or resources do not imply any endorsement by the Jokinit Entities of such websites or resources or the content, products, or services available from such websites or resources. You acknowledge sole responsibility for and assume all risk arising from your use of any such websites or resources.
+The Services may contain links to third-party websites or resources. You acknowledge and agree that the Jokadoo Entities are not responsible or liable for: (i) the availability or accuracy of such websites or resources; or (ii) the content, products, or services on or available from such websites or resources. Links to such websites or resources do not imply any endorsement by the Jokadoo Entities of such websites or resources or the content, products, or services available from such websites or resources. You acknowledge sole responsibility for and assume all risk arising from your use of any such websites or resources.
 
 C. Limitation of Liability
 
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE Jokinit ENTITIES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOOD-WILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICES; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICES, INCLUDING WITHOUT LIMITATION, ANY DEFAMATORY, OFFENSIVE OR ILLEGAL CONDUCT OF OTHER USERS OR THIRD PARTIES; (iii) ANY CONTENT OBTAINED FROM THE SERVICES; OR (iv) UNAUTHORIZED ACCESS, USE OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE Jokadoo ENTITIES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOOD-WILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICES; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICES, INCLUDING WITHOUT LIMITATION, ANY DEFAMATORY, OFFENSIVE OR ILLEGAL CONDUCT OF OTHER USERS OR THIRD PARTIES; (iii) ANY CONTENT OBTAINED FROM THE SERVICES; OR (iv) UNAUTHORIZED ACCESS, USE OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.
 
-IN NO EVENT SHALL THE AGGREGATE LIABILITY OF THE Jokinit ENTITIES EXCEED THE GREATER OF ONE HUNDRED U.S. DOLLARS (U.S. $100.00) OR THE AMOUNT YOU PAID Jokinit, IF ANY, IN THE PAST SIX MONTHS FOR THE SERVICES GIVING RISE TO THE CLAIM.
+IN NO EVENT SHALL THE AGGREGATE LIABILITY OF THE Jokadoo ENTITIES EXCEED THE GREATER OF ONE HUNDRED U.S. DOLLARS (U.S. $100.00) OR THE AMOUNT YOU PAID Jokadoo, IF ANY, IN THE PAST SIX MONTHS FOR THE SERVICES GIVING RISE TO THE CLAIM.
 
-THE LIMITATIONS OF THIS SUBSECTION SHALL APPLY TO ANY THEORY OF LIABILITY, WHETHER BASED ON WARRANTY, CONTRACT, STATUTE, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, AND WHETHER OR NOT THE Jokinit ENTITIES HAVE BEEN INFORMED OF THE POSSIBILITY OF ANY SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.
+THE LIMITATIONS OF THIS SUBSECTION SHALL APPLY TO ANY THEORY OF LIABILITY, WHETHER BASED ON WARRANTY, CONTRACT, STATUTE, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, AND WHETHER OR NOT THE Jokadoo ENTITIES HAVE BEEN INFORMED OF THE POSSIBILITY OF ANY SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.
 
 12. General Terms
 
 A.	Waiver and Severability
 
-The failure of Jokinit to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. In the event that any provision of these Terms is held to be invalid or unenforceable, then that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.
+The failure of Jokadoo to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. In the event that any provision of these Terms is held to be invalid or unenforceable, then that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.
 
 B. Controlling Law and Jurisdiction
 
@@ -2709,7 +2729,7 @@ If you are a federal, state, or local government entity in the United States usi
 
 C. Entire Agreement
 
-These Terms, the Jokinit rules and our Privacy Policy are the entire and exclusive agreement between Jokinit and you regarding the Services (excluding any services for which you have a separate agreement with Jokinit that is explicitly in addition or in place of these Terms), and these Terms supersede and replace any prior agreements between Jokinit and you regarding the Services. Other than members of the group of companies of Jokinit, Inc. is the parent, no other person or company will be third party beneficiaries to the Terms.
+These Terms, the Jokadoo rules and our Privacy Policy are the entire and exclusive agreement between Jokadoo and you regarding the Services (excluding any services for which you have a separate agreement with Jokadoo that is explicitly in addition or in place of these Terms), and these Terms supersede and replace any prior agreements between Jokadoo and you regarding the Services. No other person or company will be third party beneficiaries to the Terms.
 We may revise these Terms from time to time, the most current version will always be at 12thtone.com. If the revision, in our sole discretion, is material we will notify you via an update or e-mail to the email associated with your account. By continuing to access or use the Services after those revisions become effective, you agree to be bound by the revised Terms.
 
 These Services are operated and provided by Matt Maher – 12thTone. If you have any questions about these Terms, please contact us.
@@ -2735,6 +2755,7 @@ Effective: March 5, 2015
     </scenes>
     <resources>
         <image name="AJ-Buddy-laughing.png" width="2135" height="2192"/>
+        <image name="LogoJokadoo.png" width="1153" height="440"/>
         <image name="dot-more-7@3x.png" width="90" height="90"/>
         <image name="gear-7.png" width="30" height="30"/>
         <image name="gear-7@3x.png" width="90" height="90"/>
@@ -2749,8 +2770,8 @@ Effective: March 5, 2015
         <image name="user-7.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KKl-Ay-2xk"/>
+        <segue reference="iYY-yP-HsU"/>
+        <segue reference="6YK-ad-UIl"/>
         <segue reference="Dj6-ii-vT0"/>
-        <segue reference="DdN-yH-8uP"/>
     </inferredMetricsTieBreakers>
 </document>
