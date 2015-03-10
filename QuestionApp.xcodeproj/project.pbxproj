@@ -39,6 +39,7 @@
 		F9118DF41A819B1500E878AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF31A819B1500E878AA /* libz.dylib */; };
 		F9118DF61A819B3300E878AA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF51A819B3300E878AA /* libsqlite3.dylib */; };
 		F9118DF91A81A7A400E878AA /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9118DF81A81A7A300E878AA /* ParseUI.framework */; };
+		F93C17C31AAD138F00A1BB71 /* LogoJokadoo.png in Resources */ = {isa = PBXBuildFile; fileRef = F93C17C21AAD138F00A1BB71 /* LogoJokadoo.png */; };
 		F93F3E0D1A8FF2D3003E046F /* JokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F93F3E0C1A8FF2D3003E046F /* JokeTableViewCell.m */; };
 		F947C4241A8E956E00363937 /* 602-exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F947C4231A8E956E00363937 /* 602-exit@2x.png */; };
 		F94B44C21A9E0EB500B39708 /* HotTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94B44C11A9E0EB500B39708 /* HotTableViewController.m */; };
@@ -145,6 +146,7 @@
 		F9118DF31A819B1500E878AA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F9118DF51A819B3300E878AA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F9118DF81A81A7A300E878AA /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		F93C17C21AAD138F00A1BB71 /* LogoJokadoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoJokadoo.png; sourceTree = "<group>"; };
 		F93F3E0B1A8FF2D3003E046F /* JokeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JokeTableViewCell.h; path = ../JokeTableViewCell.h; sourceTree = "<group>"; };
 		F93F3E0C1A8FF2D3003E046F /* JokeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JokeTableViewCell.m; path = ../JokeTableViewCell.m; sourceTree = "<group>"; };
 		F947C4231A8E956E00363937 /* 602-exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "602-exit@2x.png"; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 		F9118DB01A8196EB00E878AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F93C17C21AAD138F00A1BB71 /* LogoJokadoo.png */,
 				F90AED4C1AA50B4C002724C4 /* Purple.png */,
 				F90AED4A1AA508D1002724C4 /* AllJokesImage.png */,
 				F90AED481AA507D5002724C4 /* TabbersImage.png */,
@@ -554,6 +557,7 @@
 				F9B7181A1A8902EE0070C134 /* 644-coversation@2x.png in Resources */,
 				F99102551A950B32009DC951 /* 534-eye@2x.png in Resources */,
 				F90AED451AA5074B002724C4 /* TabsImage.png in Resources */,
+				F93C17C31AAD138F00A1BB71 /* LogoJokadoo.png in Resources */,
 				F96EDDF41AA3D9A500682BDD /* gear-7@3x.png in Resources */,
 				F98333D81AA0EA6900A2E295 /* microphone-7@2x.png in Resources */,
 				F984500B1A9FDB320061A0AB /* half-arrow-left-7@3x.png in Resources */,

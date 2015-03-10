@@ -35,10 +35,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Full Response", nil)];
-    */
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [self.fullResponse createdAt];
@@ -135,7 +132,7 @@
 
 - (void)shareJoke:(id)sender {
     
-    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokinit!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokinit!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.fullResponse objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [self.fullResponse objectForKey:@"answerText"]];
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.fullResponse objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [self.fullResponse objectForKey:@"answerText"]];
     
     NSMutableArray *jokeToShare = [NSMutableArray array];
     [jokeToShare addObject:messageBody];

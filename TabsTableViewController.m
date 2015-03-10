@@ -58,10 +58,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Tabs", nil)];
-     */
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -116,50 +113,7 @@
         }
     }];
 }
-/*
-- (void)gotOneQuery {
-    
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
-    [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
-    
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                
-                [authorArray addObject:[object objectForKey:@"tabReceiver"]];
-                
-            }
-            
-            NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-            NSMutableArray *authorQuestionArray = [[NSMutableArray alloc] init];
-            
-            PFQuery *queryQuestion = [PFQuery queryWithClassName:@"Question"];
-            
-            [queryQuestion whereKey:@"author" containedIn:authorArray];
-            [query whereKey:@"status" equalTo:@"Got One for Ya"];
-            [queryQuestion orderByDescending:@"createdAt"];
-            [queryQuestion findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                for (PFObject *object in objects) {
-                    [authorQuestionArray addObject:[object objectForKey:@"author"]];
-                    [objectArray addObject:object];
-                    
-                    self.theObjects = [objectArray copy];
-                    self.theAuthors = [authorQuestionArray copy];
-                }
-                [self loadObjects];
-                //[self.tableView reloadData];
-            }];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-*/
+
 - (void)gotOneQuery {
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
@@ -177,7 +131,6 @@
             self.theAuthors = [authorArray copy];
         }
         [self loadObjects];
-        //[self.tableView reloadData];
     }];
 }
 
@@ -198,7 +151,6 @@
             self.theAuthors = [authorArray copy];
         }
         [self loadObjects];
-        //[self.tableView reloadData];
     }];
 }
 
@@ -343,7 +295,7 @@
     
     PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
     
-    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokinit!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokinit!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
+    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
     
     NSMutableArray *jokeToShare = [NSMutableArray array];
     [jokeToShare addObject:messageBody];
@@ -363,15 +315,43 @@
 - (IBAction)jokeType:(id)sender {
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
+            
         case 0:
-            [self tabQuery];
-            break;
+            if (self.theObjects == nil) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
+                                                                    message:@"Keep Tabs on Some Funny Users."
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+                
+                break;
+            } else {
+                [self tabQuery];
+                break;
+            }
         case 1:
-            [self gotOneQuery];
-            break;
+            if (self.theObjects == nil) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
+                                                                    message:@"Keep Tabs on Some Funny Users."
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+                
+                break;
+            } else {
+                [self gotOneQuery];
+                break;
+            }
         case 2:
-            [self finishJokeQuery];
-            break;
+            if (self.theObjects == nil) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
+                                                                    message:@"Keep Tabs on Some Funny Users."
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+                
+                break;
+            } else {
+                [self finishJokeQuery];
+                break;
+            }
         default:
             break;
     }

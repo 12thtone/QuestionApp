@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Purple.png" translatesAutoresizingMaskIntoConstraints="NO" id="CXX-kv-5ZQ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="oto-bq-CqZ">
                                 <rect key="frame" x="225" y="92" width="150" height="150"/>
                                 <constraints>
@@ -26,27 +23,20 @@
                                     <constraint firstAttribute="width" constant="150" id="rJw-ey-fpO"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jokinit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6E6-Rq-Ouv">
-                                <rect key="frame" x="16" y="250" width="568" height="53"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Llr-z7-Zhr">
+                                <rect key="frame" x="156" y="250" width="288" height="110"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="TxC-bo-BFG"/>
+                                    <constraint firstAttribute="width" constant="288" id="CCZ-8A-aIL"/>
+                                    <constraint firstAttribute="height" constant="110" id="rGs-Q9-1zV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="30"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oto-bq-CqZ" firstAttribute="top" secondItem="elR-BO-iBF" secondAttribute="bottom" constant="72" id="1l8-SK-WxM"/>
-                            <constraint firstItem="CXX-kv-5ZQ" firstAttribute="top" secondItem="jqz-GI-VOO" secondAttribute="top" id="3KQ-F8-N79"/>
-                            <constraint firstAttribute="trailing" secondItem="6E6-Rq-Ouv" secondAttribute="trailing" constant="16" id="4Gn-qR-qHz"/>
-                            <constraint firstItem="CXX-kv-5ZQ" firstAttribute="leading" secondItem="jqz-GI-VOO" secondAttribute="leading" id="9MZ-Fc-H6D"/>
-                            <constraint firstAttribute="trailing" secondItem="CXX-kv-5ZQ" secondAttribute="trailing" id="RgS-aI-R7A"/>
-                            <constraint firstItem="Xgg-8O-NTw" firstAttribute="top" secondItem="CXX-kv-5ZQ" secondAttribute="bottom" id="bjC-n7-32d"/>
+                            <constraint firstAttribute="centerX" secondItem="Llr-z7-Zhr" secondAttribute="centerX" id="V0e-IM-XaX"/>
                             <constraint firstAttribute="centerX" secondItem="oto-bq-CqZ" secondAttribute="centerX" id="g2l-GY-FGW"/>
-                            <constraint firstItem="6E6-Rq-Ouv" firstAttribute="top" secondItem="oto-bq-CqZ" secondAttribute="bottom" constant="8" id="h09-ms-PPH"/>
-                            <constraint firstItem="6E6-Rq-Ouv" firstAttribute="leading" secondItem="jqz-GI-VOO" secondAttribute="leading" constant="16" id="qEo-i4-DZo"/>
+                            <constraint firstItem="Llr-z7-Zhr" firstAttribute="top" secondItem="oto-bq-CqZ" secondAttribute="bottom" constant="8" id="jOi-cC-x72"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -57,6 +47,6 @@
     </scenes>
     <resources>
         <image name="AJ-Buddy-laughing.png" width="2135" height="2192"/>
-        <image name="Purple.png" width="1024" height="1024"/>
+        <image name="LogoJokadoo.png" width="1153" height="440"/>
     </resources>
 </document>

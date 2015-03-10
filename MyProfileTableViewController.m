@@ -37,10 +37,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"My Profile", nil)];
-    */
+    
     UITapGestureRecognizer *tapDismissKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tapDismissKeyboard];
     
@@ -101,7 +98,7 @@
 }
 
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
-    if (self.chosenImage && self.textProfile) {
+    if (self.chosenImage || self.textProfile) {
         
         [self saveProfile];
         
@@ -124,25 +121,42 @@
         [alertView show];
     } else {
         
-        NSString *profileString = self.textProfile.text;
-        
-        NSData *imageData = UIImagePNGRepresentation(self.chosenImage);
-        PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
-        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                if (succeeded) {
-                    PFUser *user = [PFUser currentUser];
-                    user[@"description"] = profileString;
-                    user[@"picture"] = imageFile;
-                    [user saveInBackground];
+        if (self.chosenImage) {
+            NSString *profileString = self.textProfile.text;
+            
+            NSData *imageData = UIImageJPEGRepresentation(self.chosenImage, 0.0f);
+            NSLog(@"MyImage size in bytes:%lu",(unsigned long)[imageData length]);
+            PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+            [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Profile Updated"
+                                                                        message:@"Your changes have been saved."
+                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                    
+                    if (succeeded) {
+                        
+                        PFUser *user = [PFUser currentUser];
+                        user[@"description"] = profileString;
+                        user[@"picture"] = imageFile;
+                        [user saveInBackground];
+                    }
+                } else {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                        message:[error.userInfo objectForKey:@"error"]
+                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
                 }
-            } else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                    message:[error.userInfo objectForKey:@"error"]
-                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alertView show];
-            }
-        }];
+            }];
+        } else {
+            NSString *profileString = self.textProfile.text;
+            
+            PFUser *user = [PFUser currentUser];
+            user[@"description"] = profileString;
+            [user saveInBackground];
+        }
+        
     }
 }
 

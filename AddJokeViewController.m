@@ -31,10 +31,7 @@
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    /*
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor purpleColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:18], NSFontAttributeName, nil]];
-    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Add a Joke", nil)];
-    */
+    
     self.statusString = @"Got One for Ya";
 }
 
@@ -73,12 +70,13 @@
 
 - (void)saveQuestion
 {
+    NSString *jokeString = [NSString stringWithFormat:@"\n%@\n", self.textField.text];
     
     NSNumber *voteCount = [NSNumber numberWithInt:1];
     
     PFObject *newJoke = [PFObject objectWithClassName:@"Question"];
     newJoke[@"questionTitle"] = self.titleField.text;
-    newJoke[@"questionText"] = self.textField.text;
+    newJoke[@"questionText"] = jokeString;
     newJoke[@"voteQuestion"] = voteCount;
     newJoke[@"status"] = self.statusString;
     newJoke[@"author"] = [PFUser currentUser];
