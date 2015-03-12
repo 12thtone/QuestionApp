@@ -22,6 +22,9 @@
 - (IBAction)jokeType:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
+@property (nonatomic, assign) BOOL gotOne;
+@property (nonatomic, assign) BOOL finishMy;
+
 @end
 
 @implementation JokeTableViewController
@@ -41,7 +44,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 5;
     }
     return self;
 }
@@ -78,11 +81,57 @@
     [self.navigationItem setHidesBackButton:YES animated:NO];
     [self.navigationItem setTitle:@""];
     
-    [self questionQuery];
+    //[self questionQuery];
     [self loadObjects];
 }
 
 #pragma mark - PFQuery
+
+- (PFQuery *)queryForTable {
+    
+    if (self.gotOne == YES) {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        [query whereKey:@"status" equalTo:@"Got One for Ya"];
+        [query orderByDescending:@"createdAt"];
+        //[self loadObjects];
+        
+        return query;
+    } else if (self.finishMy == YES) {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        [query whereKey:@"status" equalTo:@"Finish My Joke"];
+        [query orderByDescending:@"createdAt"];
+        //[self loadObjects];
+        
+        return query;
+    } else {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        [query orderByDescending:@"createdAt"];
+        
+        return query;
+    }
+}
+/*
+- (PFQuery *)queryForTableGot {
+    
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    [query whereKey:@"status" equalTo:@"Got One for Ya"];
+    [query orderByDescending:@"createdAt"];
+    [self loadObjects];
+    
+    return query;
+}
+
+- (PFQuery *)queryForTableFinish {
+    
+    // Create a query
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    [query whereKey:@"status" equalTo:@"Finish My Joke"];
+    [query orderByDescending:@"createdAt"];
+    [self loadObjects];
+    
+    return query;
+}
 
 - (void)questionQuery {
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
@@ -142,64 +191,69 @@
         [self loadObjects];
     }];
 }
-
+*/
 #pragma mark - PFQueryTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.theObjects count];
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    if ([self.theObjects count] == 0) {
+//        return [self.objects count];
+//    } else {
+//        return [self.theObjects count];
+//    }
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JokeTVC" forIndexPath:indexPath];
     
-    PFUser *user = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"author"];
-    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        NSString *username = user.username;
-        cell.usernameLabel.text = username;
-        
-        PFFile *pictureFile = [user objectForKey:@"picture"];
-        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error){
-                
-                [cell.userImage setImage:[UIImage imageWithData:data]];
-                cell.userImage.layer.cornerRadius = 8.0;
-                cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
-                cell.userImage.layer.borderWidth = 1.0;
-                cell.userImage.layer.masksToBounds = YES;
-            }
-            else {
-                NSLog(@"no data!");
-            }
+        PFUser *user = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"author"];
+        [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            NSString *username = user.username;
+            cell.usernameLabel.text = username;
+            
+            PFFile *pictureFile = [user objectForKey:@"picture"];
+            [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                if (!error){
+                    
+                    [cell.userImage setImage:[UIImage imageWithData:data]];
+                    cell.userImage.layer.cornerRadius = 8.0;
+                    cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
+                    cell.userImage.layer.borderWidth = 1.0;
+                    cell.userImage.layer.masksToBounds = YES;
+                }
+                else {
+                    NSLog(@"no data!");
+                }
+            }];
         }];
-    }];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+        NSDate *date = [object createdAt];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
+        [tap setNumberOfTapsRequired:1];
+        tap.enabled = YES;
+        [cell.usernameLabel addGestureRecognizer:tap];
+        
+        [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
+        
+        cell.statusLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"status"];
+        cell.dateLabel.text = [dateFormatter stringFromDate:date];
+        cell.jokeTitleLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+        cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.objects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
+        
+        if ([cell.voteLabel.text  isEqual:@"1"]) {
+            cell.voteVotesLabel.text = @"Vote";
+        } else {
+            cell.voteVotesLabel.text = @"Votes";
+        }
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [object createdAt];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
-    [tap setNumberOfTapsRequired:1];
-    tap.enabled = YES;
-    [cell.usernameLabel addGestureRecognizer:tap];
-    
-    [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
-    
-    cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
-    cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.jokeTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
-    
-    if ([cell.voteLabel.text  isEqual:@"1"]) {
-        cell.voteVotesLabel.text = @"Vote";
-    } else {
-        cell.voteVotesLabel.text = @"Votes";
-    }
     
     return cell;
 }
@@ -218,7 +272,7 @@
     if ([segue.identifier isEqualToString:@"showJoke"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        
+        NSLog(@"SEGUE: %@", object);
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
     }
@@ -230,7 +284,7 @@
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
     PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
-    
+    NSLog(@"SEGUE: %@", object);
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfile = object;
     profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
@@ -296,13 +350,19 @@
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
         case 0:
-            [self questionQuery];
+            self.gotOne = NO;
+            self.finishMy = NO;
+            [self loadObjects];
             break;
         case 1:
-            [self gotOneQuery];
+            self.gotOne = YES;
+            self.finishMy = NO;
+            [self loadObjects];
             break;
         case 2:
-            [self finishJokeQuery];
+            self.finishMy = YES;
+            self.gotOne = NO;
+            [self loadObjects];
             break;
         default:
             break;

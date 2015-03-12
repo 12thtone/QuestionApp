@@ -35,10 +35,10 @@
         self.pullToRefreshEnabled = YES;
         
         // Whether the built-in pagination is enabled
-        self.paginationEnabled = YES;
+        self.paginationEnabled = NO;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 30;
     }
     return self;
 }
@@ -93,6 +93,7 @@
     
     PFQuery *mainQuery = [PFQuery orQueryWithSubqueries:@[query,query2]];
     
+    [mainQuery setLimit:30];
     [mainQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
             [userArray addObject:object];

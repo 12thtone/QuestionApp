@@ -10,9 +10,10 @@
 #import <Parse/Parse.h>
 #import <iAd/iAd.h>
 #import "ProfileTableViewController.h"
+#import "DataSource.h"
 #import "AllTabbersTableViewCell.h"
 
-@interface AllTabbersTableViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface AllTabbersTableViewController () 
 
 - (IBAction)exitTabberList:(UIBarButtonItem *)sender;
 
@@ -37,7 +38,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 2;
     }
     return self;
 }
@@ -45,8 +46,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    //self.tableView.delegate = self;
+    //self.tableView.dataSource = self;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -59,22 +60,26 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.canDisplayBannerAds = YES;
     
-    [self tabberQuery];
+    //[self tabberQuery];
     [self loadObjects];
 }
 
 # pragma mark - PFQuery
 
+- (PFQuery *)queryForTable {
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    
+    [query whereKey:@"tabReceiver" equalTo:self.user];
+    [query orderByDescending:@"createdAt"];
+    
+    return query;
+}
+/*
 - (NSArray *)tabberQuery {
     NSMutableArray *tabbersList = [[NSMutableArray alloc] init];
     
@@ -104,18 +109,18 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"%lu", (unsigned long)self.theTabbersList.count);
-    return [self.theTabbersList count];
+    return [self.objects count] + 1;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+*/
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     AllTabbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allTabbersTVCell" forIndexPath:indexPath];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [[self.theTabbersList objectAtIndex:indexPath.row] createdAt];
+    NSDate *date = [[self.objects objectAtIndex:indexPath.row] createdAt];
     
-    PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
+    PFUser *user = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
         cell.usernameLabel.text = username;

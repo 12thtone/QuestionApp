@@ -21,6 +21,9 @@
 - (IBAction)jokeType:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
+@property (nonatomic, assign) BOOL gotOne;
+@property (nonatomic, assign) BOOL finishMy;
+
 @end
 
 @implementation HotTableViewController
@@ -40,7 +43,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 3;
     }
     return self;
 }
@@ -74,12 +77,37 @@
     
     self.canDisplayBannerAds = YES;
     
-    [self questionQuery];
+    //[self questionQuery];
     [self loadObjects];
 }
 
 #pragma mark - PFQuery
 
+- (PFQuery *)queryForTable {
+    
+    if (self.gotOne == YES) {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        [query whereKey:@"status" equalTo:@"Got One for Ya"];
+        [query orderByDescending:@"createdAt"];
+        //[self loadObjects];
+        
+        return query;
+    } else if (self.finishMy == YES) {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        [query whereKey:@"status" equalTo:@"Finish My Joke"];
+        [query orderByDescending:@"createdAt"];
+        //[self loadObjects];
+        
+        return query;
+    } else {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        [query orderByDescending:@"createdAt"];
+        
+        return query;
+    }
+}
+/*
 - (void)questionQuery {
     NSMutableArray *objectArray = [[NSMutableArray alloc] init];
     NSMutableArray *authorArray = [[NSMutableArray alloc] init];
@@ -148,12 +176,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.theObjects count];
 }
-
+*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hotTVCell" forIndexPath:indexPath];
     
-    PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
+    PFUser *user = [self.objects objectAtIndex:indexPath.row][@"author"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
@@ -185,10 +213,10 @@
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
     
-    cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
+    cell.statusLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.jokeTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
+    cell.jokeTitleLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.objects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
         cell.voteVotesLabel.text = @"Vote";
@@ -212,7 +240,7 @@
     
     if ([segue.identifier isEqualToString:@"showResponsesFromHot"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
+        PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
@@ -293,13 +321,19 @@
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
         case 0:
-            [self questionQuery];
+            self.gotOne = NO;
+            self.finishMy = NO;
+            [self loadObjects];
             break;
         case 1:
-            [self gotOneQuery];
+            self.gotOne = YES;
+            self.finishMy = NO;
+            [self loadObjects];
             break;
         case 2:
-            [self finishJokeQuery];
+            self.finishMy = YES;
+            self.gotOne = NO;
+            [self loadObjects];
             break;
         default:
             break;

@@ -42,7 +42,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 2;
     }
     return self;
 }
@@ -82,11 +82,21 @@
     
     self.canDisplayBannerAds = YES;
     
-    [self answerQuery];
+    //[self answerQuery];
     [self loadObjects];
 }
 
 #pragma mark - PFQuery
+
+- (PFQuery *)queryForTable {
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    
+    [query whereKey:@"answerQuestion" equalTo:self.joke];
+    [query orderByDescending:@"vote"];
+    
+    return query;
+}
+
 
 - (void)answerQuery {
     NSMutableArray *responseArray = [[NSMutableArray alloc] init];
@@ -117,7 +127,7 @@
 }
 
 #pragma mark - PFQueryTableViewController
-
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -127,13 +137,16 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.theResponses.count;
 }
-
+*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     ResponseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ResponseTVC" forIndexPath:indexPath];
         
-    PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
+    PFUser *user = [self.objects objectAtIndex:indexPath.row][@"answerAuthor"];
+    NSLog(@"USER: %@", user);
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        //NSLog(@"%@", [object objectForKey:@"username"]);
+        NSLog(@"%@", user);
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
         PFFile *pictureFile = [user objectForKey:@"picture"];
@@ -151,7 +164,30 @@
             }
         }];
     }];
-    
+    /*
+    PFUser *user = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"answerAuthor"];
+    NSLog(@"USER: %@", user);
+    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        //NSLog(@"%@", [object objectForKey:@"username"]);
+        NSLog(@"%@", user);
+        cell.usernameLabel.text = [object objectForKey:@"username"];
+        
+        PFFile *pictureFile = [user objectForKey:@"picture"];
+        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error){
+                
+                [cell.userImage setImage:[UIImage imageWithData:data]];
+                cell.userImage.layer.cornerRadius = 8.0;
+                cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
+                cell.userImage.layer.borderWidth = 1.0;
+                cell.userImage.layer.masksToBounds = YES;
+            }
+            else {
+                NSLog(@"no data!");
+            }
+        }];
+    }];
+    */
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
     tap.enabled = YES;
@@ -164,9 +200,9 @@
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [self.joke createdAt];
     
-    cell.responseLabel.text = [self.theResponses objectAtIndex:indexPath.row];
+    cell.responseLabel.text = [self.objects objectAtIndex:indexPath.row][@"answerText"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [self.theVotes objectAtIndex:indexPath.row]];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [self.objects objectAtIndex:indexPath.row][@"vote"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
         cell.voteVotesLabel.text = @"Vote";

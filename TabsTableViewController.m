@@ -21,6 +21,9 @@
 - (IBAction)jokeType:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
+@property (nonatomic, assign) BOOL gotOne;
+@property (nonatomic, assign) BOOL finishMy;
+
 @end
 
 @implementation TabsTableViewController
@@ -40,7 +43,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 3;
     }
     return self;
 }
@@ -66,11 +69,106 @@
     
     self.canDisplayBannerAds = YES;
     
-    [self tabQuery];
+    //[self tabQuery];
     [self loadObjects];
 }
 
 #pragma mark - PFQuery
+
+- (PFQuery *)queryForTable {
+    
+    if (self.gotOne == YES) {
+        /*
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        NSLog(@"OBJECTS:::: %@", self.objects);
+        
+        [query whereKey:@"author" containedIn:self.objects];
+        //[query whereKey:@"status" equalTo:@"Got One for Ya"];
+        [query orderByDescending:@"createdAt"];
+        
+        return query;
+        */
+        PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+        
+        [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
+        [query includeKey:@"tabReceiver"];
+        
+        PFQuery *queryQ = [PFQuery queryWithClassName:@"Question"];
+        
+        [queryQ whereKey:@"status" equalTo:@"Got One for Ya"];
+        [queryQ whereKey:@"author" matchesKey:@"tabReceiver" inQuery:query];
+        [queryQ orderByDescending:@"createdAt"];
+        
+        return queryQ;
+        
+    } else if (self.finishMy == YES) {
+        /*
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        [query whereKey:@"author" containedIn:self.objects];
+        //[query whereKey:@"status" equalTo:@"Finish My Joke"];
+        [query orderByDescending:@"createdAt"];
+        
+        return query;
+        */
+        PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+        
+        [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
+        [query includeKey:@"tabReceiver"];
+        
+        PFQuery *queryQ = [PFQuery queryWithClassName:@"Question"];
+        
+        [queryQ whereKey:@"status" equalTo:@"Finish My Joke"];
+        [queryQ whereKey:@"author" matchesKey:@"tabReceiver" inQuery:query];
+        [queryQ orderByDescending:@"createdAt"];
+        
+        return queryQ;
+        
+    } else {
+        PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+        
+        [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
+        [query includeKey:@"tabReceiver"];
+
+        PFQuery *queryQ = [PFQuery queryWithClassName:@"Question"];
+        [queryQ whereKey:@"author" matchesKey:@"tabReceiver" inQuery:query];
+        [queryQ orderByDescending:@"createdAt"];
+        
+        return queryQ;
+    }
+    
+}
+/*
+- (PFQuery *)queryForTable2 {
+    
+    if (self.gotOne == YES) {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        [query whereKey:@"author" containedIn:self.objects];
+        [query whereKey:@"status" equalTo:@"Got One for Ya"];
+        [query orderByDescending:@"createdAt"];
+        
+        return query;
+    } else if (self.finishMy == YES) {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        [query whereKey:@"author" containedIn:self.objects];
+        [query whereKey:@"status" equalTo:@"Finish My Joke"];
+        [query orderByDescending:@"createdAt"];
+        
+        return query;
+    } else {
+        PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+        
+        [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
+        [query includeKey:@"tabReceiver"];
+        [query orderByDescending:@"createdAt"];
+        
+        return query;
+    }
+}
+
 
 - (void)tabQuery {
     
@@ -170,13 +268,16 @@
     }
     
 }
-
+*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+    
+    //NSLog(@"OBJECTS: %@", [self.objects objectAtIndex:indexPath.row][@"tabReceiver"]);
     
     TabsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TabsTVCell" forIndexPath:indexPath];
     
-    PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
+    PFUser *user = [self.objects objectAtIndex:indexPath.row][@"author"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        //cell.usernameLabel.text = [object objectForKey:@"username"];
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
         PFFile *pictureFile = [user objectForKey:@"picture"];
@@ -197,7 +298,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
+    NSDate *date = [[self.objects objectAtIndex:indexPath.row] createdAt];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
@@ -206,10 +307,10 @@
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
     
-    cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
+    cell.statusLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.jokeTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
+    cell.jokeTitleLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.objects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
         cell.voteVotesLabel.text = @"Vote";
@@ -315,6 +416,26 @@
 - (IBAction)jokeType:(id)sender {
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
+        case 0:
+            self.gotOne = NO;
+            self.finishMy = NO;
+            [self loadObjects];
+            break;
+        case 1:
+            self.gotOne = YES;
+            self.finishMy = NO;
+            [self loadObjects];
+            break;
+        case 2:
+            self.finishMy = YES;
+            self.gotOne = NO;
+            [self loadObjects];
+            break;
+        default:
+            break;
+    }
+    /*
+    {
             
         case 0:
             if (self.theObjects == nil) {
@@ -355,6 +476,7 @@
         default:
             break;
     }
+     */
 }
 
 @end
