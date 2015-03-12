@@ -25,13 +25,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-VQ-ekd">
-                                <rect key="frame" x="16" y="168" width="568" height="216"/>
+                                <rect key="frame" x="16" y="168" width="568" height="183"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="FEY-nZ-apK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="FEY-nZ-apK"/>
@@ -67,7 +67,6 @@
                             <constraint firstAttribute="trailing" secondItem="bri-gV-EPk" secondAttribute="trailing" constant="16" id="545-8w-QGU"/>
                             <constraint firstItem="2lt-VQ-ekd" firstAttribute="top" secondItem="sL3-MN-uFq" secondAttribute="bottom" constant="8" id="BcM-VZ-18q"/>
                             <constraint firstAttribute="trailing" secondItem="F1B-j0-8yW" secondAttribute="trailing" constant="16" id="IK7-5c-C5q"/>
-                            <constraint firstItem="RWH-pB-gPI" firstAttribute="top" secondItem="2lt-VQ-ekd" secondAttribute="bottom" constant="216" id="Oxo-EX-TIT"/>
                             <constraint firstItem="bri-gV-EPk" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="S1d-oY-jJ6"/>
                             <constraint firstAttribute="trailing" secondItem="2lt-VQ-ekd" secondAttribute="trailing" constant="16" id="c2O-5y-T3c"/>
                             <constraint firstAttribute="trailing" secondItem="sL3-MN-uFq" secondAttribute="trailing" constant="16" id="jB4-hb-ZEa"/>
@@ -75,6 +74,7 @@
                             <constraint firstItem="sL3-MN-uFq" firstAttribute="top" secondItem="bri-gV-EPk" secondAttribute="bottom" constant="8" id="kFG-Ib-IFW"/>
                             <constraint firstItem="bri-gV-EPk" firstAttribute="top" secondItem="F1B-j0-8yW" secondAttribute="bottom" constant="8" id="mkE-UT-vNG"/>
                             <constraint firstItem="F1B-j0-8yW" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="oqT-Oa-hIA"/>
+                            <constraint firstItem="RWH-pB-gPI" firstAttribute="top" secondItem="2lt-VQ-ekd" secondAttribute="bottom" constant="249" id="pJd-mp-egg"/>
                             <constraint firstItem="2lt-VQ-ekd" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="sWr-sv-Sjb"/>
                             <constraint firstItem="sL3-MN-uFq" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="xEc-Ba-Xny"/>
                         </constraints>
@@ -770,9 +770,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URz-uI-ZxX">
-                                <rect key="frame" x="16" y="126" width="568" height="209"/>
+                                <rect key="frame" x="16" y="126" width="568" height="176"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Response:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVd-98-G6y">
                                 <rect key="frame" x="16" y="101" width="568" height="17"/>
@@ -801,7 +801,7 @@
                             <constraint firstAttribute="trailing" secondItem="URz-uI-ZxX" secondAttribute="trailing" constant="16" id="Nrp-Wx-xIx"/>
                             <constraint firstItem="URz-uI-ZxX" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="S6f-ju-8h6"/>
                             <constraint firstItem="mVd-98-G6y" firstAttribute="top" secondItem="CVa-dO-CLY" secondAttribute="bottom" constant="8" id="cEV-JF-OYu"/>
-                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="URz-uI-ZxX" secondAttribute="bottom" constant="216" id="dXW-eG-ZE3"/>
+                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="URz-uI-ZxX" secondAttribute="bottom" constant="249" id="fQT-Jt-Smr"/>
                             <constraint firstAttribute="trailing" secondItem="mVd-98-G6y" secondAttribute="trailing" constant="16" id="lbD-Le-1Xh"/>
                             <constraint firstItem="CVa-dO-CLY" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="ouG-p7-yxi"/>
                             <constraint firstItem="CVa-dO-CLY" firstAttribute="top" secondItem="aVK-0y-wTC" secondAttribute="bottom" constant="8" id="qLF-zk-7My"/>
