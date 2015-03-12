@@ -17,8 +17,8 @@
 @interface JokeTableViewController ()
 
 @property (weak, nonatomic) PFUser *tappedUser;
-@property (strong, nonatomic) NSMutableArray *theObjects;
-@property (strong, nonatomic) NSMutableArray *theAuthors;
+//@property (strong, nonatomic) NSMutableArray *theObjects;
+//@property (strong, nonatomic) NSMutableArray *theAuthors;
 - (IBAction)jokeType:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
@@ -299,7 +299,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
     
     [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
     
@@ -327,7 +327,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *messageData = [self.objects objectAtIndex:tapIndexPath.row];
     
     NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
     
@@ -342,7 +342,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
     
     if (UIActivityTypeMail) {
-        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
     }
 }
 

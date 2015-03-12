@@ -16,8 +16,8 @@
 
 @interface TabsTableViewController ()
 
-@property (strong, nonatomic) NSMutableArray *theObjects;
-@property (strong, nonatomic) NSMutableArray *theAuthors;
+//@property (strong, nonatomic) NSMutableArray *theObjects;
+//@property (strong, nonatomic) NSMutableArray *theAuthors;
 - (IBAction)jokeType:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
@@ -334,7 +334,7 @@
     
     if ([segue.identifier isEqualToString:@"showTabResponses"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
+        PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
@@ -346,10 +346,10 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    PFUser *user = [self.theAuthors objectAtIndex:tapIndexPath.row];
+    PFUser *user = [self.objects objectAtIndex:tapIndexPath.row];
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
-    profileVC.userFromTabList = user;
+    profileVC.userProfile = user;
     profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     
     [self presentViewController:profileVC animated:YES completion:nil];
@@ -366,7 +366,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
     
     [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
     
@@ -394,7 +394,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *messageData = [self.objects objectAtIndex:tapIndexPath.row];
     
     NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
     
@@ -409,12 +409,13 @@
     [self presentViewController:activityVC animated:YES completion:nil];
     
     if (UIActivityTypeMail) {
-        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
     }
 }
 
 - (IBAction)jokeType:(id)sender {
     switch (self.jokeTypeControl.selectedSegmentIndex)
+    /*
     {
         case 0:
             self.gotOne = NO;
@@ -434,11 +435,11 @@
         default:
             break;
     }
-    /*
+    */
     {
             
         case 0:
-            if (self.theObjects == nil) {
+            if (self.objects == nil) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
                                                                     message:@"Keep Tabs on Some Funny Users."
                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -446,11 +447,13 @@
                 
                 break;
             } else {
-                [self tabQuery];
+                self.gotOne = NO;
+                self.finishMy = NO;
+                [self loadObjects];
                 break;
             }
         case 1:
-            if (self.theObjects == nil) {
+            if (self.objects == nil) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
                                                                     message:@"Keep Tabs on Some Funny Users."
                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -458,11 +461,13 @@
                 
                 break;
             } else {
-                [self gotOneQuery];
+                self.gotOne = YES;
+                self.finishMy = NO;
+                [self loadObjects];
                 break;
             }
         case 2:
-            if (self.theObjects == nil) {
+            if (self.objects == nil) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Tabs, Yet"
                                                                     message:@"Keep Tabs on Some Funny Users."
                                                                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -470,13 +475,15 @@
                 
                 break;
             } else {
-                [self finishJokeQuery];
+                self.finishMy = YES;
+                self.gotOne = NO;
+                [self loadObjects];
                 break;
             }
         default:
             break;
     }
-     */
+    
 }
 
 @end

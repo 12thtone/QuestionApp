@@ -16,8 +16,8 @@
 
 @interface HotTableViewController ()
 
-@property (strong, nonatomic) NSMutableArray *theObjects;
-@property (strong, nonatomic) NSMutableArray *theAuthors;
+//@property (strong, nonatomic) NSMutableArray *theObjects;
+//@property (strong, nonatomic) NSMutableArray *theAuthors;
 - (IBAction)jokeType:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
@@ -88,21 +88,21 @@
     if (self.gotOne == YES) {
         PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
         [query whereKey:@"status" equalTo:@"Got One for Ya"];
-        [query orderByDescending:@"createdAt"];
+        [query orderByDescending:@"voteQuestion"];
         //[self loadObjects];
         
         return query;
     } else if (self.finishMy == YES) {
         PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
         [query whereKey:@"status" equalTo:@"Finish My Joke"];
-        [query orderByDescending:@"createdAt"];
+        [query orderByDescending:@"voteQuestion"];
         //[self loadObjects];
         
         return query;
     } else {
         PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
         
-        [query orderByDescending:@"createdAt"];
+        [query orderByDescending:@"voteQuestion"];
         
         return query;
     }
@@ -203,7 +203,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
+    NSDate *date = [[self.objects objectAtIndex:indexPath.row] createdAt];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
@@ -252,12 +252,12 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    PFUser *user = [self.theAuthors objectAtIndex:tapIndexPath.row];
+    PFUser *user = [self.objects objectAtIndex:tapIndexPath.row];
     
     NSLog(@"OBJECTS QQQ: %@", user);
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
-    profileVC.userFromTabList = user;
+    profileVC.userProfile = user;
     profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     
     [self presentViewController:profileVC animated:YES completion:nil];
@@ -270,7 +270,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
     
     [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
     
@@ -298,7 +298,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *messageData = [self.objects objectAtIndex:tapIndexPath.row];
     
     NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
     
@@ -313,7 +313,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
     
     if (UIActivityTypeMail) {
-        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
     }
 }
 

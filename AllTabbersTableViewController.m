@@ -17,7 +17,7 @@
 
 - (IBAction)exitTabberList:(UIBarButtonItem *)sender;
 
-@property (nonatomic, strong) NSMutableArray *theTabbersList;
+//@property (nonatomic, strong) NSMutableArray *theTabbersList;
 
 @end
 
@@ -157,7 +157,7 @@
     if ([segue.identifier isEqualToString:@"viewNewTabberProfile"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
+        PFUser *user = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
         
         NSLog(@"%@", user);
                 

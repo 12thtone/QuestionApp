@@ -145,7 +145,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
     
     if (UIActivityTypeMail) {
-        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
     }
 }
 

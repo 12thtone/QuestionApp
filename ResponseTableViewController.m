@@ -18,10 +18,10 @@
 @interface ResponseTableViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextView *jokeTextView;
-@property (strong, nonatomic) NSMutableArray *theResponses;
-@property (strong, nonatomic) NSMutableArray *theVotes;
-@property (strong, nonatomic) NSMutableArray *theObjects;
-@property (strong, nonatomic) NSMutableArray *theAuthors;
+//@property (strong, nonatomic) NSMutableArray *theResponses;
+//@property (strong, nonatomic) NSMutableArray *theVotes;
+//@property (strong, nonatomic) NSMutableArray *theObjects;
+//@property (strong, nonatomic) NSMutableArray *theAuthors;
 
 @end
 
@@ -97,7 +97,7 @@
     return query;
 }
 
-
+/*
 - (void)answerQuery {
     NSMutableArray *responseArray = [[NSMutableArray alloc] init];
     NSMutableArray *voteArray = [[NSMutableArray alloc] init];
@@ -125,7 +125,7 @@
         [self.tableView reloadData];
     }];
 }
-
+*/
 #pragma mark - PFQueryTableViewController
 /*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -220,7 +220,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
     [newVote incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
     
     NSLog(@"VOTE: %@", newVote);
@@ -232,7 +232,7 @@
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             [self loadObjects];
-            [self answerQuery]; /// loadObjects doesn't update the label
+            //[self answerQuery]; /// loadObjects doesn't update the label
             ((UIButton *)sender).enabled = NO;
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
@@ -250,7 +250,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *messageData = [self.objects objectAtIndex:tapIndexPath.row];
     
     NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"answerText"]];
     
@@ -265,7 +265,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
     
     if (UIActivityTypeMail) {
-        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
     }
 }
 
@@ -281,7 +281,7 @@
     if ([segue.identifier isEqualToString:@"showResponse"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
+        PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
         FullResponseTableViewController *fullAnswerTableViewController = (FullResponseTableViewController *)segue.destinationViewController;
         fullAnswerTableViewController.fullResponse = object;
@@ -294,7 +294,7 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    PFObject *object = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
         
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfileAnswer = object;
