@@ -17,9 +17,9 @@
 @interface JokeTableViewController ()
 
 @property (weak, nonatomic) PFUser *tappedUser;
-//@property (strong, nonatomic) NSMutableArray *theObjects;
-//@property (strong, nonatomic) NSMutableArray *theAuthors;
+
 - (IBAction)jokeType:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
 @property (nonatomic, assign) BOOL gotOne;
@@ -81,7 +81,6 @@
     [self.navigationItem setHidesBackButton:YES animated:NO];
     [self.navigationItem setTitle:@""];
     
-    //[self questionQuery];
     [self loadObjects];
 }
 
@@ -91,16 +90,16 @@
     
     if (self.gotOne == YES) {
         PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
         [query whereKey:@"status" equalTo:@"Got One for Ya"];
         [query orderByDescending:@"createdAt"];
-        //[self loadObjects];
         
         return query;
     } else if (self.finishMy == YES) {
         PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
         [query whereKey:@"status" equalTo:@"Finish My Joke"];
         [query orderByDescending:@"createdAt"];
-        //[self loadObjects];
         
         return query;
     } else {
@@ -111,100 +110,8 @@
         return query;
     }
 }
-/*
-- (PFQuery *)queryForTableGot {
-    
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    [query whereKey:@"status" equalTo:@"Got One for Ya"];
-    [query orderByDescending:@"createdAt"];
-    [self loadObjects];
-    
-    return query;
-}
 
-- (PFQuery *)queryForTableFinish {
-    
-    // Create a query
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    [query whereKey:@"status" equalTo:@"Finish My Joke"];
-    [query orderByDescending:@"createdAt"];
-    [self loadObjects];
-    
-    return query;
-}
-
-- (void)questionQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        
-        [self.tableView reloadData];
-    }];
-}
-
-- (void)gotOneQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query whereKey:@"status" equalTo:@"Got One for Ya"];
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        [self loadObjects];
-        //[self.tableView reloadData];
-    }];
-}
-
-- (void)finishJokeQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query whereKey:@"status" equalTo:@"Finish My Joke"];
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        [self loadObjects];
-    }];
-}
-*/
 #pragma mark - PFQueryTableViewController
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if ([self.theObjects count] == 0) {
-//        return [self.objects count];
-//    } else {
-//        return [self.theObjects count];
-//    }
-//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     

@@ -17,8 +17,6 @@
 
 - (IBAction)exitTabberList:(UIBarButtonItem *)sender;
 
-//@property (nonatomic, strong) NSMutableArray *theTabbersList;
-
 @end
 
 @implementation AllTabbersTableViewController
@@ -46,9 +44,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.tableView.delegate = self;
-    //self.tableView.dataSource = self;
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
@@ -65,7 +60,6 @@
     
     self.canDisplayBannerAds = YES;
     
-    //[self tabberQuery];
     [self loadObjects];
 }
 
@@ -79,39 +73,9 @@
     
     return query;
 }
-/*
-- (NSArray *)tabberQuery {
-    NSMutableArray *tabbersList = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
-    
-    [query whereKey:@"tabReceiver" equalTo:self.user];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFUser *aUser in objects) {
-            [tabbersList addObject:aUser];
-            
-            self.theTabbersList = [tabbersList copy];
-        }
-        [self.tableView reloadData];
-    }];
-    
-    return tabbersList;
-}
 
-#pragma mark - Table view data source
+#pragma mark - PFQueryTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSLog(@"%lu", (unsigned long)self.theTabbersList.count);
-    return [self.objects count] + 1;
-}
-*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     AllTabbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allTabbersTVCell" forIndexPath:indexPath];

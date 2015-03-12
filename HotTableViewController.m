@@ -16,9 +16,8 @@
 
 @interface HotTableViewController ()
 
-//@property (strong, nonatomic) NSMutableArray *theObjects;
-//@property (strong, nonatomic) NSMutableArray *theAuthors;
 - (IBAction)jokeType:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
 @property (nonatomic, assign) BOOL gotOne;
@@ -77,7 +76,6 @@
     
     self.canDisplayBannerAds = YES;
     
-    //[self questionQuery];
     [self loadObjects];
 }
 
@@ -87,16 +85,16 @@
     
     if (self.gotOne == YES) {
         PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
         [query whereKey:@"status" equalTo:@"Got One for Ya"];
         [query orderByDescending:@"voteQuestion"];
-        //[self loadObjects];
         
         return query;
     } else if (self.finishMy == YES) {
         PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
         [query whereKey:@"status" equalTo:@"Finish My Joke"];
         [query orderByDescending:@"voteQuestion"];
-        //[self loadObjects];
         
         return query;
     } else {
@@ -107,76 +105,9 @@
         return query;
     }
 }
-/*
-- (void)questionQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    
-    [query orderByDescending:@"voteQuestion"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        
-        [self.tableView reloadData];
-    }];
-}
-
-- (void)gotOneQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query whereKey:@"status" equalTo:@"Got One for Ya"];
-    [query orderByDescending:@"voteQuestion"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        [self loadObjects];
-    }];
-}
-
-- (void)finishJokeQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query whereKey:@"status" equalTo:@"Finish My Joke"];
-    [query orderByDescending:@"voteQuestion"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        [self loadObjects];
-    }];
-}
 
 #pragma mark - PFQueryTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.theObjects count];
-}
-*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hotTVCell" forIndexPath:indexPath];

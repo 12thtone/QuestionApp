@@ -18,10 +18,6 @@
 @interface ResponseTableViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextView *jokeTextView;
-//@property (strong, nonatomic) NSMutableArray *theResponses;
-//@property (strong, nonatomic) NSMutableArray *theVotes;
-//@property (strong, nonatomic) NSMutableArray *theObjects;
-//@property (strong, nonatomic) NSMutableArray *theAuthors;
 
 @end
 
@@ -82,7 +78,6 @@
     
     self.canDisplayBannerAds = YES;
     
-    //[self answerQuery];
     [self loadObjects];
 }
 
@@ -97,47 +92,8 @@
     return query;
 }
 
-/*
-- (void)answerQuery {
-    NSMutableArray *responseArray = [[NSMutableArray alloc] init];
-    NSMutableArray *voteArray = [[NSMutableArray alloc] init];
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Answer"];
-    
-    [query whereKey:@"answerQuestion" equalTo:self.joke];
-    [query orderByDescending:@"vote"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [responseArray addObject:[object objectForKey:@"answerText"]];
-            [voteArray addObject:[object objectForKey:@"vote"]];
-            [authorArray addObject:[object objectForKey:@"answerAuthor"]];
-            [objectArray addObject:object];
-            NSLog(@"Answer ARRAY: %lu", (unsigned long)responseArray.count);
-            
-            self.theResponses = [responseArray copy];
-            self.theVotes = [voteArray copy];
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        
-        [self.tableView reloadData];
-    }];
-}
-*/
 #pragma mark - PFQueryTableViewController
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.theResponses.count;
-}
-*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     ResponseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ResponseTVC" forIndexPath:indexPath];
@@ -145,7 +101,6 @@
     PFUser *user = [self.objects objectAtIndex:indexPath.row][@"answerAuthor"];
     NSLog(@"USER: %@", user);
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        //NSLog(@"%@", [object objectForKey:@"username"]);
         NSLog(@"%@", user);
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
@@ -164,30 +119,7 @@
             }
         }];
     }];
-    /*
-    PFUser *user = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"answerAuthor"];
-    NSLog(@"USER: %@", user);
-    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        //NSLog(@"%@", [object objectForKey:@"username"]);
-        NSLog(@"%@", user);
-        cell.usernameLabel.text = [object objectForKey:@"username"];
-        
-        PFFile *pictureFile = [user objectForKey:@"picture"];
-        [pictureFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error){
-                
-                [cell.userImage setImage:[UIImage imageWithData:data]];
-                cell.userImage.layer.cornerRadius = 8.0;
-                cell.userImage.layer.borderColor = [[UIColor grayColor] CGColor];
-                cell.userImage.layer.borderWidth = 1.0;
-                cell.userImage.layer.masksToBounds = YES;
-            }
-            else {
-                NSLog(@"no data!");
-            }
-        }];
-    }];
-    */
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
     tap.enabled = YES;
@@ -232,7 +164,6 @@
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             [self loadObjects];
-            //[self answerQuery]; /// loadObjects doesn't update the label
             ((UIButton *)sender).enabled = NO;
         } else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"

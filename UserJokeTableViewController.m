@@ -15,8 +15,6 @@
 
 @interface UserJokeTableViewController ()
 
-//@property (strong, nonatomic) NSMutableArray *theObjects;
-
 - (IBAction)exitUserQuestions:(UIBarButtonItem *)sender;
 
 @end
@@ -63,7 +61,6 @@
     
     self.canDisplayBannerAds = YES;
     
-    //[self questionQuery];
     [self loadObjects];
 }
 
@@ -78,34 +75,9 @@
     
     return query;
 }
-/*
-- (void)questionQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    
-    [query whereKey:@"author" equalTo:self.user];
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-        }
-        [self.tableView reloadData];
-    }];
-}
 
 #pragma mark - PFQueryTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
-}
-*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     UserJokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserQuestionTVCell" forIndexPath:indexPath];

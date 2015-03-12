@@ -16,9 +16,8 @@
 
 @interface TabsTableViewController ()
 
-//@property (strong, nonatomic) NSMutableArray *theObjects;
-//@property (strong, nonatomic) NSMutableArray *theAuthors;
 - (IBAction)jokeType:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
 
 @property (nonatomic, assign) BOOL gotOne;
@@ -69,7 +68,6 @@
     
     self.canDisplayBannerAds = YES;
     
-    //[self tabQuery];
     [self loadObjects];
 }
 
@@ -78,17 +76,6 @@
 - (PFQuery *)queryForTable {
     
     if (self.gotOne == YES) {
-        /*
-        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-        
-        NSLog(@"OBJECTS:::: %@", self.objects);
-        
-        [query whereKey:@"author" containedIn:self.objects];
-        //[query whereKey:@"status" equalTo:@"Got One for Ya"];
-        [query orderByDescending:@"createdAt"];
-        
-        return query;
-        */
         PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
         
         [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
@@ -103,15 +90,6 @@
         return queryQ;
         
     } else if (self.finishMy == YES) {
-        /*
-        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-        
-        [query whereKey:@"author" containedIn:self.objects];
-        //[query whereKey:@"status" equalTo:@"Finish My Joke"];
-        [query orderByDescending:@"createdAt"];
-        
-        return query;
-        */
         PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
         
         [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
@@ -139,145 +117,15 @@
     }
     
 }
-/*
-- (PFQuery *)queryForTable2 {
-    
-    if (self.gotOne == YES) {
-        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-        
-        [query whereKey:@"author" containedIn:self.objects];
-        [query whereKey:@"status" equalTo:@"Got One for Ya"];
-        [query orderByDescending:@"createdAt"];
-        
-        return query;
-    } else if (self.finishMy == YES) {
-        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-        
-        [query whereKey:@"author" containedIn:self.objects];
-        [query whereKey:@"status" equalTo:@"Finish My Joke"];
-        [query orderByDescending:@"createdAt"];
-        
-        return query;
-    } else {
-        PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
-        
-        [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
-        [query includeKey:@"tabReceiver"];
-        [query orderByDescending:@"createdAt"];
-        
-        return query;
-    }
-}
-
-
-- (void)tabQuery {
-    
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
-    [query whereKey:@"tabMaker" equalTo:[PFUser currentUser]];
-    
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                
-                [authorArray addObject:[object objectForKey:@"tabReceiver"]];
-                
-            }
-            
-            NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-            NSMutableArray *authorQuestionArray = [[NSMutableArray alloc] init];
-            
-            PFQuery *queryQuestion = [PFQuery queryWithClassName:@"Question"];
-            
-            [queryQuestion whereKey:@"author" containedIn:authorArray];
-            [queryQuestion orderByDescending:@"createdAt"];
-            [queryQuestion findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                for (PFObject *object in objects) {
-                    [authorQuestionArray addObject:[object objectForKey:@"author"]];
-                    [objectArray addObject:object];
-                    
-                    self.theObjects = [objectArray copy];
-                    self.theAuthors = [authorQuestionArray copy];
-                }
-                
-                [self.tableView reloadData];
-            }];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-
-- (void)gotOneQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query whereKey:@"author" containedIn:self.theAuthors];
-    [query whereKey:@"status" equalTo:@"Got One for Ya"];
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        [self loadObjects];
-    }];
-}
-
-- (void)finishJokeQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query whereKey:@"author" containedIn:self.theAuthors];
-    [query whereKey:@"status" equalTo:@"Finish My Joke"];
-    [query orderByDescending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        [self loadObjects];
-    }];
-}
 
 #pragma mark - PFQueryTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"Objects ghgh: %lu", (unsigned long)self.theObjects.count);
-    
-    if (self.theObjects.count != 0) {
-        return self.theObjects.count;
-    } else {
-        return 0;
-    }
-    
-}
-*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    
-    //NSLog(@"OBJECTS: %@", [self.objects objectAtIndex:indexPath.row][@"tabReceiver"]);
     
     TabsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TabsTVCell" forIndexPath:indexPath];
     
     PFUser *user = [self.objects objectAtIndex:indexPath.row][@"author"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        //cell.usernameLabel.text = [object objectForKey:@"username"];
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
         PFFile *pictureFile = [user objectForKey:@"picture"];
@@ -415,27 +263,6 @@
 
 - (IBAction)jokeType:(id)sender {
     switch (self.jokeTypeControl.selectedSegmentIndex)
-    /*
-    {
-        case 0:
-            self.gotOne = NO;
-            self.finishMy = NO;
-            [self loadObjects];
-            break;
-        case 1:
-            self.gotOne = YES;
-            self.finishMy = NO;
-            [self loadObjects];
-            break;
-        case 2:
-            self.finishMy = YES;
-            self.gotOne = NO;
-            [self loadObjects];
-            break;
-        default:
-            break;
-    }
-    */
     {
             
         case 0:
