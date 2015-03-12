@@ -184,9 +184,7 @@
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
     PFUser *user = [self.objects objectAtIndex:tapIndexPath.row];
-    
-    NSLog(@"OBJECTS QQQ: %@", user);
-    
+        
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfile = user;
     profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;

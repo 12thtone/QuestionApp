@@ -191,7 +191,6 @@
 - (void)setTabData:(NSMutableArray *)tabData {
     [self tabbersQuery];
     self.theTabbers = tabData;
-    NSLog(@"%lu", (unsigned long)tabData.count);
 }
 
 - (void)didReceiveMemoryWarning {

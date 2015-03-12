@@ -83,7 +83,6 @@
     NSMutableArray *userArray = [[NSMutableArray alloc] init];
     
     NSString *searchString = self.searchBar.text;
-    NSLog(@"%@", searchString);
     
     PFQuery *query = [PFUser query];
     [query whereKey:@"description" matchesRegex:searchString modifiers:@"i"];

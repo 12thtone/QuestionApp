@@ -122,9 +122,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFUser *user = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
-        
-        NSLog(@"%@", user);
-                
+                        
         ProfileTableViewController *profileTableViewController = segue.destinationViewController;
         profileTableViewController.userFromTabList = user;
         profileTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;

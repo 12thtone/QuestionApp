@@ -108,9 +108,7 @@
 - (void)saveVote:(id)sender {
     
     [self.fullResponse incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
-    
-    NSLog(@"VOTE: %@", self.fullResponse);
-    
+        
     [self.fullResponse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"

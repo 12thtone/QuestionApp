@@ -99,9 +99,7 @@
     ResponseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ResponseTVC" forIndexPath:indexPath];
         
     PFUser *user = [self.objects objectAtIndex:indexPath.row][@"answerAuthor"];
-    NSLog(@"USER: %@", user);
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        NSLog(@"%@", user);
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
         PFFile *pictureFile = [user objectForKey:@"picture"];
@@ -154,9 +152,7 @@
     
     PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
     [newVote incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
-    
-    NSLog(@"VOTE: %@", newVote);
-    
+        
     [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"

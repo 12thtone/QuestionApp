@@ -179,7 +179,6 @@
     if ([segue.identifier isEqualToString:@"showJoke"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        NSLog(@"SEGUE: %@", object);
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
     }
@@ -191,7 +190,6 @@
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
     PFObject *object = [self.objects objectAtIndex:tapIndexPath.row];
-    NSLog(@"SEGUE: %@", object);
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfile = object;
     profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
