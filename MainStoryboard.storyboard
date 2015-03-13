@@ -289,7 +289,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="eq4-yz-kFx">
-                            <rect key="frame" x="230" y="6" width="140" height="33"/>
+                            <rect key="frame" x="230" y="5.5" width="140" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Jokes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V43-SL-Ppt">
@@ -476,7 +476,7 @@
                     <navigationItem key="navigationItem" id="3ht-9g-DgY">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="fqf-Gd-a96">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="w6W-vS-Oc0">
@@ -954,7 +954,7 @@
                     <navigationItem key="navigationItem" id="Inb-Up-Qq6">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="njd-ys-kLB">
-                            <rect key="frame" x="204" y="6" width="192" height="33"/>
+                            <rect key="frame" x="204" y="5.5" width="192" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3V-VG-WHo">
@@ -1211,7 +1211,7 @@
                     <navigationItem key="navigationItem" id="zgH-7O-8Tp">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="pia-Cb-uKs">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIG-eM-vl9">
@@ -1441,7 +1441,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="9pg-JO-xdm">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cii-AZ-NFp">
@@ -1480,7 +1480,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gVa-vl-FE0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="csm-qw-hGc">
                                 <cells>
@@ -1492,7 +1492,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rules" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="myp-zH-6Vz">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1513,7 +1513,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Terms of Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SQ7-yX-k6E">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1534,7 +1534,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Privacy Policy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dpF-ZR-8iy">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1886,7 +1886,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="Z7p-7L-u97">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="msy-5x-HjX">
@@ -2281,7 +2281,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="7zI-Zd-MhN">
-                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-yO-iRT">
@@ -2333,7 +2333,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ0-6V-c8O">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Privacy Policy of Jokadoo
 
@@ -2497,10 +2497,10 @@ This privacy policy relates solely to this Application.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="leading" secondItem="lnl-5c-2lI" secondAttribute="leading" id="Byz-e7-75Z"/>
-                            <constraint firstAttribute="trailing" secondItem="nQ0-6V-c8O" secondAttribute="trailing" id="Cpx-H4-9kn"/>
-                            <constraint firstItem="7vf-qA-45a" firstAttribute="top" secondItem="nQ0-6V-c8O" secondAttribute="bottom" id="q3N-xk-VnG"/>
-                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="top" secondItem="lnl-5c-2lI" secondAttribute="top" id="tfl-As-3Nf"/>
+                            <constraint firstItem="7vf-qA-45a" firstAttribute="top" secondItem="nQ0-6V-c8O" secondAttribute="bottom" id="1fq-XE-kqN"/>
+                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="top" secondItem="AqM-Dv-TdX" secondAttribute="bottom" id="6AR-9E-7qj"/>
+                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="leading" secondItem="lnl-5c-2lI" secondAttribute="leading" id="RdW-8i-ygh"/>
+                            <constraint firstAttribute="trailing" secondItem="nQ0-6V-c8O" secondAttribute="trailing" id="bx3-7O-5m0"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -2550,7 +2550,7 @@ This privacy policy relates solely to this Application.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ExL-b1-TSV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Rules
 
@@ -2591,10 +2591,10 @@ contact@12thtone.com</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ExL-b1-TSV" secondAttribute="trailing" id="FEu-LE-7XZ"/>
-                            <constraint firstItem="ExL-b1-TSV" firstAttribute="leading" secondItem="cJX-ev-cAs" secondAttribute="leading" id="HBa-EK-JJB"/>
-                            <constraint firstItem="ExL-b1-TSV" firstAttribute="top" secondItem="cJX-ev-cAs" secondAttribute="top" id="stR-bX-pbb"/>
-                            <constraint firstItem="VId-YU-fMI" firstAttribute="top" secondItem="ExL-b1-TSV" secondAttribute="bottom" id="zGk-V6-Mcc"/>
+                            <constraint firstItem="VId-YU-fMI" firstAttribute="top" secondItem="ExL-b1-TSV" secondAttribute="bottom" id="Pio-FV-ICl"/>
+                            <constraint firstAttribute="trailing" secondItem="ExL-b1-TSV" secondAttribute="trailing" id="ecV-XN-T8n"/>
+                            <constraint firstItem="ExL-b1-TSV" firstAttribute="top" secondItem="1sB-Fg-C4G" secondAttribute="bottom" id="i3I-IR-9hJ"/>
+                            <constraint firstItem="ExL-b1-TSV" firstAttribute="leading" secondItem="cJX-ev-cAs" secondAttribute="leading" id="ui0-jV-XIn"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -2614,10 +2614,10 @@ contact@12thtone.com</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tEE-fR-qRM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEE-fR-qRM">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Terms of Service
+                                <string key="text">Terms of Service
 
 These Terms of Service (“Terms”) govern your access to and use of the services, including our website, SMS, email notifications, application, buttons, widgets, ads, and commerce services, and any information, text, graphics, photos or other materials uploaded, downloaded or appearing on the Services (collectively referred to as “Content”). Your access to and use of the Services are conditioned on your acceptance of and compliance with these Terms. By accessing or using the Services you agree to be bound by these Terms.
 
@@ -2740,18 +2740,12 @@ We may revise these Terms from time to time, the most current version will alway
 
 These Services are operated and provided by Matt Maher – 12thTone. If you have any questions about these Terms, please contact us.
 Effective: March 5, 2015
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="tEE-fR-qRM" firstAttribute="leading" secondItem="ZwW-rG-SW2" secondAttribute="leading" id="eNV-4d-VR3"/>
-                            <constraint firstAttribute="trailing" secondItem="tEE-fR-qRM" secondAttribute="trailing" id="fLc-hM-fmp"/>
-                            <constraint firstItem="tEE-fR-qRM" firstAttribute="top" secondItem="ZwW-rG-SW2" secondAttribute="top" id="js6-Vr-Cqg"/>
-                            <constraint firstItem="9fm-VQ-ijW" firstAttribute="top" secondItem="tEE-fR-qRM" secondAttribute="bottom" id="wxD-Go-45u"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vai-Vv-zbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
