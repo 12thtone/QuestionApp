@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameProfile;
 @property (weak, nonatomic) IBOutlet UITextView *textProfile;
+@property (weak, nonatomic) IBOutlet UIButton *myJokesButton;
+@property (weak, nonatomic) IBOutlet UIButton *myResponsesButton;
 
 @property (weak, nonatomic) UIImage *chosenImage;
 
@@ -37,6 +39,18 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    //[self.myJokesButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    self.myJokesButton.layer.borderWidth = 1;
+    self.myJokesButton.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.myJokesButton.layer.cornerRadius = 8;
+    self.myJokesButton.layer.masksToBounds = YES;
+    
+    //[self.myResponsesButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    self.myResponsesButton.layer.borderWidth = 1;
+    self.myResponsesButton.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.myResponsesButton.layer.cornerRadius = 8;
+    self.myResponsesButton.layer.masksToBounds = YES;
     
     UITapGestureRecognizer *tapDismissKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tapDismissKeyboard];
