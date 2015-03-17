@@ -93,6 +93,7 @@
         
         [newJoke saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTable" object:nil];
                 [self.navigationController popViewControllerAnimated:YES];
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
@@ -101,7 +102,7 @@
                 [alertView show];
             }
         }];
-        
+    
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

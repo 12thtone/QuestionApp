@@ -16,10 +16,12 @@
 
 @interface HotTableViewController ()
 
-@property (strong, nonatomic) NSMutableArray *theObjects;
-@property (strong, nonatomic) NSMutableArray *theAuthors;
 - (IBAction)jokeType:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *jokeTypeControl;
+
+@property (nonatomic, assign) BOOL gotOne;
+@property (nonatomic, assign) BOOL finishMy;
 
 @end
 
@@ -40,7 +42,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 20;
     }
     return self;
 }
@@ -74,86 +76,43 @@
     
     self.canDisplayBannerAds = YES;
     
-    [self questionQuery];
-    [self loadObjects];
+    //[self loadObjects];
 }
 
 #pragma mark - PFQuery
 
-- (void)questionQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
+- (PFQuery *)queryForTable {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    
-    [query orderByDescending:@"voteQuestion"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
+    if (self.gotOne == YES) {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
         
-        [self.tableView reloadData];
-    }];
-}
-
-- (void)gotOneQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query whereKey:@"status" equalTo:@"Got One for Ya"];
-    [query orderByDescending:@"voteQuestion"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        [self loadObjects];
-    }];
-}
-
-- (void)finishJokeQuery {
-    NSMutableArray *objectArray = [[NSMutableArray alloc] init];
-    NSMutableArray *authorArray = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Question"];
-    [query whereKey:@"status" equalTo:@"Finish My Joke"];
-    [query orderByDescending:@"voteQuestion"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFObject *object in objects) {
-            [authorArray addObject:[object objectForKey:@"author"]];
-            [objectArray addObject:object];
-            
-            self.theObjects = [objectArray copy];
-            self.theAuthors = [authorArray copy];
-        }
-        [self loadObjects];
-    }];
+        [query whereKey:@"status" equalTo:@"Got One for Ya"];
+        [query orderByDescending:@"voteQuestion"];
+        
+        return query;
+    } else if (self.finishMy == YES) {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        [query whereKey:@"status" equalTo:@"Finish My Joke"];
+        [query orderByDescending:@"voteQuestion"];
+        
+        return query;
+    } else {
+        PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        [query orderByDescending:@"voteQuestion"];
+        
+        return query;
+    }
 }
 
 #pragma mark - PFQueryTableViewController
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.theObjects count];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     JokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hotTVCell" forIndexPath:indexPath];
     
-    PFUser *user = [self.theAuthors objectAtIndex:indexPath.row];
+    PFUser *user = [self.objects objectAtIndex:indexPath.row][@"author"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         cell.usernameLabel.text = [object objectForKey:@"username"];
         
@@ -175,7 +134,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [[self.theObjects objectAtIndex:indexPath.row] createdAt];
+    NSDate *date = [[self.objects objectAtIndex:indexPath.row] createdAt];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped:)];
     [tap setNumberOfTapsRequired:1];
@@ -185,10 +144,10 @@
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
     [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
     
-    cell.statusLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"status"];
+    cell.statusLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
-    cell.jokeTitleLabel.text = [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.theObjects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
+    cell.jokeTitleLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
+    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.objects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
     
     if ([cell.voteLabel.text  isEqual:@"1"]) {
         cell.voteVotesLabel.text = @"Vote";
@@ -212,7 +171,7 @@
     
     if ([segue.identifier isEqualToString:@"showResponsesFromHot"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFObject *object = [self.theObjects objectAtIndex:indexPath.row];
+        PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
@@ -224,13 +183,10 @@
     CGPoint tapLocation = [sender locationInView:self.tableView];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
-    PFUser *user = [self.theAuthors objectAtIndex:tapIndexPath.row];
-    
-    NSLog(@"OBJECTS QQQ: %@", user);
-    
+    PFUser *user = [self.objects objectAtIndex:tapIndexPath.row];
+        
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
-    profileVC.userFromTabList = user;
-    profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
+    profileVC.userProfile = user;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }
@@ -242,14 +198,14 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *newVote = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
     
     [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
     
     [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
-                                                                message:@"Thanks for your vote!"
+                                                                message:@"Thanks for your UpVote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             [self loadObjects];
@@ -270,7 +226,7 @@
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *messageData = [self.theObjects objectAtIndex:tapIndexPath.row];
+    PFObject *messageData = [self.objects objectAtIndex:tapIndexPath.row];
     
     NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
     
@@ -285,7 +241,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
     
     if (UIActivityTypeMail) {
-        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
     }
 }
 
@@ -293,13 +249,19 @@
     switch (self.jokeTypeControl.selectedSegmentIndex)
     {
         case 0:
-            [self questionQuery];
+            self.gotOne = NO;
+            self.finishMy = NO;
+            [self loadObjects];
             break;
         case 1:
-            [self gotOneQuery];
+            self.gotOne = YES;
+            self.finishMy = NO;
+            [self loadObjects];
             break;
         case 2:
-            [self finishJokeQuery];
+            self.finishMy = YES;
+            self.gotOne = NO;
+            [self loadObjects];
             break;
         default:
             break;

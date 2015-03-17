@@ -1,25 +1,27 @@
 //
-//  UserQuestionTableViewController.m
+//  MyJokesTableViewController.m
 //  QuestionApp
 //
-//  Created by Matt Maher on 2/18/15.
+//  Created by Matt Maher on 3/14/15.
 //  Copyright (c) 2015 Matt Maher. All rights reserved.
 //
 
-#import "UserJokeTableViewController.h"
+#import "MyJokesTableViewController.h"
 #import <Parse/Parse.h>
 #import <iAd/iAd.h>
 #import "ResponseTableViewController.h"
 #import "DataSource.h"
-#import "UserJokeTableViewCell.h"
+#import "MyJokesTableViewCell.h"
 
-@interface UserJokeTableViewController ()
+@interface MyJokesTableViewController () <UIAlertViewDelegate>
+
+@property (strong, nonatomic)PFObject *postToDelete;
 
 - (IBAction)exitUserQuestions:(UIBarButtonItem *)sender;
 
 @end
 
-@implementation UserJokeTableViewController
+@implementation MyJokesTableViewController
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -68,7 +70,9 @@
     
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     
-    [query whereKey:@"author" equalTo:self.user];
+    PFUser *currentUser = [PFUser currentUser];
+    
+    [query whereKey:@"author" equalTo:currentUser];
     [query orderByDescending:@"createdAt"];
     
     return query;
@@ -78,9 +82,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
-    UserJokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserQuestionTVCell" forIndexPath:indexPath];
+    MyJokesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyJokesTVC" forIndexPath:indexPath];
     
-    PFUser *user = self.user;
+    PFUser *user = [PFUser currentUser];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
         cell.usernameLabel.text = username;
@@ -105,19 +109,11 @@
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     NSDate *date = [[self.objects objectAtIndex:indexPath.row] createdAt];
     
-    [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.deleteButton addTarget:self action:@selector(confirmDelete:) forControlEvents:UIControlEventTouchUpInside];
     
     cell.statusLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
     cell.jokeTitleLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"questionTitle"];
-    cell.voteLabel.text = [NSString stringWithFormat:@"%@", [[self.objects objectAtIndex:indexPath.row] objectForKey:@"voteQuestion"]];
-    
-    if ([cell.voteLabel.text  isEqual:@"1"]) {
-        cell.voteVotesLabel.text = @"Vote";
-    } else {
-        cell.voteVotesLabel.text = @"Votes";
-    }
     
     return cell;
 }
@@ -133,10 +129,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"showUserAnswers"]) {
+    if ([segue.identifier isEqualToString:@"meToResponses"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
-                
+        
         ResponseTableViewController *answerTableViewController = (ResponseTableViewController *)segue.destinationViewController;
         answerTableViewController.joke = object;
     }
@@ -146,57 +142,40 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Votes
+#pragma mark - Delete
 
-- (void)saveVote:(id)sender {
+- (void)confirmDelete:(id)sender {
     
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
+    self.postToDelete = [self.objects objectAtIndex:tapIndexPath.row];
     
-    PFObject *newVote = [self.objects objectAtIndex:tapIndexPath.row];
-    
-    [newVote incrementKey:@"voteQuestion" byAmount:[NSNumber numberWithInt:1]];
-    
-    [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
-                                                                message:@"Thanks for your UpVote!"
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-            [self loadObjects];
-            ((UIButton *)sender).enabled = NO;
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                message:[error.userInfo objectForKey:@"error"]
-                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-        }
-    }];
+    UIAlertView *deleteAlert = [[UIAlertView alloc] initWithTitle:@"Delete?"
+                                                          message:@"Are you sure you want to delete this joke?"
+                                                         delegate:self
+                                                cancelButtonTitle:@"No"
+                                                otherButtonTitles:@"Yes", nil];
+    [deleteAlert show];
 }
 
-#pragma mark - Sharing
-
-- (void)shareJoke:(id)sender {
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     
-    UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
-    NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
-    
-    PFObject *messageData = [self.objects objectAtIndex:tapIndexPath.row];
-    
-    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
-    
-    NSMutableArray *jokeToShare = [NSMutableArray array];
-    [jokeToShare addObject:messageBody];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
-    
-    if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
-        activityVC.popoverPresentationController.sourceView = self.view;
-    }
-    
-    [self presentViewController:activityVC animated:YES completion:nil];
-    
-    if (UIActivityTypeMail) {
-        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
+    if (buttonIndex == 1) {
+        [self.postToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Deleted"
+                                                                    message:@"Everyone's looking forward to your next joke!"
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+                [self loadObjects];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                                    message:[error.userInfo objectForKey:@"error"]
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+            }
+        }];
     }
 }
 

@@ -98,7 +98,6 @@
     
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userFromFullAnswerList = self.fullResponseUser;
-    profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }
@@ -108,13 +107,11 @@
 - (void)saveVote:(id)sender {
     
     [self.fullResponse incrementKey:@"vote" byAmount:[NSNumber numberWithInt:1]];
-    
-    NSLog(@"VOTE: %@", self.fullResponse);
-    
+        
     [self.fullResponse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
-                                                                message:@"Thanks for your vote!"
+                                                                message:@"Thanks for your UpVote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             [self viewDidLoad]; // Reloads the tableView and label
@@ -145,7 +142,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
     
     if (UIActivityTypeMail) {
-        [activityVC setValue:@"NameMe!" forKey:@"subject"];
+        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
     }
 }
 

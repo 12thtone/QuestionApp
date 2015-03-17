@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0pQ-1x-eZz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0pQ-1x-eZz">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Add Joke View Controller-->
@@ -24,20 +24,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-VQ-ekd">
-                                <rect key="frame" x="16" y="168" width="568" height="216"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="FEY-nZ-apK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="FEY-nZ-apK"/>
-                                    </mask>
-                                </variation>
-                            </textView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bri-gV-EPk">
                                 <rect key="frame" x="16" y="110" width="568" height="29"/>
                                 <constraints>
@@ -61,13 +47,26 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lt-VQ-ekd">
+                                <rect key="frame" x="16" y="168" width="568" height="183"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="FEY-nZ-apK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FEY-nZ-apK"/>
+                                    </mask>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bri-gV-EPk" secondAttribute="trailing" constant="16" id="545-8w-QGU"/>
                             <constraint firstItem="2lt-VQ-ekd" firstAttribute="top" secondItem="sL3-MN-uFq" secondAttribute="bottom" constant="8" id="BcM-VZ-18q"/>
                             <constraint firstAttribute="trailing" secondItem="F1B-j0-8yW" secondAttribute="trailing" constant="16" id="IK7-5c-C5q"/>
-                            <constraint firstItem="RWH-pB-gPI" firstAttribute="top" secondItem="2lt-VQ-ekd" secondAttribute="bottom" constant="216" id="Oxo-EX-TIT"/>
                             <constraint firstItem="bri-gV-EPk" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="S1d-oY-jJ6"/>
                             <constraint firstAttribute="trailing" secondItem="2lt-VQ-ekd" secondAttribute="trailing" constant="16" id="c2O-5y-T3c"/>
                             <constraint firstAttribute="trailing" secondItem="sL3-MN-uFq" secondAttribute="trailing" constant="16" id="jB4-hb-ZEa"/>
@@ -75,6 +74,7 @@
                             <constraint firstItem="sL3-MN-uFq" firstAttribute="top" secondItem="bri-gV-EPk" secondAttribute="bottom" constant="8" id="kFG-Ib-IFW"/>
                             <constraint firstItem="bri-gV-EPk" firstAttribute="top" secondItem="F1B-j0-8yW" secondAttribute="bottom" constant="8" id="mkE-UT-vNG"/>
                             <constraint firstItem="F1B-j0-8yW" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="oqT-Oa-hIA"/>
+                            <constraint firstItem="RWH-pB-gPI" firstAttribute="top" secondItem="2lt-VQ-ekd" secondAttribute="bottom" constant="249" id="pJd-mp-egg"/>
                             <constraint firstItem="2lt-VQ-ekd" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="sWr-sv-Sjb"/>
                             <constraint firstItem="sL3-MN-uFq" firstAttribute="leading" secondItem="vDD-b8-05a" secondAttribute="leading" constant="16" id="xEc-Ba-Xny"/>
                         </constraints>
@@ -88,7 +88,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="WZA-HL-Pga">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="RM7-ks-uUC">
@@ -118,7 +118,7 @@
         <scene sceneID="l0g-fs-sUP">
             <objects>
                 <tableViewController id="kSX-Pp-37A" customClass="JokeTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="dJi-5U-RmM">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="dJi-5U-RmM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -271,7 +271,7 @@
                                     <outlet property="userImage" destination="B5D-g8-HDo" id="5Wn-Nn-34z"/>
                                     <outlet property="usernameLabel" destination="tB9-pM-cAY" id="4SC-Vi-KyD"/>
                                     <outlet property="voteLabel" destination="fsz-uD-EfP" id="gqT-ha-WoH"/>
-                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showJoke" id="6YK-ad-UIl"/>
+                                    <segue destination="x2g-4H-aWw" kind="show" identifier="showJoke" id="jxg-Y9-oEh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -289,7 +289,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="eq4-yz-kFx">
-                            <rect key="frame" x="230" y="5.5" width="140" height="33"/>
+                            <rect key="frame" x="230" y="6" width="140" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Jokes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V43-SL-Ppt">
@@ -476,7 +476,7 @@
                     <navigationItem key="navigationItem" id="3ht-9g-DgY">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="fqf-Gd-a96">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="w6W-vS-Oc0">
@@ -735,7 +735,7 @@
                     <navigationItem key="navigationItem" id="ZGc-Sj-Gke">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="HaT-1K-663">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="So6-8N-bA4">
@@ -769,42 +769,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVa-dO-CLY">
-                                <rect key="frame" x="16" y="72" width="568" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="1Mw-3g-rdZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URz-uI-ZxX">
-                                <rect key="frame" x="16" y="126" width="568" height="209"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Response:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVd-98-G6y">
                                 <rect key="frame" x="16" y="101" width="568" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="RgZ-F7-0gj"/>
+                                    <constraint firstAttribute="height" constant="17" id="22u-gw-Kcd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJU-er-gBs">
+                                <rect key="frame" x="16" y="126" width="568" height="176"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVa-dO-CLY">
+                                <rect key="frame" x="16" y="72" width="568" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="4RX-9y-qYX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="mVd-98-G6y" secondAttribute="trailing" constant="16" id="0K4-d8-bwA"/>
-                            <constraint firstItem="URz-uI-ZxX" firstAttribute="top" secondItem="mVd-98-G6y" secondAttribute="bottom" constant="8" id="6hb-QV-14b"/>
-                            <constraint firstItem="CVa-dO-CLY" firstAttribute="top" secondItem="aVK-0y-wTC" secondAttribute="bottom" constant="8" id="9vn-g3-K2n"/>
-                            <constraint firstItem="mVd-98-G6y" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="IKd-np-soc"/>
-                            <constraint firstAttribute="trailing" secondItem="URz-uI-ZxX" secondAttribute="trailing" constant="16" id="R4Y-zd-c3z"/>
-                            <constraint firstItem="mVd-98-G6y" firstAttribute="top" secondItem="CVa-dO-CLY" secondAttribute="bottom" constant="8" id="ReR-lg-Q1P"/>
-                            <constraint firstItem="CVa-dO-CLY" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="T1h-5V-AUl"/>
-                            <constraint firstAttribute="trailing" secondItem="CVa-dO-CLY" secondAttribute="trailing" constant="16" id="fM3-Ub-Jv0"/>
-                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="URz-uI-ZxX" secondAttribute="bottom" constant="216" id="i8K-eG-7DW"/>
-                            <constraint firstItem="URz-uI-ZxX" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="vVN-eR-2oi"/>
+                            <constraint firstItem="mVd-98-G6y" firstAttribute="top" secondItem="CVa-dO-CLY" secondAttribute="bottom" constant="8" id="1rs-GJ-WoN"/>
+                            <constraint firstItem="C0P-Lo-K1a" firstAttribute="top" secondItem="OJU-er-gBs" secondAttribute="bottom" constant="249" id="9oh-QM-rad"/>
+                            <constraint firstItem="OJU-er-gBs" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="BXG-KQ-hXO"/>
+                            <constraint firstItem="mVd-98-G6y" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="DER-h7-jGe"/>
+                            <constraint firstAttribute="trailing" secondItem="mVd-98-G6y" secondAttribute="trailing" constant="16" id="EOQ-yd-wgj"/>
+                            <constraint firstItem="CVa-dO-CLY" firstAttribute="leading" secondItem="Mnn-N9-Uxl" secondAttribute="leading" constant="16" id="Fet-q2-6do"/>
+                            <constraint firstItem="CVa-dO-CLY" firstAttribute="top" secondItem="aVK-0y-wTC" secondAttribute="bottom" constant="8" id="HAe-h5-LBQ"/>
+                            <constraint firstItem="OJU-er-gBs" firstAttribute="top" secondItem="mVd-98-G6y" secondAttribute="bottom" constant="8" id="JjJ-u4-aHG"/>
+                            <constraint firstAttribute="trailing" secondItem="CVa-dO-CLY" secondAttribute="trailing" constant="16" id="ndk-QL-jvi"/>
+                            <constraint firstAttribute="trailing" secondItem="OJU-er-gBs" secondAttribute="trailing" constant="16" id="tbG-ea-Bhj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="joG-cm-RyX">
@@ -818,7 +819,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="jokeTitleLabel" destination="CVa-dO-CLY" id="g6f-kb-3NJ"/>
-                        <outlet property="responseTextView" destination="URz-uI-ZxX" id="kWx-1I-Pnv"/>
+                        <outlet property="responseTextView" destination="OJU-er-gBs" id="cUY-o7-Rgh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJ6-xi-8aE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -954,7 +955,7 @@
                     <navigationItem key="navigationItem" id="Inb-Up-Qq6">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="njd-ys-kLB">
-                            <rect key="frame" x="204" y="5.5" width="192" height="33"/>
+                            <rect key="frame" x="204" y="6" width="192" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="h3V-VG-WHo">
@@ -1211,7 +1212,7 @@
                     <navigationItem key="navigationItem" id="zgH-7O-8Tp">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="pia-Cb-uKs">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIG-eM-vl9">
@@ -1304,22 +1305,23 @@
                         <sections>
                             <tableViewSection id="Zjf-IC-Xbz">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="278" id="fAn-sO-x1q">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="395" id="fAn-sO-x1q">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fAn-sO-x1q" id="vhg-cf-tjQ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="H6i-Iq-Gwb">
-                                                    <rect key="frame" x="23" y="162" width="70" height="70"/>
+                                                    <rect key="frame" x="23" y="162" width="110" height="110"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="70" id="PdT-Rn-XjP"/>
-                                                        <constraint firstAttribute="width" constant="70" id="Zl7-dS-7M9"/>
+                                                        <constraint firstAttribute="height" constant="110" id="Qfo-OR-iRl"/>
+                                                        <constraint firstAttribute="width" constant="110" id="jNp-3z-mRB"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zli-MQ-KME">
-                                                    <rect key="frame" x="101" y="190" width="47" height="20"/>
+                                                    <rect key="frame" x="141" y="190" width="47" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Avv-1s-zkC"/>
+                                                        <constraint firstAttribute="width" constant="47" id="TdH-Z2-h9R"/>
+                                                        <constraint firstAttribute="height" constant="20" id="wHY-Fk-ueB"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                     <state key="normal" title="Images">
@@ -1333,95 +1335,107 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="ezw-PB-JMr">
                                                     <rect key="frame" x="23" y="31" width="554" height="123"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="123" id="Lga-EP-gvp"/>
-                                                        <constraint firstAttribute="width" constant="554" id="jkv-vL-lic"/>
+                                                        <constraint firstAttribute="height" constant="123" id="gk1-3H-k6m"/>
                                                     </constraints>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="jkv-vL-lic"/>
-                                                        </mask>
-                                                    </variation>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i87-NE-uE0">
-                                                    <rect key="frame" x="101" y="162" width="69" height="20"/>
+                                                    <rect key="frame" x="141" y="162" width="436" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="DXZ-Un-OC2"/>
-                                                        <constraint firstAttribute="height" constant="15" id="hPv-ga-zpc"/>
+                                                        <constraint firstAttribute="height" constant="20" id="1DE-FQ-QkZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="hPv-ga-zpc"/>
-                                                        </mask>
-                                                    </variation>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83o-CS-Zfp">
-                                                    <rect key="frame" x="23" y="240" width="27" height="27"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="27" id="PSa-U4-dRV"/>
-                                                        <constraint firstAttribute="height" constant="27" id="QzG-VJ-v52"/>
-                                                        <constraint firstAttribute="width" constant="27" id="ays-TE-zOi"/>
-                                                        <constraint firstAttribute="width" constant="27" id="il7-iO-sWE"/>
-                                                    </constraints>
-                                                    <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="0.91000000000000003" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" image="gear-7@3x.png">
-                                                        <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="PSa-U4-dRV"/>
-                                                            <exclude reference="ays-TE-zOi"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <connections>
-                                                        <segue destination="VSl-20-qO4" kind="presentation" identifier="toSettings" id="p3y-ac-EqE"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio, Interests, and Fun Stuff About You:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8h-GO-3if">
-                                                    <rect key="frame" x="23" y="8" width="273" height="15"/>
+                                                    <rect key="frame" x="23" y="8" width="554" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="15" id="Nny-dt-SXL"/>
+                                                        <constraint firstAttribute="height" constant="15" id="Ceu-Dk-dSD"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="O78-3F-Uhb">
-                                                    <rect key="frame" x="97" y="233" width="110" height="42"/>
+                                                    <rect key="frame" x="23" y="280" width="110" height="42"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="42" id="SbK-eC-a5F"/>
-                                                        <constraint firstAttribute="width" constant="110" id="gpM-cH-gVA"/>
+                                                        <constraint firstAttribute="width" constant="110" id="GbR-MM-U0O"/>
+                                                        <constraint firstAttribute="height" constant="42" id="qop-Ja-78v"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xof-4B-RKh">
+                                                    <rect key="frame" x="23" y="330" width="110" height="30"/>
+                                                    <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="CJV-AV-lRF"/>
+                                                        <constraint firstAttribute="width" constant="110" id="LLf-W8-0RL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="Jokes">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="Mec-hl-J78" kind="presentation" id="JEu-C5-AHj"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRX-wA-VwU">
+                                                    <rect key="frame" x="141" y="330" width="110" height="30"/>
+                                                    <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Bxf-hu-ivM"/>
+                                                        <constraint firstAttribute="width" constant="110" id="sqv-NX-dyS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="Responses">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="gac-k0-Eok" kind="presentation" id="GIC-sS-6VW"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83o-CS-Zfp">
+                                                    <rect key="frame" x="550" y="333" width="27" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="27" id="Miw-iI-89F"/>
+                                                        <constraint firstAttribute="height" constant="27" id="N4t-w2-0kV"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="0.91000000000000003" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="gear-7@3x.png">
+                                                        <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="VSl-20-qO4" kind="presentation" identifier="toSettings" id="p3y-ac-EqE"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ezw-PB-JMr" secondAttribute="trailing" constant="23" id="2gW-qM-AfN"/>
-                                                <constraint firstItem="83o-CS-Zfp" firstAttribute="top" secondItem="zli-MQ-KME" secondAttribute="bottom" constant="30" id="32L-1L-eTk"/>
-                                                <constraint firstItem="zli-MQ-KME" firstAttribute="top" secondItem="i87-NE-uE0" secondAttribute="bottom" constant="8" id="4er-yO-77E"/>
-                                                <constraint firstItem="zli-MQ-KME" firstAttribute="leading" secondItem="H6i-Iq-Gwb" secondAttribute="trailing" constant="8" id="61t-JU-K8H"/>
-                                                <constraint firstItem="i87-NE-uE0" firstAttribute="top" secondItem="ezw-PB-JMr" secondAttribute="bottom" constant="8" id="AcO-rX-vUR"/>
-                                                <constraint firstItem="H6i-Iq-Gwb" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="GNn-TD-8iO"/>
-                                                <constraint firstItem="i87-NE-uE0" firstAttribute="leading" secondItem="H6i-Iq-Gwb" secondAttribute="trailing" constant="8" id="OIA-gD-bzQ"/>
-                                                <constraint firstItem="ezw-PB-JMr" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="OJt-Fy-VUF"/>
-                                                <constraint firstItem="83o-CS-Zfp" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="SKd-yu-hWJ"/>
-                                                <constraint firstItem="H6i-Iq-Gwb" firstAttribute="top" secondItem="ezw-PB-JMr" secondAttribute="bottom" constant="8" id="UCx-fu-miD"/>
-                                                <constraint firstItem="O78-3F-Uhb" firstAttribute="leading" secondItem="83o-CS-Zfp" secondAttribute="trailing" constant="47" id="YVu-Yp-hYu"/>
-                                                <constraint firstItem="Q8h-GO-3if" firstAttribute="top" secondItem="vhg-cf-tjQ" secondAttribute="top" constant="8" id="dX0-gd-DFn"/>
-                                                <constraint firstItem="O78-3F-Uhb" firstAttribute="top" secondItem="zli-MQ-KME" secondAttribute="bottom" constant="23" id="hZj-eS-Q3I"/>
-                                                <constraint firstItem="Q8h-GO-3if" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="kdy-Ko-37j"/>
-                                                <constraint firstItem="ezw-PB-JMr" firstAttribute="top" secondItem="Q8h-GO-3if" secondAttribute="bottom" constant="8" id="nIg-z6-F0c"/>
-                                                <constraint firstItem="83o-CS-Zfp" firstAttribute="top" secondItem="H6i-Iq-Gwb" secondAttribute="bottom" constant="8" id="pDm-Lw-JiH"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q8h-GO-3if" secondAttribute="trailing" constant="23" id="8Pl-eZ-DVH"/>
+                                                <constraint firstItem="zli-MQ-KME" firstAttribute="leading" secondItem="H6i-Iq-Gwb" secondAttribute="trailing" constant="8" id="Au3-Bw-n5o"/>
+                                                <constraint firstItem="Q8h-GO-3if" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="C51-dK-LW7"/>
+                                                <constraint firstItem="ezw-PB-JMr" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="Egj-fN-jdD"/>
+                                                <constraint firstItem="MRX-wA-VwU" firstAttribute="top" secondItem="zli-MQ-KME" secondAttribute="bottom" constant="120" id="HaB-DW-IPU"/>
+                                                <constraint firstAttribute="trailing" secondItem="i87-NE-uE0" secondAttribute="trailing" constant="23" id="Ira-fj-fHu"/>
+                                                <constraint firstItem="Xof-4B-RKh" firstAttribute="top" secondItem="O78-3F-Uhb" secondAttribute="bottom" constant="8" id="N51-rr-VZS"/>
+                                                <constraint firstItem="Q8h-GO-3if" firstAttribute="top" secondItem="vhg-cf-tjQ" secondAttribute="top" constant="8" id="P5G-0L-ByS"/>
+                                                <constraint firstItem="83o-CS-Zfp" firstAttribute="top" secondItem="i87-NE-uE0" secondAttribute="bottom" constant="151" id="TPH-wz-vV5"/>
+                                                <constraint firstItem="ezw-PB-JMr" firstAttribute="top" secondItem="Q8h-GO-3if" secondAttribute="bottom" constant="8" id="bdI-3m-SXK"/>
+                                                <constraint firstItem="H6i-Iq-Gwb" firstAttribute="top" secondItem="ezw-PB-JMr" secondAttribute="bottom" constant="8" id="cOI-MB-yj0"/>
+                                                <constraint firstItem="O78-3F-Uhb" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="e7w-vM-hmP"/>
+                                                <constraint firstItem="i87-NE-uE0" firstAttribute="top" secondItem="ezw-PB-JMr" secondAttribute="bottom" constant="8" id="fq8-Wb-rHc"/>
+                                                <constraint firstAttribute="trailing" secondItem="ezw-PB-JMr" secondAttribute="trailing" constant="23" id="k4M-pU-wzB"/>
+                                                <constraint firstItem="MRX-wA-VwU" firstAttribute="leading" secondItem="Xof-4B-RKh" secondAttribute="trailing" constant="8" id="l1c-vJ-KeY"/>
+                                                <constraint firstItem="Xof-4B-RKh" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="ld9-Va-1aS"/>
+                                                <constraint firstItem="zli-MQ-KME" firstAttribute="top" secondItem="i87-NE-uE0" secondAttribute="bottom" constant="8" id="pvm-RC-dXF"/>
+                                                <constraint firstItem="H6i-Iq-Gwb" firstAttribute="leading" secondItem="vhg-cf-tjQ" secondAttribute="leading" constant="23" id="sS2-yg-aJ8"/>
+                                                <constraint firstAttribute="trailing" secondItem="83o-CS-Zfp" secondAttribute="trailing" constant="23" id="tNS-XE-WCV"/>
+                                                <constraint firstItem="i87-NE-uE0" firstAttribute="leading" secondItem="H6i-Iq-Gwb" secondAttribute="trailing" constant="8" id="uUX-76-vjV"/>
+                                                <constraint firstItem="O78-3F-Uhb" firstAttribute="top" secondItem="H6i-Iq-Gwb" secondAttribute="bottom" constant="8" id="vkH-ID-8jK"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="32L-1L-eTk"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1441,7 +1455,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="9pg-JO-xdm">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cii-AZ-NFp">
@@ -1464,6 +1478,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="myJokesButton" destination="Xof-4B-RKh" id="h5N-4E-dsP"/>
+                        <outlet property="myResponsesButton" destination="MRX-wA-VwU" id="BbR-PA-1oS"/>
                         <outlet property="profileImage" destination="H6i-Iq-Gwb" id="PDM-Jk-A9S"/>
                         <outlet property="textProfile" destination="ezw-PB-JMr" id="qxa-Ft-WAO"/>
                         <outlet property="usernameProfile" destination="i87-NE-uE0" id="lie-RX-d5f"/>
@@ -1480,7 +1496,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gVa-vl-FE0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="csm-qw-hGc">
                                 <cells>
@@ -1492,13 +1508,34 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rules" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="myp-zH-6Vz">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="eHC-7I-K5v" kind="show" id="dv8-tN-DT3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="wWl-nl-pHy">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FFh-Rc-fp9" style="IBUITableViewCellStyleDefault" id="uQE-U3-l5V">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uQE-U3-l5V" id="Y64-VO-awc">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Report Violation / Contact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FFh-Rc-fp9">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="f0E-zS-hPW" kind="show" id="6Nr-lT-fdu"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1513,7 +1550,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Terms of Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SQ7-yX-k6E">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1534,7 +1571,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Privacy Policy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dpF-ZR-8iy">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1577,7 +1614,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zAQ-Ng-att" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="4066"/>
+            <point key="canvasLocation" x="1810" y="4066"/>
         </scene>
         <!--Profile Table View Controller-->
         <scene sceneID="6uY-oC-qNO">
@@ -1690,13 +1727,18 @@
                                                     </state>
                                                 </button>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="User Description" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uc1-G9-y9e">
-                                                    <rect key="frame" x="106" y="286" width="472" height="69"/>
+                                                    <rect key="frame" x="106" y="286" width="472" height="300"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="69" id="T8D-v1-2Pb"/>
                                                     </constraints>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="T8D-v1-2Pb"/>
+                                                        </mask>
+                                                    </variation>
                                                 </textView>
                                                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ruy-cb-HH3">
                                                     <rect key="frame" x="542" y="190" width="36" height="36"/>
@@ -1745,6 +1787,7 @@
                                                 <constraint firstItem="lnA-xL-dZE" firstAttribute="top" secondItem="c4G-Pg-8fn" secondAttribute="bottom" constant="8" id="SW6-Bw-6zz"/>
                                                 <constraint firstItem="V7Z-oo-coE" firstAttribute="top" secondItem="hqV-W9-zxT" secondAttribute="bottom" constant="21" id="U5P-3l-voQ"/>
                                                 <constraint firstItem="WlT-io-esn" firstAttribute="leading" secondItem="e3c-yM-1ix" secondAttribute="leading" constant="111" id="XxS-db-G6Q"/>
+                                                <constraint firstAttribute="bottom" secondItem="Uc1-G9-y9e" secondAttribute="bottom" constant="8" id="Ykq-lF-bPi"/>
                                                 <constraint firstItem="Uc1-G9-y9e" firstAttribute="top" secondItem="lnA-xL-dZE" secondAttribute="bottom" constant="8" id="age-Ez-a58"/>
                                                 <constraint firstItem="hqV-W9-zxT" firstAttribute="leading" secondItem="e3c-yM-1ix" secondAttribute="leading" constant="23" id="bW0-OS-7k9"/>
                                                 <constraint firstAttribute="trailing" secondItem="Uc1-G9-y9e" secondAttribute="trailing" constant="22" id="cC1-9e-eJq"/>
@@ -1797,7 +1840,7 @@
         <scene sceneID="mRS-5e-9BG">
             <objects>
                 <tableViewController id="UPX-RC-hMO" customClass="AllTabbersTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" id="Arl-TH-VGt">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" id="Arl-TH-VGt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1880,7 +1923,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="Z7p-7L-u97">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="msy-5x-HjX">
@@ -2077,7 +2120,7 @@
                     <navigationItem key="navigationItem" id="ioh-7E-ryW">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="IX6-vP-b4S">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tabs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1Q-dL-KaN">
@@ -2275,7 +2318,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="7zI-Zd-MhN">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="aZ1-yO-iRT">
@@ -2294,7 +2337,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3q-Qg-gxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3144" y="4038"/>
+            <point key="canvasLocation" x="3338" y="4066"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kar-yG-Ny0">
@@ -2312,7 +2355,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgD-Dr-eb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2438" y="4038"/>
+            <point key="canvasLocation" x="2620" y="4057"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="g0e-fC-oDw">
@@ -2327,7 +2370,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ0-6V-c8O">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Privacy Policy of Jokadoo
 
@@ -2491,16 +2534,77 @@ This privacy policy relates solely to this Application.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="leading" secondItem="lnl-5c-2lI" secondAttribute="leading" id="Byz-e7-75Z"/>
-                            <constraint firstAttribute="trailing" secondItem="nQ0-6V-c8O" secondAttribute="trailing" id="Cpx-H4-9kn"/>
-                            <constraint firstItem="7vf-qA-45a" firstAttribute="top" secondItem="nQ0-6V-c8O" secondAttribute="bottom" id="q3N-xk-VnG"/>
-                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="top" secondItem="lnl-5c-2lI" secondAttribute="top" id="tfl-As-3Nf"/>
+                            <constraint firstItem="7vf-qA-45a" firstAttribute="top" secondItem="nQ0-6V-c8O" secondAttribute="bottom" id="1fq-XE-kqN"/>
+                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="top" secondItem="AqM-Dv-TdX" secondAttribute="bottom" id="6AR-9E-7qj"/>
+                            <constraint firstItem="nQ0-6V-c8O" firstAttribute="leading" secondItem="lnl-5c-2lI" secondAttribute="leading" id="RdW-8i-ygh"/>
+                            <constraint firstAttribute="trailing" secondItem="nQ0-6V-c8O" secondAttribute="trailing" id="bx3-7O-5m0"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Io-ZR-G3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2550" y="4836"/>
+            <point key="canvasLocation" x="2606" y="4778"/>
+        </scene>
+        <!--Violation View Controller-->
+        <scene sceneID="YE1-1K-ISV">
+            <objects>
+                <viewController id="f0E-zS-hPW" customClass="ViolationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ykV-jS-JiZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="WlO-Kz-Ayj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x6D-KV-Zgr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoJokadoo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-O6-FBl">
+                                <rect key="frame" x="245" y="176" width="110" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Mqo-l8-w4B"/>
+                                    <constraint firstAttribute="width" constant="110" id="zyd-ct-amD"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please contact us with any comments or questions or to report a violation of the Jokadoo Rules." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofD-Tx-zKr">
+                                <rect key="frame" x="16" y="72" width="568" height="96"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="xSW-p5-seA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAL-fh-k5X">
+                                <rect key="frame" x="16" y="226" width="568" height="30"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="J7V-or-5QL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Contact">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Fdd-O6-FBl" secondAttribute="centerX" id="5fX-c1-vdD"/>
+                            <constraint firstItem="ofD-Tx-zKr" firstAttribute="leading" secondItem="x6D-KV-Zgr" secondAttribute="leading" constant="16" id="I3J-7t-V9p"/>
+                            <constraint firstItem="wAL-fh-k5X" firstAttribute="top" secondItem="Fdd-O6-FBl" secondAttribute="bottom" constant="8" id="YpA-kj-j96"/>
+                            <constraint firstAttribute="trailing" secondItem="wAL-fh-k5X" secondAttribute="trailing" constant="16" id="bw2-t0-mr0"/>
+                            <constraint firstItem="wAL-fh-k5X" firstAttribute="leading" secondItem="x6D-KV-Zgr" secondAttribute="leading" constant="16" id="dHe-nI-I9g"/>
+                            <constraint firstAttribute="trailing" secondItem="ofD-Tx-zKr" secondAttribute="trailing" constant="16" id="eJa-z1-ooV"/>
+                            <constraint firstItem="Fdd-O6-FBl" firstAttribute="top" secondItem="ofD-Tx-zKr" secondAttribute="bottom" constant="8" id="i6C-Hj-FXV"/>
+                            <constraint firstItem="ofD-Tx-zKr" firstAttribute="top" secondItem="ykV-jS-JiZ" secondAttribute="bottom" constant="8" id="xe1-N7-upQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sendViolationButton" destination="wAL-fh-k5X" id="83t-PA-V1m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u2P-Ne-YUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3365" y="4778"/>
         </scene>
         <!--Settings-->
         <scene sceneID="UYl-nQ-m2N">
@@ -2529,7 +2633,261 @@ This privacy policy relates solely to this Application.</string>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="972" y="4066"/>
+            <point key="canvasLocation" x="1116" y="4066"/>
+        </scene>
+        <!--My Responses Table View Controller-->
+        <scene sceneID="dIp-L7-yNF">
+            <objects>
+                <tableViewController id="iMY-gc-NPS" customClass="MyResponsesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="Cfy-eY-LZq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyRespTVC" rowHeight="93" id="vJw-Ru-hVG" customClass="MyResponsesTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vJw-Ru-hVG" id="rAD-Pq-P4Y">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jMD-mF-S90">
+                                            <rect key="frame" x="23" y="9" width="58" height="58"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="58" id="nAH-0Q-dsD"/>
+                                                <constraint firstAttribute="height" constant="58" id="tXi-Vr-NDC"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDt-Vh-BbN">
+                                            <rect key="frame" x="89" y="49" width="455" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="kLK-A1-7IC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peM-GD-RSu">
+                                            <rect key="frame" x="89" y="69" width="29" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="myo-jf-vIz"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMC-Ux-6rz">
+                                            <rect key="frame" x="552" y="56" width="28" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="28" id="QCF-ai-a7d"/>
+                                                <constraint firstAttribute="height" constant="28" id="lt7-Ce-QV2"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="0.91000000000000003" colorSpace="calibratedRGB"/>
+                                            <state key="normal" image="bomb-7@3x.png">
+                                                <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Response" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlJ-KS-W38">
+                                            <rect key="frame" x="89" y="8" width="491" height="39"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="39" id="A3f-nJ-i7Q"/>
+                                            </constraints>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IMC-Ux-6rz" firstAttribute="leading" secondItem="fDt-Vh-BbN" secondAttribute="trailing" constant="8" id="3Xg-5H-UA4"/>
+                                        <constraint firstItem="xlJ-KS-W38" firstAttribute="leading" secondItem="jMD-mF-S90" secondAttribute="trailing" constant="8" id="4AA-Yw-Yfh"/>
+                                        <constraint firstItem="IMC-Ux-6rz" firstAttribute="top" secondItem="xlJ-KS-W38" secondAttribute="bottom" constant="9" id="9IW-Gt-S01"/>
+                                        <constraint firstItem="fDt-Vh-BbN" firstAttribute="top" secondItem="xlJ-KS-W38" secondAttribute="bottom" constant="2" id="A3a-ZE-rcM"/>
+                                        <constraint firstItem="xlJ-KS-W38" firstAttribute="top" secondItem="rAD-Pq-P4Y" secondAttribute="top" constant="8" id="BF9-2M-iu8"/>
+                                        <constraint firstItem="jMD-mF-S90" firstAttribute="top" secondItem="rAD-Pq-P4Y" secondAttribute="top" constant="9" id="PCk-aP-iTp"/>
+                                        <constraint firstItem="fDt-Vh-BbN" firstAttribute="leading" secondItem="jMD-mF-S90" secondAttribute="trailing" constant="8" id="QmQ-E2-fKd"/>
+                                        <constraint firstItem="jMD-mF-S90" firstAttribute="leading" secondItem="rAD-Pq-P4Y" secondAttribute="leading" constant="23" id="Xof-dk-m3P"/>
+                                        <constraint firstAttribute="trailing" secondItem="xlJ-KS-W38" secondAttribute="trailing" constant="20" id="igr-yF-ySI"/>
+                                        <constraint firstItem="peM-GD-RSu" firstAttribute="top" secondItem="fDt-Vh-BbN" secondAttribute="bottom" constant="3" id="mKI-du-O17"/>
+                                        <constraint firstItem="peM-GD-RSu" firstAttribute="leading" secondItem="rAD-Pq-P4Y" secondAttribute="leading" constant="89" id="rH6-Hb-K99"/>
+                                        <constraint firstAttribute="trailing" secondItem="IMC-Ux-6rz" secondAttribute="trailing" constant="20" id="tAu-aY-24N"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="peM-GD-RSu" id="JUx-zR-TVN"/>
+                                    <outlet property="deleteButton" destination="IMC-Ux-6rz" id="OeP-nz-46b"/>
+                                    <outlet property="responseLabel" destination="xlJ-KS-W38" id="DTZ-jd-5Hg"/>
+                                    <outlet property="userImage" destination="jMD-mF-S90" id="4BI-hK-pNV"/>
+                                    <outlet property="usernameLabel" destination="fDt-Vh-BbN" id="5hW-17-8jj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iMY-gc-NPS" id="pbJ-dx-TCE"/>
+                            <outlet property="delegate" destination="iMY-gc-NPS" id="xjk-i5-n39"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="pHl-8d-wNV">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="8lW-Lf-hJd">
+                            <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="exitUserQuestions:" destination="iMY-gc-NPS" id="QGs-SY-82h"/>
+                            </connections>
+                        </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="idc-tT-Sty">
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="Py4-z8-CKT">
+                                    <rect key="frame" x="37" y="0.0" width="33" height="33"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Responses" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrP-Qt-zGW">
+                                    <rect key="frame" x="78" y="0.0" width="117" height="33"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                    <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I94-En-KUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="49" y="4730"/>
+        </scene>
+        <!--My Jokes Table View Controller-->
+        <scene sceneID="yW8-Yw-ej5">
+            <objects>
+                <tableViewController id="yi6-c8-Pos" customClass="MyJokesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="xT5-YD-HOR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyJokesTVC" rowHeight="93" id="xFy-Vw-yPS" customClass="MyJokesTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xFy-Vw-yPS" id="Ptf-wH-JL5">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zZj-pr-IQY">
+                                            <rect key="frame" x="23" y="8" width="58" height="58"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="58" id="Elo-La-YJp"/>
+                                                <constraint firstAttribute="height" constant="58" id="Oje-bt-SYQ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5i-uF-ngw">
+                                            <rect key="frame" x="89" y="10" width="491" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="huO-Xe-g9Y"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finish My Joke" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehu-UQ-34s">
+                                            <rect key="frame" x="89" y="30" width="491" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="HdP-Og-MuY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwM-GP-DCE">
+                                            <rect key="frame" x="89" y="49" width="455" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="zoS-jK-oWY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iC-QW-neD">
+                                            <rect key="frame" x="89" y="69" width="29" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="b2h-ua-2ZZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixy-Fp-Zgr">
+                                            <rect key="frame" x="552" y="55" width="28" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="28" id="5Eb-bA-RBF"/>
+                                                <constraint firstAttribute="height" constant="28" id="sDF-IT-g9t"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="0.91000000000000003" colorSpace="calibratedRGB"/>
+                                            <state key="normal" image="bomb-7@3x.png">
+                                                <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0iC-QW-neD" firstAttribute="leading" secondItem="Ptf-wH-JL5" secondAttribute="leading" constant="89" id="1TM-rE-RJ1"/>
+                                        <constraint firstItem="kwM-GP-DCE" firstAttribute="top" secondItem="ehu-UQ-34s" secondAttribute="bottom" constant="2" id="6bO-2F-I9w"/>
+                                        <constraint firstItem="zZj-pr-IQY" firstAttribute="top" secondItem="Ptf-wH-JL5" secondAttribute="top" constant="8" id="8Sg-MS-bx8"/>
+                                        <constraint firstItem="0iC-QW-neD" firstAttribute="top" secondItem="kwM-GP-DCE" secondAttribute="bottom" constant="3" id="Cp4-aI-Uk7"/>
+                                        <constraint firstItem="Ixy-Fp-Zgr" firstAttribute="top" secondItem="ehu-UQ-34s" secondAttribute="bottom" constant="8" id="Ezb-1n-iRs"/>
+                                        <constraint firstItem="K5i-uF-ngw" firstAttribute="leading" secondItem="zZj-pr-IQY" secondAttribute="trailing" constant="8" id="M7o-b1-ZGu"/>
+                                        <constraint firstItem="ehu-UQ-34s" firstAttribute="leading" secondItem="zZj-pr-IQY" secondAttribute="trailing" constant="8" id="OtZ-WE-qiJ"/>
+                                        <constraint firstItem="kwM-GP-DCE" firstAttribute="leading" secondItem="zZj-pr-IQY" secondAttribute="trailing" constant="8" id="WRP-Mz-KET"/>
+                                        <constraint firstItem="Ixy-Fp-Zgr" firstAttribute="leading" secondItem="kwM-GP-DCE" secondAttribute="trailing" constant="8" id="XPA-LF-K4j"/>
+                                        <constraint firstAttribute="trailing" secondItem="K5i-uF-ngw" secondAttribute="trailing" constant="20" id="Yrh-D6-xc2"/>
+                                        <constraint firstAttribute="trailing" secondItem="ehu-UQ-34s" secondAttribute="trailing" constant="20" id="dek-Cd-NMG"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ixy-Fp-Zgr" secondAttribute="trailing" constant="20" id="faR-hI-RcA"/>
+                                        <constraint firstItem="ehu-UQ-34s" firstAttribute="top" secondItem="K5i-uF-ngw" secondAttribute="bottom" constant="3" id="joZ-kh-iON"/>
+                                        <constraint firstItem="K5i-uF-ngw" firstAttribute="top" secondItem="Ptf-wH-JL5" secondAttribute="top" constant="10" id="stx-sP-kgx"/>
+                                        <constraint firstItem="zZj-pr-IQY" firstAttribute="leading" secondItem="Ptf-wH-JL5" secondAttribute="leading" constant="23" id="tlP-14-0O4"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="0iC-QW-neD" id="UUr-9d-cgQ"/>
+                                    <outlet property="deleteButton" destination="Ixy-Fp-Zgr" id="4bt-ye-V96"/>
+                                    <outlet property="jokeTitleLabel" destination="K5i-uF-ngw" id="216-6H-553"/>
+                                    <outlet property="statusLabel" destination="ehu-UQ-34s" id="3vp-ZE-6um"/>
+                                    <outlet property="userImage" destination="zZj-pr-IQY" id="7y4-3I-Ibi"/>
+                                    <outlet property="usernameLabel" destination="kwM-GP-DCE" id="5eg-kQ-j3f"/>
+                                    <segue destination="x2g-4H-aWw" kind="show" identifier="meToResponses" id="vgX-bw-Ta6"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yi6-c8-Pos" id="irC-81-2T0"/>
+                            <outlet property="delegate" destination="yi6-c8-Pos" id="b7S-zY-Oce"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Kdg-45-7tQ">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="WaU-M7-4Ak">
+                            <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="exitUserQuestions:" destination="yi6-c8-Pos" id="krz-1v-9AY"/>
+                            </connections>
+                        </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="pty-SA-3YY">
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Jokes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDw-qs-ZnV">
+                                    <rect key="frame" x="106" y="2" width="76" height="33"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                    <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AJ-Buddy-laughing.png" translatesAutoresizingMaskIntoConstraints="NO" id="fU2-D9-VFH">
+                                    <rect key="frame" x="65" y="0.0" width="33" height="33"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fBh-K3-0tx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="49" y="4027"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="D01-3D-5f2">
@@ -2544,7 +2902,7 @@ This privacy policy relates solely to this Application.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ExL-b1-TSV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Rules
 
@@ -2552,7 +2910,7 @@ The goal of Jokadoo is to provide a place for users to share jokes. We will not 
 
 Content Boundaries and Use of Jokadoo
 
-In order to provide the Jokadoo service and the ability to communicate and stay connected with others, there are some limitations on the type of content that can be published with Jokadoo. These limitations comply with legal requirements and make Jokadoo a better experience for all. We may need to change these rules from time to time and reserve the right to do so. Please check back here to see the latest.
+In order for Jokadoo to stay live, there are some limitations as to what can be published. These limitations comply with legal requirements and improve the Jokadoo experience. We reserve the right to chance the rules without notice, so please check here for the most current version.
 
 Impersonation is prohibited.
 
@@ -2576,25 +2934,23 @@ Malware, phishing, and spam are prohibited.
 
 We may revise these Rules from time to time. 
 
-Contact us to report a violation or with questions.
-
-contact@12thtone.com</string>
+Contact us to report a violation or with questions through the contact form.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ExL-b1-TSV" secondAttribute="trailing" id="FEu-LE-7XZ"/>
-                            <constraint firstItem="ExL-b1-TSV" firstAttribute="leading" secondItem="cJX-ev-cAs" secondAttribute="leading" id="HBa-EK-JJB"/>
-                            <constraint firstItem="ExL-b1-TSV" firstAttribute="top" secondItem="cJX-ev-cAs" secondAttribute="top" id="stR-bX-pbb"/>
-                            <constraint firstItem="VId-YU-fMI" firstAttribute="top" secondItem="ExL-b1-TSV" secondAttribute="bottom" id="zGk-V6-Mcc"/>
+                            <constraint firstItem="VId-YU-fMI" firstAttribute="top" secondItem="ExL-b1-TSV" secondAttribute="bottom" id="Pio-FV-ICl"/>
+                            <constraint firstAttribute="trailing" secondItem="ExL-b1-TSV" secondAttribute="trailing" id="ecV-XN-T8n"/>
+                            <constraint firstItem="ExL-b1-TSV" firstAttribute="top" secondItem="1sB-Fg-C4G" secondAttribute="bottom" id="i3I-IR-9hJ"/>
+                            <constraint firstItem="ExL-b1-TSV" firstAttribute="leading" secondItem="cJX-ev-cAs" secondAttribute="leading" id="ui0-jV-XIn"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bu-KU-HbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166" y="4842"/>
+            <point key="canvasLocation" x="1166" y="4768"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FFR-aZ-NpP">
@@ -2608,8 +2964,8 @@ contact@12thtone.com</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tEE-fR-qRM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEE-fR-qRM">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Terms of Service
 
@@ -2619,11 +2975,11 @@ These Terms of Service (“Terms”) govern your access to and use of the servic
 
 You are responsible for your use of the Services, for any Content you post to the Services, and for any consequences thereof. The Content you submit, post, or display will be able to be viewed by other users of the Services. You should only provide Content that you are comfortable sharing with others under these Terms.
 
-You may use the Services only if you can form a binding contract with Jokadoo and are not a person barred from receiving services under the laws of the United States or other applicable jurisdiction. If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so. You may use the Services only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations.
+You may use the Services only if you can form a binding contract with Matt Maher, developer of Jokadoo, and are not a person barred from receiving services under the laws of the United States or other applicable jurisdiction. If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so. You may use the Services only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations.
 
 The Services that Jokadoo provides are always evolving and the form and nature of the Services that Jokadoo provides may change from time to time without prior notice to you. In addition, Jokadoo may stop (permanently or temporarily) providing the Services (or any features within the Services) to you or to users generally and may not be able to provide you with prior notice. We also retain the right to create limits on use and storage at our sole discretion at any time without prior notice to you.
 
-The Services may include advertisements, which may be targeted to the Content or information on the Services, queries made through the Services, or other information. The types and extent of advertising by Jokadoo on the Services are subject to change. In consideration for Jokadoo granting you access to and use of the Services, you agree that Jokadoo and its third party providers and partners may place such advertising on the Services or in connection with the display of Content or information from the Services whether submitted by you or others.
+The Services may include advertisements, which may be targeted to the Content or information on the Services, queries made through the Services, or other information. The types and extent of advertising by Jokadoo on the Services are subject to change. In consideration for Matt Maher, developer of Jokadoo, granting you access to and use of the Services, you agree that Jokadoo and its third party providers and partners may place such advertising on the Services or in connection with the display of Content or information from the Services whether submitted by you or others.
 
 2. Privacy
 
@@ -2633,13 +2989,13 @@ Tip You can opt-out of most communications from Jokadoo.
 
 3. Passwords
 
-You are responsible for safeguarding the password that you use to access the Services and for any activities or actions under your password. We encourage you to use “strong” passwords (passwords that use a combination of upper and lower case letters, numbers and symbols) with your account. Jokadoo cannot and will not be liable for any loss or damage arising from your failure to comply with the above.
+You are responsible for safeguarding the password that you use to access the Services and for any activities or actions under your password. We encourage you to use “strong” passwords (passwords that use a combination of upper and lower case letters, numbers and symbols) with your account. Matt Maher, developer of Jokadoo, cannot and will not be liable for any loss or damage arising from your failure to comply with the above.
 
 4. Content on the Services
 
 All Content, whether publicly posted or privately transmitted, is the sole responsibility of the person who originated such Content. We may not monitor or control the Content posted via the Services and, we cannot take responsibility for such Content. Any use or reliance on any Content or materials posted via the Services or obtained by you through the Services is at your own risk.
 
-We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services. You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive. Under no circumstances will Jokadoo be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available via the Services or broadcast elsewhere.
+We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services. You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive. Under no circumstances will Matt Maher, developer of Jokadoo, be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available via the Services or broadcast elsewhere.
 
 5. Your Rights
 
@@ -2647,17 +3003,17 @@ You retain your rights to any Content you submit, post or display on or through 
 
 Tip This license is you authorizing us to make your Posts available to the rest of the world and to let others do the same.
 
-You agree that this license includes the right for Jokadoo to provide, promote, and improve the Services and to make Content submitted to or through the Services available to other companies, organizations or individuals who partner with Jokadoo for the syndication, broadcast, distribution or publication of such Content on other media and services, subject to our terms and conditions for such Content use.
+You agree that this license includes the right for Matt Maher, developer of Jokadoo, to provide, promote, and improve the Services and to make Content submitted to or through the Services available to other companies, organizations or individuals who partner with Matt Maher, developer of Jokadoo, for the syndication, broadcast, distribution or publication of such Content on other media and services, subject to our terms and conditions for such Content use.
 
-Such additional uses by Jokadoo, or other companies, organizations or individuals who partner with Jokadoo, may be made with no compensation paid to you with respect to the Content that you submit, post, transmit or otherwise make available through the Services.
+Such additional uses by Matt Maher, developer of Jokadoo, or other companies, organizations or individuals who partner with Matt Maher, developer of Jokadoo, may be made with no compensation paid to you with respect to the Content that you submit, post, transmit or otherwise make available through the Services.
 
 We may modify or adapt your Content in order to transmit, display or distribute it over computer networks and in various media and/or make changes to your Content as are necessary to conform and adapt that Content to any requirements or limitations of any networks, devices, services or media.
 
-You are responsible for your use of the Services, for any Content you provide, and for any consequences thereof, including the use of your Content by other users and our third party partners. You understand that your Content may be syndicated, broadcast, distributed, or published by our partners and if you do not have the right to submit Content for such use, it may subject you to liability. Jokadoo will not be responsible or liable for any use of your Content by Jokadoo in accordance with these Terms. You represent and warrant that you have all the rights, power and authority necessary to grant the rights granted herein to any Content that you submit.
+You are responsible for your use of the Services, for any Content you provide, and for any consequences thereof, including the use of your Content by other users and our third party partners. You understand that your Content may be syndicated, broadcast, distributed, or published by our partners and if you do not have the right to submit Content for such use, it may subject you to liability. Matt Maher, developer of Jokadoo, will not be responsible or liable for any use of your Content by Matt Maher, developer of Jokadoo, in accordance with these Terms. You represent and warrant that you have all the rights, power and authority necessary to grant the rights granted herein to any Content that you submit.
 
 6. Your License To Use the Services
 
-Jokadoo gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software that is provided to you by Jokadoo as part of the Services. This license is for the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by Jokadoo, in the manner permitted by these Terms.
+Matt Maher, developer of Jokadoo, gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software that is provided to you by Matt Maher, developer of Jokadoo, as part of the Services. This license is for the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by Matt Maher, developer of Jokadoo, in the manner permitted by these Terms.
 
 7. Jokadoo Rights
 
@@ -2667,13 +3023,13 @@ All right, title, and interest in and to the Services (excluding Content provide
 
 We reserve the right at all times (but will not have an obligation) to remove or refuse to distribute any Content on the Services, to suspend or terminate users, and to reclaim usernames without liability to you. We also reserve the right to access, read, preserve, and disclose any information as we reasonably believe is necessary to (i) satisfy any applicable law, regulation, legal process or governmental request, (ii) enforce the Terms, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests, or (v) protect the rights, property or safety of Jokadoo, its users and the public.
 
-You may not do any of the following while accessing or using the Services: (i) access, tamper with, or use non-public areas of the Services, Jokadoo's computer systems, or the technical delivery systems of Jokadoo ‘s providers; (ii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures; (iii) access or search or attempt to access or search the Services by any means (automated or otherwise) other than through our currently available, published interfaces that are provided by Jokadoo (and only pursuant to those terms and conditions), unless you have been specifically allowed to do so in a separate agreement with Jokadoo (NOTE: crawling the Services is permissible if done in accordance with the provisions of the robots.txt file, however, scraping the Services without the prior consent of Jokadoo is expressly prohibited); (iv) forge any TCP/IP packet header or any part of the header information in any email or posting, or in any way use the Services to send altered, deceptive or false source-identifying information; or (v) interfere with, or disrupt, (or attempt to do so), the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, mail-bombing the Services, or by scripting the creation of Content in such a manner as to interfere with or create an undue burden on the Services.
+You may not do any of the following while accessing or using the Services: (i) access, tamper with, or use non-public areas of the Services, Jokadoo's computer systems, or the technical delivery systems of Jokadoo's providers; (ii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures; (iii) access or search or attempt to access or search the Services by any means (automated or otherwise) other than through our currently available, published interfaces that are provided by Jokadoo (and only pursuant to those terms and conditions), unless you have been specifically allowed to do so in a separate agreement with Matt Maher, developer of Jokadoo, (NOTE: crawling the Services is permissible if done in accordance with the provisions of the robots.txt file, however, scraping the Services without the prior consent of Jokadoo is expressly prohibited); (iv) forge any TCP/IP packet header or any part of the header information in any email or posting, or in any way use the Services to send altered, deceptive or false source-identifying information; or (v) interfere with, or disrupt, (or attempt to do so), the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, mail-bombing the Services, or by scripting the creation of Content in such a manner as to interfere with or create an undue burden on the Services.
 
 9. Copyright Policy
 
-Jokadoo respects the intellectual property rights of others and expects users of the Services to do the same. We will respond to notices of alleged copyright infringement that comply with applicable law and are properly provided to us. If you believe that your Content has been copied in a way that constitutes copyright infringement, please provide us with the following information: (i) a physical or electronic signature of the copyright owner or a person authorized to act on their behalf; (ii) identification of the copyrighted work claimed to have been infringed; (iii) identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material; (iv) your contact information, including your address, telephone number, and an email address; (v) a statement by you that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and (vi) a statement that the information in the notification is accurate, and, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.
+Matt Maher, developer of Jokadoo, respects the intellectual property rights of others and expects users of the Services to do the same. We will respond to notices of alleged copyright infringement that comply with applicable law and are properly provided to us. If you believe that your Content has been copied in a way that constitutes copyright infringement, please provide us with the following information: (i) a physical or electronic signature of the copyright owner or a person authorized to act on their behalf; (ii) identification of the copyrighted work claimed to have been infringed; (iii) identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material; (iv) your contact information, including your address, telephone number, and an email address; (v) a statement by you that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and (vi) a statement that the information in the notification is accurate, and, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.
 
-We reserve the right to remove Content alleged to be infringing without prior notice, at our sole discretion, and without liability to you. In appropriate circumstances, Jokadoo will also terminate a user’s account if the user is determined to be a repeat infringer. Our designated copyright agent for notice of alleged copyright infringement appearing on the Services is:
+We reserve the right to remove Content alleged to be infringing without prior notice, at our sole discretion, and without liability to you. In appropriate circumstances, Matt Maher, developer of Jokadoo, will also terminate a user’s account if the user is determined to be a repeat infringer. Our designated copyright agent for notice of alleged copyright infringement appearing on the Services is:
 
 12thTone
 440 Cowan Rd
@@ -2683,19 +3039,19 @@ Email: contact@12thtone.com
 
 10. Ending These Terms
 
-The Terms will continue to apply until terminated by either you or Jokadoo as follows.
+The Terms will continue to apply until terminated by either you or Matt Maher, developer of Jokadoo, as follows.
 
-You may end your legal agreement with Jokadoo at any time for any reason by deactivating your accounts and discontinuing your use of the Services. You do not need to specifically inform Jokadoo when you stop using the Services. If you stop using the Services without deactivating your accounts, your accounts may be deactivated due to prolonged inactivity.
+You may end your legal agreement with Jokadoo at any time for any reason by deactivating your accounts and discontinuing your use of the Services. You do not need to specifically inform Matt Maher, developer of Jokadoo, when you stop using the Services. If you stop using the Services without deactivating your accounts, your accounts may be deactivated due to prolonged inactivity.
 
 We may suspend or terminate your accounts or cease providing you with all or part of the Services at any time for any reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms or the Jokadoo Rules, (ii) you create risk or possible legal exposure for us; or (iii) our provision of the Services to you is no longer commercially viable. We will make reasonable efforts to notify you by the email address associated with your account or the next time you attempt to access your account.
 
 In all such cases, the Terms shall terminate, including, without limitation, your license to use the Services, except that the following sections shall continue to apply: 4, 5, 7, 8, 10, 11, and 12.
 
-Nothing in this section shall affect Jokadoo ‘s rights to change, limit or stop the provision of the Services without prior notice, as provided above in section 1.
+Nothing in this section shall affect Matt Maher's, developer of Jokadoo, rights to change, limit or stop the provision of the Services without prior notice, as provided above in section 1.
 
 11.Disclaimers and Limitations of Liability
 
-Please read this section carefully since it limits the liability of Jokadoo and its parents, subsidiaries, affiliates, related companies, officers, directors, employees, agents, representatives, partners, and licensors (collectively, the “Jokadoo Entities”). Each of the subsections below only applies up to the maximum extent permitted under applicable law. Some jurisdictions do not allow the disclaimer of implied warranties or the limitation of liability in contracts, and as a result the contents of this section may not apply to you. Nothing in this section is intended to limit any rights you may have which may not be lawfully limited.
+Please read this section carefully since it limits the liability of Matt Maher, developer of Jokadoo, and its parents, subsidiaries, affiliates, related companies, officers, directors, employees, agents, representatives, partners, and licensors (collectively, the “Jokadoo Entities”). Each of the subsections below only applies up to the maximum extent permitted under applicable law. Some jurisdictions do not allow the disclaimer of implied warranties or the limitation of liability in contracts, and as a result the contents of this section may not apply to you. Nothing in this section is intended to limit any rights you may have which may not be lawfully limited.
 
 A.	The Services are Available “AS-IS”
 
@@ -2719,7 +3075,7 @@ THE LIMITATIONS OF THIS SUBSECTION SHALL APPLY TO ANY THEORY OF LIABILITY, WHETH
 
 A.	Waiver and Severability
 
-The failure of Jokadoo to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. In the event that any provision of these Terms is held to be invalid or unenforceable, then that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.
+The failure of Matt Maher, developer of Jokadoo, to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. In the event that any provision of these Terms is held to be invalid or unenforceable, then that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.
 
 B. Controlling Law and Jurisdiction
 
@@ -2729,7 +3085,7 @@ If you are a federal, state, or local government entity in the United States usi
 
 C. Entire Agreement
 
-These Terms, the Jokadoo rules and our Privacy Policy are the entire and exclusive agreement between Jokadoo and you regarding the Services (excluding any services for which you have a separate agreement with Jokadoo that is explicitly in addition or in place of these Terms), and these Terms supersede and replace any prior agreements between Jokadoo and you regarding the Services. No other person or company will be third party beneficiaries to the Terms.
+These Terms, the Jokadoo rules and our Privacy Policy are the entire and exclusive agreement between Matt Maher, developer of Jokadoo, and you regarding the Services (excluding any services for which you have a separate agreement with Matt Maher, developer of Jokadoo, that is explicitly in addition or in place of these Terms), and these Terms supersede and replace any prior agreements between Matt Maher, developer of Jokadoo, and you regarding the Services. No other person or company will be third party beneficiaries to the Terms.
 We may revise these Terms from time to time, the most current version will always be at 12thtone.com. If the revision, in our sole discretion, is material we will notify you via an update or e-mail to the email associated with your account. By continuing to access or use the Services after those revisions become effective, you agree to be bound by the revised Terms.
 
 These Services are operated and provided by Matt Maher – 12thTone. If you have any questions about these Terms, please contact us.
@@ -2740,22 +3096,53 @@ Effective: March 5, 2015
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="tEE-fR-qRM" firstAttribute="leading" secondItem="ZwW-rG-SW2" secondAttribute="leading" id="eNV-4d-VR3"/>
-                            <constraint firstAttribute="trailing" secondItem="tEE-fR-qRM" secondAttribute="trailing" id="fLc-hM-fmp"/>
-                            <constraint firstItem="tEE-fR-qRM" firstAttribute="top" secondItem="ZwW-rG-SW2" secondAttribute="top" id="js6-Vr-Cqg"/>
-                            <constraint firstItem="9fm-VQ-ijW" firstAttribute="top" secondItem="tEE-fR-qRM" secondAttribute="bottom" id="wxD-Go-45u"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vai-Vv-zbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="4840"/>
+            <point key="canvasLocation" x="1856" y="4768"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ex5-p9-ctE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mec-hl-J78" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VKb-LB-Tfj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yi6-c8-Pos" kind="relationship" relationship="rootViewController" id="RKX-dR-gVB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="44Z-JX-lfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-619" y="4028"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pPj-l3-vaj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gac-k0-Eok" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YlX-oA-wZk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iMY-gc-NPS" kind="relationship" relationship="rootViewController" id="evs-WT-2BQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J2W-dP-74e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-619" y="4733"/>
         </scene>
     </scenes>
     <resources>
         <image name="AJ-Buddy-laughing.png" width="2135" height="2192"/>
         <image name="LogoJokadoo.png" width="1153" height="440"/>
+        <image name="bomb-7@3x.png" width="90" height="90"/>
         <image name="dot-more-7@3x.png" width="90" height="90"/>
         <image name="gear-7.png" width="30" height="30"/>
         <image name="gear-7@3x.png" width="90" height="90"/>
@@ -2770,8 +3157,8 @@ Effective: March 5, 2015
         <image name="user-7.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="mXV-ZJ-g1o"/>
         <segue reference="iYY-yP-HsU"/>
-        <segue reference="6YK-ad-UIl"/>
-        <segue reference="Dj6-ii-vT0"/>
+        <segue reference="jxg-Y9-oEh"/>
     </inferredMetricsTieBreakers>
 </document>

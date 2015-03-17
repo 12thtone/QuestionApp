@@ -35,10 +35,10 @@
         self.pullToRefreshEnabled = YES;
         
         // Whether the built-in pagination is enabled
-        self.paginationEnabled = YES;
+        self.paginationEnabled = NO;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 30;
     }
     return self;
 }
@@ -72,8 +72,6 @@
     [super viewWillAppear:animated];
     
     self.canDisplayBannerAds = YES;
-    
-    [self loadObjects];
 }
 
 #pragma mark - PFQuery
@@ -83,7 +81,6 @@
     NSMutableArray *userArray = [[NSMutableArray alloc] init];
     
     NSString *searchString = self.searchBar.text;
-    NSLog(@"%@", searchString);
     
     PFQuery *query = [PFUser query];
     [query whereKey:@"description" matchesRegex:searchString modifiers:@"i"];
@@ -93,6 +90,7 @@
     
     PFQuery *mainQuery = [PFQuery orQueryWithSubqueries:@[query,query2]];
     
+    [mainQuery setLimit:30];
     [mainQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
             [userArray addObject:object];
@@ -164,7 +162,6 @@
                 
         ProfileTableViewController *profileTableViewController = (ProfileTableViewController *)segue.destinationViewController;
         profileTableViewController.userFromTabList = object;
-        profileTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

@@ -10,13 +10,12 @@
 #import <Parse/Parse.h>
 #import <iAd/iAd.h>
 #import "ProfileTableViewController.h"
+#import "DataSource.h"
 #import "AllTabbersTableViewCell.h"
 
-@interface AllTabbersTableViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface AllTabbersTableViewController () 
 
 - (IBAction)exitTabberList:(UIBarButtonItem *)sender;
-
-@property (nonatomic, strong) NSMutableArray *theTabbersList;
 
 @end
 
@@ -37,16 +36,13 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 20;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -59,63 +55,34 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.canDisplayBannerAds = YES;
-    
-    [self tabberQuery];
-    [self loadObjects];
 }
 
 # pragma mark - PFQuery
 
-- (NSArray *)tabberQuery {
-    NSMutableArray *tabbersList = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Tab"];
+- (PFQuery *)queryForTable {
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     
     [query whereKey:@"tabReceiver" equalTo:self.user];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        for (PFUser *aUser in objects) {
-            [tabbersList addObject:aUser];
-            
-            self.theTabbersList = [tabbersList copy];
-        }
-        [self.tableView reloadData];
-    }];
+    [query orderByDescending:@"createdAt"];
     
-    return tabbersList;
+    return query;
 }
 
-#pragma mark - Table view data source
+#pragma mark - PFQueryTableViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSLog(@"%lu", (unsigned long)self.theTabbersList.count);
-    return [self.theTabbersList count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     AllTabbersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allTabbersTVCell" forIndexPath:indexPath];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
-    NSDate *date = [[self.theTabbersList objectAtIndex:indexPath.row] createdAt];
+    NSDate *date = [[self.objects objectAtIndex:indexPath.row] createdAt];
     
-    PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
+    PFUser *user = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
     [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         NSString *username = user.username;
         cell.usernameLabel.text = username;
@@ -152,13 +119,10 @@
     if ([segue.identifier isEqualToString:@"viewNewTabberProfile"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFUser *user = [[self.theTabbersList objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
-        
-        NSLog(@"%@", user);
-                
+        PFUser *user = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"tabMaker"];
+                        
         ProfileTableViewController *profileTableViewController = segue.destinationViewController;
         profileTableViewController.userFromTabList = user;
-        profileTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 
