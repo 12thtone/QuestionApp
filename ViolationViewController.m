@@ -34,7 +34,7 @@
 }
 
 - (void)report {
-    NSString *tpw = @"http://www.12thtone.com/contact.html";
+    NSString *tpw = @"http://www.12thtone.com/jokadoo_contact.html";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tpw]];
 }
 

@@ -38,7 +38,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 20;
     }
     return self;
 }
@@ -62,8 +62,6 @@
     [super viewWillAppear:animated];
     
     self.canDisplayBannerAds = YES;
-    
-    [self loadObjects];
 }
 
 #pragma mark - PFQuery

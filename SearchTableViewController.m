@@ -72,8 +72,6 @@
     [super viewWillAppear:animated];
     
     self.canDisplayBannerAds = YES;
-    
-    [self loadObjects];
 }
 
 #pragma mark - PFQuery
@@ -164,7 +162,6 @@
                 
         ProfileTableViewController *profileTableViewController = (ProfileTableViewController *)segue.destinationViewController;
         profileTableViewController.userFromTabList = object;
-        profileTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 

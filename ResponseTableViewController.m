@@ -38,7 +38,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 20;
     }
     return self;
 }
@@ -71,14 +71,28 @@
     [self.jokeTextView.textContainer setSize:self.jokeTextView.frame.size];
     [self.jokeTextView layoutIfNeeded];
     [self.jokeTextView setTextContainerInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:@"reloadTable" object:nil];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadTable" object:nil];
+}
+
+- (void)reloadTableView:(NSNotification*)notification {
+    {
+        if ([[notification name] isEqualToString:@"reloadTable"])
+        {
+            [self loadObjects];
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     self.canDisplayBannerAds = YES;
-    
-    [self loadObjects];
 }
 
 #pragma mark - PFQuery
@@ -156,7 +170,7 @@
     [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
-                                                                message:@"Thanks for your vote!"
+                                                                message:@"Thanks for your UpVote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             [self loadObjects];
@@ -212,7 +226,6 @@
         
         FullResponseTableViewController *fullAnswerTableViewController = (FullResponseTableViewController *)segue.destinationViewController;
         fullAnswerTableViewController.fullResponse = object;
-        fullAnswerTableViewController.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     }
 }
 
@@ -225,7 +238,6 @@
         
     ProfileTableViewController *profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"viewProfile"];
     profileVC.userProfileAnswer = object;
-    profileVC.interstitialPresentationPolicy = ADInterstitialPresentationPolicyAutomatic;
     
     [self presentViewController:profileVC animated:YES completion:nil];
 }

@@ -36,7 +36,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 15;
+        self.objectsPerPage = 20;
     }
     return self;
 }
@@ -60,8 +60,6 @@
     [super viewWillAppear:animated];
     
     self.canDisplayBannerAds = YES;
-    
-    [self loadObjects];
 }
 
 #pragma mark - PFQuery
@@ -162,7 +160,7 @@
     [newVote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"+1"
-                                                                message:@"Thanks for your vote!"
+                                                                message:@"Thanks for your UpVote!"
                                                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
             [self loadObjects];

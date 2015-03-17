@@ -38,10 +38,11 @@
     
     if ([self.response length] == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
-                                                            message:@"We're hoping for an answer."
+                                                            message:@"We're hoping for an response."
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     } else {
+        
         [self saveAnswer];
     }
 }
@@ -68,6 +69,7 @@
         
         [newResponse saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTable" object:nil];
                 [self.navigationController popViewControllerAnimated:YES];
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error!"
