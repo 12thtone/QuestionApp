@@ -1,4 +1,4 @@
-# QuestionApp
+# Jokadoo
 
 This iOS 8 app is called Jokadoo. It is a social network that uses Parse Core, Parse Push, and Parse Analytics. 
 
