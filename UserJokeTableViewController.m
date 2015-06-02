@@ -9,13 +9,16 @@
 #import "UserJokeTableViewController.h"
 #import <Parse/Parse.h>
 #import <iAd/iAd.h>
+#import <MessageUI/MessageUI.h>
 #import "ResponseTableViewController.h"
 #import "DataSource.h"
 #import "UserJokeTableViewCell.h"
 
-@interface UserJokeTableViewController ()
+@interface UserJokeTableViewController () <MFMailComposeViewControllerDelegate>
 
 - (IBAction)exitUserQuestions:(UIBarButtonItem *)sender;
+
+@property (nonatomic, strong) PFObject *messageData;
 
 @end
 
@@ -54,6 +57,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTranslucent:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -106,7 +110,7 @@
     NSDate *date = [[self.objects objectAtIndex:indexPath.row] createdAt];
     
     [cell.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.shareButton addTarget:self action:@selector(shareOrReport:) forControlEvents:UIControlEventTouchUpInside];
     
     cell.statusLabel.text = [[self.objects objectAtIndex:indexPath.row] objectForKey:@"status"];
     cell.dateLabel.text = [dateFormatter stringFromDate:date];
@@ -176,28 +180,66 @@
 
 #pragma mark - Sharing
 
-- (void)shareJoke:(id)sender {
+#pragma mark - Sharing
+
+- (void)shareOrReport:(id)sender {
     
     UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    PFObject *messageData = [self.objects objectAtIndex:tapIndexPath.row];
+    self.messageData = [self.objects objectAtIndex:tapIndexPath.row];
     
-    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [messageData objectForKey:@"questionText"]];
+    UIAlertView *deleteAlert = [[UIAlertView alloc] initWithTitle:nil
+                                                          message:nil
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Share", @"Report a Violation", nil];
+    [deleteAlert show];
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     
-    NSMutableArray *jokeToShare = [NSMutableArray array];
-    [jokeToShare addObject:messageBody];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
-    
-    if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
-        activityVC.popoverPresentationController.sourceView = self.view;
+    if (buttonIndex == 1) {
+        NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.messageData objectForKey:@"author"] fetchIfNeeded] objectForKey:@"username"], [self.messageData objectForKey:@"questionText"]];
+        
+        NSMutableArray *jokeToShare = [NSMutableArray array];
+        [jokeToShare addObject:messageBody];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+        
+        if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
+            activityVC.popoverPresentationController.sourceView = self.view;
+        }
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
+        
+        if (UIActivityTypeMail) {
+            [activityVC setValue:@"Jokadoo" forKey:@"subject"];
+        }
     }
     
-    [self presentViewController:activityVC animated:YES completion:nil];
-    
-    if (UIActivityTypeMail) {
-        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
+    if (buttonIndex == 2) {
+        [self reportViolation];
     }
+}
+
+- (void)reportViolation {
+    MFMailComposeViewController *violationReport = [[MFMailComposeViewController alloc] init];
+    violationReport.mailComposeDelegate = self;
+    
+    NSLog(@"%@", self.messageData);
+    
+    NSString *emailBody = [NSString stringWithFormat:@"Reporting User: %@ \n\nViolating User: %@ \n\nPost Number: %@ \n\nAdditional Details: \n\nWe will review your report within 24 hours. Rule violations are taken very seriously.\n\nThank you very much for helping to make Jokadoo a better place!", [[PFUser currentUser] username], [[self.messageData objectForKey:@"author"] username], [[self.messageData objectForKey:@"author"] objectId]];
+    
+    [violationReport setSubject:@"Jokadoo Violation - URGENT"];
+    [violationReport setMessageBody:emailBody isHTML:NO];
+    [violationReport setToRecipients:[NSArray arrayWithObjects:@"contact@12thtone.com",nil]];
+    
+    [self presentViewController:violationReport animated:YES completion:NULL];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

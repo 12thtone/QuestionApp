@@ -56,6 +56,7 @@
     [self.tabBarController.tabBar setBarTintColor:[UIColor purpleColor]];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTranslucent:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

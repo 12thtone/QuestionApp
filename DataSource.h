@@ -17,4 +17,6 @@
 
 - (BOOL)emailNotificationAllowed:(BOOL)yesOrNo;
 
+-(BOOL)filterForProfanity:(NSString *)text;
+
 @end

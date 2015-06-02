@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "JokeTableViewController.h"
 #import "Reachability.h"
+#import "DataSource.h"
 
 @interface AddJokeViewController ()
 
@@ -31,6 +32,8 @@
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"HelveticaNeue-Light" size:22],NSFontAttributeName, [UIColor purpleColor], NSForegroundColorAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Add a Joke", nil)];
     
     self.statusString = @"Got One for Ya";
 }
@@ -38,6 +41,7 @@
 - (IBAction)savePressed:(UIBarButtonItem *)sender {
     
     NSString *title = [self.titleField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *body = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if ([title length] == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
@@ -45,9 +49,19 @@
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     } else {
-        [self saveQuestion];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        if ([[DataSource sharedInstance] filterForProfanity:title] == NO && [[DataSource sharedInstance] filterForProfanity:body] == NO) {
+            [self saveQuestion];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                                message:@"We found a banned word."
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
     }
+    
+    
 }
 
 - (IBAction)cancelPressed:(UIBarButtonItem *)sender {

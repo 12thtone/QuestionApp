@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "ResponseTableViewController.h"
 #import "Reachability.h"
+#import "DataSource.h"
 
 @interface AddResponseViewController ()
 
@@ -28,6 +29,8 @@
     [super viewDidLoad];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIFont fontWithName:@"HelveticaNeue-Light" size:22],NSFontAttributeName, [UIColor purpleColor], NSForegroundColorAttributeName, nil]];
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Add a Response", nil)];
     
     self.jokeTitleLabel.text = [self.joke objectForKey:@"questionTitle"];
 }
@@ -42,8 +45,15 @@
                                                            delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     } else {
-        
-        [self saveAnswer];
+        if ([[DataSource sharedInstance] filterForProfanity:self.response] == NO) {
+            [self saveAnswer];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                                message:@"We found a banned word."
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
     }
 }
 

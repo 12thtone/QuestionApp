@@ -9,9 +9,10 @@
 #import "FullResponseTableViewController.h"
 #import <Parse/Parse.h>
 #import <iAd/iAd.h>
+#import <MessageUI/MessageUI.h>
 #import "ProfileTableViewController.h"
 
-@interface FullResponseTableViewController ()
+@interface FullResponseTableViewController () <MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -76,7 +77,7 @@
     [self.usernameLabel addGestureRecognizer:tap];
     
     [self.upVoteButton addTarget:self action:@selector(saveVote:) forControlEvents:UIControlEventTouchUpInside];
-    [self.shareButton addTarget:self action:@selector(shareJoke:) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareButton addTarget:self action:@selector(shareOrReport:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,23 +128,64 @@
 
 #pragma mark - Sharing
 
-- (void)shareJoke:(id)sender {
+- (void)shareOrReport:(id)sender {
     
-    NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.fullResponse objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [self.fullResponse objectForKey:@"answerText"]];
+    //UITableViewCell *tappedCell = (UITableViewCell *)[[sender superview] superview];
+    //NSIndexPath *tapIndexPath = [self.tableView indexPathForCell:tappedCell];
     
-    NSMutableArray *jokeToShare = [NSMutableArray array];
-    [jokeToShare addObject:messageBody];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+    //self.messageData = [self.objects objectAtIndex:tapIndexPath.row];
     
-    if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
-        activityVC.popoverPresentationController.sourceView = self.view;
+    UIAlertView *deleteAlert = [[UIAlertView alloc] initWithTitle:nil
+                                                          message:nil
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Share", @"Report a Violation", nil];
+    [deleteAlert show];
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex == 1) {
+        NSString *messageBody = [NSString stringWithFormat:@"%@ found a joke response for you on Jokadoo!\n\n%@ wrote the following:\n\n%@\n\nTo view this joke, and tons more like it, download Jokadoo!\n\nhttp://www.12thtone.com", [[PFUser currentUser] username], [[[self.fullResponse objectForKey:@"answerAuthor"] fetchIfNeeded] objectForKey:@"username"], [self.fullResponse objectForKey:@"answerText"]];
+        
+        NSMutableArray *jokeToShare = [NSMutableArray array];
+        [jokeToShare addObject:messageBody];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:jokeToShare applicationActivities:nil];
+        
+        if (!([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)) {
+            activityVC.popoverPresentationController.sourceView = self.view;
+        }
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
+        
+        if (UIActivityTypeMail) {
+            [activityVC setValue:@"Jokadoo" forKey:@"subject"];
+        }
     }
     
-    [self presentViewController:activityVC animated:YES completion:nil];
-    
-    if (UIActivityTypeMail) {
-        [activityVC setValue:@"Jokadoo" forKey:@"subject"];
+    if (buttonIndex == 2) {
+        [self reportViolation];
     }
+}
+
+- (void)reportViolation {
+    MFMailComposeViewController *violationReport = [[MFMailComposeViewController alloc] init];
+    violationReport.mailComposeDelegate = self;
+    
+    NSLog(@"%@", self.fullResponse);
+    
+    NSString *emailBody = [NSString stringWithFormat:@"Reporting User: %@ \n\nViolating User: %@ \n\nPost Number: %@ \n\nAdditional Details: \n\nWe will review your report within 24 hours. Rule violations are taken very seriously.\n\nThank you very much for helping to make Jokadoo a better place!", [[PFUser currentUser] username], [[self.fullResponse objectForKey:@"answerAuthor"] username], [[self.fullResponse objectForKey:@"answerAuthor"] objectId]];
+    
+    [violationReport setSubject:@"Jokadoo Violation - URGENT"];
+    [violationReport setMessageBody:emailBody isHTML:NO];
+    [violationReport setToRecipients:[NSArray arrayWithObjects:@"contact@12thtone.com",nil]];
+    
+    [self presentViewController:violationReport animated:YES completion:NULL];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
