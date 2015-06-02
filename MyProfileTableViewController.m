@@ -11,6 +11,7 @@
 #import <iAd/iAd.h>
 #import "Reachability.h"
 #import "SettingsTableViewController.h"
+#import "DataSource.h"
 
 @interface MyProfileTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -24,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *textProfile;
 @property (weak, nonatomic) IBOutlet UIButton *myJokesButton;
 @property (weak, nonatomic) IBOutlet UIButton *myResponsesButton;
+
+@property (nonatomic, strong) NSString *profileString;
 
 @property (weak, nonatomic) UIImage *chosenImage;
 
@@ -114,7 +117,16 @@
 - (IBAction)saveButton:(UIBarButtonItem *)sender {
     if (self.chosenImage || self.textProfile) {
         
-        [self saveProfile];
+        self.profileString = self.textProfile.text;
+        
+        if ([[DataSource sharedInstance] filterForProfanity:self.profileString] == NO) {
+            [self saveProfile];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                                message:@"We found a banned word."
+                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
         
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
@@ -136,7 +148,7 @@
     } else {
         
         if (self.chosenImage) {
-            NSString *profileString = self.textProfile.text;
+            self.profileString = self.textProfile.text;
             
             NSData *imageData = UIImageJPEGRepresentation(self.chosenImage, 0.0f);
             PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
@@ -151,7 +163,7 @@
                     if (succeeded) {
                         
                         PFUser *user = [PFUser currentUser];
-                        user[@"description"] = profileString;
+                        user[@"description"] = self.profileString;
                         user[@"picture"] = imageFile;
                         [user saveInBackground];
                     }
@@ -163,10 +175,10 @@
                 }
             }];
         } else {
-            NSString *profileString = self.textProfile.text;
+            self.profileString = self.textProfile.text;
             
             PFUser *user = [PFUser currentUser];
-            user[@"description"] = profileString;
+            user[@"description"] = self.profileString;
             [user saveInBackground];
         }
         

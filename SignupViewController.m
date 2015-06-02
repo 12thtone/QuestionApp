@@ -8,6 +8,7 @@
 
 #import "SignupViewController.h"
 #import <Parse/Parse.h>
+#import "DataSource.h"
 
 @interface SignupViewController ()
 
@@ -29,14 +30,31 @@
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = NO;
     
-    [self.createAccount addTarget:self action:@selector(createAccount:) forControlEvents:UIControlEventTouchUpInside];
+    [self.createAccount addTarget:self action:@selector(agreeToRules:) forControlEvents:UIControlEventTouchUpInside];
     self.createAccount.layer.borderWidth = 1;
     self.createAccount.layer.borderColor = [UIColor purpleColor].CGColor;
     self.createAccount.layer.cornerRadius = 8;
     self.createAccount.layer.masksToBounds = YES;
 }
 
-- (void)createAccount:(id)sender {
+- (void)agreeToRules:(id)sender {
+    UIAlertView *confirmAlert = [[UIAlertView alloc] initWithTitle:@"Rules and Terms"
+                                                           message:@"Please confirm that you have read and agree to abide by the Jokadoo Rules and Terms of Service."
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Disagree"
+                                                 otherButtonTitles:@"Agree", nil];
+    [confirmAlert show];
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self createNewAccount];
+    }
+}
+
+- (void)createNewAccount {
+    
     NSString *fullName = [self.nameSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     self.username = [self.usernameSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *password = [self.passwordSignupField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -48,12 +66,23 @@
     if ([fullName length] == 0 || [self.username length] == 0 || [password length] == 0 || [email length] == 0) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
                                                             message:needString
-                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
         [alertView show];
     } else if (![self usernameQuery]){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
                                                             message:takenString
-                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    } else if ([[DataSource sharedInstance] filterForProfanity:fullName] == YES || [[DataSource sharedInstance] filterForProfanity:self.username] == YES) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Uh oh!"
+                                                            message:@"We found a banned word."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
         [alertView show];
     } else {
         
